@@ -112,4 +112,78 @@ class UBackstageRoundTests : UAngelscriptTestSuite
         AssertEquals(0, Round.Photos.Num());
         AssertEquals(6, Round.Shutters);
     }
+
+    UFUNCTION(meta=(AngelscriptTest))
+    void PuppetPoseAndStageProjectionMatchTheBeats()
+    {
+        const auto Walk0 = BackstagePuppet::EvaluatePose(EBackstageRole::Artist, 2.00);
+        const auto Walk1 = BackstagePuppet::EvaluatePose(EBackstageRole::Artist, 2.13);
+        const auto Walk2 = BackstagePuppet::EvaluatePose(EBackstageRole::Artist, 2.26);
+        const auto Walk3 = BackstagePuppet::EvaluatePose(EBackstageRole::Artist, 2.38);
+        AssertTrue(Walk0.State == EBackstageAnimState::Walk);
+        AssertTrue(Walk0.Expression == EBackstageExpression::Calm);
+        AssertEquals(n"Artist_Walk", Walk0.SequenceKey);
+        AssertTrue(!Walk0.bCrouching);
+        AssertEquals(4, Walk0.FrameCount);
+        AssertEquals(0, Walk0.FrameIndex);
+        AssertEquals(1, Walk1.FrameIndex);
+        AssertEquals(2, Walk2.FrameIndex);
+        AssertEquals(3, Walk3.FrameIndex);
+
+        const auto CollArtist = BackstagePuppet::EvaluatePose(EBackstageRole::Artist, 10.0);
+        const auto CollCoord = BackstagePuppet::EvaluatePose(EBackstageRole::Coordinator, 10.0);
+        AssertTrue(CollArtist.State == EBackstageAnimState::Shock);
+        AssertTrue(CollArtist.Expression == EBackstageExpression::Shock);
+        AssertEquals(n"Artist_Shock", CollArtist.SequenceKey);
+        AssertEquals(n"Emotion_Shock", CollArtist.EmotionBadge);
+        AssertTrue(CollCoord.State == EBackstageAnimState::Shock);
+        AssertTrue(CollCoord.Expression == EBackstageExpression::Focus);
+        AssertEquals(n"Coordinator_Shock", CollCoord.SequenceKey);
+
+        const auto ArgArtist = BackstagePuppet::EvaluatePose(EBackstageRole::Artist, 18.0);
+        const auto ArgVol = BackstagePuppet::EvaluatePose(EBackstageRole::Volunteer, 18.0);
+        const auto ArgCoord = BackstagePuppet::EvaluatePose(EBackstageRole::Coordinator, 18.0);
+        AssertTrue(ArgArtist.State == EBackstageAnimState::Argue);
+        AssertTrue(ArgArtist.Expression == EBackstageExpression::Angry);
+        AssertEquals(n"Artist_Argue", ArgArtist.SequenceKey);
+        AssertEquals(n"Emotion_Anger", ArgArtist.EmotionBadge);
+        AssertTrue(ArgArtist.FacingSign > 0.0);
+        AssertTrue(ArgVol.State == EBackstageAnimState::Shock);
+        AssertEquals(n"Volunteer_Shock", ArgVol.SequenceKey);
+        AssertEquals(n"Emotion_Shock", ArgVol.EmotionBadge);
+        AssertTrue(ArgVol.FacingSign < 0.0);
+        AssertTrue(ArgCoord.State == EBackstageAnimState::Argue);
+        AssertTrue(ArgCoord.Expression == EBackstageExpression::Focus);
+
+        const auto PickArtist = BackstagePuppet::EvaluatePose(EBackstageRole::Artist, 28.0);
+        const auto PickVol = BackstagePuppet::EvaluatePose(EBackstageRole::Volunteer, 28.0);
+        AssertTrue(PickArtist.State == EBackstageAnimState::Pickup);
+        AssertTrue(PickArtist.Expression == EBackstageExpression::Focus);
+        AssertTrue(PickArtist.bCrouching);
+        AssertEquals(n"Artist_Pickup", PickArtist.SequenceKey);
+        AssertEquals(n"Emotion_Care", PickArtist.EmotionBadge);
+        AssertTrue(PickVol.State == EBackstageAnimState::Care);
+        AssertTrue(PickVol.Expression == EBackstageExpression::Calm);
+        AssertTrue(!PickVol.bCrouching);
+        AssertEquals(n"Volunteer_Care", PickVol.SequenceKey);
+
+        const auto HandoffArtist = BackstagePuppet::EvaluatePose(EBackstageRole::Artist, 38.0);
+        const auto HandoffVol = BackstagePuppet::EvaluatePose(EBackstageRole::Volunteer, 38.0);
+        const auto HandoffCoord = BackstagePuppet::EvaluatePose(EBackstageRole::Coordinator, 38.0);
+        AssertTrue(HandoffArtist.State == EBackstageAnimState::Handoff);
+        AssertTrue(HandoffVol.State == EBackstageAnimState::Handoff);
+        AssertTrue(HandoffCoord.State == EBackstageAnimState::Warm);
+        AssertEquals(n"Artist_Handoff", HandoffArtist.SequenceKey);
+        AssertEquals(n"Volunteer_Handoff", HandoffVol.SequenceKey);
+        AssertEquals(n"Coordinator_Warm", HandoffCoord.SequenceKey);
+        AssertEquals(n"Emotion_Warm", HandoffArtist.EmotionBadge);
+
+        const auto TogetherArtist = BackstagePuppet::EvaluatePose(EBackstageRole::Artist, 46.0);
+        const auto TogetherCoord = BackstagePuppet::EvaluatePose(EBackstageRole::Coordinator, 46.0);
+        AssertTrue(TogetherArtist.State == EBackstageAnimState::Warm);
+        AssertTrue(TogetherArtist.Expression == EBackstageExpression::Warm);
+        AssertEquals(n"Emotion_Warm", TogetherArtist.EmotionBadge);
+        AssertTrue(TogetherCoord.State == EBackstageAnimState::Warm);
+        AssertEquals(NAME_None, TogetherCoord.EmotionBadge);
+    }
 }

@@ -7,11 +7,22 @@ class ABackstageGameMode : AGameModeBase
 class ABackstageController : APlayerController
 {
     FBackstageRound Round;
+    ABackstageStageActor StageActor = nullptr;
     int EditSlot = 0;
     bool bWasA = false;
     bool bWasD = false;
     bool bWasQ = false;
     bool bWasE = false;
+
+    void EnsureStage()
+    {
+        if (StageActor == nullptr)
+        {
+            StageActor = ABackstageStageActor::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
+            if (StageActor != nullptr)
+                StageActor.InitializeStage(this);
+        }
+    }
 
     bool Pressed(FName Key)
     {
@@ -35,6 +46,8 @@ class ABackstageController : APlayerController
         if (!IsLocalController())
             return;
 
+        EnsureStage();
+
         const auto PreviousPhase = Round.Phase;
         switch (Round.Phase)
         {
@@ -43,6 +56,7 @@ class ABackstageController : APlayerController
                 if (Pressed(n"Enter"))
                 {
                     Round.Start();
+                    BackstageClearPhotos();
                     EditSlot = 0;
                 }
                 break;
@@ -60,6 +74,22 @@ class ABackstageController : APlayerController
         Round.Advance(DeltaSeconds);
         if (Round.Phase != PreviousPhase)
             SetBackstagePointer(Round.Phase == EBackstagePhase::Edit);
+
+        if (StageActor != nullptr)
+        {
+            if (Round.Phase == EBackstagePhase::Preview && Round.Cut.Num() > 0)
+            {
+                const int Frame = Math::Clamp(
+                    int(Round.PreviewTime / Backstage::PreviewSecondsPerFrame),
+                    0,
+                    Round.Cut.Num() - 1);
+                StageActor.SyncToView(this, Round.Cut[Frame], true);
+            }
+            else
+            {
+                StageActor.SyncToView(this, Round.Camera, true);
+            }
+        }
     }
 
     void HandleCamera(float Delta)
@@ -69,7 +99,18 @@ class ABackstageController : APlayerController
         if (Pressed(n"Three")) Round.Camera.Station = 2;
         Backstage::AdjustView(Round.Camera, CameraAxis(n"A", n"D", bWasA, bWasD, Delta),
             CameraAxis(n"Q", n"E", bWasQ, bWasE, Delta));
-        if (Pressed(n"SpaceBar")) Round.Capture();
+        if (Pressed(n"SpaceBar"))
+        {
+            const int PrevCount = Round.Photos.Num();
+            Round.Capture();
+            if (Round.Photos.Num() > PrevCount && StageActor != nullptr)
+            {
+                const int NewIndex = Round.Photos.Num() - 1;
+                const FBackstagePhoto& Captured = Round.Photos[NewIndex];
+                StageActor.SyncToView(this, Captured, true);
+                BackstageCapturePhoto(StageActor, NewIndex, Captured.Station, Captured.Pan, Captured.Zoom);
+            }
+        }
         if (Pressed(n"R")) Round.Replay();
         if (Pressed(n"Enter") && Round.Photos.Num() >= Backstage::FrameCount) Round.Phase = EBackstagePhase::Edit;
     }
@@ -102,7 +143,11 @@ class ABackstageController : APlayerController
         if (Pressed(n"P")) Round.Preview(false);
         if (Pressed(n"Enter")) Round.Preview(true);
         if (Pressed(n"R")) Round.Replay();
-        if (Pressed(n"BackSpace")) Round = FBackstageRound();
+        if (Pressed(n"BackSpace"))
+        {
+            Round = FBackstageRound();
+            BackstageClearPhotos();
+        }
     }
 }
 
@@ -128,11 +173,18 @@ class ABackstageHUD : AHUD
         if (Controller == nullptr)
             return;
 
-        BackstageRect(Ink, 0, 0, SizeX, SizeY);
         Scale = Math::Min(SizeX / 1280.0, SizeY / 720.0);
         OriginX = (SizeX - Scale * 1280) * 0.5;
         OriginY = (SizeY - Scale * 720) * 0.5;
         const FBackstageRound& Round = Controller.Round;
+
+        if (Round.Phase == EBackstagePhase::Live)
+            MaskStageWindow(SizeX, SizeY, 48, 125, 1184, 445);
+        else if (Round.Phase == EBackstagePhase::Preview)
+            MaskStageWindow(SizeX, SizeY, 48, 150, 1184, 440);
+        else
+            BackstageRect(FLinearColor(Ink.R, Ink.G, Ink.B, 0.84), 0, 0, SizeX, SizeY);
+
         Text("营销达人  /  慈善活动后台", 48, 34, Mint, 1.15);
         switch (Round.Phase)
         {
@@ -141,6 +193,64 @@ class ABackstageHUD : AHUD
             case EBackstagePhase::Edit: Edit(Round, Controller.EditSlot, Controller.BackstagePointer()); break;
             case EBackstagePhase::Preview: Preview(Round); break;
             case EBackstagePhase::Results: Results(Round); break;
+        }
+    }
+
+    void MaskStageWindow(int SizeX, int SizeY, float X, float Y, float W, float H)
+    {
+        const float Left = OriginX + X * Scale;
+        const float Top = OriginY + Y * Scale;
+        const float Right = OriginX + (X + W) * Scale;
+        const float Bottom = OriginY + (Y + H) * Scale;
+        if (Top > 0)
+            BackstageRect(Ink, 0, 0, SizeX, Top);
+        if (Bottom < SizeY)
+            BackstageRect(Ink, 0, Bottom, SizeX, SizeY - Bottom);
+        if (Left > 0)
+            BackstageRect(Ink, 0, Top, Left, Bottom - Top);
+        if (Right < SizeX)
+            BackstageRect(Ink, Right, Top, SizeX - Right, Bottom - Top);
+    }
+
+    void Viewfinder(const FBackstagePhoto&in Photo, float X, float Y, float W, float H, bool bLive)
+    {
+        const FLinearColor Edge(0.36, 0.93, 0.73, 0.35);
+        Box(Edge, X, Y, W, 1);
+        Box(Edge, X, Y + H - 1, W, 1);
+        Box(Edge, X, Y, 1, H);
+        Box(Edge, X + W - 1, Y, 1, H);
+
+        const float Bracket = 26;
+        const float Thick = 3;
+        Box(Mint, X, Y, Bracket, Thick);
+        Box(Mint, X, Y, Thick, Bracket);
+        Box(Mint, X + W - Bracket, Y, Bracket, Thick);
+        Box(Mint, X + W - Thick, Y, Thick, Bracket);
+        Box(Mint, X, Y + H - Thick, Bracket, Thick);
+        Box(Mint, X, Y + H - Bracket, Thick, Bracket);
+        Box(Mint, X + W - Bracket, Y + H - Thick, Bracket, Thick);
+        Box(Mint, X + W - Thick, Y + H - Bracket, Thick, Bracket);
+
+        const FLinearColor Guide(0.94, 0.97, 1.0, 0.14);
+        Box(Guide, X + W / 3.0, Y + 12, 1, H - 24);
+        Box(Guide, X + W * 2.0 / 3.0, Y + 12, 1, H - 24);
+
+        if (bLive)
+        {
+            Box(Paper, X + W * 0.5 - 10, Y + H * 0.5, 20, 1);
+            Box(Paper, X + W * 0.5, Y + H * 0.5 - 10, 1, 20);
+            Box(FLinearColor(Ink.R, Ink.G, Ink.B, 0.65), X + 14, Y + 12, 92, 28);
+            Text("● REC", X + 22, Y + 17, ArtistColor);
+        }
+    }
+
+    void DrawPhotoOrShot(const FBackstagePhoto&in Original, const FBackstagePhoto&in Edited, int PhotoIndex,
+        float X, float Y, float W, float H)
+    {
+        if (!BackstageDrawPhoto(PhotoIndex, OriginX + X * Scale, OriginY + Y * Scale, W * Scale, H * Scale,
+            Original.Pan, Original.Zoom, Edited.Pan, Edited.Zoom))
+        {
+            Shot(Edited, X, Y, W, H);
         }
     }
 
@@ -171,7 +281,7 @@ class ABackstageHUD : AHUD
         Text(f"机位 {Round.Camera.Station + 1}  /  {int(Round.Camera.Time)} 秒", 48, 82, Paper, 1.36);
         Text(f"转向 {int(Round.Camera.Pan * 30)}°   变焦 {int(Round.Camera.Zoom * 100)}%", 460, 82, Muted, 1.18);
         Text(f"快门 {Round.Shutters} / 6    回看 {Round.Replays} / 1", 898, 82, Paper, 1.36);
-        Shot(Round.Camera, 48, 125, 1184, 445, true);
+        Viewfinder(Round.Camera, 48, 125, 1184, 445, true);
         if (Round.ReplayNotice > 0)
         {
             Box(Ink, 365, 136, 538, 43);
@@ -274,7 +384,7 @@ class ABackstageHUD : AHUD
             Box(Panel, X, 177, 184, 146);
             if (Round.Photos.IsValidIndex(Index))
             {
-                Shot(Round.Photos[Index], X, 177, 184, 110);
+                DrawPhotoOrShot(Round.Photos[Index], Round.Photos[Index], Index, X, 177, 184, 110);
                 const int Slot = Round.Slots.FindIndex(Index);
                 if (HoveredPhoto == Index || Slot >= 0) Box(Mint, X, 177, 184, 3);
                 Text(f"{Index + 1}   {int(Round.Photos[Index].Time)} 秒", X + 11, 296, Slot >= 0 ? Mint : Paper);
@@ -288,7 +398,10 @@ class ABackstageHUD : AHUD
             const float X = Backstage::SlotLeft(Index);
             Box(Panel, X, 392, 222, 156);
             if (Round.Slots.IsValidIndex(Index))
-                Shot(Round.Edits[Round.Slots[Index]], X, 392, 222, 120);
+            {
+                const int PhotoIndex = Round.Slots[Index];
+                DrawPhotoOrShot(Round.Photos[PhotoIndex], Round.Edits[PhotoIndex], PhotoIndex, X, 392, 222, 120);
+            }
             if (Index == ActiveSlot) Box(Mint, X, 392, 222, 3);
             Text(f"槽 {Index + 1}", X + 12, 519, Index == ActiveSlot ? Mint : Paper);
         }
@@ -308,7 +421,7 @@ class ABackstageHUD : AHUD
         const int Frame = Math::Min(int(Round.PreviewTime / Backstage::PreviewSecondsPerFrame), Backstage::FrameCount - 1);
         Text(HeadlineText(Round.Headline), 48, 88, Paper, 1.65);
         Text(Round.bPublishing ? "发布中" : "作品预览", 1084, 92, Mint, 1.22);
-        Shot(Round.Cut[Frame], 48, 150, 1184, 440);
+        Viewfinder(Round.Cut[Frame], 48, 150, 1184, 440, false);
         Text(f"{Frame + 1} / 3", 48, 621, Mint, 1.32);
         if (!Round.bPublishing) Text("Backspace 返回剪辑", 875, 621, Muted, 1.15);
     }
@@ -318,7 +431,11 @@ class ABackstageHUD : AHUD
         const FBackstageResult Result = Round.Result;
         Text(HeadlineText(Round.Headline), 48, 90, Paper, 1.8);
         for (int Index = 0; Index < Backstage::FrameCount; ++Index)
-            Shot(Round.Cut[Index], 48 + float(Index) * 211, 140, 198, 110);
+        {
+            const int PhotoIndex = Round.Slots.IsValidIndex(Index) ? Round.Slots[Index] : -1;
+            const FBackstagePhoto& Original = Round.Photos.IsValidIndex(PhotoIndex) ? Round.Photos[PhotoIndex] : Round.Cut[Index];
+            DrawPhotoOrShot(Original, Round.Cut[Index], PhotoIndex, 48 + float(Index) * 211, 140, 198, 110);
+        }
         Text(f"关注度  {Signed(Result.Attention)}", 730, 149, Mint, 1.30);
         Text(f"公司信任  {Signed(Result.CompanyTrust)}", 730, 188, Paper, 1.30);
         Text(f"公众信任  {Signed(Result.PublicTrust)}", 972, 188, Paper, 1.30);
