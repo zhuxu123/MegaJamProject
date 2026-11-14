@@ -1,0 +1,36 @@
+# Unreal Engine generated directories (project and plugins)
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Local editor and IDE files
+.vs/
+.idea/
+.vscode/
+*.sln
+*.slnx
+*.suo
+*.user
+*.userprefs
+*.VC.db
+*.VC.opendb
+*.xcodeproj/
+*.xcworkspace/
+*.xcuserstate
+
+# Unreal packaging and build output
+*.pak
+*.ucas
+*.utoc
+*.log
+*.tmp
+
+# Generated Unreal AngelScript bindings
+/Script/Binds.Cache
+/Script/Binds.Cache.Headers
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
