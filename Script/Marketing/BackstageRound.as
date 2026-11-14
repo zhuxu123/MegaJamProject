@@ -119,7 +119,7 @@ namespace Backstage
 
     float CameraPitch(float Tilt)
     {
-        return -5.8 + Tilt * 8.5;
+        return -4.2 + Tilt * 4.5;
     }
 
     float DampCurve(float Current, float Target, float Delta, float Speed)

@@ -72,6 +72,10 @@ namespace
 	{
 		int32 Width = BackstageTexSize;
 		int32 Height = BackstageTexSize;
+		int32 MinDirtyX = BackstageTexSize;
+		int32 MaxDirtyX = -1;
+		int32 MinDirtyY = BackstageTexSize;
+		int32 MaxDirtyY = -1;
 		TArray<FColor> Pixels;
 
 		FBackstagePixelCanvas()
@@ -84,6 +88,13 @@ namespace
 			if (X >= 0 && X < Width && Y >= 0 && Y < Height)
 			{
 				Pixels[Y * Width + X] = Color;
+				if (Color.A > 0)
+				{
+					MinDirtyX = FMath::Min(MinDirtyX, X);
+					MaxDirtyX = FMath::Max(MaxDirtyX, X);
+					MinDirtyY = FMath::Min(MinDirtyY, Y);
+					MaxDirtyY = FMath::Max(MaxDirtyY, Y);
+				}
 			}
 		}
 
@@ -251,11 +262,19 @@ namespace
 		// Adds a uniform dark ink contour around opaque silhouette pixels.
 		void AddInkOutline(int32 Thickness, const FColor& InkColor)
 		{
+			if (MaxDirtyX < MinDirtyX || MaxDirtyY < MinDirtyY)
+			{
+				return;
+			}
 			TArray<FColor> Source = Pixels;
 			const int32 RadiusSq = Thickness * Thickness;
-			for (int32 Y = 0; Y < Height; ++Y)
+			const int32 LoopMinY = FMath::Max(0, MinDirtyY - Thickness);
+			const int32 LoopMaxY = FMath::Min(Height - 1, MaxDirtyY + Thickness);
+			const int32 LoopMinX = FMath::Max(0, MinDirtyX - Thickness);
+			const int32 LoopMaxX = FMath::Min(Width - 1, MaxDirtyX + Thickness);
+			for (int32 Y = LoopMinY; Y <= LoopMaxY; ++Y)
 			{
-				for (int32 X = 0; X < Width; ++X)
+				for (int32 X = LoopMinX; X <= LoopMaxX; ++X)
 				{
 					if (Source[Y * Width + X].A >= 128)
 					{
@@ -916,8 +935,6 @@ namespace
 		if (Component->GetSprite() != Sprite)
 		{
 			Component->SetSprite(Sprite);
-			Component->MarkRenderStateDirty();
-			Component->MarkRenderDynamicDataDirty();
 		}
 		if (!Component->GetSpriteColor().Equals(Color, 0.001f))
 		{
@@ -1042,7 +1059,7 @@ namespace
 
 		UMaterialInterface* LitMaterial = LoadSpriteMaterial(true);
 		const TCHAR* Roles[] = { TEXT("Artist"), TEXT("Volunteer"), TEXT("Coordinator") };
-		const TCHAR* States[] = { TEXT("Idle"), TEXT("Walk"), TEXT("Shock"), TEXT("Argue"), TEXT("Pickup"), TEXT("Care"), TEXT("Handoff"), TEXT("Warm") };
+		const TCHAR* States[] = { TEXT("Idle"), TEXT("Walk") };
 		const FVector2D BodySize(104.0, 156.0);
 		const FVector2D BodyPivot(0.5, 1.0);
 
@@ -1051,12 +1068,9 @@ namespace
 			for (const TCHAR* State : States)
 			{
 				const FName SeqName(*FString::Printf(TEXT("%s_%s"), Role, State));
-				for (int32 Frame = 0; Frame < 4; ++Frame)
-				{
-					UTexture2D* Texture = GetOrCreateSequenceFrameTexture(SeqName, Frame);
-					const FName SpriteKey(*FString::Printf(TEXT("Frame_%s_%d_104x156_50x100_1"), *SeqName.ToString(), Frame));
-					GetOrCreateCachedRuntimeSprite(SpriteKey, Texture, LitMaterial, BodySize, BodyPivot);
-				}
+				UTexture2D* Texture = GetOrCreateSequenceFrameTexture(SeqName, 0);
+				const FName SpriteKey(*FString::Printf(TEXT("Frame_%s_0_104x156_50x100_1"), *SeqName.ToString()));
+				GetOrCreateCachedRuntimeSprite(SpriteKey, Texture, LitMaterial, BodySize, BodyPivot);
 			}
 		}
 	}
@@ -1112,13 +1126,13 @@ namespace
 		const FVector Forward(FMath::Cos(AngleRad), FMath::Sin(AngleRad), 0.0);
 		const FVector Right(-FMath::Sin(AngleRad), FMath::Cos(AngleRad), 0.0);
 		const double LateralShift = static_cast<double>(Center + Pan) * 100.0;
-		// Orbital vertical crane: Tilt < 0 rises higher for a clean high-angle stage overview;
-		// Tilt > 0 lowers the camera for a low-angle shot toward the overhead lighting rig.
-		const double VerticalShift = -static_cast<double>(Tilt) * 52.0;
-		const double DistancePull = static_cast<double>(BackstageCameraDistance) - FMath::Abs(static_cast<double>(Tilt)) * 26.0;
+		// Gentle vertical crane: Tilt < 0 rises slightly for a soft high-angle view;
+		// Tilt > 0 lowers slightly for a subtle low-angle shot.
+		const double VerticalShift = -static_cast<double>(Tilt) * 26.0;
+		const double DistancePull = static_cast<double>(BackstageCameraDistance) - FMath::Abs(static_cast<double>(Tilt)) * 12.0;
 
-		OutLocation = Right * LateralShift - Forward * DistancePull + FVector(0.0, 0.0, 128.0 + VerticalShift);
-		OutRotation = FRotator(-5.8 + static_cast<double>(Tilt) * 8.5, YawDeg, 0.0);
+		OutLocation = Right * LateralShift - Forward * DistancePull + FVector(0.0, 0.0, 122.0 + VerticalShift);
+		OutRotation = FRotator(-4.2 + static_cast<double>(Tilt) * 4.5, YawDeg, 0.0);
 
 		const float TanHalfFOV = (100.0f / BackstageCameraDistance) / (2.0f * BackstageProjectionScale * FMath::Max(Zoom, 0.5f));
 		OutFOV = FMath::Clamp(FMath::RadiansToDegrees(2.0f * FMath::Atan(TanHalfFOV)), 18.0f, 90.0f);
@@ -1266,17 +1280,14 @@ namespace
 		{
 			return 0.0f;
 		}
-		float Wheel = Controller->GetInputAnalogKeyState(EKeys::MouseWheelAxis);
-		if (FMath::IsNearlyZero(Wheel))
+		float Wheel = 0.0f;
+		if (Controller->WasInputKeyJustPressed(EKeys::MouseScrollUp))
 		{
-			if (Controller->WasInputKeyJustPressed(EKeys::MouseScrollUp))
-			{
-				Wheel += 1.0f;
-			}
-			if (Controller->WasInputKeyJustPressed(EKeys::MouseScrollDown))
-			{
-				Wheel -= 1.0f;
-			}
+			Wheel += 1.0f;
+		}
+		if (Controller->WasInputKeyJustPressed(EKeys::MouseScrollDown))
+		{
+			Wheel -= 1.0f;
 		}
 		return Wheel;
 	}
@@ -1388,6 +1399,24 @@ namespace
 		{
 			Controller->ConsoleCommand(TEXT("quit"));
 		}
+	}
+
+	AActor* BackstageFindStageActor(const APlayerController* Controller)
+	{
+		if (!Controller || !Controller->GetWorld())
+		{
+			return nullptr;
+		}
+		TArray<AActor*> Actors;
+		UGameplayStatics::GetAllActorsOfClass(Controller->GetWorld(), AActor::StaticClass(), Actors);
+		for (AActor* Actor : Actors)
+		{
+			if (Actor && Actor->GetClass()->GetName().Contains(TEXT("BackstageStageActor")))
+			{
+				return Actor;
+			}
+		}
+		return nullptr;
 	}
 
 	bool BackstageDrawPhoto(AHUD* HUD, int32 PhotoIndex, float X, float Y, float W, float H, float OriginalPan, float OriginalZoom, float CropPan, float CropZoom)
@@ -1550,6 +1579,7 @@ static const FAngelscriptBind BindBackstageControls(
 		Controller.Method("bool BackstageIsMainMenuMap() const", &BackstageIsMainMenuMap);
 		Controller.Method("void BackstageOpenMap(const FName& MapName)", &BackstageOpenMap);
 		Controller.Method("void BackstageQuitGame()", &BackstageQuitGame);
+		Controller.Method("AActor BackstageFindStageActor() const", &BackstageFindStageActor);
 
 		auto HUD = Binds.ExistingClassForTarget("AHUD");
 		HUD.Method("APlayerController BackstagePlayer() const", METHOD_TRIVIAL(AHUD, GetOwningPlayerController));

@@ -259,7 +259,7 @@ class ABackstagePuppet : AActor
         if (Pose.SequenceKey != LastSequenceKey || Pose.FrameIndex != LastFrameIndex)
         {
             BodySprite.BackstageSetSpriteFrame(Pose.SequenceKey, Pose.FrameIndex, FVector2D(104.0, 156.0),
-                FVector2D(0.5, 1.0), RoleColor, true, true);
+                FVector2D(0.5, 1.0), RoleColor, true, false);
             LastSequenceKey = Pose.SequenceKey;
             LastFrameIndex = Pose.FrameIndex;
         }
@@ -344,11 +344,51 @@ class ABackstageStageActor : AActor
     UPROPERTY(DefaultComponent, Attach = Root)
     UPaperSpriteComponent ScatterRight;
 
-    TArray<UStaticMeshComponent> Pillars;
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UStaticMeshComponent Pillar0;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UStaticMeshComponent Pillar1;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UStaticMeshComponent Pillar2;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UStaticMeshComponent Pillar3;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UStaticMeshComponent Pillar4;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UStaticMeshComponent LightCan0;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UStaticMeshComponent LightCan1;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UStaticMeshComponent LightCan2;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UStaticMeshComponent LightCan3;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent EditorArtistSprite;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent EditorVolunteerSprite;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent EditorCoordinatorSprite;
+
     ABackstagePuppet ArtistPuppet = nullptr;
     ABackstagePuppet VolunteerPuppet = nullptr;
     ABackstagePuppet CoordinatorPuppet = nullptr;
     bool bInitialized = false;
+
+    FVector StagePoint(FVector2D Pt, float HeightUU)
+    {
+        return FVector(-Pt.Y * 100.0, Pt.X * 100.0, HeightUU);
+    }
 
     void ConfigureStageMesh(UStaticMeshComponent Mesh, FString MeshPath, FVector RelLoc, FVector RelScale,
         FLinearColor Color, float Roughness, float Metallic, bool bCastShadow)
@@ -358,14 +398,8 @@ class ABackstageStageActor : AActor
         Mesh.BackstageSetScale(RelScale);
     }
 
-    void InitializeStage(APlayerController Controller)
+    void BuildStageLayout()
     {
-        if (bInitialized || Controller == nullptr)
-            return;
-        bInitialized = true;
-
-        Controller.BackstagePrewarmSprites();
-
         const FString CubePath = "/Engine/BasicShapes/Cube.Cube";
         const FString CylinderPath = "/Engine/BasicShapes/Cylinder.Cylinder";
 
@@ -382,32 +416,34 @@ class ABackstageStageActor : AActor
         ConfigureStageMesh(RightCurtainMesh, CubePath, FVector(20.0, 680.0, 260.0), FVector(5.2, 0.5, 5.2),
             FLinearColor(0.035, 0.05, 0.08, 1.0), 0.92, 0.0, false);
         ConfigureStageMesh(TrussMesh, CubePath, FVector(-140.0, 0.0, 420.0), FVector(0.35, 16.0, 0.35),
-            FLinearColor(0.14, 0.17, 0.22, 1.0), 0.35, 0.78, true);
+            FLinearColor(0.14, 0.17, 0.22, 1.0), 0.35, 0.78, false);
 
-        Pillars.Empty();
-        for (int Index = -2; Index <= 2; ++Index)
-        {
-            UStaticMeshComponent Pillar = CreateComponent(UStaticMeshComponent);
-            Pillar.BackstageAttachTo(Root);
-            const FVector PillarLoc = Controller.BackstageWorldPoint(FVector2D(Index * 2.0, -0.9), 210.0);
-            ConfigureStageMesh(Pillar, CylinderPath, PillarLoc, FVector(0.32, 0.32, 4.2),
-                FLinearColor(0.12, 0.16, 0.22, 1.0), 0.58, 0.25, true);
-            Pillars.Add(Pillar);
-        }
+        ConfigureStageMesh(Pillar0, CylinderPath, StagePoint(FVector2D(-4.0, -0.9), 210.0), FVector(0.32, 0.32, 4.2),
+            FLinearColor(0.12, 0.16, 0.22, 1.0), 0.58, 0.25, false);
+        ConfigureStageMesh(Pillar1, CylinderPath, StagePoint(FVector2D(-2.0, -0.9), 210.0), FVector(0.32, 0.32, 4.2),
+            FLinearColor(0.12, 0.16, 0.22, 1.0), 0.58, 0.25, false);
+        ConfigureStageMesh(Pillar2, CylinderPath, StagePoint(FVector2D(0.0, -0.9), 210.0), FVector(0.32, 0.32, 4.2),
+            FLinearColor(0.12, 0.16, 0.22, 1.0), 0.58, 0.25, false);
+        ConfigureStageMesh(Pillar3, CylinderPath, StagePoint(FVector2D(2.0, -0.9), 210.0), FVector(0.32, 0.32, 4.2),
+            FLinearColor(0.12, 0.16, 0.22, 1.0), 0.58, 0.25, false);
+        ConfigureStageMesh(Pillar4, CylinderPath, StagePoint(FVector2D(4.0, -0.9), 210.0), FVector(0.32, 0.32, 4.2),
+            FLinearColor(0.12, 0.16, 0.22, 1.0), 0.58, 0.25, false);
 
-        for (int CanIndex = 0; CanIndex < 4; ++CanIndex)
-        {
-            UStaticMeshComponent Can = CreateComponent(UStaticMeshComponent);
-            Can.BackstageAttachTo(Root);
-            const float CanY = -360.0 + float(CanIndex) * 240.0;
-            ConfigureStageMesh(Can, CylinderPath, FVector(-140.0, CanY, 396.0), FVector(0.24, 0.24, 0.38),
-                FLinearColor(0.22, 0.26, 0.32, 1.0), 0.28, 0.85, false);
-            Can.SetRelativeRotation(FRotator(-24.0, 0.0, 0.0));
-            Pillars.Add(Can);
-        }
+        ConfigureStageMesh(LightCan0, CylinderPath, FVector(-140.0, -360.0, 396.0), FVector(0.24, 0.24, 0.38),
+            FLinearColor(0.22, 0.26, 0.32, 1.0), 0.28, 0.85, false);
+        LightCan0.SetRelativeRotation(FRotator(-24.0, 0.0, 0.0));
+        ConfigureStageMesh(LightCan1, CylinderPath, FVector(-140.0, -120.0, 396.0), FVector(0.24, 0.24, 0.38),
+            FLinearColor(0.22, 0.26, 0.32, 1.0), 0.28, 0.85, false);
+        LightCan1.SetRelativeRotation(FRotator(-24.0, 0.0, 0.0));
+        ConfigureStageMesh(LightCan2, CylinderPath, FVector(-140.0, 120.0, 396.0), FVector(0.24, 0.24, 0.38),
+            FLinearColor(0.22, 0.26, 0.32, 1.0), 0.28, 0.85, false);
+        LightCan2.SetRelativeRotation(FRotator(-24.0, 0.0, 0.0));
+        ConfigureStageMesh(LightCan3, CylinderPath, FVector(-140.0, 360.0, 396.0), FVector(0.24, 0.24, 0.38),
+            FLinearColor(0.22, 0.26, 0.32, 1.0), 0.28, 0.85, false);
+        LightCan3.SetRelativeRotation(FRotator(-24.0, 0.0, 0.0));
 
         KeySpot.BackstageSetupSpotLight(FVector(-120.0, -40.0, 410.0), FRotator(-66.0, 14.0, 0.0),
-            FLinearColor(1.0, 0.93, 0.82, 1.0), 65000.0, 2400.0, 28.0, 56.0, true);
+            FLinearColor(1.0, 0.93, 0.82, 1.0), 65000.0, 2400.0, 28.0, 56.0, false);
         RimSpotLeft.BackstageSetupSpotLight(FVector(160.0, -440.0, 320.0), FRotator(-28.0, 110.0, 0.0),
             FLinearColor(0.26, 0.64, 1.0, 1.0), 38000.0, 2200.0, 22.0, 50.0, false);
         RimSpotRight.BackstageSetupSpotLight(FVector(160.0, 440.0, 320.0), FRotator(-28.0, -110.0, 0.0),
@@ -416,16 +452,62 @@ class ABackstageStageActor : AActor
             FLinearColor(0.68, 0.80, 0.98, 1.0), 22000.0, 2000.0, false);
         BounceDir.BackstageSetupDirectionalLight(FRotator(-35.0, 18.0, 0.0),
             FLinearColor(0.75, 0.85, 0.98, 1.0), 1.8, false);
-        StageFog.BackstageSetupFog(0.0045, FLinearColor(0.05, 0.09, 0.14, 1.0), true);
+        StageFog.BackstageSetupFog(0.0045, FLinearColor(0.05, 0.09, 0.14, 1.0), false);
 
         ParcelShadow.BackstageSetupPart(n"Shadow", FVector2D(46.0, 26.0), FVector2D(0.5, 0.5),
             FLinearColor(0.02, 0.04, 0.06, 0.65), false, false);
         ParcelShadow.SetRelativeRotation(FRotator(0.0, 0.0, -90.0));
+        const FVector InitParcelLoc = StagePoint(Backstage::ParcelAt(0.0), 1.5);
+        ParcelShadow.SetRelativeLocation(FVector(InitParcelLoc.X - 6.0, InitParcelLoc.Y, 1.5));
 
         const FLinearColor Gold(1.0, 0.78, 0.38, 1.0);
-        ParcelSprite.BackstageSetupPart(n"Parcel", FVector2D(36.0, 36.0), FVector2D(0.5, 0.5), Gold, true, true);
-        ScatterLeft.BackstageSetupPart(n"Parcel", FVector2D(20.0, 20.0), FVector2D(0.5, 0.5), Gold, true, true);
-        ScatterRight.BackstageSetupPart(n"Parcel", FVector2D(22.0, 22.0), FVector2D(0.5, 0.5), Gold, true, true);
+        ParcelSprite.BackstageSetupPart(n"Parcel", FVector2D(36.0, 36.0), FVector2D(0.5, 0.5), Gold, true, false);
+        ParcelSprite.SetRelativeLocation(FVector(InitParcelLoc.X - 8.0, InitParcelLoc.Y, 80.0));
+        ParcelSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+        ScatterLeft.BackstageSetupPart(n"Parcel", FVector2D(20.0, 20.0), FVector2D(0.5, 0.5), Gold, true, false);
+        ScatterRight.BackstageSetupPart(n"Parcel", FVector2D(22.0, 22.0), FVector2D(0.5, 0.5), Gold, true, false);
+        ScatterLeft.BackstageSetVisible(false);
+        ScatterRight.BackstageSetVisible(false);
+
+        EditorArtistSprite.BackstageSetSpriteFrame(n"Artist_Idle", 0, FVector2D(104.0, 156.0),
+            FVector2D(0.5, 1.0), FLinearColor(0.97, 0.36, 0.46, 1.0), true, false);
+        EditorArtistSprite.SetRelativeLocation(StagePoint(FVector2D(-0.95, 0.45), 0.0));
+        EditorArtistSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+        EditorArtistSprite.BackstageSetVisible(!bInitialized);
+
+        EditorVolunteerSprite.BackstageSetSpriteFrame(n"Volunteer_Idle", 0, FVector2D(104.0, 156.0),
+            FVector2D(0.5, 1.0), FLinearColor(0.30, 0.66, 0.98, 1.0), true, false);
+        EditorVolunteerSprite.SetRelativeLocation(StagePoint(Backstage::VolunteerAt(12.0), 0.0));
+        EditorVolunteerSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+        EditorVolunteerSprite.BackstageSetScale(FVector(-1.0, 1.0, 1.0));
+        EditorVolunteerSprite.BackstageSetVisible(!bInitialized);
+
+        EditorCoordinatorSprite.BackstageSetSpriteFrame(n"Coordinator_Idle", 0, FVector2D(104.0, 156.0),
+            FVector2D(0.5, 1.0), FLinearColor(0.37, 0.84, 0.61, 1.0), true, false);
+        EditorCoordinatorSprite.SetRelativeLocation(StagePoint(FVector2D(1.90, 0.70), 0.0));
+        EditorCoordinatorSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+        EditorCoordinatorSprite.BackstageSetScale(FVector(-1.0, 1.0, 1.0));
+        EditorCoordinatorSprite.BackstageSetVisible(!bInitialized);
+    }
+
+    UFUNCTION(BlueprintOverride)
+    void UserConstructionScript()
+    {
+        BuildStageLayout();
+    }
+
+    void InitializeStage(APlayerController Controller)
+    {
+        if (bInitialized || Controller == nullptr)
+            return;
+        bInitialized = true;
+
+        Controller.BackstagePrewarmSprites();
+        BuildStageLayout();
+
+        EditorArtistSprite.BackstageSetVisible(false);
+        EditorVolunteerSprite.BackstageSetVisible(false);
+        EditorCoordinatorSprite.BackstageSetVisible(false);
 
         ArtistPuppet = ABackstagePuppet::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
         ArtistPuppet.Setup(EBackstageRole::Artist, FLinearColor(0.97, 0.36, 0.46, 1.0));

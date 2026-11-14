@@ -13,8 +13,6 @@ class ABackstageController : APlayerController
     bool bWasD = false;
     bool bWasQ = false;
     bool bWasE = false;
-    bool bWasW = false;
-    bool bWasS = false;
     bool bMapChecked = false;
     bool bInMainMenu = false;
     float MenuClock = 0.0;
@@ -23,11 +21,11 @@ class ABackstageController : APlayerController
     void EnsureStage()
     {
         if (StageActor == nullptr)
-        {
+            StageActor = Cast<ABackstageStageActor>(BackstageFindStageActor());
+        if (StageActor == nullptr)
             StageActor = ABackstageStageActor::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
-            if (StageActor != nullptr)
-                StageActor.InitializeStage(this);
-        }
+        if (StageActor != nullptr)
+            StageActor.InitializeStage(this);
     }
 
     bool Pressed(FName Key)
@@ -203,12 +201,11 @@ class ABackstageController : APlayerController
         if (Pressed(n"Two")) Round.SetTargetStation(1);
         if (Pressed(n"Three")) Round.SetTargetStation(2);
 
-        const FVector2D Mouse = BackstageMouseDelta();
         const float Wheel = BackstageWheelDelta();
-        const float PanAxis = CameraAxis(n"A", n"D", bWasA, bWasD, Delta);
-        const float TiltAxis = CameraAxis(n"S", n"W", bWasS, bWasW, Delta);
-        const float ZoomAxis = CameraAxis(n"Q", n"E", bWasQ, bWasE, Delta);
-        Round.PushCamera(PanAxis * 2.4 + Mouse.X * 0.22, TiltAxis * 1.6 + Mouse.Y * 0.16, Wheel * 0.28 + ZoomAxis * 1.8);
+        const float PanHeld = (BackstageHeld(n"D") ? 1.0 : 0.0) - (BackstageHeld(n"A") ? 1.0 : 0.0);
+        const float TiltHeld = (BackstageHeld(n"W") ? 1.0 : 0.0) - (BackstageHeld(n"S") ? 1.0 : 0.0);
+        const float ZoomHeld = (BackstageHeld(n"E") ? 1.0 : 0.0) - (BackstageHeld(n"Q") ? 1.0 : 0.0);
+        Round.PushCamera(PanHeld * Delta * 0.80, TiltHeld * Delta * 0.45, Wheel * 0.06 + ZoomHeld * Delta * 0.55);
 
         const bool bRewind = BackstageHeld(n"Left") || BackstageHeld(n"Z");
         const bool bForward = BackstageHeld(n"Right") || BackstageHeld(n"C");
