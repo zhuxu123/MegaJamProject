@@ -280,4 +280,61 @@ class UBackstageRoundTests : UAngelscriptTestSuite
         AssertEquals(3, Round.Photos.Num());
         AssertEquals(PrevReplays, Round.Replays);
     }
+
+    UFUNCTION(meta=(AngelscriptTest))
+    void LevelOneRequiresOnePhotoConfirmsAndEvaluatesNewspaper()
+    {
+        FBackstageRound Round;
+        Round.StartLevel(0);
+        AssertEquals(1, Round.RequiredFrameCount());
+        AssertTrue(Math::Abs(Round.ActiveDuration() - 36.0) < 0.01);
+        AssertFalse(Round.Config.bUsesEditBoard);
+
+        Round.Advance(26.0);
+        Round.Camera.Pan = 0.85;
+        Round.Camera.Zoom = 1.65;
+        Round.CapturePending();
+        AssertTrue(Round.Phase == EBackstagePhase::Confirm);
+        AssertTrue(Round.bHasPending);
+
+        Round.RejectPending();
+        AssertTrue(Round.Phase == EBackstagePhase::Live);
+        AssertEquals(0, Round.Photos.Num());
+
+        Round.CapturePending();
+        AssertTrue(Round.AcceptPending());
+        AssertTrue(Round.Phase == EBackstagePhase::Results);
+        AssertEquals(1, Round.Cut.Num());
+        AssertTrue(Round.Result.bTimeMatched);
+        AssertTrue(Round.Result.bSubjectsMatched);
+        AssertTrue(Round.Result.bPassed);
+        AssertEquals("《雨中暖心举动!林晚把唯一的伞送给粉丝》", Round.Result.NewspaperHeadline);
+    }
+
+    UFUNCTION(meta=(AngelscriptTest))
+    void LevelOneRejectsWrongTimeAndAssistantLeakInFrame()
+    {
+        const FBackstageLevelConfig Cfg = Backstage::GetLevelConfig(0);
+        TArray<FBackstagePhoto> Seq;
+
+        // Wrong time window (rain just started, XiaoBei still next to LinWan)
+        Seq.Add(Photo(10.0, 0.85, 1.65));
+        const FBackstageResult WrongTime = Backstage::EvaluateLevel(Cfg, Seq, EBackstageHeadline::Helpful);
+        AssertFalse(WrongTime.bTimeMatched);
+        AssertFalse(WrongTime.bPassed);
+
+        // Right time window (26s) but wide shot leaks XiaoBei on the left
+        Seq[0] = Photo(26.0, 0.0, 0.8);
+        const FBackstageResult LeakedAssistant = Backstage::EvaluateLevel(Cfg, Seq, EBackstageHeadline::Helpful);
+        AssertTrue(LeakedAssistant.bTimeMatched);
+        AssertFalse(LeakedAssistant.bSubjectsMatched);
+        AssertFalse(LeakedAssistant.bPassed);
+
+        // Right time window (26s) but panned left misses Fan & FanSign
+        Seq[0] = Photo(26.0, -1.2, 1.8);
+        const FBackstageResult MissingFan = Backstage::EvaluateLevel(Cfg, Seq, EBackstageHeadline::Helpful);
+        AssertTrue(MissingFan.bTimeMatched);
+        AssertFalse(MissingFan.bSubjectsMatched);
+        AssertFalse(MissingFan.bPassed);
+    }
 }

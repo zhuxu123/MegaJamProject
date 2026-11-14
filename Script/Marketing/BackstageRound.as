@@ -1,11 +1,16 @@
 enum EBackstagePhase
 {
-    Briefing, Live, Edit, Preview, Results
+    Briefing, Live, Confirm, Edit, Preview, Results
 }
 
 enum EBackstageBeat
 {
     Arrival, Collision, Argument, Pickup, Handoff, Together
+}
+
+enum EBackstageRainBeat
+{
+    EventIdle, RainStart, SnatchUmbrella, PassingFan, WalkAway
 }
 
 enum EBackstageHeadline
@@ -16,6 +21,22 @@ enum EBackstageHeadline
 enum EBackstageReading
 {
     Inconclusive, Helpful, Conflict, Accountable
+}
+
+struct FBackstageLevelConfig
+{
+    int LevelIndex = 0;
+    FString CodeName = "LEVEL 01";
+    FString Title = "雨夜品牌活动外场";
+    FString TaskBrief = "拍摄林晚宠粉的温暖瞬间（需确认 1 张）";
+    FString TruthBrief = "现场突降大雨，小北撑伞却被林晚嫌伞太小抢走。在林晚经过举牌粉丝旁时找准构图，拍出“把唯一的伞送给粉丝”的新闻图。";
+    FString SuccessHeadline = "《雨中暖心举动！林晚把唯一的伞送给粉丝》";
+    int RequiredPhotos = 1;
+    int MaxShutters = 6;
+    float Duration = 36.0;
+    float TargetTimeStart = 21.5;
+    float TargetTimeEnd = 30.5;
+    bool bUsesEditBoard = false;
 }
 
 struct FBackstagePhoto
@@ -33,9 +54,16 @@ struct FBackstagePhoto
 struct FBackstageResult
 {
     EBackstageReading Reading = EBackstageReading::Inconclusive;
+    bool bPassed = false;
+    bool bTimeMatched = false;
+    bool bSubjectsMatched = false;
     int Attention = 1;
     int CompanyTrust = 0;
     int PublicTrust = 0;
+    FString NewspaperHeadline;
+    FString NewspaperLead;
+    FString CheckTimeText;
+    FString CheckSubjectText;
     FString Comment;
     FString Company;
     FString Person;
@@ -47,6 +75,7 @@ namespace Backstage
     const float Duration = 50;
     const int MaxPhotos = 6;
     const int FrameCount = 3;
+    const int PendingCaptureSlot = 6;
     const float PreviewSecondsPerFrame = 2;
     const float InitialZoom = 1.45;
     const float ProjectionScale = 0.136;
@@ -54,10 +83,32 @@ namespace Backstage
     const float PanLimit = 2.0;
     const float PanOvershoot = 0.42;
     const float TiltLimit = 1.0;
-    const float TiltOvershoot = 0.32;
+    const float TiltOvershoot = 0.35;
     const float ZoomMin = 1.0;
     const float ZoomMax = 2.8;
     const float ZoomOvershoot = 0.22;
+
+    FBackstageLevelConfig GetLevelConfig(int LevelIndex)
+    {
+        FBackstageLevelConfig Cfg;
+        if (LevelIndex == 1)
+        {
+            Cfg.LevelIndex = 1;
+            Cfg.CodeName = "LEVEL 02";
+            Cfg.Title = "慈善活动后台";
+            Cfg.TaskBrief = "拍摄 3 张现场照片并剪辑发布（需确认 3 张）";
+            Cfg.TruthBrief = "“我赶着上场，后台如果有乱七八糟的事，麻烦别发出去。”";
+            Cfg.SuccessHeadline = "《慈善活动后台直击：真相还是人设？》";
+            Cfg.RequiredPhotos = 3;
+            Cfg.MaxShutters = 6;
+            Cfg.Duration = 50.0;
+            Cfg.TargetTimeStart = 0.0;
+            Cfg.TargetTimeEnd = 50.0;
+            Cfg.bUsesEditBoard = true;
+            return Cfg;
+        }
+        return Cfg;
+    }
 
     float PhotoLeft(int Index) { return 48 + Index * 200; }
     float SlotLeft(int Index) { return 48 + Index * 245; }
@@ -119,7 +170,7 @@ namespace Backstage
 
     float CameraPitch(float Tilt)
     {
-        return -4.2 + Tilt * 4.5;
+        return -2.5 + Tilt * 10.5;
     }
 
     float DampCurve(float Current, float Target, float Delta, float Speed)
@@ -222,13 +273,184 @@ namespace Backstage
 
     float ProjectHeight(const FBackstagePhoto&in Photo, float HeightAtWideAngle)
     {
-        return 0.65 + (HeightAtWideAngle - 0.65) * Photo.Zoom + Photo.Tilt * 0.08 * Photo.Zoom;
+        return 0.65 + (HeightAtWideAngle - 0.65) * Photo.Zoom + Photo.Tilt * 0.14 * Photo.Zoom;
     }
 
     bool Visible(const FBackstagePhoto&in Photo, FVector2D Point)
     {
         const double X = Project(Photo, Point).X;
         return X >= 0.11 && X <= 0.89;
+    }
+
+    EBackstageRainBeat RainBeatAt(float Time)
+    {
+        if (Time < 6) return EBackstageRainBeat::EventIdle;
+        if (Time < 13) return EBackstageRainBeat::RainStart;
+        if (Time < 20) return EBackstageRainBeat::SnatchUmbrella;
+        if (Time < 31) return EBackstageRainBeat::PassingFan;
+        return EBackstageRainBeat::WalkAway;
+    }
+
+    FString RainBeatName(EBackstageRainBeat Beat)
+    {
+        switch (Beat)
+        {
+            case EBackstageRainBeat::EventIdle: return "活动开场";
+            case EBackstageRainBeat::RainStart: return "突降大雨";
+            case EBackstageRainBeat::SnatchUmbrella: return "夺伞离去";
+            case EBackstageRainBeat::PassingFan: return "经过粉丝";
+            default: return "独自走远";
+        }
+    }
+
+    bool IsRainingAt(int LevelIndex, float Time)
+    {
+        return LevelIndex == 0 && Time >= 6.0;
+    }
+
+    FVector2D LinWanAt(float Time)
+    {
+        if (Time < 13)
+            return FVector2D(-1.45, 0.32);
+        if (Time < 16)
+            return FVector2D(Math::Lerp(-1.45, -1.30, (Time - 13.0) / 3.0), 0.32);
+        if (Time < 21.5)
+            return FVector2D(Math::Lerp(-1.30, 0.45, (Time - 16.0) / 5.5), Math::Lerp(0.32, 0.22, (Time - 16.0) / 5.5));
+        if (Time <= 30.5)
+            return FVector2D(Math::Lerp(0.45, 1.55, (Time - 21.5) / 9.0), 0.22);
+        return FVector2D(Math::Lerp(1.55, 2.85, Math::Clamp((Time - 30.5) / 5.5, 0.0, 1.0)), 0.25);
+    }
+
+    FVector2D XiaoBeiAt(float Time)
+    {
+        if (Time < 6)
+            return FVector2D(-2.05, 0.42);
+        if (Time < 9)
+            return FVector2D(Math::Lerp(-2.05, -1.75, (Time - 6.0) / 3.0), Math::Lerp(0.42, 0.36, (Time - 6.0) / 3.0));
+        return FVector2D(-1.75, 0.36);
+    }
+
+    FVector2D FanAt(float Time)
+    {
+        return FVector2D(1.92, -0.08);
+    }
+
+    FVector2D UmbrellaAt(float Time)
+    {
+        const FVector2D XiaoBei = XiaoBeiAt(Time);
+        const FVector2D LinWan = LinWanAt(Time);
+        if (Time < 13)
+            return XiaoBei + FVector2D(0.26, -0.02);
+        if (Time < 15)
+        {
+            const float Alpha = (Time - 13.0) / 2.0;
+            return FVector2D(Math::Lerp(XiaoBei.X + 0.26, LinWan.X + 0.12, Alpha), Math::Lerp(XiaoBei.Y, LinWan.Y, Alpha));
+        }
+        return LinWan + FVector2D(0.12, -0.02);
+    }
+
+    FVector2D FanSignAt(float Time)
+    {
+        return FanAt(Time) + FVector2D(-0.18, -0.06);
+    }
+
+    FBackstageResult EvaluateLevel1(const FBackstageLevelConfig&in Cfg, const TArray<FBackstagePhoto>&in Sequence)
+    {
+        FBackstageResult Result;
+        if (Sequence.Num() == 0)
+        {
+            Result.NewspaperHeadline = "《投稿无效：尚未提交照片》";
+            Result.NewspaperLead = "编辑部未收到有效成片，请先拍摄并确认 1 张照片。";
+            return Result;
+        }
+
+        const FBackstagePhoto Photo = Sequence[0];
+        const bool bTimeOk = Photo.Time >= Cfg.TargetTimeStart && Photo.Time <= Cfg.TargetTimeEnd;
+        const bool bLinWan = Visible(Photo, LinWanAt(Photo.Time));
+        const bool bUmbrella = Visible(Photo, UmbrellaAt(Photo.Time));
+        const bool bFan = Visible(Photo, FanAt(Photo.Time));
+        const bool bFanSign = Visible(Photo, FanSignAt(Photo.Time));
+        const bool bXiaoBei = Visible(Photo, XiaoBeiAt(Photo.Time));
+
+        Result.bTimeMatched = bTimeOk;
+        Result.bSubjectsMatched = bLinWan && bUmbrella && bFan && bFanSign && !bXiaoBei;
+        Result.CheckTimeText = bTimeOk
+            ? f"✓ 时间段吻合（{int(Photo.Time)}s · 处于林晚经过粉丝的黄金窗口）"
+            : f"✕ 时间段不符（当前 {int(Photo.Time)}s · 需在 21.5–30.5s 雨中经过粉丝时拍摄）";
+
+        if (Result.bSubjectsMatched)
+        {
+            Result.CheckSubjectText = "✓ 人物与道具构图到位（含林晚、雨伞、举牌粉丝，且已裁掉淋雨的助理小北）";
+        }
+        else if (!bLinWan || !bUmbrella)
+        {
+            Result.CheckSubjectText = "✕ 画面缺少林晚或雨伞主体";
+        }
+        else if (!bFan || !bFanSign)
+        {
+            Result.CheckSubjectText = "✕ 画面未包含举着林晚应援牌的粉丝";
+        }
+        else
+        {
+            Result.CheckSubjectText = "✕ 画面左方拍到了被留在雨里的小北（请放大或右移裁掉小北）";
+        }
+
+        if (Result.bTimeMatched && Result.bSubjectsMatched)
+        {
+            Result.bPassed = true;
+            Result.Reading = EBackstageReading::Helpful;
+            Result.Attention = 6;
+            Result.CompanyTrust = 5;
+            Result.PublicTrust = 4;
+            Result.NewspaperHeadline = "《雨中暖心举动!林晚把唯一的伞送给粉丝》";
+            Result.NewspaperLead = "昨夜品牌户外活动突发急雨，当红女星林晚被镜头捕捉到撑着唯一的雨伞走向举牌守候的粉丝身旁，温情画面迅速登上热搜头版。";
+            Result.Evidence = Result.CheckTimeText + "  |  " + Result.CheckSubjectText;
+            Result.Comment = "“姐姐雨这么大还优先照顾粉丝，路转粉了！”";
+            Result.Company = "团队：“完美的角度！公关危机直接变成年度暖心热搜！”";
+            Result.Person = "小北（画外音）：“……没人看到我在后面淋透了吗？”";
+        }
+        else
+        {
+            Result.bPassed = false;
+            Result.Reading = bXiaoBei ? EBackstageReading::Conflict : EBackstageReading::Inconclusive;
+            Result.Attention = bXiaoBei ? 4 : 1;
+            Result.CompanyTrust = bXiaoBei ? -3 : -1;
+            Result.PublicTrust = -1;
+            Result.NewspaperHeadline = bXiaoBei
+                ? "《公关翻车：淋雨助理与抢伞同框曝光》"
+                : "《废稿退回：新闻主题说服力不足》";
+            Result.NewspaperLead = !Result.bTimeMatched
+                ? "成片拍摄时机尚未形成“雨中靠近粉丝送伞”的错位视觉，报社无法按预设暖心稿件刊登。"
+                : (bXiaoBei
+                    ? "成片将淋雨发愣的助理小北一并拍进画框，评论区一眼看穿“唯一雨伞”另有隐情！"
+                    : "画面缺少关键人物或应援牌特征，读者无法认出林晚与粉丝互动。");
+            Result.Evidence = Result.CheckTimeText + "  |  " + Result.CheckSubjectText;
+            Result.Comment = bXiaoBei ? "网友：“后面那个浑身湿透的小北是谁？”" : "网友：“这拍的是什么，完全看不懂。”";
+            Result.Company = "主编：“重拍！时间窗口要选林晚经过粉丝时，构图必须框住她、伞和粉丝且裁掉小北。”";
+            Result.Person = "提示：使用 ←/→ 拖到 22–30s，滚轮放大或按住左键向右拖拽构图，按 Enter 重拍。";
+        }
+        return Result;
+    }
+
+    FBackstageResult EvaluateLevel(const FBackstageLevelConfig&in Cfg, const TArray<FBackstagePhoto>&in Sequence, EBackstageHeadline Headline)
+    {
+        if (Cfg.LevelIndex == 0)
+            return EvaluateLevel1(Cfg, Sequence);
+
+        FBackstageResult Result = Evaluate(Sequence, Headline);
+        Result.bTimeMatched = Sequence.Num() >= Cfg.RequiredPhotos;
+        Result.bSubjectsMatched = Result.Reading != EBackstageReading::Inconclusive;
+        Result.bPassed = Result.bTimeMatched && Result.bSubjectsMatched;
+        Result.CheckTimeText = Result.bTimeMatched ? f"✓ 已提交 {Sequence.Num()}/{Cfg.RequiredPhotos} 张连环组图" : "✕ 照片张数不足";
+        Result.CheckSubjectText = Result.bSubjectsMatched ? "✓ 画面人物与证据链有效" : "✕ 顺序或构图遗漏关键人物证据";
+        if (Headline == EBackstageHeadline::Helpful)
+            Result.NewspaperHeadline = "《慈善后台暖心瞬间：顶流蹲身帮志愿者整理物资》";
+        else if (Headline == EBackstageHeadline::Conflict)
+            Result.NewspaperHeadline = "《慈善夜幕后黑脸？艺人疑与工作人员起争执》";
+        else
+            Result.NewspaperHeadline = "《慈善活动后台纪实：现场突发状况全记录》";
+        Result.NewspaperLead = Result.Comment + "  " + Result.Evidence;
+        return Result;
     }
 
     FBackstageResult Evaluate(const TArray<FBackstagePhoto>&in Sequence, EBackstageHeadline Headline)
@@ -313,9 +535,13 @@ namespace Backstage
 
 struct FBackstageRound
 {
+    int LevelIndex = 0;
+    FBackstageLevelConfig Config = Backstage::GetLevelConfig(0);
     EBackstagePhase Phase = EBackstagePhase::Briefing;
     FBackstagePhoto Camera;
     FBackstagePhoto TargetCamera;
+    FBackstagePhoto PendingPhoto;
+    bool bHasPending = false;
     TArray<FBackstagePhoto> Photos;
     TArray<int> Slots;
     TArray<FBackstagePhoto> Edits;
@@ -325,6 +551,8 @@ struct FBackstageRound
     int Shutters = Backstage::MaxPhotos;
     int Replays = 1;
     float PreviewTime = 0;
+    float ConfirmClock = 0;
+    float ResultsClock = 0;
     float ReplayNotice = 0;
     bool bPublishing = false;
     bool bBraindanceActive = false;
@@ -336,12 +564,36 @@ struct FBackstageRound
     bool bPushingTilt = false;
     bool bPushingZoom = false;
 
-    void Start()
+    float ActiveDuration() const
+    {
+        return Math::Max(Config.Duration, 1.0);
+    }
+
+    int RequiredFrameCount() const
+    {
+        return Math::Clamp(Config.RequiredPhotos, 1, Backstage::FrameCount);
+    }
+
+    void PrepareBriefing(int InLevelIndex)
     {
         this = FBackstageRound();
+        LevelIndex = Math::Clamp(InLevelIndex, 0, 1);
+        Config = Backstage::GetLevelConfig(LevelIndex);
+        Shutters = Config.MaxShutters;
         Camera.Zoom = Backstage::InitialZoom;
         TargetCamera = Camera;
+        Phase = EBackstagePhase::Briefing;
+    }
+
+    void StartLevel(int InLevelIndex)
+    {
+        PrepareBriefing(InLevelIndex);
         Phase = EBackstagePhase::Live;
+    }
+
+    void Start()
+    {
+        StartLevel(1);
     }
 
     void EnableBraindance()
@@ -415,15 +667,16 @@ struct FBackstageRound
         if (Phase != EBackstagePhase::Live)
             return;
         bPaused = !bPaused;
-        if (!bPaused && Camera.Time >= Backstage::Duration - 0.01)
+        if (!bPaused && Camera.Time >= ActiveDuration() - 0.01)
             Camera.Time = 0.0;
     }
 
     void ReturnToBraindance()
     {
-        if (Phase != EBackstagePhase::Edit && Phase != EBackstagePhase::Live)
+        if (Phase != EBackstagePhase::Edit && Phase != EBackstagePhase::Live && Phase != EBackstagePhase::Confirm)
             return;
         Phase = EBackstagePhase::Live;
+        bHasPending = false;
         bBraindanceActive = true;
         bSmoothCamera = true;
         bPaused = true;
@@ -461,6 +714,7 @@ struct FBackstageRound
                 }
             }
 
+            const float Dur = ActiveDuration();
             if (bBraindanceActive)
             {
                 float TargetSpeed = bPaused ? 0.0 : 1.0;
@@ -468,10 +722,10 @@ struct FBackstageRound
                     TargetSpeed = ScrubInput * 3.0;
 
                 PlaybackSpeed = Backstage::DampCurve(PlaybackSpeed, TargetSpeed, Delta, 12.0);
-                Camera.Time = Math::Clamp(Camera.Time + Delta * PlaybackSpeed, 0.0, Backstage::Duration);
+                Camera.Time = Math::Clamp(Camera.Time + Delta * PlaybackSpeed, 0.0, Dur);
                 TargetCamera.Time = Camera.Time;
 
-                if (Camera.Time >= Backstage::Duration && !bPaused && ScrubInput >= 0.0)
+                if (Camera.Time >= Dur && !bPaused && ScrubInput >= 0.0)
                 {
                     bPaused = true;
                     PlaybackSpeed = 0.0;
@@ -479,17 +733,93 @@ struct FBackstageRound
             }
             else
             {
-                Camera.Time = Math::Min(Camera.Time + Delta, Backstage::Duration);
-                if (Camera.Time >= Backstage::Duration)
+                Camera.Time = Math::Min(Camera.Time + Delta, Dur);
+                if (Camera.Time >= Dur)
                     Phase = EBackstagePhase::Edit;
             }
+        }
+        else if (Phase == EBackstagePhase::Confirm)
+        {
+            ConfirmClock += Delta;
         }
         else if (Phase == EBackstagePhase::Preview)
         {
             PreviewTime += Delta;
-            if (PreviewTime >= Backstage::FrameCount * Backstage::PreviewSecondsPerFrame)
+            if (PreviewTime >= RequiredFrameCount() * Backstage::PreviewSecondsPerFrame)
+            {
+                if (bPublishing)
+                    ResultsClock = 0.0;
                 Phase = bPublishing ? EBackstagePhase::Results : EBackstagePhase::Edit;
+            }
         }
+        else if (Phase == EBackstagePhase::Results)
+        {
+            ResultsClock += Delta;
+        }
+    }
+
+    void CapturePending()
+    {
+        if (Phase != EBackstagePhase::Live || Shutters <= 0)
+            return;
+        PendingPhoto = Camera;
+        bHasPending = true;
+        ConfirmClock = 0.0;
+        bPaused = true;
+        PlaybackSpeed = 0.0;
+        ScrubInput = 0.0;
+        Phase = EBackstagePhase::Confirm;
+    }
+
+    bool AcceptPending()
+    {
+        if (Phase != EBackstagePhase::Confirm || !bHasPending)
+            return false;
+        bHasPending = false;
+        Photos.Add(PendingPhoto);
+        Edits.Add(PendingPhoto);
+        if (Shutters > 0)
+            --Shutters;
+
+        const int Needed = RequiredFrameCount();
+        if (Photos.Num() >= Needed)
+        {
+            if (!Config.bUsesEditBoard)
+            {
+                Slots.Reset();
+                Cut.Reset();
+                for (int Idx = 0; Idx < Needed && Photos.IsValidIndex(Idx); ++Idx)
+                {
+                    Slots.Add(Idx);
+                    Cut.Add(Edits[Idx]);
+                }
+                Headline = EBackstageHeadline::Helpful;
+                Result = Backstage::EvaluateLevel(Config, Cut, Headline);
+                ResultsClock = 0.0;
+                Phase = EBackstagePhase::Results;
+            }
+            else
+            {
+                Slots.Reset();
+                for (int Idx = 0; Idx < Needed && Photos.IsValidIndex(Idx); ++Idx)
+                    Slots.Add(Idx);
+                Phase = EBackstagePhase::Edit;
+            }
+        }
+        else
+        {
+            Phase = EBackstagePhase::Live;
+            ReplayNotice = 1.6;
+        }
+        return true;
+    }
+
+    void RejectPending()
+    {
+        if (Phase != EBackstagePhase::Confirm)
+            return;
+        bHasPending = false;
+        Phase = EBackstagePhase::Live;
     }
 
     void Capture()
@@ -523,7 +853,7 @@ struct FBackstageRound
         const int Existing = Slots.FindIndex(Index);
         if (Existing >= 0)
             Slots.RemoveAt(Existing);
-        else if (Slots.Num() < Backstage::FrameCount)
+        else if (Slots.Num() < RequiredFrameCount())
             Slots.Add(Index);
     }
 
@@ -551,7 +881,7 @@ struct FBackstageRound
 
     void Preview(bool bPublish)
     {
-        if (Phase != EBackstagePhase::Edit || Slots.Num() != Backstage::FrameCount)
+        if (Phase != EBackstagePhase::Edit || Slots.Num() != RequiredFrameCount())
             return;
         Cut.Reset();
         for (int Index : Slots)
@@ -559,7 +889,10 @@ struct FBackstageRound
         bPublishing = bPublish;
         PreviewTime = 0;
         if (bPublish)
-            Result = Backstage::Evaluate(Cut, Headline);
+        {
+            Result = Backstage::EvaluateLevel(Config, Cut, Headline);
+            ResultsClock = 0.0;
+        }
         Phase = EBackstagePhase::Preview;
     }
 }

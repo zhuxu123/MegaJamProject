@@ -2,7 +2,10 @@ enum EBackstageRole
 {
     Artist,
     Volunteer,
-    Coordinator
+    Coordinator,
+    LinWan,
+    XiaoBei,
+    Fan
 }
 
 enum EBackstageExpression
@@ -42,58 +45,122 @@ namespace BackstagePuppet
 {
     FVector2D RolePositionAt(EBackstageRole Role, float Time)
     {
-        if (Role == EBackstageRole::Artist)
-            return Backstage::ArtistAt(Time);
-        if (Role == EBackstageRole::Volunteer)
-            return Backstage::VolunteerAt(Time);
-        return Backstage::CoordinatorAt(Time);
+        if (Role == EBackstageRole::Artist) return Backstage::ArtistAt(Time);
+        if (Role == EBackstageRole::Volunteer) return Backstage::VolunteerAt(Time);
+        if (Role == EBackstageRole::Coordinator) return Backstage::CoordinatorAt(Time);
+        if (Role == EBackstageRole::LinWan) return Backstage::LinWanAt(Time);
+        if (Role == EBackstageRole::XiaoBei) return Backstage::XiaoBeiAt(Time);
+        return Backstage::FanAt(Time);
     }
 
     FName BuildSequenceKey(EBackstageRole Role, EBackstageAnimState State)
     {
-        if (Role == EBackstageRole::Artist)
-        {
-            switch (State)
-            {
-                case EBackstageAnimState::Walk: return n"Artist_Walk";
-                case EBackstageAnimState::Shock: return n"Artist_Shock";
-                case EBackstageAnimState::Argue: return n"Artist_Argue";
-                case EBackstageAnimState::Pickup: return n"Artist_Pickup";
-                case EBackstageAnimState::Care: return n"Artist_Care";
-                case EBackstageAnimState::Handoff: return n"Artist_Handoff";
-                case EBackstageAnimState::Warm: return n"Artist_Warm";
-                default: return n"Artist_Idle";
-            }
-        }
-        if (Role == EBackstageRole::Volunteer)
-        {
-            switch (State)
-            {
-                case EBackstageAnimState::Walk: return n"Volunteer_Walk";
-                case EBackstageAnimState::Shock: return n"Volunteer_Shock";
-                case EBackstageAnimState::Argue: return n"Volunteer_Argue";
-                case EBackstageAnimState::Pickup: return n"Volunteer_Pickup";
-                case EBackstageAnimState::Care: return n"Volunteer_Care";
-                case EBackstageAnimState::Handoff: return n"Volunteer_Handoff";
-                case EBackstageAnimState::Warm: return n"Volunteer_Warm";
-                default: return n"Volunteer_Idle";
-            }
-        }
+        FString Prefix = "Artist";
+        if (Role == EBackstageRole::Volunteer) Prefix = "Volunteer";
+        else if (Role == EBackstageRole::Coordinator) Prefix = "Coordinator";
+        else if (Role == EBackstageRole::LinWan) Prefix = "LinWan";
+        else if (Role == EBackstageRole::XiaoBei) Prefix = "XiaoBei";
+        else if (Role == EBackstageRole::Fan) Prefix = "Fan";
+
         switch (State)
         {
-            case EBackstageAnimState::Walk: return n"Coordinator_Walk";
-            case EBackstageAnimState::Shock: return n"Coordinator_Shock";
-            case EBackstageAnimState::Argue: return n"Coordinator_Argue";
-            case EBackstageAnimState::Pickup: return n"Coordinator_Pickup";
-            case EBackstageAnimState::Care: return n"Coordinator_Care";
-            case EBackstageAnimState::Handoff: return n"Coordinator_Handoff";
-            case EBackstageAnimState::Warm: return n"Coordinator_Warm";
-            default: return n"Coordinator_Idle";
+            case EBackstageAnimState::Walk: return FName(Prefix + "_Walk");
+            case EBackstageAnimState::Shock: return FName(Prefix + "_Shock");
+            case EBackstageAnimState::Argue: return FName(Prefix + "_Argue");
+            case EBackstageAnimState::Pickup: return FName(Prefix + "_Pickup");
+            case EBackstageAnimState::Care: return FName(Prefix + "_Care");
+            case EBackstageAnimState::Handoff: return FName(Prefix + "_Handoff");
+            case EBackstageAnimState::Warm: return FName(Prefix + "_Warm");
+            default: return FName(Prefix + "_Idle");
         }
+    }
+
+    FBackstagePuppetPose EvaluateLevel1Pose(EBackstageRole Role, float Time)
+    {
+        FBackstagePuppetPose Pose;
+        const float ClampedTime = Math::Max(Time, 0.0);
+        const float PrevTime = Math::Max(0.0, ClampedTime - 0.12);
+        const float NextTime = Math::Min(36.0, ClampedTime + 0.12);
+        const float VelX = (RolePositionAt(Role, NextTime).X - RolePositionAt(Role, PrevTime).X) / Math::Max(NextTime - PrevTime, 0.01);
+        const float Speed = Math::Abs(VelX);
+        const auto Beat = Backstage::RainBeatAt(ClampedTime);
+
+        if (Role == EBackstageRole::LinWan)
+        {
+            Pose.FacingSign = 1.0;
+            if (Beat == EBackstageRainBeat::EventIdle || Beat == EBackstageRainBeat::RainStart)
+            {
+                Pose.State = Beat == EBackstageRainBeat::EventIdle ? EBackstageAnimState::Warm : EBackstageAnimState::Idle;
+                Pose.Expression = Beat == EBackstageRainBeat::EventIdle ? EBackstageExpression::Warm : EBackstageExpression::Calm;
+            }
+            else if (Beat == EBackstageRainBeat::SnatchUmbrella)
+            {
+                Pose.State = ClampedTime < 16.0 ? EBackstageAnimState::Argue : EBackstageAnimState::Walk;
+                Pose.Expression = ClampedTime < 16.0 ? EBackstageExpression::Angry : EBackstageExpression::Focus;
+                if (ClampedTime < 15.5)
+                {
+                    Pose.FacingSign = -1.0;
+                    Pose.EmotionBadge = n"Emotion_Anger";
+                }
+            }
+            else
+            {
+                Pose.State = Speed > 0.08 ? EBackstageAnimState::Walk : EBackstageAnimState::Idle;
+                Pose.Expression = Beat == EBackstageRainBeat::PassingFan ? EBackstageExpression::Calm : EBackstageExpression::Focus;
+            }
+        }
+        else if (Role == EBackstageRole::XiaoBei)
+        {
+            Pose.FacingSign = 1.0;
+            if (Beat == EBackstageRainBeat::EventIdle)
+            {
+                Pose.State = EBackstageAnimState::Idle;
+                Pose.Expression = EBackstageExpression::Calm;
+            }
+            else if (Beat == EBackstageRainBeat::RainStart)
+            {
+                Pose.State = Speed > 0.08 ? EBackstageAnimState::Walk : EBackstageAnimState::Care;
+                Pose.Expression = EBackstageExpression::Focus;
+                Pose.EmotionBadge = n"Emotion_Care";
+            }
+            else
+            {
+                Pose.State = EBackstageAnimState::Shock;
+                Pose.Expression = EBackstageExpression::Shock;
+                if (ClampedTime < 22.0)
+                    Pose.EmotionBadge = n"Emotion_Shock";
+            }
+        }
+        else
+        {
+            Pose.FacingSign = -1.0;
+            if (Beat == EBackstageRainBeat::PassingFan || Beat == EBackstageRainBeat::EventIdle)
+            {
+                Pose.State = EBackstageAnimState::Warm;
+                Pose.Expression = EBackstageExpression::Warm;
+                if (Beat == EBackstageRainBeat::PassingFan)
+                    Pose.EmotionBadge = n"Emotion_Warm";
+            }
+            else
+            {
+                Pose.State = EBackstageAnimState::Care;
+                Pose.Expression = EBackstageExpression::Focus;
+            }
+        }
+
+        float FPS = 6.0;
+        if (Pose.State == EBackstageAnimState::Walk) FPS = 8.0;
+        else if (Pose.State == EBackstageAnimState::Shock || Pose.State == EBackstageAnimState::Argue) FPS = 9.0;
+
+        Pose.FrameIndex = Math::Clamp(Math::FloorToInt(ClampedTime * FPS) % Pose.FrameCount, 0, Pose.FrameCount - 1);
+        Pose.SequenceKey = BuildSequenceKey(Role, Pose.State);
+        return Pose;
     }
 
     FBackstagePuppetPose EvaluatePose(EBackstageRole Role, float Time)
     {
+        if (Role == EBackstageRole::LinWan || Role == EBackstageRole::XiaoBei || Role == EBackstageRole::Fan)
+            return EvaluateLevel1Pose(Role, Time);
         FBackstagePuppetPose Pose;
         const float ClampedTime = Math::Max(Time, 0.0);
         const float PrevTime = Math::Max(0.0, ClampedTime - 0.12);
@@ -231,6 +298,16 @@ class ABackstagePuppet : AActor
     FName LastSequenceKey = NAME_None;
     int LastFrameIndex = -1;
     float LastFacingSign = 0.0;
+    bool bPuppetVisible = true;
+
+    void SetPuppetVisible(bool bVisible)
+    {
+        bPuppetVisible = bVisible;
+        ShadowSprite.BackstageSetVisible(bVisible);
+        BodySprite.BackstageSetVisible(bVisible);
+        if (!bVisible)
+            EmotionSprite.BackstageSetVisible(false);
+    }
 
     void Setup(EBackstageRole InRole, FLinearColor InColor)
     {
@@ -240,6 +317,7 @@ class ABackstagePuppet : AActor
         LastSequenceKey = NAME_None;
         LastFrameIndex = -1;
         LastFacingSign = 0.0;
+        bPuppetVisible = true;
 
         ShadowSprite.BackstageSetupPart(n"Shadow", FVector2D(74.0, 38.0), FVector2D(0.5, 0.5),
             FLinearColor(0.02, 0.04, 0.06, 0.72), false, false);
@@ -253,6 +331,8 @@ class ABackstagePuppet : AActor
 
     void Sync(float Time, FVector WorldFootPos, float CameraYawDeg, float CameraPitchDeg = 0.0)
     {
+        if (!bPuppetVisible)
+            return;
         BackstageSetTransform(WorldFootPos, FRotator(0.0, CameraYawDeg + 90.0, CameraPitchDeg * 0.55));
 
         const FBackstagePuppetPose Pose = BackstagePuppet::EvaluatePose(Role, Time);
@@ -380,10 +460,52 @@ class ABackstageStageActor : AActor
     UPROPERTY(DefaultComponent, Attach = Root)
     UPaperSpriteComponent EditorCoordinatorSprite;
 
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent UmbrellaSprite;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent UmbrellaShadow;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent FanSignSprite;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent BrandBannerSprite;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent RainSprite0;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent RainSprite1;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent RainSprite2;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent RainSprite3;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent RainSprite4;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent RainSprite5;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent RainSprite6;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent RainSprite7;
+
     ABackstagePuppet ArtistPuppet = nullptr;
     ABackstagePuppet VolunteerPuppet = nullptr;
     ABackstagePuppet CoordinatorPuppet = nullptr;
+    ABackstagePuppet LinWanPuppet = nullptr;
+    ABackstagePuppet XiaoBeiPuppet = nullptr;
+    ABackstagePuppet FanPuppet = nullptr;
     bool bInitialized = false;
+    int ActiveLevelIndex = -1;
+    bool bLastUmbrellaOpen = false;
+    bool bHasSetUmbrella = false;
 
     FVector StagePoint(FVector2D Pt, float HeightUU)
     {
@@ -398,25 +520,87 @@ class ABackstageStageActor : AActor
         Mesh.BackstageSetScale(RelScale);
     }
 
-    void BuildStageLayout()
+    void SetRainVisible(bool bShow)
+    {
+        RainSprite0.BackstageSetVisible(bShow);
+        RainSprite1.BackstageSetVisible(bShow);
+        RainSprite2.BackstageSetVisible(bShow);
+        RainSprite3.BackstageSetVisible(bShow);
+        RainSprite4.BackstageSetVisible(bShow);
+        RainSprite5.BackstageSetVisible(bShow);
+        RainSprite6.BackstageSetVisible(bShow);
+        RainSprite7.BackstageSetVisible(bShow);
+    }
+
+    void UpdateRainDrop(UPaperSpriteComponent Drop, int Index, float Time, FRotator RainRot)
+    {
+        if (Drop == nullptr)
+            return;
+        const float Phase = Math::Fmod(Time * (1.8 + float(Index % 3) * 0.35) + float(Index) * 0.21, 1.0);
+        const float StageX = -2.4 + float(Index) * 0.68 + Math::Sin(Time * 1.4 + float(Index)) * 0.14;
+        const float StageY = -0.35 + float(Index % 3) * 0.48;
+        const float HeightUU = 340.0 - Phase * 310.0;
+        Drop.SetRelativeLocation(StagePoint(FVector2D(StageX, StageY), HeightUU));
+        Drop.SetRelativeRotation(RainRot);
+    }
+
+    void UpdateRain(float Time, bool bRaining, float CameraYaw, float CameraPitch)
+    {
+        SetRainVisible(bRaining);
+        if (!bRaining)
+            return;
+
+        const FRotator RainRot(-14.0, CameraYaw + 90.0, CameraPitch * 0.35);
+        UpdateRainDrop(RainSprite0, 0, Time, RainRot);
+        UpdateRainDrop(RainSprite1, 1, Time, RainRot);
+        UpdateRainDrop(RainSprite2, 2, Time, RainRot);
+        UpdateRainDrop(RainSprite3, 3, Time, RainRot);
+        UpdateRainDrop(RainSprite4, 4, Time, RainRot);
+        UpdateRainDrop(RainSprite5, 5, Time, RainRot);
+        UpdateRainDrop(RainSprite6, 6, Time, RainRot);
+        UpdateRainDrop(RainSprite7, 7, Time, RainRot);
+    }
+
+    void BuildStageLayout(int LevelIndex = 0)
     {
         const FString CubePath = "/Engine/BasicShapes/Cube.Cube";
         const FString CylinderPath = "/Engine/BasicShapes/Cylinder.Cylinder";
+        const bool bRainLevel = LevelIndex == 0;
 
-        ConfigureStageMesh(FloorMesh, CubePath, FVector(120.0, 0.0, -20.0), FVector(12.0, 18.0, 0.4),
-            FLinearColor(0.075, 0.105, 0.145, 1.0), 0.60, 0.08, false);
-        ConfigureStageMesh(StageBorderMesh, CubePath, FVector(15.0, 0.0, -0.5), FVector(5.1, 7.6, 0.03),
-            FLinearColor(0.24, 0.30, 0.38, 1.0), 0.42, 0.45, false);
-        ConfigureStageMesh(StageCarpetMesh, CubePath, FVector(15.0, 0.0, 1.2), FVector(4.8, 7.2, 0.03),
-            FLinearColor(0.11, 0.155, 0.22, 1.0), 0.72, 0.04, false);
-        ConfigureStageMesh(BackWallMesh, CubePath, FVector(280.0, 0.0, 300.0), FVector(0.4, 18.0, 6.0),
-            FLinearColor(0.05, 0.08, 0.12, 1.0), 0.85, 0.05, false);
-        ConfigureStageMesh(LeftCurtainMesh, CubePath, FVector(20.0, -680.0, 260.0), FVector(5.2, 0.5, 5.2),
-            FLinearColor(0.035, 0.05, 0.08, 1.0), 0.92, 0.0, false);
-        ConfigureStageMesh(RightCurtainMesh, CubePath, FVector(20.0, 680.0, 260.0), FVector(5.2, 0.5, 5.2),
-            FLinearColor(0.035, 0.05, 0.08, 1.0), 0.92, 0.0, false);
-        ConfigureStageMesh(TrussMesh, CubePath, FVector(-140.0, 0.0, 420.0), FVector(0.35, 16.0, 0.35),
-            FLinearColor(0.14, 0.17, 0.22, 1.0), 0.35, 0.78, false);
+        if (bRainLevel)
+        {
+            ConfigureStageMesh(FloorMesh, CubePath, FVector(120.0, 0.0, -20.0), FVector(12.0, 18.0, 0.4),
+                FLinearColor(0.045, 0.06, 0.085, 1.0), 0.22, 0.18, false);
+            ConfigureStageMesh(StageBorderMesh, CubePath, FVector(15.0, 0.0, -0.5), FVector(5.1, 7.6, 0.03),
+                FLinearColor(0.28, 0.34, 0.42, 1.0), 0.32, 0.55, false);
+            ConfigureStageMesh(StageCarpetMesh, CubePath, FVector(15.0, 0.0, 1.2), FVector(4.8, 7.2, 0.03),
+                FLinearColor(0.26, 0.06, 0.10, 1.0), 0.48, 0.10, false);
+            ConfigureStageMesh(BackWallMesh, CubePath, FVector(280.0, 0.0, 300.0), FVector(0.4, 18.0, 6.0),
+                FLinearColor(0.03, 0.05, 0.095, 1.0), 0.78, 0.08, false);
+            ConfigureStageMesh(LeftCurtainMesh, CubePath, FVector(20.0, -680.0, 260.0), FVector(5.2, 0.5, 5.2),
+                FLinearColor(0.025, 0.04, 0.075, 1.0), 0.88, 0.0, false);
+            ConfigureStageMesh(RightCurtainMesh, CubePath, FVector(20.0, 680.0, 260.0), FVector(5.2, 0.5, 5.2),
+                FLinearColor(0.025, 0.04, 0.075, 1.0), 0.88, 0.0, false);
+            ConfigureStageMesh(TrussMesh, CubePath, FVector(-140.0, 0.0, 420.0), FVector(0.35, 16.0, 0.35),
+                FLinearColor(0.18, 0.22, 0.28, 1.0), 0.30, 0.82, false);
+        }
+        else
+        {
+            ConfigureStageMesh(FloorMesh, CubePath, FVector(120.0, 0.0, -20.0), FVector(12.0, 18.0, 0.4),
+                FLinearColor(0.075, 0.105, 0.145, 1.0), 0.60, 0.08, false);
+            ConfigureStageMesh(StageBorderMesh, CubePath, FVector(15.0, 0.0, -0.5), FVector(5.1, 7.6, 0.03),
+                FLinearColor(0.24, 0.30, 0.38, 1.0), 0.42, 0.45, false);
+            ConfigureStageMesh(StageCarpetMesh, CubePath, FVector(15.0, 0.0, 1.2), FVector(4.8, 7.2, 0.03),
+                FLinearColor(0.11, 0.155, 0.22, 1.0), 0.72, 0.04, false);
+            ConfigureStageMesh(BackWallMesh, CubePath, FVector(280.0, 0.0, 300.0), FVector(0.4, 18.0, 6.0),
+                FLinearColor(0.05, 0.08, 0.12, 1.0), 0.85, 0.05, false);
+            ConfigureStageMesh(LeftCurtainMesh, CubePath, FVector(20.0, -680.0, 260.0), FVector(5.2, 0.5, 5.2),
+                FLinearColor(0.035, 0.05, 0.08, 1.0), 0.92, 0.0, false);
+            ConfigureStageMesh(RightCurtainMesh, CubePath, FVector(20.0, 680.0, 260.0), FVector(5.2, 0.5, 5.2),
+                FLinearColor(0.035, 0.05, 0.08, 1.0), 0.92, 0.0, false);
+            ConfigureStageMesh(TrussMesh, CubePath, FVector(-140.0, 0.0, 420.0), FVector(0.35, 16.0, 0.35),
+                FLinearColor(0.14, 0.17, 0.22, 1.0), 0.35, 0.78, false);
+        }
 
         ConfigureStageMesh(Pillar0, CylinderPath, StagePoint(FVector2D(-4.0, -0.9), 210.0), FVector(0.32, 0.32, 4.2),
             FLinearColor(0.12, 0.16, 0.22, 1.0), 0.58, 0.25, false);
@@ -442,17 +626,34 @@ class ABackstageStageActor : AActor
             FLinearColor(0.22, 0.26, 0.32, 1.0), 0.28, 0.85, false);
         LightCan3.SetRelativeRotation(FRotator(-24.0, 0.0, 0.0));
 
-        KeySpot.BackstageSetupSpotLight(FVector(-120.0, -40.0, 410.0), FRotator(-66.0, 14.0, 0.0),
-            FLinearColor(1.0, 0.93, 0.82, 1.0), 65000.0, 2400.0, 28.0, 56.0, false);
-        RimSpotLeft.BackstageSetupSpotLight(FVector(160.0, -440.0, 320.0), FRotator(-28.0, 110.0, 0.0),
-            FLinearColor(0.26, 0.64, 1.0, 1.0), 38000.0, 2200.0, 22.0, 50.0, false);
-        RimSpotRight.BackstageSetupSpotLight(FVector(160.0, 440.0, 320.0), FRotator(-28.0, -110.0, 0.0),
-            FLinearColor(1.0, 0.34, 0.48, 1.0), 38000.0, 2200.0, 22.0, 50.0, false);
-        StageFill.BackstageSetupPointLight(FVector(-260.0, 0.0, 220.0),
-            FLinearColor(0.68, 0.80, 0.98, 1.0), 22000.0, 2000.0, false);
-        BounceDir.BackstageSetupDirectionalLight(FRotator(-35.0, 18.0, 0.0),
-            FLinearColor(0.75, 0.85, 0.98, 1.0), 1.8, false);
-        StageFog.BackstageSetupFog(0.0045, FLinearColor(0.05, 0.09, 0.14, 1.0), false);
+        if (bRainLevel)
+        {
+            KeySpot.BackstageSetupSpotLight(FVector(-120.0, -20.0, 415.0), FRotator(-65.0, 10.0, 0.0),
+                FLinearColor(0.86, 0.94, 1.0, 1.0), 72000.0, 2600.0, 30.0, 62.0, false);
+            RimSpotLeft.BackstageSetupSpotLight(FVector(160.0, -440.0, 320.0), FRotator(-28.0, 110.0, 0.0),
+                FLinearColor(0.32, 0.68, 1.0, 1.0), 42000.0, 2200.0, 24.0, 52.0, false);
+            RimSpotRight.BackstageSetupSpotLight(FVector(160.0, 440.0, 320.0), FRotator(-28.0, -110.0, 0.0),
+                FLinearColor(1.0, 0.42, 0.56, 1.0), 42000.0, 2200.0, 24.0, 52.0, false);
+            StageFill.BackstageSetupPointLight(FVector(-260.0, 0.0, 220.0),
+                FLinearColor(0.60, 0.76, 0.98, 1.0), 25000.0, 2200.0, false);
+            BounceDir.BackstageSetupDirectionalLight(FRotator(-35.0, 18.0, 0.0),
+                FLinearColor(0.70, 0.84, 1.0, 1.0), 1.9, false);
+            StageFog.BackstageSetupFog(0.0075, FLinearColor(0.05, 0.09, 0.16, 1.0), false);
+        }
+        else
+        {
+            KeySpot.BackstageSetupSpotLight(FVector(-120.0, -40.0, 410.0), FRotator(-66.0, 14.0, 0.0),
+                FLinearColor(1.0, 0.93, 0.82, 1.0), 65000.0, 2400.0, 28.0, 56.0, false);
+            RimSpotLeft.BackstageSetupSpotLight(FVector(160.0, -440.0, 320.0), FRotator(-28.0, 110.0, 0.0),
+                FLinearColor(0.26, 0.64, 1.0, 1.0), 38000.0, 2200.0, 22.0, 50.0, false);
+            RimSpotRight.BackstageSetupSpotLight(FVector(160.0, 440.0, 320.0), FRotator(-28.0, -110.0, 0.0),
+                FLinearColor(1.0, 0.34, 0.48, 1.0), 38000.0, 2200.0, 22.0, 50.0, false);
+            StageFill.BackstageSetupPointLight(FVector(-260.0, 0.0, 220.0),
+                FLinearColor(0.68, 0.80, 0.98, 1.0), 22000.0, 2000.0, false);
+            BounceDir.BackstageSetupDirectionalLight(FRotator(-35.0, 18.0, 0.0),
+                FLinearColor(0.75, 0.85, 0.98, 1.0), 1.8, false);
+            StageFog.BackstageSetupFog(0.0045, FLinearColor(0.05, 0.09, 0.14, 1.0), false);
+        }
 
         ParcelShadow.BackstageSetupPart(n"Shadow", FVector2D(46.0, 26.0), FVector2D(0.5, 0.5),
             FLinearColor(0.02, 0.04, 0.06, 0.65), false, false);
@@ -466,70 +667,209 @@ class ABackstageStageActor : AActor
         ParcelSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
         ScatterLeft.BackstageSetupPart(n"Parcel", FVector2D(20.0, 20.0), FVector2D(0.5, 0.5), Gold, true, false);
         ScatterRight.BackstageSetupPart(n"Parcel", FVector2D(22.0, 22.0), FVector2D(0.5, 0.5), Gold, true, false);
+        ParcelShadow.BackstageSetVisible(!bRainLevel);
+        ParcelSprite.BackstageSetVisible(!bRainLevel);
         ScatterLeft.BackstageSetVisible(false);
         ScatterRight.BackstageSetVisible(false);
 
-        EditorArtistSprite.BackstageSetSpriteFrame(n"Artist_Idle", 0, FVector2D(104.0, 156.0),
-            FVector2D(0.5, 1.0), FLinearColor(0.97, 0.36, 0.46, 1.0), true, false);
-        EditorArtistSprite.SetRelativeLocation(StagePoint(FVector2D(-0.95, 0.45), 0.0));
-        EditorArtistSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
-        EditorArtistSprite.BackstageSetVisible(!bInitialized);
+        BrandBannerSprite.BackstageSetupPart(n"BrandBanner", FVector2D(220.0, 110.0), FVector2D(0.5, 0.5),
+            FLinearColor::White, false, false);
+        BrandBannerSprite.SetRelativeLocation(StagePoint(FVector2D(0.0, -0.78), 145.0));
+        BrandBannerSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+        BrandBannerSprite.BackstageSetVisible(bRainLevel);
 
-        EditorVolunteerSprite.BackstageSetSpriteFrame(n"Volunteer_Idle", 0, FVector2D(104.0, 156.0),
-            FVector2D(0.5, 1.0), FLinearColor(0.30, 0.66, 0.98, 1.0), true, false);
-        EditorVolunteerSprite.SetRelativeLocation(StagePoint(Backstage::VolunteerAt(12.0), 0.0));
-        EditorVolunteerSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
-        EditorVolunteerSprite.BackstageSetScale(FVector(-1.0, 1.0, 1.0));
-        EditorVolunteerSprite.BackstageSetVisible(!bInitialized);
+        UmbrellaShadow.BackstageSetupPart(n"Shadow", FVector2D(62.0, 24.0), FVector2D(0.5, 0.5),
+            FLinearColor(0.02, 0.04, 0.06, 0.60), false, false);
+        UmbrellaShadow.SetRelativeRotation(FRotator(0.0, 0.0, -90.0));
+        UmbrellaShadow.BackstageSetVisible(bRainLevel);
 
-        EditorCoordinatorSprite.BackstageSetSpriteFrame(n"Coordinator_Idle", 0, FVector2D(104.0, 156.0),
-            FVector2D(0.5, 1.0), FLinearColor(0.37, 0.84, 0.61, 1.0), true, false);
-        EditorCoordinatorSprite.SetRelativeLocation(StagePoint(FVector2D(1.90, 0.70), 0.0));
-        EditorCoordinatorSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
-        EditorCoordinatorSprite.BackstageSetScale(FVector(-1.0, 1.0, 1.0));
-        EditorCoordinatorSprite.BackstageSetVisible(!bInitialized);
+        bLastUmbrellaOpen = false;
+        bHasSetUmbrella = false;
+        UmbrellaSprite.BackstageSetupPart(n"UmbrellaFolded", FVector2D(82.0, 74.0), FVector2D(0.5, 0.5),
+            FLinearColor::White, true, false);
+        UmbrellaSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+        UmbrellaSprite.BackstageSetVisible(bRainLevel);
+
+        FanSignSprite.BackstageSetupPart(n"FanSign", FVector2D(68.0, 52.0), FVector2D(0.5, 0.5),
+            FLinearColor::White, true, false);
+        FanSignSprite.SetRelativeLocation(StagePoint(Backstage::FanSignAt(0.0), 124.0));
+        FanSignSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+        FanSignSprite.BackstageSetVisible(bRainLevel);
+
+        const FLinearColor RainTint(0.75, 0.90, 1.0, 0.85);
+        RainSprite0.BackstageSetupPart(n"RainStreak", FVector2D(24.0, 88.0), FVector2D(0.5, 0.5), RainTint, false, false);
+        RainSprite1.BackstageSetupPart(n"RainStreak", FVector2D(24.0, 88.0), FVector2D(0.5, 0.5), RainTint, false, false);
+        RainSprite2.BackstageSetupPart(n"RainStreak", FVector2D(24.0, 88.0), FVector2D(0.5, 0.5), RainTint, false, false);
+        RainSprite3.BackstageSetupPart(n"RainStreak", FVector2D(24.0, 88.0), FVector2D(0.5, 0.5), RainTint, false, false);
+        RainSprite4.BackstageSetupPart(n"RainStreak", FVector2D(24.0, 88.0), FVector2D(0.5, 0.5), RainTint, false, false);
+        RainSprite5.BackstageSetupPart(n"RainStreak", FVector2D(24.0, 88.0), FVector2D(0.5, 0.5), RainTint, false, false);
+        RainSprite6.BackstageSetupPart(n"RainStreak", FVector2D(24.0, 88.0), FVector2D(0.5, 0.5), RainTint, false, false);
+        RainSprite7.BackstageSetupPart(n"RainStreak", FVector2D(24.0, 88.0), FVector2D(0.5, 0.5), RainTint, false, false);
+        SetRainVisible(false);
+
+        if (bRainLevel)
+        {
+            EditorArtistSprite.BackstageSetSpriteFrame(n"LinWan_Idle", 0, FVector2D(104.0, 156.0),
+                FVector2D(0.5, 1.0), FLinearColor::White, true, false);
+            EditorArtistSprite.SetRelativeLocation(StagePoint(Backstage::LinWanAt(0.0), 0.0));
+            EditorArtistSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+            EditorArtistSprite.BackstageSetScale(FVector(1.0, 1.0, 1.0));
+            EditorArtistSprite.BackstageSetVisible(!bInitialized);
+
+            EditorVolunteerSprite.BackstageSetSpriteFrame(n"XiaoBei_Idle", 0, FVector2D(104.0, 156.0),
+                FVector2D(0.5, 1.0), FLinearColor::White, true, false);
+            EditorVolunteerSprite.SetRelativeLocation(StagePoint(Backstage::XiaoBeiAt(0.0), 0.0));
+            EditorVolunteerSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+            EditorVolunteerSprite.BackstageSetScale(FVector(1.0, 1.0, 1.0));
+            EditorVolunteerSprite.BackstageSetVisible(!bInitialized);
+
+            EditorCoordinatorSprite.BackstageSetSpriteFrame(n"Fan_Warm", 0, FVector2D(104.0, 156.0),
+                FVector2D(0.5, 1.0), FLinearColor::White, true, false);
+            EditorCoordinatorSprite.SetRelativeLocation(StagePoint(Backstage::FanAt(0.0), 0.0));
+            EditorCoordinatorSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+            EditorCoordinatorSprite.BackstageSetScale(FVector(-1.0, 1.0, 1.0));
+            EditorCoordinatorSprite.BackstageSetVisible(!bInitialized);
+        }
+        else
+        {
+            EditorArtistSprite.BackstageSetSpriteFrame(n"Artist_Idle", 0, FVector2D(104.0, 156.0),
+                FVector2D(0.5, 1.0), FLinearColor(0.97, 0.36, 0.46, 1.0), true, false);
+            EditorArtistSprite.SetRelativeLocation(StagePoint(FVector2D(-0.95, 0.45), 0.0));
+            EditorArtistSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+            EditorArtistSprite.BackstageSetVisible(!bInitialized);
+
+            EditorVolunteerSprite.BackstageSetSpriteFrame(n"Volunteer_Idle", 0, FVector2D(104.0, 156.0),
+                FVector2D(0.5, 1.0), FLinearColor(0.30, 0.66, 0.98, 1.0), true, false);
+            EditorVolunteerSprite.SetRelativeLocation(StagePoint(Backstage::VolunteerAt(12.0), 0.0));
+            EditorVolunteerSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+            EditorVolunteerSprite.BackstageSetScale(FVector(-1.0, 1.0, 1.0));
+            EditorVolunteerSprite.BackstageSetVisible(!bInitialized);
+
+            EditorCoordinatorSprite.BackstageSetSpriteFrame(n"Coordinator_Idle", 0, FVector2D(104.0, 156.0),
+                FVector2D(0.5, 1.0), FLinearColor(0.37, 0.84, 0.61, 1.0), true, false);
+            EditorCoordinatorSprite.SetRelativeLocation(StagePoint(FVector2D(1.90, 0.70), 0.0));
+            EditorCoordinatorSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+            EditorCoordinatorSprite.BackstageSetScale(FVector(-1.0, 1.0, 1.0));
+            EditorCoordinatorSprite.BackstageSetVisible(!bInitialized);
+        }
     }
 
     UFUNCTION(BlueprintOverride)
     void UserConstructionScript()
     {
-        BuildStageLayout();
+        BuildStageLayout(0);
     }
 
-    void InitializeStage(APlayerController Controller)
+    void InitializeStage(APlayerController Controller, int LevelIndex = 0)
     {
-        if (bInitialized || Controller == nullptr)
+        if (Controller == nullptr)
             return;
-        bInitialized = true;
+        if (bInitialized && ActiveLevelIndex == LevelIndex)
+            return;
 
-        Controller.BackstagePrewarmSprites();
-        BuildStageLayout();
+        if (!bInitialized)
+        {
+            bInitialized = true;
+            Controller.BackstagePrewarmSprites();
+        }
+        ActiveLevelIndex = LevelIndex;
+        BuildStageLayout(LevelIndex);
 
         EditorArtistSprite.BackstageSetVisible(false);
         EditorVolunteerSprite.BackstageSetVisible(false);
         EditorCoordinatorSprite.BackstageSetVisible(false);
 
-        ArtistPuppet = ABackstagePuppet::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
-        ArtistPuppet.Setup(EBackstageRole::Artist, FLinearColor(0.97, 0.36, 0.46, 1.0));
+        if (LinWanPuppet == nullptr)
+        {
+            LinWanPuppet = ABackstagePuppet::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
+            LinWanPuppet.Setup(EBackstageRole::LinWan, FLinearColor::White);
+        }
+        if (XiaoBeiPuppet == nullptr)
+        {
+            XiaoBeiPuppet = ABackstagePuppet::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
+            XiaoBeiPuppet.Setup(EBackstageRole::XiaoBei, FLinearColor::White);
+        }
+        if (FanPuppet == nullptr)
+        {
+            FanPuppet = ABackstagePuppet::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
+            FanPuppet.Setup(EBackstageRole::Fan, FLinearColor::White);
+        }
 
-        VolunteerPuppet = ABackstagePuppet::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
-        VolunteerPuppet.Setup(EBackstageRole::Volunteer, FLinearColor(0.30, 0.66, 0.98, 1.0));
+        if (ArtistPuppet == nullptr)
+        {
+            ArtistPuppet = ABackstagePuppet::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
+            ArtistPuppet.Setup(EBackstageRole::Artist, FLinearColor(0.97, 0.36, 0.46, 1.0));
+        }
+        if (VolunteerPuppet == nullptr)
+        {
+            VolunteerPuppet = ABackstagePuppet::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
+            VolunteerPuppet.Setup(EBackstageRole::Volunteer, FLinearColor(0.30, 0.66, 0.98, 1.0));
+        }
+        if (CoordinatorPuppet == nullptr)
+        {
+            CoordinatorPuppet = ABackstagePuppet::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
+            CoordinatorPuppet.Setup(EBackstageRole::Coordinator, FLinearColor(0.37, 0.84, 0.61, 1.0));
+        }
 
-        CoordinatorPuppet = ABackstagePuppet::Spawn(FVector::ZeroVector, FRotator::ZeroRotator);
-        CoordinatorPuppet.Setup(EBackstageRole::Coordinator, FLinearColor(0.37, 0.84, 0.61, 1.0));
+        const bool bRainLevel = LevelIndex == 0;
+        LinWanPuppet.SetPuppetVisible(bRainLevel);
+        XiaoBeiPuppet.SetPuppetVisible(bRainLevel);
+        FanPuppet.SetPuppetVisible(bRainLevel);
+        ArtistPuppet.SetPuppetVisible(!bRainLevel);
+        VolunteerPuppet.SetPuppetVisible(!bRainLevel);
+        CoordinatorPuppet.SetPuppetVisible(!bRainLevel);
     }
 
-    void SyncToView(APlayerController Controller, const FBackstagePhoto&in View, bool bActivateCamera)
+    void SyncToView(APlayerController Controller, const FBackstagePhoto&in View, bool bActivateCamera, int LevelIndex = 0)
     {
         if (Controller == nullptr)
             return;
-        InitializeStage(Controller);
+        InitializeStage(Controller, LevelIndex);
 
         const float CamAngleRad = Backstage::EffectiveAngle(View);
         const float CamCenter = Backstage::EffectiveCenter(View);
         const float CameraYaw = Math::RadiansToDegrees(CamAngleRad);
         const float CameraPitch = Backstage::CameraPitch(View.Tilt);
         Controller.BackstageSyncCamera(this, CamAngleRad, CamCenter, View.Pan, View.Tilt, View.Zoom, bActivateCamera);
+
+        const FRotator FacingCam(0.0, CameraYaw + 90.0, CameraPitch * 0.55);
+
+        if (LevelIndex == 0)
+        {
+            if (LinWanPuppet != nullptr)
+                LinWanPuppet.Sync(View.Time, Controller.BackstageWorldPoint(Backstage::LinWanAt(View.Time), 0.0), CameraYaw, CameraPitch);
+            if (XiaoBeiPuppet != nullptr)
+                XiaoBeiPuppet.Sync(View.Time, Controller.BackstageWorldPoint(Backstage::XiaoBeiAt(View.Time), 0.0), CameraYaw, CameraPitch);
+            if (FanPuppet != nullptr)
+                FanPuppet.Sync(View.Time, Controller.BackstageWorldPoint(Backstage::FanAt(View.Time), 0.0), CameraYaw, CameraPitch);
+
+            const bool bRaining = Backstage::IsRainingAt(0, View.Time);
+            const bool bUmbrellaOpen = View.Time >= 6.0;
+            if (!bHasSetUmbrella || bUmbrellaOpen != bLastUmbrellaOpen)
+            {
+                UmbrellaSprite.BackstageSetupPart(bUmbrellaOpen ? n"Umbrella" : n"UmbrellaFolded",
+                    FVector2D(bUmbrellaOpen ? 92.0 : 48.0, bUmbrellaOpen ? 82.0 : 68.0),
+                    FVector2D(0.5, 0.5), FLinearColor::White, true, false);
+                bLastUmbrellaOpen = bUmbrellaOpen;
+                bHasSetUmbrella = true;
+            }
+
+            const FVector2D UmbStage = Backstage::UmbrellaAt(View.Time);
+            const FVector UmbWorld = Controller.BackstageWorldPoint(UmbStage, bUmbrellaOpen ? 168.0 : 108.0);
+            const FVector UmbFloor = Controller.BackstageWorldPoint(UmbStage, 1.5);
+            UmbrellaShadow.SetRelativeLocation(FVector(UmbFloor.X - 4.0, UmbFloor.Y, 1.5));
+            UmbrellaSprite.SetRelativeLocation(FVector(UmbWorld.X - 6.0, UmbWorld.Y, UmbWorld.Z));
+            UmbrellaSprite.SetRelativeRotation(FacingCam);
+
+            const FVector2D SignStage = Backstage::FanSignAt(View.Time);
+            const float SignBob = Math::Sin(View.Time * 3.8) * 4.0;
+            const FVector SignWorld = Controller.BackstageWorldPoint(SignStage, 126.0 + SignBob);
+            FanSignSprite.SetRelativeLocation(FVector(SignWorld.X - 6.0, SignWorld.Y, SignWorld.Z));
+            FanSignSprite.SetRelativeRotation(FacingCam);
+
+            UpdateRain(View.Time, bRaining, CameraYaw, CameraPitch);
+            return;
+        }
 
         if (ArtistPuppet != nullptr)
             ArtistPuppet.Sync(View.Time, Controller.BackstageWorldPoint(Backstage::ArtistAt(View.Time), 0.0), CameraYaw, CameraPitch);
@@ -547,7 +887,6 @@ class ABackstageStageActor : AActor
         const float ParcelHeight = bDropped ? 18.0 : (Beat == EBackstageBeat::Pickup ? 40.0 : 80.0);
         const FVector2D ParcelStage = Backstage::ParcelAt(View.Time);
         const FVector ParcelFloor = Controller.BackstageWorldPoint(ParcelStage, 1.5);
-        const FRotator FacingCam(0.0, CameraYaw + 90.0, CameraPitch * 0.55);
 
         ParcelShadow.SetRelativeLocation(FVector(ParcelFloor.X - 6.0, ParcelFloor.Y, 1.5));
         ParcelSprite.SetRelativeLocation(FVector(ParcelFloor.X - 8.0, ParcelFloor.Y, ParcelHeight));

@@ -30,7 +30,8 @@ namespace
 	constexpr int32 BackstageTexSize = 128;
 	constexpr float BackstageProjectionScale = 0.136f;
 	constexpr float BackstageCameraDistance = 550.0f;
-	constexpr int32 BackstageMaxCaptureSlots = 6;
+	constexpr int32 BackstageMaxCaptureSlots = 8;
+	static int32 GBackstageSelectedLevel = 0;
 
 	// Access protected UPaperSprite backing fields so runtime cutout sprites work without editor asset baking.
 	struct FBackstagePaperSpriteAccessor : public UPaperSprite
@@ -546,6 +547,73 @@ namespace
 		{
 			DrawTorsoTexture(Canvas, PartKind);
 		}
+		else if (PartKind == FName(TEXT("Umbrella")))
+		{
+			const FColor Canopy(52, 82, 118, 255);
+			const FColor CanopyLight(92, 134, 182, 255);
+			const FColor RimGold(246, 206, 118, 255);
+			const FColor HandleColor(176, 128, 86, 255);
+			Canvas.FillSegment(64.0f, 34.0f, 64.0f, 108.0f, 2.5f, HandleColor);
+			Canvas.FillSegment(64.0f, 108.0f, 72.0f, 114.0f, 2.5f, HandleColor);
+			Canvas.FillEllipse(64.0f, 52.0f, 50.0f, 22.0f, Canopy);
+			Canvas.FillEllipse(64.0f, 46.0f, 36.0f, 14.0f, CanopyLight);
+			for (int32 Y = 54; Y < BackstageTexSize; ++Y)
+			{
+				for (int32 X = 0; X < BackstageTexSize; ++X)
+				{
+					if (X < 61 || X > 67 || Y > 116)
+					{
+						Canvas.Pixels[Y * Canvas.Width + X] = FColor(0, 0, 0, 0);
+					}
+				}
+			}
+			Canvas.FillSegment(16.0f, 53.0f, 112.0f, 53.0f, 2.0f, RimGold);
+			Canvas.FillCircle(64.0f, 28.0f, 3.0f, RimGold);
+			Canvas.AddInkOutline(3, Ink);
+		}
+		else if (PartKind == FName(TEXT("UmbrellaFolded")))
+		{
+			const FColor Canopy(52, 82, 118, 255);
+			const FColor HandleColor(176, 128, 86, 255);
+			Canvas.FillSegment(64.0f, 22.0f, 64.0f, 106.0f, 2.5f, HandleColor);
+			Canvas.FillTaperedQuad(59.0f, 69.0f, 62.0f, 66.0f, 32.0f, 92.0f, Canopy);
+			Canvas.AddInkOutline(3, Ink);
+		}
+		else if (PartKind == FName(TEXT("FanSign")))
+		{
+			const FColor Board(252, 232, 240, 255);
+			const FColor RimPink(248, 96, 146, 255);
+			const FColor HeartPink(238, 62, 108, 255);
+			Canvas.FillSegment(54.0f, 76.0f, 54.0f, 114.0f, 2.8f, Shade);
+			Canvas.FillSegment(74.0f, 76.0f, 74.0f, 114.0f, 2.8f, Shade);
+			Canvas.FillRoundedBox(20.0f, 24.0f, 108.0f, 82.0f, 8.0f, RimPink);
+			Canvas.FillRoundedBox(26.0f, 30.0f, 102.0f, 76.0f, 5.0f, Board);
+			Canvas.FillCircle(57.0f, 48.0f, 7.5f, HeartPink);
+			Canvas.FillCircle(71.0f, 48.0f, 7.5f, HeartPink);
+			Canvas.FillTriangle(FVector2D(49.0f, 50.0f), FVector2D(79.0f, 50.0f), FVector2D(64.0f, 68.0f), HeartPink);
+			Canvas.FillSegment(34.0f, 64.0f, 50.0f, 64.0f, 2.0f, RimPink);
+			Canvas.FillSegment(78.0f, 64.0f, 94.0f, 64.0f, 2.0f, RimPink);
+			Canvas.AddInkOutline(3, Ink);
+		}
+		else if (PartKind == FName(TEXT("RainStreak")))
+		{
+			const FColor DropColor(186, 224, 255, 195);
+			const FColor DropCore(232, 246, 255, 225);
+			Canvas.FillSegment(74.0f, 18.0f, 54.0f, 110.0f, 2.0f, DropColor);
+			Canvas.FillSegment(68.0f, 42.0f, 58.0f, 92.0f, 1.1f, DropCore);
+		}
+		else if (PartKind == FName(TEXT("BrandBanner")))
+		{
+			const FColor FrameDark(28, 38, 56, 255);
+			const FColor GlowCyan(88, 226, 210, 255);
+			const FColor GlowGold(252, 206, 112, 255);
+			Canvas.FillRoundedBox(14.0f, 22.0f, 114.0f, 106.0f, 6.0f, FrameDark);
+			Canvas.FillRoundedBox(20.0f, 28.0f, 108.0f, 100.0f, 4.0f, FColor(40, 56, 82, 255));
+			Canvas.FillTriangle(FVector2D(64.0f, 36.0f), FVector2D(46.0f, 76.0f), FVector2D(82.0f, 76.0f), GlowCyan);
+			Canvas.FillCircle(64.0f, 64.0f, 12.0f, GlowGold);
+			Canvas.FillSegment(28.0f, 88.0f, 100.0f, 88.0f, 2.2f, GlowCyan);
+			Canvas.AddInkOutline(3, Ink);
+		}
 		else if (PartKind == FName(TEXT("Emotion_Shock")) || PartKind == FName(TEXT("Emotion_Anger")) || PartKind == FName(TEXT("Emotion_Care")) || PartKind == FName(TEXT("Emotion_Warm")))
 		{
 			DrawEmotionTexture(Canvas, PartKind);
@@ -568,8 +636,11 @@ namespace
 		const FString SeqStr = SequenceName.ToString();
 		const int32 Frame = FMath::Clamp(FrameIndex, 0, 3);
 
-		const bool bVolunteer = SeqStr.StartsWith(TEXT("Volunteer_"));
-		const bool bCoordinator = SeqStr.StartsWith(TEXT("Coordinator_"));
+		const bool bVolunteer = SeqStr.StartsWith(TEXT("Volunteer_")) || SeqStr.StartsWith(TEXT("Fan_"));
+		const bool bCoordinator = SeqStr.StartsWith(TEXT("Coordinator_")) || SeqStr.StartsWith(TEXT("XiaoBei_"));
+		const bool bLinWan = SeqStr.StartsWith(TEXT("LinWan_"));
+		const bool bXiaoBei = SeqStr.StartsWith(TEXT("XiaoBei_"));
+		const bool bFan = SeqStr.StartsWith(TEXT("Fan_"));
 
 		const FColor Ink(16, 20, 28, 255);
 		const FColor Skin(244, 224, 210, 255);
@@ -585,7 +656,31 @@ namespace
 		FColor Hair(36, 38, 52, 255);
 		FColor HairSheen(82, 88, 116, 255);
 
-		if (bVolunteer)
+		if (bLinWan)
+		{
+			Primary = FColor(224, 62, 108, 255);
+			PrimaryShade = FColor(152, 34, 70, 255);
+			Accent = FColor(250, 224, 178, 255);
+			Hair = FColor(40, 26, 34, 255);
+			HairSheen = FColor(112, 74, 92, 255);
+		}
+		else if (bXiaoBei)
+		{
+			Primary = FColor(58, 152, 168, 255);
+			PrimaryShade = FColor(36, 102, 118, 255);
+			Accent = FColor(238, 202, 122, 255);
+			Hair = FColor(34, 42, 54, 255);
+			HairSheen = FColor(74, 92, 116, 255);
+		}
+		else if (bFan)
+		{
+			Primary = FColor(118, 146, 242, 255);
+			PrimaryShade = FColor(78, 102, 192, 255);
+			Accent = FColor(250, 146, 188, 255);
+			Hair = FColor(62, 48, 54, 255);
+			HairSheen = FColor(118, 92, 106, 255);
+		}
+		else if (bVolunteer)
 		{
 			Primary = FColor(72, 162, 246, 255);
 			PrimaryShade = FColor(44, 112, 188, 255);
@@ -757,6 +852,10 @@ namespace
 		}
 
 		// Head skull, neck & stylized Limbus hair silhouette
+		if (bLinWan)
+		{
+			Canvas.FillTaperedQuad(HeadX - 16.0f, HeadX - 4.0f, HeadX - 20.0f, HeadX - 6.0f, HeadY - 4.0f, ShoulderY + 24.0f, Hair);
+		}
 		Canvas.FillSegment(ShoulderX, ShoulderY, HeadX, HeadY + 9.0f, 4.0f, SkinShade);
 		Canvas.FillEllipse(HeadX, HeadY, 13.0f, 14.5f, Skin);
 		Canvas.FillEllipse(HeadX - 6.0f, HeadY + 3.0f, 5.0f, 8.5f, SkinShade);
@@ -764,6 +863,10 @@ namespace
 		Canvas.FillTriangle(FVector2D(HeadX - 15.0f, HeadY - 6.0f), FVector2D(HeadX - 7.0f, HeadY - 14.0f), FVector2D(HeadX - 12.0f, HeadY + 8.0f), Hair);
 		Canvas.FillTriangle(FVector2D(HeadX - 6.0f, HeadY - 12.0f), FVector2D(HeadX + 5.0f, HeadY - 11.0f), FVector2D(HeadX, HeadY - 2.0f), Hair);
 		Canvas.FillTriangle(FVector2D(HeadX + 4.0f, HeadY - 12.0f), FVector2D(HeadX + 15.0f, HeadY - 6.0f), FVector2D(HeadX + 11.0f, HeadY + 2.0f), Hair);
+		if (bFan)
+		{
+			Canvas.FillEllipse(HeadX - 1.5f, HeadY - 14.5f, 12.0f, 5.5f, Accent);
+		}
 
 		// Front arm
 		const FColor FrontSleeve = bVolunteer ? Shirt : Primary;
@@ -1047,6 +1150,11 @@ namespace
 		const TCHAR* PartKinds[] = {
 			TEXT("Shadow"),
 			TEXT("Parcel"),
+			TEXT("Umbrella"),
+			TEXT("UmbrellaFolded"),
+			TEXT("FanSign"),
+			TEXT("RainStreak"),
+			TEXT("BrandBanner"),
 			TEXT("Emotion_Shock"),
 			TEXT("Emotion_Anger"),
 			TEXT("Emotion_Care"),
@@ -1058,7 +1166,7 @@ namespace
 		}
 
 		UMaterialInterface* LitMaterial = LoadSpriteMaterial(true);
-		const TCHAR* Roles[] = { TEXT("Artist"), TEXT("Volunteer"), TEXT("Coordinator") };
+		const TCHAR* Roles[] = { TEXT("Artist"), TEXT("Volunteer"), TEXT("Coordinator"), TEXT("LinWan"), TEXT("XiaoBei"), TEXT("Fan") };
 		const TCHAR* States[] = { TEXT("Idle"), TEXT("Walk") };
 		const FVector2D BodySize(104.0, 156.0);
 		const FVector2D BodyPivot(0.5, 1.0);
@@ -1126,13 +1234,12 @@ namespace
 		const FVector Forward(FMath::Cos(AngleRad), FMath::Sin(AngleRad), 0.0);
 		const FVector Right(-FMath::Sin(AngleRad), FMath::Cos(AngleRad), 0.0);
 		const double LateralShift = static_cast<double>(Center + Pan) * 100.0;
-		// Gentle vertical crane: Tilt < 0 rises slightly for a soft high-angle view;
-		// Tilt > 0 lowers slightly for a subtle low-angle shot.
-		const double VerticalShift = -static_cast<double>(Tilt) * 26.0;
-		const double DistancePull = static_cast<double>(BackstageCameraDistance) - FMath::Abs(static_cast<double>(Tilt)) * 12.0;
+		// Crane vertical movement + wider upward/downward pitch for better framing freedom.
+		const double VerticalShift = static_cast<double>(Tilt) * 44.0;
+		const double DistancePull = static_cast<double>(BackstageCameraDistance) - FMath::Abs(static_cast<double>(Tilt)) * 18.0;
 
-		OutLocation = Right * LateralShift - Forward * DistancePull + FVector(0.0, 0.0, 122.0 + VerticalShift);
-		OutRotation = FRotator(-4.2 + static_cast<double>(Tilt) * 4.5, YawDeg, 0.0);
+		OutLocation = Right * LateralShift - Forward * DistancePull + FVector(0.0, 0.0, 128.0 + VerticalShift);
+		OutRotation = FRotator(-2.5 + static_cast<double>(Tilt) * 10.5, YawDeg, 0.0);
 
 		const float TanHalfFOV = (100.0f / BackstageCameraDistance) / (2.0f * BackstageProjectionScale * FMath::Max(Zoom, 0.5f));
 		OutFOV = FMath::Clamp(FMath::RadiansToDegrees(2.0f * FMath::Atan(TanHalfFOV)), 18.0f, 90.0f);
@@ -1393,6 +1500,16 @@ namespace
 		}
 	}
 
+	void BackstageSetLevel(const APlayerController* Controller, int32 LevelIndex)
+	{
+		GBackstageSelectedLevel = FMath::Clamp(LevelIndex, 0, 1);
+	}
+
+	int32 BackstageGetLevel(const APlayerController* Controller)
+	{
+		return GBackstageSelectedLevel;
+	}
+
 	void BackstageQuitGame(APlayerController* Controller)
 	{
 		if (Controller)
@@ -1578,6 +1695,8 @@ static const FAngelscriptBind BindBackstageControls(
 		Controller.Method("void BackstagePrewarmSprites()", &BackstagePrewarmSprites);
 		Controller.Method("bool BackstageIsMainMenuMap() const", &BackstageIsMainMenuMap);
 		Controller.Method("void BackstageOpenMap(const FName& MapName)", &BackstageOpenMap);
+		Controller.Method("void BackstageSetLevel(int32 LevelIndex)", &BackstageSetLevel);
+		Controller.Method("int32 BackstageGetLevel() const", &BackstageGetLevel);
 		Controller.Method("void BackstageQuitGame()", &BackstageQuitGame);
 		Controller.Method("AActor BackstageFindStageActor() const", &BackstageFindStageActor);
 
