@@ -288,11 +288,12 @@ namespace
 
 	struct FBackstagePixelCanvas
 	{
-		int32 Width = BackstageTexSize;
-		int32 Height = BackstageTexSize;
-		int32 MinDirtyX = BackstageTexSize;
+		static constexpr int32 CanvasScale = 4;
+		int32 Width = BackstageTexSize * CanvasScale;
+		int32 Height = BackstageTexSize * CanvasScale;
+		int32 MinDirtyX = BackstageTexSize * CanvasScale;
 		int32 MaxDirtyX = -1;
-		int32 MinDirtyY = BackstageTexSize;
+		int32 MinDirtyY = BackstageTexSize * CanvasScale;
 		int32 MaxDirtyY = -1;
 		TArray<FColor> Pixels;
 
@@ -327,6 +328,10 @@ namespace
 
 		void FillEllipse(float Cx, float Cy, float Rx, float Ry, const FColor& Color)
 		{
+			Cx *= CanvasScale;
+			Cy *= CanvasScale;
+			Rx *= CanvasScale;
+			Ry *= CanvasScale;
 			if (Rx <= 0.0f || Ry <= 0.0f)
 			{
 				return;
@@ -356,6 +361,10 @@ namespace
 
 		void FillSoftEllipse(float Cx, float Cy, float Rx, float Ry, const FColor& Color)
 		{
+			Cx *= CanvasScale;
+			Cy *= CanvasScale;
+			Rx *= CanvasScale;
+			Ry *= CanvasScale;
 			const int32 MinX = FMath::Max(0, FMath::FloorToInt(Cx - Rx));
 			const int32 MaxX = FMath::Min(Width - 1, FMath::CeilToInt(Cx + Rx));
 			const int32 MinY = FMath::Max(0, FMath::FloorToInt(Cy - Ry));
@@ -380,6 +389,11 @@ namespace
 
 		void FillRoundedBox(float X0, float Y0, float X1, float Y1, float Radius, const FColor& Color)
 		{
+			X0 *= CanvasScale;
+			Y0 *= CanvasScale;
+			X1 *= CanvasScale;
+			Y1 *= CanvasScale;
+			Radius *= CanvasScale;
 			const int32 MinX = FMath::Max(0, FMath::FloorToInt(X0));
 			const int32 MaxX = FMath::Min(Width - 1, FMath::CeilToInt(X1));
 			const int32 MinY = FMath::Max(0, FMath::FloorToInt(Y0));
@@ -405,6 +419,12 @@ namespace
 
 		void FillTaperedQuad(float TopLeft, float TopRight, float BottomLeft, float BottomRight, float TopY, float BottomY, const FColor& Color)
 		{
+			TopLeft *= CanvasScale;
+			TopRight *= CanvasScale;
+			BottomLeft *= CanvasScale;
+			BottomRight *= CanvasScale;
+			TopY *= CanvasScale;
+			BottomY *= CanvasScale;
 			const int32 MinY = FMath::Max(0, FMath::FloorToInt(TopY));
 			const int32 MaxY = FMath::Min(Height - 1, FMath::CeilToInt(BottomY));
 			const float SpanY = FMath::Max(1.0f, BottomY - TopY);
@@ -424,6 +444,11 @@ namespace
 
 		void FillSegment(float X0, float Y0, float X1, float Y1, float Radius, const FColor& Color)
 		{
+			X0 *= CanvasScale;
+			Y0 *= CanvasScale;
+			X1 *= CanvasScale;
+			Y1 *= CanvasScale;
+			Radius *= CanvasScale;
 			const int32 MinX = FMath::Max(0, FMath::FloorToInt(FMath::Min(X0, X1) - Radius - 1.0f));
 			const int32 MaxX = FMath::Min(Width - 1, FMath::CeilToInt(FMath::Max(X0, X1) + Radius + 1.0f));
 			const int32 MinY = FMath::Max(0, FMath::FloorToInt(FMath::Min(Y0, Y1) - Radius - 1.0f));
@@ -450,6 +475,9 @@ namespace
 
 		void FillTriangle(FVector2D A, FVector2D B, FVector2D C, const FColor& Color)
 		{
+			A *= CanvasScale;
+			B *= CanvasScale;
+			C *= CanvasScale;
 			const int32 MinX = FMath::Max(0, FMath::FloorToInt(FMath::Min3(A.X, B.X, C.X)));
 			const int32 MaxX = FMath::Min(Width - 1, FMath::CeilToInt(FMath::Max3(A.X, B.X, C.X)));
 			const int32 MinY = FMath::Max(0, FMath::FloorToInt(FMath::Min3(A.Y, B.Y, C.Y)));
@@ -480,6 +508,7 @@ namespace
 		// Adds a uniform dark ink contour around opaque silhouette pixels.
 		void AddInkOutline(int32 Thickness, const FColor& InkColor)
 		{
+			Thickness = FMath::Max(1, Thickness * (CanvasScale - 1));
 			if (MaxDirtyX < MinDirtyX || MaxDirtyY < MinDirtyY)
 			{
 				return;
@@ -695,7 +724,7 @@ namespace
 
 	UTexture2D* CreateTextureFromCanvas(const FBackstagePixelCanvas& Canvas)
 	{
-		UTexture2D* Texture = UTexture2D::CreateTransient(BackstageTexSize, BackstageTexSize, PF_B8G8R8A8);
+		UTexture2D* Texture = UTexture2D::CreateTransient(Canvas.Width, Canvas.Height, PF_B8G8R8A8);
 		if (!Texture)
 		{
 			return nullptr;
