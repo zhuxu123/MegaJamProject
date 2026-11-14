@@ -1,5 +1,12 @@
+class ABackstagePawn : APawn
+{
+    UPROPERTY(DefaultComponent, RootComponent)
+    USceneComponent Root;
+}
+
 class ABackstageGameMode : AGameModeBase
 {
+    default DefaultPawnClass = ABackstagePawn;
     default HUDClass = ABackstageHUD;
     default PlayerControllerClass = ABackstageController;
 }
