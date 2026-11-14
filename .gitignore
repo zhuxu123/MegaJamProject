@@ -34,3 +34,21 @@ Saved/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Local agent rules and knowledge-base integration
+/agent-overwrite.md
+/CLAUDE.md
+/.agents/COLLABORATION.md
+/.agents/KB_PENDING.md
+/.agents/collaboration-qa-policy.md
+/.agents/download-blockage-policy.md
+/.agents/kb-access-agent.json
+/.agents/kb-buffer/
+/.agents/knowledge-base-pre-coding-checklist.md
+/.agents/local-kb-policy.md
+/.agents/skills/memory-closeout/
+/.cursor/mcp.json
+/.cursor/rules/collaboration-qa.mdc
+/.cursor/rules/download-blockage.mdc
+/.cursor/rules/local-kb.mdc
+/.cursor/skills/memory-closeout/
