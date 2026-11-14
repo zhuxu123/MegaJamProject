@@ -1,0 +1,1404 @@
+{
+  "version": 1,
+  "title": "超级巨星",
+  "fps": 5,
+  "source": "剧本全.docx",
+  "beats": [
+    {
+      "chapter": 1,
+      "scene": "studio",
+      "title": "片场 · 黄昏",
+      "description": "林晚从左侧入画，走到办公桌前停住。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 180,
+          "to": 490,
+          "flip": false
+        },
+        {
+          "name": "女主演员 · 路人替身",
+          "clip": "E01_extra_f_idle",
+          "x": 740,
+          "to": 740,
+          "flip": false
+        },
+        {
+          "name": "李谋 · 路人替身",
+          "clip": "E03_extra_m_idle",
+          "x": 1040,
+          "to": 1040,
+          "flip": false
+        }
+      ],
+      "duration": 5,
+      "note": "专用动作待生成；当前以待机与位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 1,
+      "scene": "studio",
+      "title": "一场戏里的压迫",
+      "description": "林晚用力敲桌。女主演员后退撞到桌沿，身体后仰、手撑桌面。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 500,
+          "to": 500,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "愤怒"
+            }
+          ]
+        },
+        {
+          "name": "女主演员 · 路人替身",
+          "clip": "E01_extra_f_idle",
+          "x": 700,
+          "to": 760,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "惊恐"
+            }
+          ]
+        },
+        {
+          "name": "李谋 · 路人替身",
+          "clip": "E03_extra_m_idle",
+          "x": 1040,
+          "to": 1040,
+          "flip": false
+        }
+      ],
+      "duration": 5,
+      "note": "专用动作待生成；当前以待机与位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 1,
+      "scene": "studio",
+      "title": "掌声之后",
+      "description": "林晚逼近一步。导演鼓掌；女主演员低头经过林晚，向左离开。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 500,
+          "to": 560,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "逼近"
+            }
+          ]
+        },
+        {
+          "name": "女主演员 · 路人替身",
+          "clip": "E01_extra_f_idle",
+          "x": 740,
+          "to": 170,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "示弱"
+            }
+          ]
+        },
+        {
+          "name": "李谋 · 路人替身",
+          "clip": "E03_extra_m_idle",
+          "x": 1040,
+          "to": 1040,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Warm",
+              "label": "赞许"
+            }
+          ]
+        }
+      ],
+      "duration": 5,
+      "note": "专用动作待生成；当前以待机与位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 1,
+      "scene": "studio",
+      "title": "抢过雨伞",
+      "description": "林晚回头微笑。助理小周跑近；林晚扫一眼，抢过雨伞，小周愣住。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 540,
+          "to": 880,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "冷笑"
+            }
+          ]
+        },
+        {
+          "name": "小周 · 路人替身",
+          "clip": "E02_extra_f_walk",
+          "x": 180,
+          "to": 490,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "愣住"
+            }
+          ]
+        }
+      ],
+      "duration": 5,
+      "note": "专用动作待生成；当前以待机与位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 1,
+      "scene": "outdoor",
+      "title": "走进雨中",
+      "description": "林晚向右走到户外，撑伞离开。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 500,
+          "to": 1050,
+          "flip": false
+        }
+      ],
+      "duration": 5,
+      "note": "撑伞与雨伞素材待补；目前使用位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 1,
+      "scene": "outdoor",
+      "title": "间幕 · 路灯下的照片",
+      "description": "小夏与男人站在路灯下；林晚从后方拿手机拍照。",
+      "actors": [
+        {
+          "name": "小夏 · 路人替身",
+          "clip": "E01_extra_f_idle",
+          "x": 400,
+          "to": 400,
+          "flip": false
+        },
+        {
+          "name": "男人 · 路人替身",
+          "clip": "E03_extra_m_idle",
+          "x": 650,
+          "to": 650,
+          "flip": false
+        },
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 1030,
+          "to": 1030,
+          "flip": false
+        }
+      ],
+      "duration": 5,
+      "note": "人物、拍照动作与证据照片待补。参考底图含原有人物。",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "直播真人秀 · 名单",
+      "description": "《扶摇直上》后台走廊，左侧是选手照片墙。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 390,
+          "to": 390,
+          "flip": false
+        },
+        {
+          "name": "工作人员",
+          "clip": "E01_extra_f_idle",
+          "x": 1000,
+          "to": 1000,
+          "flip": false
+        },
+        {
+          "name": "工作人员",
+          "clip": "E04_extra_m_walk",
+          "x": 1040,
+          "to": 780,
+          "flip": false
+        }
+      ],
+      "duration": 5,
+      "note": "照片墙采用临时图形，路人待机和走路均接入。",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "照片墙前",
+      "description": "林晚视线移到照片墙某处，伸手至眼前，用力扯下照片边缘的贴纸或旧标签。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "C01_linwan_tear_photo",
+          "x": 390,
+          "to": 390,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "不满"
+            }
+          ]
+        }
+      ],
+      "duration": 4.8,
+      "note": "现有交付明确撕开整张照片；与本剧本“贴纸或旧标签”的歧义动作不完全一致，待重生成。",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "抱着资料跑来",
+      "description": "小北从右侧小跑进入；林晚向前迈步。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 470,
+          "to": 530,
+          "flip": false
+        },
+        {
+          "name": "小北",
+          "clip": "C02_xiaobei_jog_papers",
+          "x": 1040,
+          "to": 720,
+          "flip": true,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "紧张"
+            }
+          ]
+        }
+      ],
+      "duration": 3,
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "阻拦，还是想扶",
+      "description": "林晚伸掌向前推。小北摔倒，资料散落。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "C06_linwan_push_palm",
+          "x": 530,
+          "to": 530,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "阻拦 / 想扶"
+            }
+          ]
+        },
+        {
+          "name": "小北",
+          "clip": "C03_xiaobei_fall_scatter",
+          "x": 730,
+          "to": 730,
+          "flip": true,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "惊慌"
+            }
+          ]
+        }
+      ],
+      "duration": 4.6,
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "无人搀扶",
+      "description": "小北没有抬头，撑着膝盖站起，再迅速蹲下。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 530,
+          "to": 530,
+          "flip": false
+        },
+        {
+          "name": "小北",
+          "clip": "S02_xiaobei_idle",
+          "x": 730,
+          "to": 730,
+          "flip": true,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "慌乱"
+            }
+          ]
+        }
+      ],
+      "duration": 3,
+      "note": "缺少不持资料的起身再蹲下动作，当前用站姿占位；不将此姿态当作已完成动画。",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "收拾散落的材料",
+      "description": "小北迅速蹲下，收拾散落的材料。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 530,
+          "to": 530,
+          "flip": false
+        },
+        {
+          "name": "小北",
+          "clip": "C04_xiaobei_collect_papers",
+          "x": 730,
+          "to": 730,
+          "flip": true,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "紧张"
+            }
+          ]
+        }
+      ],
+      "duration": 4.6,
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "抱起资料",
+      "description": "小北抱起资料站起，准备离开。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 530,
+          "to": 530,
+          "flip": false
+        },
+        {
+          "name": "小北",
+          "clip": "C05_xiaobei_rise_papers",
+          "x": 730,
+          "to": 730,
+          "flip": true,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "紧张"
+            }
+          ]
+        }
+      ],
+      "duration": 4.6,
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "逃离",
+      "description": "小北抱着资料短暂停留，情绪紧张。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 530,
+          "to": 530,
+          "flip": false
+        },
+        {
+          "name": "小北",
+          "clip": "S04_xiaobei_hold_papers",
+          "x": 730,
+          "to": 730,
+          "flip": true,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "不安"
+            }
+          ]
+        }
+      ],
+      "duration": 2.6,
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "走廊里的冷笑",
+      "description": "小北向左快步离开。林晚向右走，唇边浮起冷笑。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 530,
+          "to": 690,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "冷笑"
+            }
+          ]
+        },
+        {
+          "name": "小北",
+          "clip": "C02_xiaobei_jog_papers",
+          "x": 730,
+          "to": 120,
+          "flip": true,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "逃离"
+            }
+          ]
+        }
+      ],
+      "duration": 3,
+      "note": "林晚走路与冷笑待补。",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "苏瑶靠近",
+      "description": "苏瑶从右侧轻快走来，带着笑，停在林晚身边。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 610,
+          "to": 610,
+          "flip": false
+        },
+        {
+          "name": "苏瑶",
+          "clip": "S03_suyao_idle",
+          "x": 1080,
+          "to": 790,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Warm",
+              "label": "甜笑"
+            }
+          ]
+        }
+      ],
+      "duration": 4,
+      "note": "专用动作待生成；当前以待机与位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "蹬地与失衡",
+      "description": "林晚侧身迈步、蹬地。苏瑶失衡后倒，双膝跪坐，双手撑地。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "C07_linwan_stamp",
+          "x": 610,
+          "to": 610,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "冷淡"
+            }
+          ]
+        },
+        {
+          "name": "苏瑶",
+          "clip": "C08_suyao_fall_kneel",
+          "x": 790,
+          "to": 790,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "错愕"
+            }
+          ]
+        }
+      ],
+      "duration": 4,
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "没有立刻伸手",
+      "description": "林晚低头看了一眼，没有立刻扶她；苏瑶跪坐在地。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 610,
+          "to": 610,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "冷眼"
+            }
+          ]
+        },
+        {
+          "name": "苏瑶",
+          "clip": "S05_suyao_kneel_idle",
+          "x": 790,
+          "to": 790,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "羞愤"
+            }
+          ]
+        }
+      ],
+      "duration": 2.8,
+      "note": "",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "corridor",
+      "title": "重新挂上甜笑",
+      "description": "苏瑶慢慢站起，整理裙摆，重新挂起甜笑。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 610,
+          "to": 610,
+          "flip": false
+        },
+        {
+          "name": "苏瑶",
+          "clip": "C09_suyao_rise",
+          "x": 790,
+          "to": 790,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Warm",
+              "label": "重新甜笑"
+            }
+          ]
+        }
+      ],
+      "duration": 4.4,
+      "note": "当前动画只有起身，整理裙摆和表情细节待补。",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "stage",
+      "title": "灯光之下",
+      "description": "林晚进入舞台，沉默、抬头，露出真假难辨的笑。画外掌声与尖叫。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 230,
+          "to": 600,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Warm",
+              "label": "难辨的笑"
+            }
+          ]
+        },
+        {
+          "name": "工作人员",
+          "clip": "E01_extra_f_idle",
+          "x": 1040,
+          "to": 1040,
+          "flip": false
+        }
+      ],
+      "duration": 6,
+      "note": "抬头表情及音效待补。",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "storage",
+      "title": "杂物间门后",
+      "description": "林晚下台经过安全通道，停在杂物间门旁，贴近门缝侧耳倾听。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 220,
+          "to": 660,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "警觉"
+            }
+          ]
+        }
+      ],
+      "duration": 5,
+      "note": "专用动作待生成；当前以待机与位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "storage",
+      "title": "被听见的密谋",
+      "description": "门后：李谋低声安抚苏瑶；苏瑶愤怒提及小北；李谋再次提到小北。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 660,
+          "to": 660,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "震惊"
+            }
+          ]
+        }
+      ],
+      "duration": 7,
+      "note": "阴冷 / 愤怒 / 小北图标待补；此处使用文字提示，不编造对白。",
+      "evidence": ""
+    },
+    {
+      "chapter": 2,
+      "scene": "storage",
+      "title": "背靠墙",
+      "description": "林晚僵在门后，背靠墙，缓缓攥紧拳头。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 660,
+          "to": 660,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "攥紧拳头"
+            }
+          ]
+        }
+      ],
+      "duration": 4,
+      "note": "专用动作待生成；当前以待机与位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 3,
+      "scene": "dressing",
+      "title": "决赛前 · 化妆镜",
+      "description": "林晚背对门坐在镜前，陈默轻敲两下门，从左侧进入。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 600,
+          "to": 600,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "疑虑"
+            }
+          ]
+        },
+        {
+          "name": "陈默 · 路人替身",
+          "clip": "E04_extra_m_walk",
+          "x": 180,
+          "to": 820,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "温和"
+            }
+          ]
+        }
+      ],
+      "duration": 5,
+      "note": "专用动作待生成；当前以待机与位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 3,
+      "scene": "dressing",
+      "title": "镜中的来客",
+      "description": "陈默停在两步之外，示意赞许。林晚回头，怀疑、动摇。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 600,
+          "to": 600,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "怀疑 / 动摇"
+            }
+          ]
+        },
+        {
+          "name": "陈默 · 路人替身",
+          "clip": "E03_extra_m_idle",
+          "x": 820,
+          "to": 820,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "赞许"
+            }
+          ]
+        }
+      ],
+      "duration": 5,
+      "note": "陈默参考与点赞图标待补。",
+      "evidence": ""
+    },
+    {
+      "chapter": 3,
+      "scene": "dressing",
+      "title": "离开时的停顿",
+      "description": "陈默后退一步，转身离开，在门口稍作停顿。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 600,
+          "to": 600,
+          "flip": false
+        },
+        {
+          "name": "陈默 · 路人替身",
+          "clip": "E04_extra_m_walk",
+          "x": 820,
+          "to": 200,
+          "flip": true,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "欲言又止"
+            }
+          ]
+        }
+      ],
+      "duration": 4,
+      "note": "专用动作待生成；当前以待机与位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 3,
+      "scene": "dressing",
+      "title": "甜笑之下",
+      "description": "苏瑶推门进入，靠近林晚，笑容收敛，前倾压低声音。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 600,
+          "to": 600,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "警觉"
+            }
+          ]
+        },
+        {
+          "name": "苏瑶",
+          "clip": "S03_suyao_idle",
+          "x": 220,
+          "to": 820,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "威胁"
+            }
+          ]
+        }
+      ],
+      "duration": 5,
+      "note": "专用动作待生成；当前以待机与位移占位。",
+      "evidence": ""
+    },
+    {
+      "chapter": 3,
+      "scene": "dressing",
+      "title": "白玫瑰与道具刀",
+      "description": "林晚站起直视苏瑶；工作人员递上白玫瑰和道具刀。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 580,
+          "to": 580,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "不退让"
+            }
+          ]
+        },
+        {
+          "name": "苏瑶",
+          "clip": "S03_suyao_idle",
+          "x": 820,
+          "to": 820,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "阴狠"
+            }
+          ]
+        },
+        {
+          "name": "工作人员",
+          "clip": "E02_extra_f_walk",
+          "x": 1080,
+          "to": 1000,
+          "flip": false
+        }
+      ],
+      "duration": 5,
+      "note": "起身、递交动作及玫瑰、道具刀采用临时道具标记。",
+      "evidence": ""
+    },
+    {
+      "chapter": 3,
+      "scene": "stage",
+      "title": "相对而立",
+      "description": "舞台强光。林晚握紧道具刀，压低重心，向前半步。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 500,
+          "to": 550,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Anger",
+              "label": "警觉"
+            }
+          ]
+        },
+        {
+          "name": "苏瑶",
+          "clip": "S03_suyao_idle",
+          "x": 790,
+          "to": 790,
+          "flip": false
+        }
+      ],
+      "duration": 4,
+      "note": "道具刀与重心动作待补。",
+      "evidence": ""
+    },
+    {
+      "chapter": 3,
+      "scene": "stage",
+      "title": "突如其来的尖叫",
+      "description": "苏瑶抢先尖叫，后倒、捂肩跪地，抬头指向林晚。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 550,
+          "to": 550,
+          "flip": false
+        },
+        {
+          "name": "苏瑶",
+          "clip": "C08_suyao_fall_kneel",
+          "x": 790,
+          "to": 790,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "伪装恐惧"
+            }
+          ]
+        }
+      ],
+      "duration": 4,
+      "note": "临时复用跌坐；捂肩、指认与尖叫音效未生成。",
+      "evidence": ""
+    },
+    {
+      "chapter": 3,
+      "scene": "stage",
+      "title": "切广告 · 取消资格",
+      "description": "导播要求切广告，主持人宣布取消林晚资格；工作人员冲上台拖走林晚。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 550,
+          "to": 180,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "错愕"
+            }
+          ]
+        },
+        {
+          "name": "苏瑶",
+          "clip": "S05_suyao_kneel_idle",
+          "x": 790,
+          "to": 790,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "伪装委屈"
+            }
+          ]
+        },
+        {
+          "name": "工作人员",
+          "clip": "E02_extra_f_walk",
+          "x": 1040,
+          "to": 310,
+          "flip": false
+        }
+      ],
+      "duration": 6,
+      "note": "拖拽与画外音待补；屏幕文字表达事件。",
+      "evidence": ""
+    },
+    {
+      "chapter": 3,
+      "scene": "outdoor",
+      "title": "间幕 · 同一盏路灯",
+      "description": "林晚站在路灯下，陈默从左侧走来，将文件递给她。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 700,
+          "to": 700,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "沉静"
+            }
+          ]
+        },
+        {
+          "name": "陈默 · 路人替身",
+          "clip": "E04_extra_m_walk",
+          "x": 200,
+          "to": 470,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "支持"
+            }
+          ]
+        }
+      ],
+      "duration": 6,
+      "note": "递文件动作待补。",
+      "evidence": ""
+    },
+    {
+      "chapter": 4,
+      "scene": "studio",
+      "title": "片场 · 真相直播",
+      "description": "林晚面对手机镜头，深呼吸，说出五年前的真相。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 590,
+          "to": 590,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "决绝 / 坦诚"
+            }
+          ]
+        }
+      ],
+      "duration": 6,
+      "note": "剧本没有提供真相对白，不额外编造台词；对镜头讲话动作待补。",
+      "evidence": ""
+    },
+    {
+      "chapter": 4,
+      "scene": "studio",
+      "title": "第一份证据",
+      "description": "陈默进入画面。将证据卡拖入直播窗口，再按发送。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 530,
+          "to": 530,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "坚定"
+            }
+          ]
+        },
+        {
+          "name": "陈默 · 路人替身",
+          "clip": "E03_extra_m_idle",
+          "x": 840,
+          "to": 840,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "支持"
+            }
+          ]
+        }
+      ],
+      "duration": 5,
+      "note": "证据原图尚未提供，当前为文字卡占位。",
+      "evidence": "导演抱小北"
+    },
+    {
+      "chapter": 4,
+      "scene": "studio",
+      "title": "第二份证据",
+      "description": "小北从右侧走来，选择勇敢站出来。继续发送证据。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 530,
+          "to": 530,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "坦诚"
+            }
+          ]
+        },
+        {
+          "name": "小北",
+          "clip": "S02_xiaobei_idle",
+          "x": 1030,
+          "to": 760,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Shock",
+              "label": "勇敢 / 欲哭"
+            }
+          ]
+        },
+        {
+          "name": "陈默 · 路人替身",
+          "clip": "E03_extra_m_idle",
+          "x": 960,
+          "to": 960,
+          "flip": false
+        }
+      ],
+      "duration": 5,
+      "note": "证据原图尚未提供，当前为文字卡占位。",
+      "evidence": "导演和苏瑶喝酒"
+    },
+    {
+      "chapter": 4,
+      "scene": "studio",
+      "title": "第三份证据",
+      "description": "剧组龙套从右侧走入画面。发送最后一份证据。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 440,
+          "to": 440,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Warm",
+              "label": "如释重负"
+            }
+          ]
+        },
+        {
+          "name": "小北",
+          "clip": "S02_xiaobei_idle",
+          "x": 670,
+          "to": 670,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Care",
+              "label": "勇敢"
+            }
+          ]
+        },
+        {
+          "name": "剧组龙套",
+          "clip": "E02_extra_f_walk",
+          "x": 1080,
+          "to": 850,
+          "flip": false
+        },
+        {
+          "name": "剧组龙套",
+          "clip": "E04_extra_m_walk",
+          "x": 1150,
+          "to": 1030,
+          "flip": false
+        }
+      ],
+      "duration": 5,
+      "note": "名单原图尚未提供，当前为文字卡占位。",
+      "evidence": "名单上除了苏瑶都被打 X"
+    },
+    {
+      "chapter": 4,
+      "scene": "newspaper",
+      "title": "真相落地",
+      "description": "李谋被警方带走；苏瑶被行业封杀；《扶摇直上》换导重拍。",
+      "actors": [],
+      "duration": 8,
+      "note": "使用用户报纸参考，标题由剧情界面叠加；保留原始图片。",
+      "evidence": ""
+    },
+    {
+      "chapter": 4,
+      "scene": "newstudio",
+      "title": "数周后 · 新片场",
+      "description": "明亮的新片场。林晚站在门口，小北从左侧拿着雨伞走来。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 700,
+          "to": 700,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Warm",
+              "label": "平静"
+            }
+          ]
+        },
+        {
+          "name": "小北",
+          "clip": "S02_xiaobei_idle",
+          "x": 200,
+          "to": 480,
+          "flip": false,
+          "emotion_placeholder": true,
+          "emotions": [
+            {
+              "at": 0,
+              "icon": "Emotion_Warm",
+              "label": "靠近"
+            }
+          ]
+        }
+      ],
+      "duration": 5,
+      "note": "拿伞动作待补；此处与开场形成呼应。",
+      "evidence": ""
+    },
+    {
+      "chapter": 4,
+      "scene": "newstudio",
+      "title": "又一次拿走雨伞",
+      "description": "林晚抢过雨伞，走出画面。",
+      "actors": [
+        {
+          "name": "林晚",
+          "clip": "S01_linwan_idle",
+          "x": 700,
+          "to": 1080,
+          "flip": false
+        },
+        {
+          "name": "小北",
+          "clip": "S02_xiaobei_idle",
+          "x": 480,
+          "to": 480,
+          "flip": false
+        }
+      ],
+      "duration": 5,
+      "note": "抢伞动作待补；不额外添加剧本没有给出的结局解释。",
+      "evidence": ""
+    }
+  ]
+}

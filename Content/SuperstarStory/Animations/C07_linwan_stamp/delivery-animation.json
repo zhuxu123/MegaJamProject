@@ -1,0 +1,322 @@
+{
+  "id": "C07_linwan_stamp",
+  "fps": 5,
+  "frame_count": 17,
+  "playback_seconds": 3.4,
+  "loop": false,
+  "source": "runs/C07_linwan_stamp/attempt_03/source.mp4",
+  "source_sha256": "348af6ccf5d00f41b2bec7cd4688992b7f4534c5f8a4b8f094b2d436fb93f4b2",
+  "cut": {
+    "video": "runs/C07_linwan_stamp/attempt_03/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.7916666666666666,
+    "end_seconds_exclusive": 4.125,
+    "loop": false,
+    "event_times": {
+      "右脚离地": 0.9166666666666666,
+      "右脚悬空": 1.7916666666666667,
+      "右脚落地": 3.0416666666666665,
+      "身体压低后恢复": 3.4583333333333335
+    },
+    "notes": "One foot lift only; downward motion reaches the baseline and both knees visibly compress around source 74; balance returns by 87. End-frame conditioning holds the same original stance."
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 3.3333333333333335,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0.55,
+    "despill": 1
+  },
+  "events": {
+    "右脚离地": {
+      "source_seconds": 0.9166666666666666,
+      "output_frame": 2,
+      "sample_offset_seconds": 0.08333333333333337
+    },
+    "右脚悬空": {
+      "source_seconds": 1.7916666666666667,
+      "output_frame": 6,
+      "sample_offset_seconds": 0.0
+    },
+    "右脚落地": {
+      "source_seconds": 3.0416666666666665,
+      "output_frame": 12,
+      "sample_offset_seconds": -0.04166666666666652
+    },
+    "身体压低后恢复": {
+      "source_seconds": 3.4583333333333335,
+      "output_frame": 14,
+      "sample_offset_seconds": -0.08333333333333348
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/C07_linwan_stamp_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.7916666666666666,
+      "source_frame": 20,
+      "actual_source_seconds": 0.7916666666666666,
+      "alpha_bbox": [
+        244,
+        99,
+        393,
+        572
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.9916666666666667,
+      "source_frame": 25,
+      "actual_source_seconds": 1.0,
+      "alpha_bbox": [
+        254,
+        103,
+        406,
+        570
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 1.1916666666666667,
+      "source_frame": 30,
+      "actual_source_seconds": 1.2083333333333333,
+      "alpha_bbox": [
+        268,
+        87,
+        434,
+        570
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 1.3916666666666666,
+      "source_frame": 34,
+      "actual_source_seconds": 1.375,
+      "alpha_bbox": [
+        278,
+        80,
+        448,
+        570
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 1.5916666666666668,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        288,
+        82,
+        448,
+        570
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.7916666666666665,
+      "source_frame": 44,
+      "actual_source_seconds": 1.7916666666666667,
+      "alpha_bbox": [
+        288,
+        83,
+        448,
+        570
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.9916666666666667,
+      "source_frame": 49,
+      "actual_source_seconds": 2.0,
+      "alpha_bbox": [
+        288,
+        83,
+        448,
+        570
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 2.1916666666666664,
+      "source_frame": 54,
+      "actual_source_seconds": 2.2083333333333335,
+      "alpha_bbox": [
+        288,
+        83,
+        448,
+        570
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 2.3916666666666666,
+      "source_frame": 58,
+      "actual_source_seconds": 2.375,
+      "alpha_bbox": [
+        288,
+        83,
+        448,
+        570
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 2.591666666666667,
+      "source_frame": 63,
+      "actual_source_seconds": 2.5833333333333335,
+      "alpha_bbox": [
+        288,
+        83,
+        448,
+        570
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.7916666666666665,
+      "source_frame": 68,
+      "actual_source_seconds": 2.7916666666666665,
+      "alpha_bbox": [
+        288,
+        83,
+        448,
+        570
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.9916666666666667,
+      "source_frame": 73,
+      "actual_source_seconds": 3.0,
+      "alpha_bbox": [
+        224,
+        126,
+        480,
+        572
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 3.1916666666666664,
+      "source_frame": 78,
+      "actual_source_seconds": 3.2083333333333335,
+      "alpha_bbox": [
+        220,
+        128,
+        470,
+        572
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 3.3916666666666666,
+      "source_frame": 82,
+      "actual_source_seconds": 3.375,
+      "alpha_bbox": [
+        244,
+        108,
+        432,
+        572
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 3.5916666666666663,
+      "source_frame": 87,
+      "actual_source_seconds": 3.5833333333333335,
+      "alpha_bbox": [
+        252,
+        100,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.7916666666666665,
+      "source_frame": 92,
+      "actual_source_seconds": 3.7916666666666665,
+      "alpha_bbox": [
+        246,
+        100,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/C07_linwan_stamp_000017.png",
+      "output_frame": 17,
+      "output_seconds": 3.2,
+      "requested_source_seconds": 3.9916666666666667,
+      "source_frame": 97,
+      "actual_source_seconds": 4.0,
+      "alpha_bbox": [
+        244,
+        100,
+        394,
+        572
+      ]
+    }
+  ],
+  "visual_review": "PASSED",
+  "acceptance": {
+    "approved": true,
+    "no_intro": true,
+    "events_readable_5fps": true,
+    "alpha_on_light_dark": true,
+    "identity_and_props": true,
+    "anchor_and_bounds": true,
+    "loop_or_chain_checked": true,
+    "notes": "outputs/C07_linwan_stamp/v01. One lift and one landing; both knees visibly compress at contact and the pose recovers. At 5 FPS the leg is held aloft longer than the prompt target, but the lift, impact and recovery remain distinct. End-frame anchor recorded."
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "id": "S01_linwan_idle",
+  "fps": 5,
+  "frame_count": 13,
+  "playback_seconds": 2.6,
+  "loop": true,
+  "source": "runs/S01_linwan_idle/attempt_01/source.mp4",
+  "source_sha256": "b0d6c16ea9ce9bafa17ea5873b464df53b0b9f1cb850a99c37ffd24d594b931c",
+  "cut": {
+    "video": "runs/S01_linwan_idle/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.20833333333333334,
+    "end_seconds_exclusive": 2.75,
+    "loop": true,
+    "event_times": {
+      "呼吸周期": 1.5833333333333333,
+      "双脚位置固定": 0.20833333333333334,
+      "相同姿态和运动方向回到起相位": 2.5416666666666665
+    },
+    "notes": "One complete subtle breathing/weight-shift cycle. Source frames 6 and 67 have matching plant and torso phase; frame 67 is excluded. Both shoes remain planted."
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 2.5416666666666665,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0.55,
+    "despill": 1
+  },
+  "events": {
+    "呼吸周期": {
+      "source_seconds": 1.5833333333333333,
+      "output_frame": 8,
+      "sample_offset_seconds": 0.0
+    },
+    "双脚位置固定": {
+      "source_seconds": 0.20833333333333334,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "相同姿态和运动方向回到起相位": {
+      "source_seconds": 2.5416666666666665,
+      "output_frame": 13,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/S01_linwan_idle_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.20833333333333334,
+      "source_frame": 6,
+      "actual_source_seconds": 0.20833333333333334,
+      "alpha_bbox": [
+        247,
+        90,
+        394,
+        571
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.40384615384615385,
+      "source_frame": 11,
+      "actual_source_seconds": 0.4166666666666667,
+      "alpha_bbox": [
+        247,
+        90,
+        394,
+        571
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.5993589743589743,
+      "source_frame": 15,
+      "actual_source_seconds": 0.5833333333333334,
+      "alpha_bbox": [
+        245,
+        91,
+        394,
+        571
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.7948717948717949,
+      "source_frame": 20,
+      "actual_source_seconds": 0.7916666666666666,
+      "alpha_bbox": [
+        240,
+        92,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 0.9903846153846154,
+      "source_frame": 25,
+      "actual_source_seconds": 1.0,
+      "alpha_bbox": [
+        234,
+        92,
+        394,
+        571
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.1858974358974357,
+      "source_frame": 29,
+      "actual_source_seconds": 1.1666666666666667,
+      "alpha_bbox": [
+        231,
+        93,
+        394,
+        571
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.3814102564102564,
+      "source_frame": 34,
+      "actual_source_seconds": 1.375,
+      "alpha_bbox": [
+        230,
+        94,
+        394,
+        571
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.5769230769230766,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        229,
+        94,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.7724358974358974,
+      "source_frame": 44,
+      "actual_source_seconds": 1.7916666666666667,
+      "alpha_bbox": [
+        232,
+        93,
+        394,
+        571
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 1.9679487179487178,
+      "source_frame": 48,
+      "actual_source_seconds": 1.9583333333333333,
+      "alpha_bbox": [
+        235,
+        92,
+        394,
+        571
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.1634615384615383,
+      "source_frame": 53,
+      "actual_source_seconds": 2.1666666666666665,
+      "alpha_bbox": [
+        240,
+        92,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.358974358974359,
+      "source_frame": 58,
+      "actual_source_seconds": 2.375,
+      "alpha_bbox": [
+        244,
+        90,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/S01_linwan_idle_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.5544871794871797,
+      "source_frame": 62,
+      "actual_source_seconds": 2.5416666666666665,
+      "alpha_bbox": [
+        246,
+        90,
+        394,
+        571
+      ]
+    }
+  ],
+  "visual_review": "PASSED",
+  "acceptance": {
+    "approved": true,
+    "no_intro": true,
+    "events_readable_5fps": true,
+    "alpha_on_light_dark": true,
+    "identity_and_props": true,
+    "anchor_and_bounds": true,
+    "loop_or_chain_checked": true,
+    "notes": "outputs/S01_linwan_idle/v01. 13 distinct samples at 200 ms per frame. Full breathing and weight-shift cycle checked through the repeated boundary; both heels remain planted and the visual baseline spans y=571–572. Face, shoulder bag, earrings, ponytail and clothing retained. Light and dark alpha checks passed."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "animation_delivery": "H3Animation-20261115-delivery.zip",
+  "story_source": "剧本全.docx",
+  "reference_source": "超级巨星/场景参考 和 物品参考",
+  "references": [
+    {
+      "file": "References/studio.png",
+      "sha256": "cf596414793564d5c67161f658254c04e3996b7afb033156cebc22f5165bbfe9"
+    },
+    {
+      "file": "References/outdoor.png",
+      "sha256": "f3dfd448e8d63e7c0b5f10bead1e96e1792b198dffb1b5f0e868261d5b1b6e77"
+    },
+    {
+      "file": "References/stage.png",
+      "sha256": "785b658b7669ab1bbbc10c889b12fd9cdbe9a2ea7ff868fec1c6dca2111ae77a"
+    },
+    {
+      "file": "References/dressing.png",
+      "sha256": "063ec4c63a1208b47bfc794330c2ca416c5c1cf0a2b308b47546f7c52f15a9bb"
+    },
+    {
+      "file": "References/newspaper.png",
+      "sha256": "059f7e18e987764d46c6d4a801834ea66dfa7a1185a358ba7f6c63edab660151"
+    }
+  ],
+  "notes": "Original images copied without alteration. Per-frame hashes are stored in clips.json."
+}

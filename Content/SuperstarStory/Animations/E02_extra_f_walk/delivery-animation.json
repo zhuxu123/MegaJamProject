@@ -1,0 +1,168 @@
+{
+  "id": "E02_extra_f_walk",
+  "fps": 5,
+  "frame_count": 6,
+  "playback_seconds": 1.2,
+  "loop": true,
+  "source": "runs/E02_extra_f_walk/attempt_01/source.mp4",
+  "source_sha256": "603be24a967080e521c5ac0cbdc0be7e5d17a9715ba8140bf70d95a06314ba43",
+  "cut": {
+    "video": "runs/E02_extra_f_walk/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.25,
+    "end_seconds_exclusive": 2.5,
+    "loop": true,
+    "event_times": {
+      "左脚着地": 1.25,
+      "右脚着地": 1.875,
+      "完整左右步周期": 2.3333333333333335,
+      "道具与无五官特征保持": 1.625
+    },
+    "notes": "One full step cycle matches forward contacts at source frames 31 and 61. Pose direction and clipboard and pen sustained."
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 1.25,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0.55,
+    "despill": 1
+  },
+  "events": {
+    "左脚着地": {
+      "source_seconds": 1.25,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "右脚着地": {
+      "source_seconds": 1.875,
+      "output_frame": 4,
+      "sample_offset_seconds": 0.0
+    },
+    "完整左右步周期": {
+      "source_seconds": 2.3333333333333335,
+      "output_frame": 6,
+      "sample_offset_seconds": -0.04166666666666696
+    },
+    "道具与无五官特征保持": {
+      "source_seconds": 1.625,
+      "output_frame": 3,
+      "sample_offset_seconds": 0.04166666666666674
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/E02_extra_f_walk_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.25,
+      "source_frame": 31,
+      "actual_source_seconds": 1.25,
+      "alpha_bbox": [
+        242,
+        98,
+        402,
+        569
+      ]
+    },
+    {
+      "file": "frames/E02_extra_f_walk_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 1.4583333333333333,
+      "source_frame": 36,
+      "actual_source_seconds": 1.4583333333333333,
+      "alpha_bbox": [
+        253,
+        92,
+        392,
+        570
+      ]
+    },
+    {
+      "file": "frames/E02_extra_f_walk_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 1.6666666666666667,
+      "source_frame": 41,
+      "actual_source_seconds": 1.6666666666666667,
+      "alpha_bbox": [
+        254,
+        88,
+        396,
+        569
+      ]
+    },
+    {
+      "file": "frames/E02_extra_f_walk_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 1.875,
+      "source_frame": 46,
+      "actual_source_seconds": 1.875,
+      "alpha_bbox": [
+        252,
+        96,
+        412,
+        568
+      ]
+    },
+    {
+      "file": "frames/E02_extra_f_walk_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 2.0833333333333335,
+      "source_frame": 51,
+      "actual_source_seconds": 2.0833333333333335,
+      "alpha_bbox": [
+        252,
+        95,
+        392,
+        568
+      ]
+    },
+    {
+      "file": "frames/E02_extra_f_walk_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 2.291666666666667,
+      "source_frame": 56,
+      "actual_source_seconds": 2.2916666666666665,
+      "alpha_bbox": [
+        254,
+        88,
+        392,
+        567
+      ]
+    }
+  ],
+  "visual_review": "PASSED",
+  "acceptance": {
+    "approved": true,
+    "no_intro": true,
+    "events_readable_5fps": true,
+    "alpha_on_light_dark": true,
+    "identity_and_props": true,
+    "anchor_and_bounds": true,
+    "loop_or_chain_checked": true,
+    "notes": "outputs/E02_extra_f_walk/v01. Six independent transparent 5 FPS phases show the complete two-step cycle. Pen and board remain in their respective hands, and featureless face, hair bun and lanyard stay intact. Light/dark alpha and wrap checked."
+  }
+}

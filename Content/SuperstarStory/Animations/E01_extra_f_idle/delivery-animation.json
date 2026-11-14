@@ -1,0 +1,246 @@
+{
+  "id": "E01_extra_f_idle",
+  "fps": 5,
+  "frame_count": 12,
+  "playback_seconds": 2.4,
+  "loop": true,
+  "source": "runs/E01_extra_f_idle/attempt_02/source.mp4",
+  "source_sha256": "2751efd124e329520f2be789d562b120c435ce02fceb588bf2bb61069596d8a9",
+  "cut": {
+    "video": "runs/E01_extra_f_idle/attempt_02/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.0,
+    "end_seconds_exclusive": 3.5,
+    "loop": true,
+    "event_times": {
+      "呼吸周期": 2.2083333333333335,
+      "双脚位置固定": 1.0,
+      "相同姿态和运动方向回到起相位": 3.2916666666666665
+    },
+    "notes": "One chest and shoulder cycle from frames 25 through 84; fixed shoes and pen/clipboard remain visible."
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 2.5,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0.55,
+    "despill": 1
+  },
+  "events": {
+    "呼吸周期": {
+      "source_seconds": 2.2083333333333335,
+      "output_frame": 7,
+      "sample_offset_seconds": 0.04166666666666652
+    },
+    "双脚位置固定": {
+      "source_seconds": 1.0,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "相同姿态和运动方向回到起相位": {
+      "source_seconds": 3.2916666666666665,
+      "output_frame": 12,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/E01_extra_f_idle_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.0,
+      "source_frame": 25,
+      "actual_source_seconds": 1.0,
+      "alpha_bbox": [
+        246,
+        96,
+        388,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 1.2083333333333333,
+      "source_frame": 30,
+      "actual_source_seconds": 1.2083333333333333,
+      "alpha_bbox": [
+        246,
+        96,
+        388,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 1.4166666666666667,
+      "source_frame": 35,
+      "actual_source_seconds": 1.4166666666666667,
+      "alpha_bbox": [
+        248,
+        94,
+        388,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 1.625,
+      "source_frame": 40,
+      "actual_source_seconds": 1.625,
+      "alpha_bbox": [
+        250,
+        91,
+        389,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 1.8333333333333335,
+      "source_frame": 45,
+      "actual_source_seconds": 1.8333333333333333,
+      "alpha_bbox": [
+        252,
+        90,
+        389,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 2.041666666666667,
+      "source_frame": 50,
+      "actual_source_seconds": 2.0416666666666665,
+      "alpha_bbox": [
+        254,
+        88,
+        390,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 2.25,
+      "source_frame": 55,
+      "actual_source_seconds": 2.25,
+      "alpha_bbox": [
+        256,
+        88,
+        390,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 2.458333333333333,
+      "source_frame": 60,
+      "actual_source_seconds": 2.4583333333333335,
+      "alpha_bbox": [
+        256,
+        88,
+        390,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 2.666666666666667,
+      "source_frame": 65,
+      "actual_source_seconds": 2.6666666666666665,
+      "alpha_bbox": [
+        253,
+        89,
+        390,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 2.875,
+      "source_frame": 70,
+      "actual_source_seconds": 2.875,
+      "alpha_bbox": [
+        250,
+        90,
+        390,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 3.0833333333333335,
+      "source_frame": 75,
+      "actual_source_seconds": 3.0833333333333335,
+      "alpha_bbox": [
+        248,
+        92,
+        389,
+        571
+      ]
+    },
+    {
+      "file": "frames/E01_extra_f_idle_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 3.2916666666666665,
+      "source_frame": 80,
+      "actual_source_seconds": 3.2916666666666665,
+      "alpha_bbox": [
+        246,
+        94,
+        388,
+        571
+      ]
+    }
+  ],
+  "visual_review": "PASSED",
+  "acceptance": {
+    "approved": true,
+    "no_intro": true,
+    "events_readable_5fps": true,
+    "alpha_on_light_dark": true,
+    "identity_and_props": true,
+    "anchor_and_bounds": true,
+    "loop_or_chain_checked": true,
+    "notes": "outputs/E01_extra_f_idle/v01. 12 transparent frames. Replaced the source with the rerender from a cleaned shoe silhouette. ID badge, clipboard, pen, featureless face and planted shoes verified. Light/dark and sampled cycle phase checked."
+  }
+}

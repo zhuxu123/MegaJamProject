@@ -1,0 +1,218 @@
+{
+  "id": "S02_xiaobei_idle",
+  "fps": 5,
+  "frame_count": 10,
+  "playback_seconds": 2.0,
+  "loop": true,
+  "source": "runs/S02_xiaobei_idle/attempt_01/source.mp4",
+  "source_sha256": "103c9f19707dcc142a7f1b6a319a101327dbe38ebf60dde684960504b5190165",
+  "cut": {
+    "video": "runs/S02_xiaobei_idle/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.4583333333333333,
+    "end_seconds_exclusive": 3.5416666666666665,
+    "loop": true,
+    "event_times": {
+      "呼吸周期": 2.375,
+      "双脚位置固定": 1.4583333333333333,
+      "相同姿态和运动方向回到起相位": 3.3333333333333335
+    },
+    "notes": "Complete breath/weight-shift from source frame 36 through 85, with gaze temporarily blinking and then returning; feet planted."
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 2.083333333333333,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0.55,
+    "despill": 1
+  },
+  "events": {
+    "呼吸周期": {
+      "source_seconds": 2.375,
+      "output_frame": 5,
+      "sample_offset_seconds": -0.08333333333333348
+    },
+    "双脚位置固定": {
+      "source_seconds": 1.4583333333333333,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "相同姿态和运动方向回到起相位": {
+      "source_seconds": 3.3333333333333335,
+      "output_frame": 10,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/S02_xiaobei_idle_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.4583333333333333,
+      "source_frame": 36,
+      "actual_source_seconds": 1.4583333333333333,
+      "alpha_bbox": [
+        266,
+        88,
+        390,
+        573
+      ]
+    },
+    {
+      "file": "frames/S02_xiaobei_idle_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 1.6666666666666665,
+      "source_frame": 41,
+      "actual_source_seconds": 1.6666666666666667,
+      "alpha_bbox": [
+        266,
+        88,
+        391,
+        573
+      ]
+    },
+    {
+      "file": "frames/S02_xiaobei_idle_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 1.875,
+      "source_frame": 46,
+      "actual_source_seconds": 1.875,
+      "alpha_bbox": [
+        265,
+        88,
+        391,
+        573
+      ]
+    },
+    {
+      "file": "frames/S02_xiaobei_idle_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 2.083333333333333,
+      "source_frame": 51,
+      "actual_source_seconds": 2.0833333333333335,
+      "alpha_bbox": [
+        264,
+        88,
+        390,
+        573
+      ]
+    },
+    {
+      "file": "frames/S02_xiaobei_idle_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 2.2916666666666665,
+      "source_frame": 56,
+      "actual_source_seconds": 2.2916666666666665,
+      "alpha_bbox": [
+        262,
+        88,
+        390,
+        573
+      ]
+    },
+    {
+      "file": "frames/S02_xiaobei_idle_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 2.5,
+      "source_frame": 61,
+      "actual_source_seconds": 2.5,
+      "alpha_bbox": [
+        262,
+        88,
+        388,
+        573
+      ]
+    },
+    {
+      "file": "frames/S02_xiaobei_idle_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 2.708333333333333,
+      "source_frame": 66,
+      "actual_source_seconds": 2.7083333333333335,
+      "alpha_bbox": [
+        263,
+        88,
+        388,
+        573
+      ]
+    },
+    {
+      "file": "frames/S02_xiaobei_idle_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 2.9166666666666665,
+      "source_frame": 71,
+      "actual_source_seconds": 2.9166666666666665,
+      "alpha_bbox": [
+        264,
+        88,
+        387,
+        573
+      ]
+    },
+    {
+      "file": "frames/S02_xiaobei_idle_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 3.125,
+      "source_frame": 76,
+      "actual_source_seconds": 3.125,
+      "alpha_bbox": [
+        265,
+        88,
+        386,
+        573
+      ]
+    },
+    {
+      "file": "frames/S02_xiaobei_idle_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 3.333333333333333,
+      "source_frame": 81,
+      "actual_source_seconds": 3.3333333333333335,
+      "alpha_bbox": [
+        266,
+        88,
+        388,
+        573
+      ]
+    }
+  ],
+  "visual_review": "PASSED",
+  "acceptance": {
+    "approved": true,
+    "no_intro": true,
+    "events_readable_5fps": true,
+    "alpha_on_light_dark": true,
+    "identity_and_props": true,
+    "anchor_and_bounds": true,
+    "loop_or_chain_checked": true,
+    "notes": "outputs/S02_xiaobei_idle/v01. Ten distinct transparent frames. Both white shoes stay planted; one complete idle phase and one full blink. Bob, white blouse, blue bow and skirt checked against the correct character reference."
+  }
+}

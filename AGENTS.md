@@ -198,3 +198,14 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 - **按键/点击无效：** 检查视口焦点、阶段分支、Pressed/Held、输入模式、设计坐标与鼠标坐标变换，再检查玩法状态；不要仅看 UI 提示就判定修复完成。
 - **照片灰色、错帧或裁切评分异常：** 检查材质路径及 `Color` 参数、着色器就绪、缓存槽/键、确定性姿态、相机投影与 Evidence 是否一致。
 - **场景或 GameMode 不对：** 核对默认地图、地图上的 GameMode override 和脚本编译日志；不要直接替换整个关卡来绕过配置问题。
+
+## 8. 2026-11-15 新增：超级巨星独立预演
+
+- 主菜单增加 `3` / “超级巨星 · 完整剧情预演”入口；原有两个入口和玩法保持不变。
+- 新模式位于 `Source/MegaJamProject/SuperstarStory.*` 与 `SuperstarStage.*`，数据/图片在 `Content/SuperstarStory/`。以 MainMenu 地图的 URL GameMode override 承载，不覆盖任何旧 `.umap`。
+- 当前为四幕 39 段的 3D 布景初版 + 5 FPS 人物精灵；B 切换原始参考图。不是骨骼动画或新拍照评分关卡。缺失动画、专属角色和证据图有明确占位。
+- 用户确认片场导演=李谋。新预演临时复用原有四种2D情绪符号，通过 `BackstageArt.h` 只读桥接和 `story.json` 的 `emotion_placeholder/emotions` 控制；不更改旧关卡符号行为，真实表情生成任务仍保留。
+- 预演专属BGM在 `Content/SuperstarStory/Audio/`：七首原创合成器乐、39段映射，`SuperstarMusic.*` 管理循环/1.4秒换曲淡化/暂停/退出清理；M静音。新增 `AudioExtensions` 和 `AudioMixer` 原生模块依赖。音乐与真实引擎输出检查见 [BGM说明](Docs/SuperstarStory/BGM.md)，不要用无声 `NullRHI` 测试代替音频验收。
+- 新预演摄影位于 `SuperstarPhotography.cpp`：1–3机位、WASD/左拖构图、Q/E/滚轮变焦、Enter拍照确认、Tab相册，最多保留6张/选3张裁切排序发布；跳幕改F1–F4，剧情证据快捷键改V。照片为当时取景框像素，保存在Saved，按不同路径保存每次发布；不套用原两关评分。表情改用 `head_anchors.json` 逐帧锚点，结合精灵镜像和相机投影。生成新素材后须重建/复核锚点。
+- 保留新 `Json` 模块依赖与 `DirectoriesToAlwaysStageAsUFS=(Path="SuperstarStory")`。替换素材运行 `Tools/Import-SuperstarAnimations.py`，验证运行 `Tools/Validate-SuperstarStory.py`。
+- 操作、文件职责、已知缺口和带渲染 smoke 命令详见 [独立预演说明](Docs/SuperstarStory/README.md)。不得用本模式的透视参数更改原有照片投影契约。

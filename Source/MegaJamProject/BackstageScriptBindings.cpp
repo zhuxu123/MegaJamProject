@@ -1,4 +1,5 @@
 #include "Core/AngelscriptBinds.h"
+#include "BackstageArt.h"
 #include "Camera/CameraComponent.h"
 #include "CanvasItem.h"
 #include "Components/DirectionalLightComponent.h"
@@ -2059,6 +2060,12 @@ namespace
 		const FVector2D Origin((Width - 1280.0 * ViewScale) * 0.5, (Height - 720.0 * ViewScale) * 0.5);
 		return (ScreenPos - Origin) / FMath::Max(ViewScale, 0.001);
 	}
+}
+
+UTexture2D* BackstageGetEmotionTexture(const FName& Kind)
+{
+	if (Kind != TEXT("Emotion_Shock") && Kind != TEXT("Emotion_Anger") && Kind != TEXT("Emotion_Care") && Kind != TEXT("Emotion_Warm")) return nullptr;
+	return GetOrCreatePartTexture(Kind);
 }
 
 static const FAngelscriptBind BindBackstageControls(

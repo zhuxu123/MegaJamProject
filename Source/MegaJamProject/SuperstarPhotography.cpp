@@ -1,0 +1,391 @@
+#include "SuperstarStory.h"
+#include "SuperstarStage.h"
+#include "SuperstarMusic.h"
+#include "Camera/PlayerCameraManager.h"
+#include "Dom/JsonObject.h"
+#include "Engine/GameViewportClient.h"
+#include "Engine/Texture2D.h"
+#include "HAL/FileManager.h"
+#include "ImageUtils.h"
+#include "InputCoreTypes.h"
+#include "Misc/DateTime.h"
+#include "Misc/FileHelper.h"
+#include "Misc/Paths.h"
+#include "Serialization/JsonSerializer.h"
+#include "UnrealClient.h"
+
+namespace
+{
+    const FLinearColor PhotoInk(.025f,.033f,.055f,1.f), PhotoMint(.30f,.85f,.73f,1.f);
+    bool Hit(FVector2D P,float X,float Y,float W,float H) { return P.X>=X && P.X<X+W && P.Y>=Y && P.Y<Y+H; }
+    FString HeadlineText(int32 Index)
+    {
+        const TCHAR* Titles[] = {TEXT("现场直击：三个时刻的记录"),TEXT("镜头里的善意与援手"),TEXT("聚光灯背后的冲突")};
+        return Titles[FMath::Clamp(Index,0,2)];
+    }
+    void CropBounds(FSuperstarPhoto& P)
+    {
+        P.CropZoom=FMath::Clamp(P.CropZoom,1.f,3.f);
+        const float Half=.5f/P.CropZoom;
+        P.CropX=FMath::Clamp(P.CropX,Half,1.f-Half);
+        P.CropY=FMath::Clamp(P.CropY,Half,1.f-Half);
+    }
+    bool WritePhoto(const FString& Path,int32 W,int32 H,const TArray<FColor>& Pixels)
+    {
+        TArray64<uint8> PNG;
+        FImageUtils::PNGCompressImageArray(W,H,Pixels,PNG);
+        return FFileHelper::SaveArrayToFile(PNG,*Path);
+    }
+}
+
+void ASuperstarStoryHUD::UpdateCamera(float Delta)
+{
+    auto* PC=GetOwningPlayerController();
+    if (!PC || !Stage || bReferenceView) return;
+    if (PC->WasInputKeyJustPressed(EKeys::One)) { CameraStation=0; TargetStation=0; }
+    if (PC->WasInputKeyJustPressed(EKeys::Two)) { CameraStation=1; TargetStation=-1; }
+    if (PC->WasInputKeyJustPressed(EKeys::Three)) { CameraStation=2; TargetStation=1; }
+    auto Axis=[PC,Delta](FKey Negative,FKey Positive)
+    {
+        const float P=PC->WasInputKeyJustPressed(Positive)?FMath::Max(Delta,.075f):(PC->IsInputKeyDown(Positive)?Delta:0.f);
+        const float N=PC->WasInputKeyJustPressed(Negative)?FMath::Max(Delta,.075f):(PC->IsInputKeyDown(Negative)?Delta:0.f);
+        return P-N;
+    };
+    TargetPan+=Axis(EKeys::A,EKeys::D)*.85f;
+    TargetTilt+=Axis(EKeys::S,EKeys::W)*.65f;
+    TargetZoom+=Axis(EKeys::Q,EKeys::E)*.65f;
+    if (PC->WasInputKeyJustPressed(EKeys::MouseScrollUp)) TargetZoom+=.12f;
+    if (PC->WasInputKeyJustPressed(EKeys::MouseScrollDown)) TargetZoom-=.12f;
+    const auto P=Pointer();
+    const bool bEvidenceOverlay=!Beats[Beat]->GetStringField(TEXT("evidence")).IsEmpty() && P.Y>410;
+    if (PC->WasInputKeyJustPressed(EKeys::LeftMouseButton))
+    {
+        bCameraDragging=Hit(P,35,105,1210,410) && !bEvidenceOverlay;
+        LastDrag=P;
+    }
+    if (!PC->IsInputKeyDown(EKeys::LeftMouseButton)) bCameraDragging=false;
+    if (bCameraDragging)
+    {
+        const auto Drag=P-LastDrag;
+        TargetPan-=Drag.X/400.f;
+        TargetTilt+=Drag.Y/250.f;
+        LastDrag=P;
+    }
+    TargetPan=FMath::Clamp(TargetPan,-1.5f,1.5f);
+    TargetTilt=FMath::Clamp(TargetTilt,-1.f,1.f);
+    TargetZoom=FMath::Clamp(TargetZoom,1.f,2.6f);
+    ViewPan=FMath::FInterpTo(ViewPan,TargetPan,Delta,9.f);
+    ViewTilt=FMath::FInterpTo(ViewTilt,TargetTilt,Delta,9.f);
+    ViewZoom=FMath::FInterpTo(ViewZoom,TargetZoom,Delta,9.f);
+    ViewStation=FMath::FInterpTo(ViewStation,TargetStation,Delta,7.f);
+    Stage->SetView(ViewStation,ViewPan,ViewTilt,ViewZoom);
+    PC->PlayerCameraManager->UpdateCamera(0.f);
+}
+
+void ASuperstarStoryHUD::TakePhoto()
+{
+    if (PhotoPhase!=ESuperstarPhotoPhase::Live || Photos.Num()>=6 || bReferenceView
+        || Beats[Beat]->GetStringField(TEXT("scene"))==TEXT("newspaper")) return;
+    PendingPhoto=FSuperstarPhoto();
+    PendingPhoto.Beat=Beat+1; PendingPhoto.Time=Clock; PendingPhoto.Station=CameraStation;
+    PendingPhoto.Pan=ViewPan; PendingPhoto.Tilt=ViewTilt; PendingPhoto.Zoom=ViewZoom;
+    PendingPhoto.Title=Beats[Beat]->GetStringField(TEXT("title"));
+    TargetPan=ViewPan; TargetTilt=ViewTilt; TargetZoom=ViewZoom; TargetStation=ViewStation;
+    bPlaying=false; bCameraDragging=false;
+    if (Music) Music->SetStoryPaused(true);
+    UpdateActors();
+    GetOwningPlayerController()->PlayerCameraManager->SetGameCameraCutThisFrame();
+    PhotoPhase=ESuperstarPhotoPhase::Capturing;
+    CaptureStart=FPlatformTime::Seconds();
+    ScreenshotHandle=UGameViewportClient::OnScreenshotCaptured().AddUObject(this,&ASuperstarStoryHUD::OnPhotoCaptured);
+    FScreenshotRequest::RequestScreenshot(false,true);
+}
+
+void ASuperstarStoryHUD::OnPhotoCaptured(int32 Width,int32 Height,const TArray<FColor>& Pixels)
+{
+    UGameViewportClient::OnScreenshotCaptured().Remove(ScreenshotHandle);
+    ScreenshotHandle.Reset();
+    if (PhotoPhase!=ESuperstarPhotoPhase::Capturing || Pixels.Num()!=Width*Height) return;
+    const float Fit=FMath::Min(Width/1280.f,Height/720.f);
+    const FVector2D Offset((Width-1280*Fit)/2,(Height-720*Fit)/2);
+    const int32 L=FMath::RoundToInt(Offset.X+35*Fit),T=FMath::RoundToInt(Offset.Y+105*Fit);
+    PendingPhoto.Width=FMath::RoundToInt(1210*Fit); PendingPhoto.Height=FMath::RoundToInt(410*Fit);
+    if (L<0 || T<0 || L+PendingPhoto.Width>Width || T+PendingPhoto.Height>Height) { RejectPhoto(); return; }
+    PendingPhoto.Pixels.SetNumUninitialized(PendingPhoto.Width*PendingPhoto.Height);
+    for (int32 Y=0;Y<PendingPhoto.Height;++Y)
+        FMemory::Memcpy(PendingPhoto.Pixels.GetData()+Y*PendingPhoto.Width,Pixels.GetData()+(Y+T)*Width+L,PendingPhoto.Width*sizeof(FColor));
+    for (auto& Pixel:PendingPhoto.Pixels) Pixel.A=255;
+    PendingPhoto.Texture=UTexture2D::CreateTransient(PendingPhoto.Width,PendingPhoto.Height,PF_B8G8R8A8);
+    auto& Mip=PendingPhoto.Texture->GetPlatformData()->Mips[0];
+    void* Buffer=Mip.BulkData.Lock(LOCK_READ_WRITE);
+    FMemory::Memcpy(Buffer,PendingPhoto.Pixels.GetData(),PendingPhoto.Pixels.Num()*sizeof(FColor));
+    Mip.BulkData.Unlock();
+    PendingPhoto.Texture->SRGB=true;
+    PendingPhoto.Texture->UpdateResource();
+    PhotoPhase=ESuperstarPhotoPhase::Confirm;
+    UE_LOG(LogTemp,Display,TEXT("SuperstarPhoto: captured beat=%d time=%.2f %dx%d"),PendingPhoto.Beat,PendingPhoto.Time,PendingPhoto.Width,PendingPhoto.Height);
+}
+
+void ASuperstarStoryHUD::AcceptPhoto()
+{
+    if (PhotoPhase!=ESuperstarPhotoPhase::Confirm || !PendingPhoto.Texture || Photos.Num()>=6) return;
+    if (PhotoSession.IsEmpty())
+    {
+        PhotoSession=FPaths::ProjectSavedDir()/TEXT("SuperstarPhotos")/FDateTime::Now().ToString(TEXT("%Y%m%d-%H%M%S"))+TEXT("-")+FGuid::NewGuid().ToString(EGuidFormats::Digits);
+        IFileManager::Get().MakeDirectory(*PhotoSession,true);
+    }
+    PendingPhoto.File=FString::Printf(TEXT("Shot_%02d.png"),Photos.Num()+1);
+    if (!WritePhoto(PhotoSession/PendingPhoto.File,PendingPhoto.Width,PendingPhoto.Height,PendingPhoto.Pixels))
+    {
+        PhotoNotice=TEXT("照片写入失败，请检查 Saved 目录空间。"); return;
+    }
+    Photos.Add(MoveTemp(PendingPhoto));
+    PendingPhoto=FSuperstarPhoto();
+    PhotoPhase=ESuperstarPhotoPhase::Live;
+    PhotoNotice=FString::Printf(TEXT("已保存 %d/6 张；Tab 打开选图与发布。"),Photos.Num());
+    // Remain paused, as in the original camera round, to allow another composition.
+}
+
+void ASuperstarStoryHUD::RejectPhoto()
+{
+    if (ScreenshotHandle.IsValid()) UGameViewportClient::OnScreenshotCaptured().Remove(ScreenshotHandle);
+    ScreenshotHandle.Reset();
+    PendingPhoto=FSuperstarPhoto();
+    PhotoPhase=ESuperstarPhotoPhase::Live;
+}
+
+void ASuperstarStoryHUD::OpenAlbum()
+{
+    bPlaying=false;
+    if (Music) Music->SetStoryPaused(true);
+    PhotoPhase=ESuperstarPhotoPhase::Edit;
+    PhotoNotice=TEXT("选3张、决定顺序与裁切，再发布你的现场报道。");
+}
+
+void ASuperstarStoryHUD::TogglePhoto(int32 Index)
+{
+    if (!Photos.IsValidIndex(Index)) return;
+    if (PhotoSlots.Contains(Index)) PhotoSlots.Remove(Index);
+    else if (PhotoSlots.Num()<3) PhotoSlots.Add(Index);
+    EditSlot=FMath::Clamp(EditSlot,0,FMath::Max(0,PhotoSlots.Num()-1));
+}
+
+void ASuperstarStoryHUD::StartPhotoPreview(bool bPublish)
+{
+    if (PhotoSlots.Num()!=3) { PhotoNotice=TEXT("请先选满3张照片。"); return; }
+    PreviewClock=0;
+    bPublishPhotos=bPublish;
+    PhotoPhase=ESuperstarPhotoPhase::Preview;
+}
+
+void ASuperstarStoryHUD::SavePublication()
+{
+    auto Manifest=MakeShared<FJsonObject>();
+    Manifest->SetStringField(TEXT("headline"),HeadlineText(Headline));
+    Manifest->SetStringField(TEXT("scope"),TEXT("SuperstarStory player photo sequence; no legacy level score is inferred."));
+    TArray<TSharedPtr<FJsonValue>> Shots;
+    const FString Edition=TEXT("Publication-")+FGuid::NewGuid().ToString(EGuidFormats::Digits);
+    const FString Directory=PhotoSession/Edition;
+    IFileManager::Get().MakeDirectory(*Directory,true);
+    for (int32 I=0;I<PhotoSlots.Num();++I)
+    {
+        const auto& P=Photos[PhotoSlots[I]];
+        const int32 W=FMath::Max(1,FMath::RoundToInt(P.Width/P.CropZoom));
+        const int32 H=FMath::Max(1,FMath::RoundToInt(P.Height/P.CropZoom));
+        const int32 L=FMath::Clamp(FMath::RoundToInt(P.CropX*P.Width-W*.5),0,P.Width-W);
+        const int32 T=FMath::Clamp(FMath::RoundToInt(P.CropY*P.Height-H*.5),0,P.Height-H);
+        TArray<FColor> Cut;Cut.SetNumUninitialized(W*H);
+        for(int32 Y=0;Y<H;++Y) FMemory::Memcpy(Cut.GetData()+Y*W,P.Pixels.GetData()+(T+Y)*P.Width+L,W*sizeof(FColor));
+        const FString File=FString::Printf(TEXT("Frame_%02d.png"),I+1);
+        if (!WritePhoto(Directory/File,W,H,Cut)) { PhotoNotice=TEXT("发布文件写入失败；原照片已保留。");PhotoPhase=ESuperstarPhotoPhase::Edit;return; }
+        auto J=MakeShared<FJsonObject>();
+        J->SetStringField(TEXT("original"),TEXT("../")+P.File);J->SetStringField(TEXT("image"),File);
+        J->SetNumberField(TEXT("beat"),P.Beat);J->SetNumberField(TEXT("time"),P.Time);J->SetNumberField(TEXT("station"),P.Station);
+        J->SetNumberField(TEXT("pan"),P.Pan);J->SetNumberField(TEXT("tilt"),P.Tilt);J->SetNumberField(TEXT("zoom"),P.Zoom);
+        J->SetNumberField(TEXT("crop_left"),L);J->SetNumberField(TEXT("crop_top"),T);J->SetNumberField(TEXT("crop_width"),W);J->SetNumberField(TEXT("crop_height"),H);
+        Shots.Add(MakeShared<FJsonValueObject>(J));
+    }
+    Manifest->SetArrayField(TEXT("shots"),Shots);
+    FString Json;FJsonSerializer::Serialize(Manifest,TJsonWriterFactory<>::Create(&Json));
+    if (!FFileHelper::SaveStringToFile(Json,*(Directory/TEXT("publication.json")),FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM)) { PhotoNotice=TEXT("发布记录写入失败。");PhotoPhase=ESuperstarPhotoPhase::Edit;return; }
+    PhotoNotice=TEXT("原图与发布序列已保存到 Saved/SuperstarPhotos。");
+    UE_LOG(LogTemp,Display,TEXT("SuperstarPhoto: publication saved %s"),*Directory);
+}
+
+bool ASuperstarStoryHUD::TickPhotography(float Delta)
+{
+    auto* PC=GetOwningPlayerController();
+    const auto P=Pointer();
+    const bool Click=PC->WasInputKeyJustPressed(EKeys::LeftMouseButton);
+    const bool Back=PC->WasInputKeyJustPressed(EKeys::BackSpace)||PC->WasInputKeyJustPressed(EKeys::Escape);
+    if (PhotoPhase==ESuperstarPhotoPhase::Capturing)
+    {
+        if (FPlatformTime::Seconds()-CaptureStart>5.) { RejectPhoto();PhotoNotice=TEXT("拍照超时，请重试。"); }
+        return true;
+    }
+    if (PhotoPhase==ESuperstarPhotoPhase::Confirm)
+    {
+        if (PC->WasInputKeyJustPressed(EKeys::Enter)||PC->WasInputKeyJustPressed(EKeys::Y)||(Click&&Hit(P,340,560,260,48))) AcceptPhoto();
+        else if (Back||PC->WasInputKeyJustPressed(EKeys::N)||(Click&&Hit(P,680,560,260,48))) RejectPhoto();
+        return true;
+    }
+    if (PhotoPhase==ESuperstarPhotoPhase::Preview)
+    {
+        if (Back) {PhotoPhase=ESuperstarPhotoPhase::Edit;return true;}
+        PreviewClock+=Delta;
+        if(PreviewClock>=6.f)
+        {
+            PhotoPhase=bPublishPhotos?ESuperstarPhotoPhase::Results:ESuperstarPhotoPhase::Edit;
+            if(bPublishPhotos) SavePublication();
+        }
+        return true;
+    }
+    if (PhotoPhase==ESuperstarPhotoPhase::Results)
+    {
+        if(Back||PC->WasInputKeyJustPressed(EKeys::Enter)) PhotoPhase=ESuperstarPhotoPhase::Edit;
+        if(PC->WasInputKeyJustPressed(EKeys::Tab)) PhotoPhase=ESuperstarPhotoPhase::Live;
+        return true;
+    }
+    if (PhotoPhase==ESuperstarPhotoPhase::Edit)
+    {
+        if(Back||PC->WasInputKeyJustPressed(EKeys::Tab)) {PhotoPhase=ESuperstarPhotoPhase::Live;return true;}
+        const FKey Keys[]={EKeys::One,EKeys::Two,EKeys::Three,EKeys::Four,EKeys::Five,EKeys::Six};
+        for(int32 I=0;I<6;++I) if(PC->WasInputKeyJustPressed(Keys[I])||(Click&&Hit(P,35+I*203,145,190,110))) TogglePhoto(I);
+        for(int32 I=0;I<PhotoSlots.Num();++I) if(Click&&Hit(P,35+I*410,345,390,150)) EditSlot=I;
+        if(PC->WasInputKeyJustPressed(EKeys::C)&&PhotoSlots.Num()) EditSlot=(EditSlot+1)%PhotoSlots.Num();
+        if(PC->WasInputKeyJustPressed(EKeys::Z)&&PhotoSlots.Num()>1) PhotoSlots.Swap(0,1);
+        if(PC->WasInputKeyJustPressed(EKeys::X)&&PhotoSlots.Num()>2) PhotoSlots.Swap(1,2);
+        if(PhotoSlots.IsValidIndex(EditSlot))
+        {
+            auto& Shot=Photos[PhotoSlots[EditSlot]];
+            auto Axis=[PC,Delta](FKey N,FKey K) { return (PC->WasInputKeyJustPressed(K)?FMath::Max(Delta,.1f):(PC->IsInputKeyDown(K)?Delta:0.f))-(PC->WasInputKeyJustPressed(N)?FMath::Max(Delta,.1f):(PC->IsInputKeyDown(N)?Delta:0.f)); };
+            Shot.CropZoom+=Axis(EKeys::Q,EKeys::E);
+            Shot.CropX+=Axis(EKeys::A,EKeys::D)*.25f;
+            Shot.CropY+=Axis(EKeys::W,EKeys::S)*.25f;
+            CropBounds(Shot);
+        }
+        if(PC->WasInputKeyJustPressed(EKeys::T)) Headline=(Headline+1)%3;
+        if(PC->WasInputKeyJustPressed(EKeys::P)||(Click&&Hit(P,640,615,180,45))) StartPhotoPreview(false);
+        if(PC->WasInputKeyJustPressed(EKeys::Enter)||(Click&&Hit(P,850,615,180,45))) StartPhotoPreview(true);
+        if(Click&&Hit(P,1060,615,180,45)) PhotoPhase=ESuperstarPhotoPhase::Live;
+        return true;
+    }
+    UpdateCamera(Delta);
+    if(PC->WasInputKeyJustPressed(EKeys::Tab)) {OpenAlbum();return true;}
+    if(PC->WasInputKeyJustPressed(EKeys::Enter)) {TakePhoto();return PhotoPhase!=ESuperstarPhotoPhase::Live;}
+    return false;
+}
+
+void ASuperstarStoryHUD::DrawPhoto(const FSuperstarPhoto& P,float X,float Y,float W,bool bCrop)
+{
+    if(!P.Texture) return;
+    const float Span=bCrop?1.f/P.CropZoom:1.f;
+    DrawTexture(P.Texture,Origin.X+X*Scale,Origin.Y+Y*Scale,W*Scale,W*P.Height/P.Width*Scale,
+        bCrop?P.CropX-Span*.5f:0.f,bCrop?P.CropY-Span*.5f:0.f,Span,Span,FLinearColor::White,BLEND_Opaque);
+}
+
+void ASuperstarStoryHUD::DrawPhotography()
+{
+    Rect(0,0,1280,720,PhotoInk);
+    if(PhotoPhase==ESuperstarPhotoPhase::Confirm)
+    {
+        Label(TEXT("确认这张现场照片"),35,35,28,PhotoMint);
+        Label(FString::Printf(TEXT("第%d段 · %.1fs · 机位%d · 确认后占用一张名额"),PendingPhoto.Beat,PendingPhoto.Time,PendingPhoto.Station+1),35,85,18);
+        DrawPhoto(PendingPhoto,85,160,1110,false);
+        Rect(340,560,260,48,PhotoMint);Label(TEXT("Enter / Y   保留"),365,574,20,PhotoInk);
+        Rect(680,560,260,48,FLinearColor(.3f,.2f,.2f));Label(TEXT("Backspace / N   重拍"),695,574,20);
+        Label(PhotoNotice,35,675,15,PhotoMint);
+        return;
+    }
+    if(PhotoPhase==ESuperstarPhotoPhase::Preview)
+    {
+        const int32 I=FMath::Clamp(FMath::FloorToInt(PreviewClock/2),0,2);
+        Label(HeadlineText(Headline),35,35,28,PhotoMint);
+        DrawPhoto(Photos[PhotoSlots[I]],35,150,1210,true);
+        Label(FString::Printf(TEXT("%d / 3 · %s · Backspace 取消"),I+1,bPublishPhotos?TEXT("发布预览"):TEXT("仅预览")),35,610,20);
+        return;
+    }
+    const bool bResults=PhotoPhase==ESuperstarPhotoPhase::Results;
+    Label(bResults?TEXT("现场报道已发布"):TEXT("选图与剪辑 · 保留3个时刻"),35,30,28,PhotoMint);
+    Label(HeadlineText(Headline),35,83,21);
+    for(int32 I=0;I<6;++I)
+    {
+        const float X=35+I*203;
+        Rect(X-3,142,196,112,PhotoSlots.Contains(I)?PhotoMint:FLinearColor(.12f,.16f,.20f));
+        if(Photos.IsValidIndex(I)) {DrawPhoto(Photos[I],X,147,190,false);Label(FString::Printf(TEXT("%d  第%d段 / %.1fs"),I+1,Photos[I].Beat,Photos[I].Time),X+3,220,14,PhotoInk);}
+    }
+    Label(TEXT("发布顺序（点击槽位选择裁切目标）"),35,300,20,PhotoMint);
+    for(int32 I=0;I<3;++I)
+    {
+        const float X=35+I*410;
+        Rect(X-3,342,396,153,I==EditSlot?PhotoMint:FLinearColor(.15f,.19f,.24f));
+        if(PhotoSlots.IsValidIndex(I)) {DrawPhoto(Photos[PhotoSlots[I]],X,348,390,true);Label(FString::Printf(TEXT("槽%d · 原片%d"),I+1,PhotoSlots[I]+1),X+8,478,13,PhotoInk);}
+    }
+    Label(PhotoNotice,35,535,17,PhotoMint);
+    if(bResults)
+    {
+        TSet<int32> Moments;for(int32 I:PhotoSlots) Moments.Add(Photos[I].Beat);
+        Label(FString::Printf(TEXT("3张现场图 · %d个剧情段落 · Enter 返回剪辑 / Tab 继续拍摄"),Moments.Num()),35,600,20);
+        Label(TEXT("选图顺序、裁切和标题，会让同一现场呈现不同的含义。"),35,650,16);
+    }
+    else
+    {
+        Label(TEXT("1—6 选片 · C 选槽 · Z/X 调序 · WASD 裁切位置 · Q/E 裁切缩放 · T 标题"),35,575,16);
+        const TCHAR* Labels[]={TEXT("P 预览"),TEXT("Enter 发布"),TEXT("Tab 继续拍摄")};
+        for(int32 I=0;I<3;++I) {Rect(640+I*210,615,180,45,FLinearColor(.12f,.25f,.27f));Label(Labels[I],652+I*210,628,18);}
+    }
+}
+
+void ASuperstarStoryHUD::EndPlay(const EEndPlayReason::Type Reason)
+{
+    if(ScreenshotHandle.IsValid()) UGameViewportClient::OnScreenshotCaptured().Remove(ScreenshotHandle);
+    ScreenshotHandle.Reset();
+    Super::EndPlay(Reason);
+}
+
+void ASuperstarStoryHUD::RunPhotoSmoke()
+{
+    ++PhotoSmokeTicks;
+    if(PhotoSmokeTicks<20) return;
+    PhotoSmokeTicks=0;
+    if(PhotoPhase==ESuperstarPhotoPhase::Capturing) {check(FPlatformTime::Seconds()-CaptureStart<10.);return;}
+    if(PhotoSmokeStep==0)
+    {
+        bPlaying=false;SelectBeat(10);Clock=2.4f;UpdateActors();TakePhoto();++PhotoSmokeStep;
+    }
+    else if(PhotoSmokeStep==1) {check(PhotoPhase==ESuperstarPhotoPhase::Confirm);RejectPhoto();check(Photos.IsEmpty());++PhotoSmokeStep;}
+    else if(PhotoSmokeStep>=2&&PhotoSmokeStep<=7)
+    {
+        if(PhotoSmokeStep%2==0)
+        {
+            const int32 Shot=(PhotoSmokeStep-2)/2;
+            const int32 ShotBeats[]={10,16,18};
+            SelectBeat(ShotBeats[Shot]);Clock=Shot==0?4.6f:2.6f;
+            ViewStation=Shot-1;ViewPan=.15f*Shot;ViewTilt=.1f;ViewZoom=1.1f+.12f*Shot;
+            CameraStation=Shot==0?1:(Shot==1?0:2);Stage->SetView(ViewStation,ViewPan,ViewTilt,ViewZoom);
+            GetOwningPlayerController()->PlayerCameraManager->UpdateCamera(0.f);
+            UpdateActors();TakePhoto();
+        }
+        else {check(PhotoPhase==ESuperstarPhotoPhase::Confirm);AcceptPhoto();}
+        ++PhotoSmokeStep;
+    }
+    else if(PhotoSmokeStep==8)
+    {
+        check(Photos.Num()==3);OpenAlbum();StartPhotoPreview(true);check(PhotoPhase==ESuperstarPhotoPhase::Edit);
+        TogglePhoto(0);TogglePhoto(1);TogglePhoto(2);PhotoSlots.Swap(0,2);
+        auto& P=Photos[PhotoSlots[1]];P.CropZoom=1.5f;P.CropX=.6f;CropBounds(P);
+        StartPhotoPreview(false);check(PhotoPhase==ESuperstarPhotoPhase::Preview);++PhotoSmokeStep;
+    }
+    else if(PhotoSmokeStep==9)
+    {
+        PreviewClock=5.99f;TickPhotography(.1f);check(PhotoPhase==ESuperstarPhotoPhase::Edit);
+        StartPhotoPreview(true);PreviewClock=5.99f;TickPhotography(.1f);check(PhotoPhase==ESuperstarPhotoPhase::Results);
+        FScreenshotRequest::RequestScreenshot(FPaths::ProjectSavedDir()/TEXT("Screenshots/SuperstarPhoto/Results.png"),true,false);
+        ++PhotoSmokeStep;
+    }
+    else
+    {
+        UE_LOG(LogTemp,Display,TEXT("SuperstarPhoto smoke PASS: rejection, 3 captures, selection, crop, reorder, preview, publication; directory=%s"),*PhotoSession);
+        GetOwningPlayerController()->ConsoleCommand(TEXT("quit"));
+    }
+}

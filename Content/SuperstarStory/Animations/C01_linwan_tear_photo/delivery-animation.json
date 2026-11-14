@@ -1,0 +1,420 @@
+{
+  "id": "C01_linwan_tear_photo",
+  "fps": 5,
+  "frame_count": 24,
+  "playback_seconds": 4.8,
+  "loop": false,
+  "source": "runs/C01_linwan_tear_photo/attempt_01/source.mp4",
+  "source_sha256": "80ae27f0c610401f9acc7ecb2803f586d760cf1c906e1c2cc28cc3bd8e35ac4c",
+  "cut": {
+    "video": "runs/C01_linwan_tear_photo/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.2916666666666667,
+    "end_seconds_exclusive": 5.041666666666667,
+    "loop": false,
+    "event_times": {
+      "抬手到眼前": 0.75,
+      "两手抓住同一张照片": 1.2083333333333333,
+      "照片撕裂并分成两片": 3.7916666666666665,
+      "末尾两手各持一片": 4.583333333333333
+    },
+    "notes": "Starts at the onset of the lift. Two hands share one photo at eye height, separate it once, and visibly hold two pieces at the end."
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 4.75,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0.55,
+    "despill": 1
+  },
+  "events": {
+    "抬手到眼前": {
+      "source_seconds": 0.75,
+      "output_frame": 3,
+      "sample_offset_seconds": -0.04166666666666663
+    },
+    "两手抓住同一张照片": {
+      "source_seconds": 1.2083333333333333,
+      "output_frame": 6,
+      "sample_offset_seconds": 0.08333333333333348
+    },
+    "照片撕裂并分成两片": {
+      "source_seconds": 3.7916666666666665,
+      "output_frame": 18,
+      "sample_offset_seconds": -0.08333333333333304
+    },
+    "末尾两手各持一片": {
+      "source_seconds": 4.583333333333333,
+      "output_frame": 22,
+      "sample_offset_seconds": -0.08333333333333304
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/C01_linwan_tear_photo_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.2916666666666667,
+      "source_frame": 8,
+      "actual_source_seconds": 0.2916666666666667,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.4916666666666667,
+      "source_frame": 13,
+      "actual_source_seconds": 0.5,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.6916666666666667,
+      "source_frame": 18,
+      "actual_source_seconds": 0.7083333333333334,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.8916666666666666,
+      "source_frame": 22,
+      "actual_source_seconds": 0.875,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        573
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 1.0916666666666668,
+      "source_frame": 27,
+      "actual_source_seconds": 1.0833333333333333,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        573
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.2916666666666667,
+      "source_frame": 32,
+      "actual_source_seconds": 1.2916666666666667,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.4916666666666667,
+      "source_frame": 37,
+      "actual_source_seconds": 1.5,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.6916666666666667,
+      "source_frame": 42,
+      "actual_source_seconds": 1.7083333333333333,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.8916666666666668,
+      "source_frame": 46,
+      "actual_source_seconds": 1.875,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 2.091666666666667,
+      "source_frame": 51,
+      "actual_source_seconds": 2.0833333333333335,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.2916666666666665,
+      "source_frame": 56,
+      "actual_source_seconds": 2.2916666666666665,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.4916666666666667,
+      "source_frame": 61,
+      "actual_source_seconds": 2.5,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.6916666666666664,
+      "source_frame": 66,
+      "actual_source_seconds": 2.7083333333333335,
+      "alpha_bbox": [
+        244,
+        91,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 2.8916666666666666,
+      "source_frame": 70,
+      "actual_source_seconds": 2.875,
+      "alpha_bbox": [
+        244,
+        91,
+        432,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 3.0916666666666663,
+      "source_frame": 75,
+      "actual_source_seconds": 3.0833333333333335,
+      "alpha_bbox": [
+        244,
+        91,
+        432,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.2916666666666665,
+      "source_frame": 80,
+      "actual_source_seconds": 3.2916666666666665,
+      "alpha_bbox": [
+        244,
+        91,
+        432,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000017.png",
+      "output_frame": 17,
+      "output_seconds": 3.2,
+      "requested_source_seconds": 3.4916666666666667,
+      "source_frame": 85,
+      "actual_source_seconds": 3.5,
+      "alpha_bbox": [
+        244,
+        91,
+        434,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000018.png",
+      "output_frame": 18,
+      "output_seconds": 3.4,
+      "requested_source_seconds": 3.6916666666666664,
+      "source_frame": 90,
+      "actual_source_seconds": 3.7083333333333335,
+      "alpha_bbox": [
+        244,
+        91,
+        440,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000019.png",
+      "output_frame": 19,
+      "output_seconds": 3.6,
+      "requested_source_seconds": 3.8916666666666666,
+      "source_frame": 94,
+      "actual_source_seconds": 3.875,
+      "alpha_bbox": [
+        244,
+        91,
+        450,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000020.png",
+      "output_frame": 20,
+      "output_seconds": 3.8,
+      "requested_source_seconds": 4.091666666666667,
+      "source_frame": 99,
+      "actual_source_seconds": 4.083333333333333,
+      "alpha_bbox": [
+        244,
+        91,
+        450,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000021.png",
+      "output_frame": 21,
+      "output_seconds": 4.0,
+      "requested_source_seconds": 4.291666666666667,
+      "source_frame": 104,
+      "actual_source_seconds": 4.291666666666667,
+      "alpha_bbox": [
+        244,
+        91,
+        451,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000022.png",
+      "output_frame": 22,
+      "output_seconds": 4.2,
+      "requested_source_seconds": 4.491666666666667,
+      "source_frame": 109,
+      "actual_source_seconds": 4.5,
+      "alpha_bbox": [
+        244,
+        91,
+        452,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000023.png",
+      "output_frame": 23,
+      "output_seconds": 4.4,
+      "requested_source_seconds": 4.691666666666667,
+      "source_frame": 114,
+      "actual_source_seconds": 4.708333333333333,
+      "alpha_bbox": [
+        244,
+        91,
+        452,
+        572
+      ]
+    },
+    {
+      "file": "frames/C01_linwan_tear_photo_000024.png",
+      "output_frame": 24,
+      "output_seconds": 4.6,
+      "requested_source_seconds": 4.891666666666667,
+      "source_frame": 118,
+      "actual_source_seconds": 4.875,
+      "alpha_bbox": [
+        244,
+        91,
+        452,
+        572
+      ]
+    }
+  ],
+  "visual_review": "PASSED",
+  "acceptance": {
+    "approved": true,
+    "no_intro": true,
+    "events_readable_5fps": true,
+    "alpha_on_light_dark": true,
+    "identity_and_props": true,
+    "anchor_and_bounds": true,
+    "loop_or_chain_checked": true,
+    "notes": "outputs/C01_linwan_tear_photo/v01. 24 sampled frames. Both hands visibly take one photo from chest to eye height, tear it once, and hold separate pieces in the final phase. Single fixed full-body view and light/dark matte reviewed."
+  }
+}

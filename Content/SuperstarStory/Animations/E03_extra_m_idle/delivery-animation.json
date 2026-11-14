@@ -1,0 +1,218 @@
+{
+  "id": "E03_extra_m_idle",
+  "fps": 5,
+  "frame_count": 10,
+  "playback_seconds": 2.0,
+  "loop": true,
+  "source": "runs/E03_extra_m_idle/attempt_01/source.mp4",
+  "source_sha256": "f13fe504ca34151fa5b6a44a5dfca3a711a34f49bf01389bf9e71651534ad1da",
+  "cut": {
+    "video": "runs/E03_extra_m_idle/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 2.375,
+    "end_seconds_exclusive": 4.416666666666667,
+    "loop": true,
+    "event_times": {
+      "呼吸周期": 3.4166666666666665,
+      "双脚位置固定": 2.375,
+      "相同姿态和运动方向回到起相位": 4.208333333333333
+    },
+    "notes": "Source 58–106: complete chest/head idle shift, visible on shirt stripe and cap line with both soles planted."
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 2.041666666666667,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0.55,
+    "despill": 1
+  },
+  "events": {
+    "呼吸周期": {
+      "source_seconds": 3.4166666666666665,
+      "output_frame": 6,
+      "sample_offset_seconds": 0.0
+    },
+    "双脚位置固定": {
+      "source_seconds": 2.375,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "相同姿态和运动方向回到起相位": {
+      "source_seconds": 4.208333333333333,
+      "output_frame": 10,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/E03_extra_m_idle_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 2.375,
+      "source_frame": 58,
+      "actual_source_seconds": 2.375,
+      "alpha_bbox": [
+        246,
+        91,
+        396,
+        571
+      ]
+    },
+    {
+      "file": "frames/E03_extra_m_idle_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 2.5791666666666666,
+      "source_frame": 63,
+      "actual_source_seconds": 2.5833333333333335,
+      "alpha_bbox": [
+        245,
+        91,
+        396,
+        571
+      ]
+    },
+    {
+      "file": "frames/E03_extra_m_idle_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 2.783333333333333,
+      "source_frame": 68,
+      "actual_source_seconds": 2.7916666666666665,
+      "alpha_bbox": [
+        243,
+        92,
+        396,
+        571
+      ]
+    },
+    {
+      "file": "frames/E03_extra_m_idle_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 2.9875,
+      "source_frame": 73,
+      "actual_source_seconds": 3.0,
+      "alpha_bbox": [
+        240,
+        93,
+        398,
+        571
+      ]
+    },
+    {
+      "file": "frames/E03_extra_m_idle_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 3.191666666666667,
+      "source_frame": 78,
+      "actual_source_seconds": 3.2083333333333335,
+      "alpha_bbox": [
+        239,
+        94,
+        398,
+        571
+      ]
+    },
+    {
+      "file": "frames/E03_extra_m_idle_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 3.3958333333333335,
+      "source_frame": 83,
+      "actual_source_seconds": 3.4166666666666665,
+      "alpha_bbox": [
+        239,
+        94,
+        398,
+        571
+      ]
+    },
+    {
+      "file": "frames/E03_extra_m_idle_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 3.6,
+      "source_frame": 87,
+      "actual_source_seconds": 3.5833333333333335,
+      "alpha_bbox": [
+        240,
+        94,
+        398,
+        571
+      ]
+    },
+    {
+      "file": "frames/E03_extra_m_idle_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 3.8041666666666667,
+      "source_frame": 92,
+      "actual_source_seconds": 3.7916666666666665,
+      "alpha_bbox": [
+        240,
+        93,
+        398,
+        571
+      ]
+    },
+    {
+      "file": "frames/E03_extra_m_idle_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 4.008333333333334,
+      "source_frame": 97,
+      "actual_source_seconds": 4.0,
+      "alpha_bbox": [
+        243,
+        92,
+        397,
+        571
+      ]
+    },
+    {
+      "file": "frames/E03_extra_m_idle_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 4.2125,
+      "source_frame": 102,
+      "actual_source_seconds": 4.208333333333333,
+      "alpha_bbox": [
+        245,
+        91,
+        396,
+        571
+      ]
+    }
+  ],
+  "visual_review": "PASSED",
+  "acceptance": {
+    "approved": true,
+    "no_intro": true,
+    "events_readable_5fps": true,
+    "alpha_on_light_dark": true,
+    "identity_and_props": true,
+    "anchor_and_bounds": true,
+    "loop_or_chain_checked": true,
+    "notes": "outputs/E03_extra_m_idle/v01. 10 frames at 5 FPS. Complete subtle breathing phase with visible chest/head movement, both feet planted at y=571, and no new facial features. Backward cap, dark trousers, striped top and burgundy shoes retained. Light and dark alpha checks and loop boundary verified."
+  }
+}

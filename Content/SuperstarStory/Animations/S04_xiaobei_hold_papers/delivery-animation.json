@@ -1,0 +1,254 @@
+{
+  "id": "S04_xiaobei_hold_papers",
+  "fps": 5,
+  "frame_count": 13,
+  "playback_seconds": 2.6,
+  "loop": true,
+  "source": "runs/S04_xiaobei_hold_papers/attempt_01/source.mp4",
+  "source_sha256": "2ba5c0629f327bde535defa7fc37c169a44a353eadaacb848804d6457979e830",
+  "cut": {
+    "video": "runs/S04_xiaobei_hold_papers/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.3333333333333333,
+    "end_seconds_exclusive": 3.9166666666666665,
+    "loop": true,
+    "event_times": {
+      "站姿呼吸循环": 2.4583333333333335,
+      "资料始终被双手握住": 1.375
+    },
+    "notes": "One subtle shoulder and gaze cycle. Feet fixed and both hands secure the stack throughout. Source 95 is the excluded return phase."
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 2.583333333333333,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0.55,
+    "despill": 1
+  },
+  "events": {
+    "站姿呼吸循环": {
+      "source_seconds": 2.4583333333333335,
+      "output_frame": 7,
+      "sample_offset_seconds": 0.08333333333333304
+    },
+    "资料始终被双手握住": {
+      "source_seconds": 1.375,
+      "output_frame": 1,
+      "sample_offset_seconds": -0.04166666666666674
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.3333333333333333,
+      "source_frame": 33,
+      "actual_source_seconds": 1.3333333333333333,
+      "alpha_bbox": [
+        256,
+        113,
+        399,
+        578
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 1.532051282051282,
+      "source_frame": 38,
+      "actual_source_seconds": 1.5416666666666667,
+      "alpha_bbox": [
+        256,
+        113,
+        399,
+        578
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 1.7307692307692306,
+      "source_frame": 43,
+      "actual_source_seconds": 1.75,
+      "alpha_bbox": [
+        256,
+        114,
+        398,
+        578
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 1.9294871794871793,
+      "source_frame": 47,
+      "actual_source_seconds": 1.9166666666666667,
+      "alpha_bbox": [
+        256,
+        114,
+        396,
+        578
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 2.128205128205128,
+      "source_frame": 52,
+      "actual_source_seconds": 2.125,
+      "alpha_bbox": [
+        256,
+        115,
+        396,
+        578
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 2.3269230769230766,
+      "source_frame": 57,
+      "actual_source_seconds": 2.3333333333333335,
+      "alpha_bbox": [
+        256,
+        115,
+        396,
+        579
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 2.5256410256410255,
+      "source_frame": 62,
+      "actual_source_seconds": 2.5416666666666665,
+      "alpha_bbox": [
+        256,
+        115,
+        396,
+        579
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 2.7243589743589745,
+      "source_frame": 66,
+      "actual_source_seconds": 2.7083333333333335,
+      "alpha_bbox": [
+        256,
+        115,
+        396,
+        579
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 2.923076923076923,
+      "source_frame": 71,
+      "actual_source_seconds": 2.9166666666666665,
+      "alpha_bbox": [
+        255,
+        114,
+        396,
+        579
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 3.1217948717948714,
+      "source_frame": 76,
+      "actual_source_seconds": 3.125,
+      "alpha_bbox": [
+        255,
+        114,
+        398,
+        579
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 3.3205128205128203,
+      "source_frame": 81,
+      "actual_source_seconds": 3.3333333333333335,
+      "alpha_bbox": [
+        255,
+        113,
+        398,
+        579
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 3.519230769230769,
+      "source_frame": 85,
+      "actual_source_seconds": 3.5,
+      "alpha_bbox": [
+        255,
+        112,
+        399,
+        578
+      ]
+    },
+    {
+      "file": "frames/S04_xiaobei_hold_papers_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 3.717948717948717,
+      "source_frame": 90,
+      "actual_source_seconds": 3.7083333333333335,
+      "alpha_bbox": [
+        255,
+        112,
+        399,
+        578
+      ]
+    }
+  ],
+  "visual_review": "PASSED",
+  "acceptance": {
+    "approved": true,
+    "no_intro": true,
+    "events_readable_5fps": true,
+    "alpha_on_light_dark": true,
+    "identity_and_props": true,
+    "anchor_and_bounds": true,
+    "loop_or_chain_checked": true,
+    "notes": "outputs/S04_xiaobei_hold_papers/v01. Thirteen transparent frames show a full subtle breathing cycle with the stack in both hands. Feet drift by 1 px within the cycle. The standing sole remains near y=577–578 from the C05 chain, while the shared metadata pivot is y=570."
+  }
+}

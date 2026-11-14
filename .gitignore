@@ -35,6 +35,13 @@ Saved/
 Thumbs.db
 Desktop.ini
 
+# Local Python cache and expanded copies of the portable delivery archives
+__pycache__/
+*.pyc
+/Deliverables/H3AnimationAcceptance-20261115/
+/Deliverables/H3AnimationHandoff-20261115/
+/Deliverables/Superstar-MissingAssets-20261115/
+
 # Local agent rules and knowledge-base integration
 /agent-overwrite.md
 /CLAUDE.md

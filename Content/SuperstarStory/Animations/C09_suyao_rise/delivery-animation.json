@@ -1,0 +1,392 @@
+{
+  "id": "C09_suyao_rise",
+  "fps": 5,
+  "frame_count": 22,
+  "playback_seconds": 4.4,
+  "loop": false,
+  "source": "runs/C09_suyao_rise/attempt_01/source.mp4",
+  "source_sha256": "6cba2a6221d80c5132562215584d8f4a6ab09ccd0e26f13da2c2cad5fe92508e",
+  "cut": {
+    "video": "runs/C09_suyao_rise/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.0,
+    "end_seconds_exclusive": 4.208333333333333,
+    "loop": false,
+    "event_times": {
+      "脚掌支撑": 2.6666666666666665,
+      "由跪姿上升": 2.875,
+      "站直": 3.2916666666666665,
+      "裙摆稳定": 3.7916666666666665
+    },
+    "notes": "Exact common kneel from C08, followed by one weight shift and foot plant, straightening and stable dress. Keeps beginning of the shared pose and 0.4 seconds of settled standing."
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 4.208333333333333,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0.55,
+    "despill": 1
+  },
+  "events": {
+    "脚掌支撑": {
+      "source_seconds": 2.6666666666666665,
+      "output_frame": 14,
+      "sample_offset_seconds": -0.08333333333333304
+    },
+    "由跪姿上升": {
+      "source_seconds": 2.875,
+      "output_frame": 15,
+      "sample_offset_seconds": -0.08333333333333348
+    },
+    "站直": {
+      "source_seconds": 3.2916666666666665,
+      "output_frame": 17,
+      "sample_offset_seconds": -0.08333333333333304
+    },
+    "裙摆稳定": {
+      "source_seconds": 3.7916666666666665,
+      "output_frame": 20,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/C09_suyao_rise_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.0,
+      "source_frame": 1,
+      "actual_source_seconds": 0.0,
+      "alpha_bbox": [
+        206,
+        282,
+        414,
+        577
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.2,
+      "source_frame": 6,
+      "actual_source_seconds": 0.20833333333333334,
+      "alpha_bbox": [
+        206,
+        282,
+        414,
+        577
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.4,
+      "source_frame": 11,
+      "actual_source_seconds": 0.4166666666666667,
+      "alpha_bbox": [
+        204,
+        282,
+        414,
+        577
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.6,
+      "source_frame": 15,
+      "actual_source_seconds": 0.5833333333333334,
+      "alpha_bbox": [
+        193,
+        280,
+        414,
+        577
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 0.8,
+      "source_frame": 20,
+      "actual_source_seconds": 0.7916666666666666,
+      "alpha_bbox": [
+        170,
+        279,
+        414,
+        577
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.0,
+      "source_frame": 25,
+      "actual_source_seconds": 1.0,
+      "alpha_bbox": [
+        139,
+        273,
+        414,
+        577
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.2,
+      "source_frame": 30,
+      "actual_source_seconds": 1.2083333333333333,
+      "alpha_bbox": [
+        122,
+        252,
+        414,
+        577
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.4,
+      "source_frame": 35,
+      "actual_source_seconds": 1.4166666666666667,
+      "alpha_bbox": [
+        134,
+        234,
+        400,
+        576
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.6,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        143,
+        227,
+        391,
+        576
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 1.8,
+      "source_frame": 44,
+      "actual_source_seconds": 1.7916666666666667,
+      "alpha_bbox": [
+        140,
+        228,
+        390,
+        585
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.0,
+      "source_frame": 49,
+      "actual_source_seconds": 2.0,
+      "alpha_bbox": [
+        128,
+        235,
+        390,
+        585
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.2,
+      "source_frame": 54,
+      "actual_source_seconds": 2.2083333333333335,
+      "alpha_bbox": [
+        140,
+        248,
+        424,
+        585
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.4,
+      "source_frame": 59,
+      "actual_source_seconds": 2.4166666666666665,
+      "alpha_bbox": [
+        152,
+        238,
+        443,
+        585
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 2.6,
+      "source_frame": 63,
+      "actual_source_seconds": 2.5833333333333335,
+      "alpha_bbox": [
+        153,
+        211,
+        442,
+        585
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 2.8,
+      "source_frame": 68,
+      "actual_source_seconds": 2.7916666666666665,
+      "alpha_bbox": [
+        156,
+        168,
+        430,
+        585
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.0,
+      "source_frame": 73,
+      "actual_source_seconds": 3.0,
+      "alpha_bbox": [
+        176,
+        120,
+        403,
+        585
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000017.png",
+      "output_frame": 17,
+      "output_seconds": 3.2,
+      "requested_source_seconds": 3.2,
+      "source_frame": 78,
+      "actual_source_seconds": 3.2083333333333335,
+      "alpha_bbox": [
+        214,
+        88,
+        399,
+        576
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000018.png",
+      "output_frame": 18,
+      "output_seconds": 3.4,
+      "requested_source_seconds": 3.4,
+      "source_frame": 83,
+      "actual_source_seconds": 3.4166666666666665,
+      "alpha_bbox": [
+        220,
+        85,
+        398,
+        575
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000019.png",
+      "output_frame": 19,
+      "output_seconds": 3.6,
+      "requested_source_seconds": 3.6,
+      "source_frame": 87,
+      "actual_source_seconds": 3.5833333333333335,
+      "alpha_bbox": [
+        220,
+        86,
+        398,
+        576
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000020.png",
+      "output_frame": 20,
+      "output_seconds": 3.8,
+      "requested_source_seconds": 3.8,
+      "source_frame": 92,
+      "actual_source_seconds": 3.7916666666666665,
+      "alpha_bbox": [
+        220,
+        86,
+        398,
+        575
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000021.png",
+      "output_frame": 21,
+      "output_seconds": 4.0,
+      "requested_source_seconds": 4.0,
+      "source_frame": 97,
+      "actual_source_seconds": 4.0,
+      "alpha_bbox": [
+        220,
+        86,
+        398,
+        575
+      ]
+    },
+    {
+      "file": "frames/C09_suyao_rise_000022.png",
+      "output_frame": 22,
+      "output_seconds": 4.2,
+      "requested_source_seconds": 4.2,
+      "source_frame": 101,
+      "actual_source_seconds": 4.166666666666667,
+      "alpha_bbox": [
+        221,
+        86,
+        398,
+        575
+      ]
+    }
+  ],
+  "visual_review": "PASSED",
+  "acceptance": {
+    "approved": true,
+    "no_intro": true,
+    "events_readable_5fps": true,
+    "alpha_on_light_dark": true,
+    "identity_and_props": true,
+    "anchor_and_bounds": true,
+    "loop_or_chain_checked": true,
+    "notes": "outputs/C09_suyao_rise/v01. Twenty-two frames at 5 FPS: initial pose matches C08, then the leg plants, body rises, and the short dress settles in the final standing stance. Light/dark matte and source continuity checked."
+  }
+}

@@ -57,6 +57,12 @@ class ABackstageController : APlayerController
     void HandleMainMenu()
     {
         const FVector2D Pointer = BackstagePointer();
+        if (Pressed(n"Three") || (BackstageHasCommandArg("SuperstarMenuSmoke") && MenuClock > 1.0)
+            || (Pressed(n"LeftMouseButton") && Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608))
+        {
+            OpenSuperstarStory();
+            return;
+        }
         if (Pressed(n"Enter") || Pressed(n"SpaceBar") || Pressed(n"One"))
         {
             BackstageSetLevel(0);
@@ -736,6 +742,10 @@ class ABackstageHUD : AHUD
         Box(bHoverQuit ? FLinearColor(0.22, 0.09, 0.12, 0.96) : Panel, 420, 492, 440, 60);
         CornerBrackets(420, 492, 440, 60, 14, 2, bHoverQuit ? ArtistColor : Muted);
         CenteredShadowText("■  退出游戏  (ESC)", 640, 512, bHoverQuit ? ArtistColor : Muted, 1.18);
+
+        const bool bHoverStory = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608;
+        Box(bHoverStory ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 420, 566, 440, 42);
+        CenteredShadowText("[ 3 ] 超级巨星 · 完整剧情预演", 640, 578, bHoverStory ? Mint : Paper, 1.14);
 
         CenteredShadowText("操作：WASD 移动/俯仰  |  按住左键拖拽场景  |  滚轮/Q/E 缩放  |  1-3 机位  |  空格 暂停  |  Enter 拍照并确认",
             640, 622, Muted, 1.00);

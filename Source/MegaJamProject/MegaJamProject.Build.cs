@@ -8,9 +8,9 @@ public class MegaJamProject : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Paper2D" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Paper2D", "AudioExtensions" });
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "AngelscriptRuntime", "Slate", "SlateCore", "ImageWrapper" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "AngelscriptRuntime", "Slate", "SlateCore", "ImageWrapper", "Json", "AudioMixer" });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
