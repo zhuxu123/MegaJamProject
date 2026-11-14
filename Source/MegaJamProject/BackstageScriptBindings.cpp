@@ -10,10 +10,12 @@
 #include "Engine/StaticMesh.h"
 #include "Engine/Texture2D.h"
 #include "Engine/TextureRenderTarget2D.h"
+#include "Engine/World.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/HUD.h"
 #include "GameFramework/PlayerController.h"
 #include "InputCoreTypes.h"
+#include "Kismet/GameplayStatics.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialInterface.h"
 #include "Misc/App.h"
@@ -844,6 +846,14 @@ namespace
 
 	UMaterialInterface* LoadSpriteMaterial(bool bLit)
 	{
+		static TWeakObjectPtr<UMaterialInterface> CachedLitMaterial;
+		static TWeakObjectPtr<UMaterialInterface> CachedUnlitMaterial;
+		TWeakObjectPtr<UMaterialInterface>& Slot = bLit ? CachedLitMaterial : CachedUnlitMaterial;
+		if (Slot.IsValid())
+		{
+			return Slot.Get();
+		}
+
 		const TCHAR* Paths[] = {
 			bLit ? TEXT("/Paper2D/MaskedLitSpriteMaterial.MaskedLitSpriteMaterial") : TEXT("/Paper2D/TranslucentUnlitSpriteMaterial.TranslucentUnlitSpriteMaterial"),
 			bLit ? TEXT("/Paper2D/DefaultLitSpriteMaterial.DefaultLitSpriteMaterial") : TEXT("/Paper2D/MaskedUnlitSpriteMaterial.MaskedUnlitSpriteMaterial"),
@@ -853,6 +863,7 @@ namespace
 		{
 			if (UMaterialInterface* Material = LoadObject<UMaterialInterface>(nullptr, Path))
 			{
+				Slot = Material;
 				return Material;
 			}
 		}
@@ -888,11 +899,17 @@ namespace
 		{
 			return;
 		}
-		Component->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-		Component->SetCastShadow(bCastShadow);
-		Component->bCastDynamicShadow = bCastShadow;
-		Component->bCastShadowAsTwoSided = bCastShadow;
-		if (Material)
+		if (Component->GetCollisionEnabled() != ECollisionEnabled::NoCollision)
+		{
+			Component->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		}
+		if (Component->CastShadow != bCastShadow || Component->bCastDynamicShadow != bCastShadow || Component->bCastShadowAsTwoSided != bCastShadow)
+		{
+			Component->SetCastShadow(bCastShadow);
+			Component->bCastDynamicShadow = bCastShadow;
+			Component->bCastShadowAsTwoSided = bCastShadow;
+		}
+		if (Material && Component->GetMaterial(0) != Material)
 		{
 			Component->SetMaterial(0, Material);
 		}
@@ -902,7 +919,10 @@ namespace
 			Component->MarkRenderStateDirty();
 			Component->MarkRenderDynamicDataDirty();
 		}
-		Component->SetSpriteColor(Color);
+		if (!Component->GetSpriteColor().Equals(Color, 0.001f))
+		{
+			Component->SetSpriteColor(Color);
+		}
 	}
 
 	void BackstageSetupPart(UPaperSpriteComponent* Component, const FName& PartKind, const FVector2D& SizeUU, const FVector2D& PivotNormalized, FLinearColor Color, bool bLit, bool bCastShadow)
@@ -936,12 +956,39 @@ namespace
 		const int32 ClampedFrame = FMath::Clamp(FrameIndex, 0, 3);
 		UMaterialInterface* Material = LoadSpriteMaterial(bLit);
 
-		const FString PackagePath = FString::Printf(TEXT("/Game/Sprites/%s_%d"), *SequenceName.ToString(), ClampedFrame);
+		static TMap<FName, TWeakObjectPtr<UPaperSprite>> CachedAssetSprites;
+		static TSet<FName> MissingAssetSprites;
+		const FName AssetKey(*FString::Printf(TEXT("%s_%d"), *SequenceName.ToString(), ClampedFrame));
+
 		UPaperSprite* Sprite = nullptr;
-		if (FPackageName::DoesPackageExist(PackagePath))
+		if (TWeakObjectPtr<UPaperSprite>* Existing = CachedAssetSprites.Find(AssetKey))
 		{
-			const FString ObjectPath = FString::Printf(TEXT("%s.%s_%d"), *PackagePath, *SequenceName.ToString(), ClampedFrame);
-			Sprite = LoadObject<UPaperSprite>(nullptr, *ObjectPath);
+			if (Existing->IsValid())
+			{
+				Sprite = Existing->Get();
+			}
+		}
+
+		if (!Sprite && !MissingAssetSprites.Contains(AssetKey))
+		{
+			const FString PackagePath = FString::Printf(TEXT("/Game/Sprites/%s_%d"), *SequenceName.ToString(), ClampedFrame);
+			if (FPackageName::DoesPackageExist(PackagePath))
+			{
+				const FString ObjectPath = FString::Printf(TEXT("%s.%s_%d"), *PackagePath, *SequenceName.ToString(), ClampedFrame);
+				Sprite = LoadObject<UPaperSprite>(nullptr, *ObjectPath);
+				if (Sprite)
+				{
+					CachedAssetSprites.Add(AssetKey, Sprite);
+				}
+				else
+				{
+					MissingAssetSprites.Add(AssetKey);
+				}
+			}
+			else
+			{
+				MissingAssetSprites.Add(AssetKey);
+			}
 		}
 
 		if (Sprite)
@@ -964,6 +1011,54 @@ namespace
 		// Procedural frame textures already bake the character's role outfit colors, so soften Color into a subtle tint.
 		const FLinearColor SubtleTint = FMath::Lerp(FLinearColor::White, Color, 0.16f);
 		ApplySpriteToComponent(Component, Sprite, Material, SubtleTint, bCastShadow);
+	}
+
+	void BackstagePrewarmSprites(APlayerController* Controller)
+	{
+		if (IsRunningCommandlet() || !FApp::CanEverRender())
+		{
+			return;
+		}
+
+		static bool bPrewarmed = false;
+		if (bPrewarmed)
+		{
+			return;
+		}
+		bPrewarmed = true;
+
+		const TCHAR* PartKinds[] = {
+			TEXT("Shadow"),
+			TEXT("Parcel"),
+			TEXT("Emotion_Shock"),
+			TEXT("Emotion_Anger"),
+			TEXT("Emotion_Care"),
+			TEXT("Emotion_Warm")
+		};
+		for (const TCHAR* Part : PartKinds)
+		{
+			GetOrCreatePartTexture(FName(Part));
+		}
+
+		UMaterialInterface* LitMaterial = LoadSpriteMaterial(true);
+		const TCHAR* Roles[] = { TEXT("Artist"), TEXT("Volunteer"), TEXT("Coordinator") };
+		const TCHAR* States[] = { TEXT("Idle"), TEXT("Walk"), TEXT("Shock"), TEXT("Argue"), TEXT("Pickup"), TEXT("Care"), TEXT("Handoff"), TEXT("Warm") };
+		const FVector2D BodySize(104.0, 156.0);
+		const FVector2D BodyPivot(0.5, 1.0);
+
+		for (const TCHAR* Role : Roles)
+		{
+			for (const TCHAR* State : States)
+			{
+				const FName SeqName(*FString::Printf(TEXT("%s_%s"), Role, State));
+				for (int32 Frame = 0; Frame < 4; ++Frame)
+				{
+					UTexture2D* Texture = GetOrCreateSequenceFrameTexture(SeqName, Frame);
+					const FName SpriteKey(*FString::Printf(TEXT("Frame_%s_%d_104x156_50x100_1"), *SeqName.ToString(), Frame));
+					GetOrCreateCachedRuntimeSprite(SpriteKey, Texture, LitMaterial, BodySize, BodyPivot);
+				}
+			}
+		}
 	}
 
 	void BackstageSetupStageMesh(UStaticMeshComponent* Component, const FString& MeshPath, FLinearColor Color, float Roughness, float Metallic, bool bCastShadow)
@@ -1017,10 +1112,13 @@ namespace
 		const FVector Forward(FMath::Cos(AngleRad), FMath::Sin(AngleRad), 0.0);
 		const FVector Right(-FMath::Sin(AngleRad), FMath::Cos(AngleRad), 0.0);
 		const double LateralShift = static_cast<double>(Center + Pan) * 100.0;
-		const double VerticalShift = static_cast<double>(Tilt) * 22.0;
+		// Orbital vertical crane: Tilt < 0 rises higher for a clean high-angle stage overview;
+		// Tilt > 0 lowers the camera for a low-angle shot toward the overhead lighting rig.
+		const double VerticalShift = -static_cast<double>(Tilt) * 52.0;
+		const double DistancePull = static_cast<double>(BackstageCameraDistance) - FMath::Abs(static_cast<double>(Tilt)) * 26.0;
 
-		OutLocation = Right * LateralShift - Forward * static_cast<double>(BackstageCameraDistance) + FVector(0.0, 0.0, 112.0 + VerticalShift);
-		OutRotation = FRotator(-3.2 + static_cast<double>(Tilt) * 4.8, YawDeg, 0.0);
+		OutLocation = Right * LateralShift - Forward * DistancePull + FVector(0.0, 0.0, 128.0 + VerticalShift);
+		OutRotation = FRotator(-5.8 + static_cast<double>(Tilt) * 8.5, YawDeg, 0.0);
 
 		const float TanHalfFOV = (100.0f / BackstageCameraDistance) / (2.0f * BackstageProjectionScale * FMath::Max(Zoom, 0.5f));
 		OutFOV = FMath::Clamp(FMath::RadiansToDegrees(2.0f * FMath::Atan(TanHalfFOV)), 18.0f, 90.0f);
@@ -1241,6 +1339,9 @@ namespace
 			Capture->bCaptureEveryFrame = false;
 			Capture->bCaptureOnMovement = false;
 			Capture->bAlwaysPersistRenderingState = true;
+			Capture->ShowFlags.SetMotionBlur(false);
+			Capture->ShowFlags.SetAmbientOcclusion(false);
+			Capture->ShowFlags.SetVolumetricFog(false);
 			Capture->RegisterComponent();
 		}
 
@@ -1261,6 +1362,31 @@ namespace
 		for (TWeakObjectPtr<UTextureRenderTarget2D>& Entry : Targets)
 		{
 			Entry.Reset();
+		}
+	}
+
+	bool BackstageIsMainMenuMap(const APlayerController* Controller)
+	{
+		if (!Controller || !Controller->GetWorld())
+		{
+			return false;
+		}
+		return Controller->GetWorld()->GetMapName().Contains(TEXT("MainLevel"), ESearchCase::IgnoreCase);
+	}
+
+	void BackstageOpenMap(APlayerController* Controller, const FName& MapName)
+	{
+		if (Controller && Controller->GetWorld())
+		{
+			UGameplayStatics::OpenLevel(Controller->GetWorld(), MapName);
+		}
+	}
+
+	void BackstageQuitGame(APlayerController* Controller)
+	{
+		if (Controller)
+		{
+			Controller->ConsoleCommand(TEXT("quit"));
 		}
 	}
 
@@ -1420,6 +1546,10 @@ static const FAngelscriptBind BindBackstageControls(
 		Controller.Method("void BackstageSyncCamera(AActor CameraHost, float32 AngleRad, float32 Center, float32 Pan, float32 Tilt, float32 Zoom, bool bActivateViewTarget)", &BackstageSyncCamera);
 		Controller.Method("void BackstageCapturePhoto(AActor CameraHost, int32 PhotoIndex, float32 AngleRad, float32 Center, float32 Pan, float32 Tilt, float32 Zoom)", &BackstageCapturePhoto);
 		Controller.Method("void BackstageClearPhotos()", &BackstageClearPhotos);
+		Controller.Method("void BackstagePrewarmSprites()", &BackstagePrewarmSprites);
+		Controller.Method("bool BackstageIsMainMenuMap() const", &BackstageIsMainMenuMap);
+		Controller.Method("void BackstageOpenMap(const FName& MapName)", &BackstageOpenMap);
+		Controller.Method("void BackstageQuitGame()", &BackstageQuitGame);
 
 		auto HUD = Binds.ExistingClassForTarget("AHUD");
 		HUD.Method("APlayerController BackstagePlayer() const", METHOD_TRIVIAL(AHUD, GetOwningPlayerController));

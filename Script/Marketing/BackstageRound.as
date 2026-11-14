@@ -117,6 +117,11 @@ namespace Backstage
         return Photo.bHasSmoothStation ? Photo.SmoothCenter : StationCenter(Photo.Station);
     }
 
+    float CameraPitch(float Tilt)
+    {
+        return -5.8 + Tilt * 8.5;
+    }
+
     float DampCurve(float Current, float Target, float Delta, float Speed)
     {
         const float Alpha = 1.0 - Math::Exp(-Speed * Math::Max(Delta, 0.0));
@@ -159,6 +164,19 @@ namespace Backstage
         if (Time < 33) return EBackstageBeat::Pickup;
         if (Time < 42) return EBackstageBeat::Handoff;
         return EBackstageBeat::Together;
+    }
+
+    FString BeatName(EBackstageBeat Beat)
+    {
+        switch (Beat)
+        {
+            case EBackstageBeat::Arrival: return "进场";
+            case EBackstageBeat::Collision: return "碰撞";
+            case EBackstageBeat::Argument: return "争执";
+            case EBackstageBeat::Pickup: return "拾起";
+            case EBackstageBeat::Handoff: return "递交";
+            default: return "同行";
+        }
     }
 
     FVector2D ArtistAt(float Time)

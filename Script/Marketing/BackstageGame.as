@@ -15,6 +15,9 @@ class ABackstageController : APlayerController
     bool bWasE = false;
     bool bWasW = false;
     bool bWasS = false;
+    bool bMapChecked = false;
+    bool bInMainMenu = false;
+    float MenuClock = 0.0;
 
     void EnsureStage()
     {
@@ -42,11 +45,62 @@ class ABackstageController : APlayerController
         return Input;
     }
 
+    void HandleMainMenu()
+    {
+        const FVector2D Pointer = BackstagePointer();
+        if (Pressed(n"Enter") || Pressed(n"SpaceBar"))
+        {
+            BackstageOpenMap(n"/Game/levels/Backstage");
+            return;
+        }
+        if (Pressed(n"Escape"))
+        {
+            BackstageQuitGame();
+            return;
+        }
+        if (Pressed(n"LeftMouseButton"))
+        {
+            if (Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 360 && Pointer.Y <= 430)
+            {
+                BackstageOpenMap(n"/Game/levels/Backstage");
+                return;
+            }
+            if (Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 455 && Pointer.Y <= 515)
+            {
+                BackstageQuitGame();
+                return;
+            }
+        }
+    }
+
+    void StartStageRound()
+    {
+        Round.Start();
+        Round.EnableBraindance();
+        BackstageClearPhotos();
+        EditSlot = 0;
+    }
+
     UFUNCTION(BlueprintOverride)
     void Tick(float DeltaSeconds)
     {
         if (!IsLocalController())
             return;
+
+        MenuClock += DeltaSeconds;
+        if (!bMapChecked)
+        {
+            bMapChecked = true;
+            bInMainMenu = BackstageIsMainMenuMap();
+            SetBackstagePointer(bInMainMenu || Round.Phase == EBackstagePhase::Briefing
+                || Round.Phase == EBackstagePhase::Edit || Round.Phase == EBackstagePhase::Results);
+        }
+
+        if (bInMainMenu)
+        {
+            HandleMainMenu();
+            return;
+        }
 
         EnsureStage();
 
@@ -54,15 +108,55 @@ class ABackstageController : APlayerController
         switch (Round.Phase)
         {
             case EBackstagePhase::Briefing:
-            case EBackstagePhase::Results:
+            {
                 if (Pressed(n"Enter"))
                 {
-                    Round.Start();
-                    Round.EnableBraindance();
-                    BackstageClearPhotos();
-                    EditSlot = 0;
+                    StartStageRound();
+                    break;
+                }
+                if (Pressed(n"M"))
+                {
+                    BackstageOpenMap(n"/Game/levels/MainLevel");
+                    return;
+                }
+                if (Pressed(n"LeftMouseButton"))
+                {
+                    const FVector2D Pointer = BackstagePointer();
+                    if (Pointer.X >= 340 && Pointer.X <= 670 && Pointer.Y >= 518 && Pointer.Y <= 568)
+                        StartStageRound();
+                    else if (Pointer.X >= 700 && Pointer.X <= 940 && Pointer.Y >= 518 && Pointer.Y <= 568)
+                    {
+                        BackstageOpenMap(n"/Game/levels/MainLevel");
+                        return;
+                    }
                 }
                 break;
+            }
+            case EBackstagePhase::Results:
+            {
+                if (Pressed(n"Enter"))
+                {
+                    StartStageRound();
+                    break;
+                }
+                if (Pressed(n"M"))
+                {
+                    BackstageOpenMap(n"/Game/levels/MainLevel");
+                    return;
+                }
+                if (Pressed(n"LeftMouseButton"))
+                {
+                    const FVector2D Pointer = BackstagePointer();
+                    if (Pointer.X >= 48 && Pointer.X <= 290 && Pointer.Y >= 636 && Pointer.Y <= 684)
+                        StartStageRound();
+                    else if (Pointer.X >= 320 && Pointer.X <= 560 && Pointer.Y >= 636 && Pointer.Y <= 684)
+                    {
+                        BackstageOpenMap(n"/Game/levels/MainLevel");
+                        return;
+                    }
+                }
+                break;
+            }
             case EBackstagePhase::Live:
                 HandleCamera(DeltaSeconds);
                 break;
@@ -76,7 +170,10 @@ class ABackstageController : APlayerController
         }
         Round.Advance(DeltaSeconds);
         if (Round.Phase != PreviousPhase)
-            SetBackstagePointer(Round.Phase == EBackstagePhase::Edit);
+        {
+            SetBackstagePointer(Round.Phase == EBackstagePhase::Briefing
+                || Round.Phase == EBackstagePhase::Edit || Round.Phase == EBackstagePhase::Results);
+        }
 
         if (StageActor != nullptr)
         {
@@ -204,71 +301,124 @@ class ABackstageHUD : AHUD
         Scale = Math::Min(SizeX / 1280.0, SizeY / 720.0);
         OriginX = (SizeX - Scale * 1280) * 0.5;
         OriginY = (SizeY - Scale * 720) * 0.5;
+
+        if (Controller.bInMainMenu)
+        {
+            BackstageRect(Ink, 0, 0, SizeX, SizeY);
+            MainMenu(Controller.BackstagePointer(), Controller.MenuClock);
+            return;
+        }
+
         const FBackstageRound& Round = Controller.Round;
+        if (Round.Phase == EBackstagePhase::Briefing)
+            BackstageRect(FLinearColor(Ink.R, Ink.G, Ink.B, 0.52), 0, 0, SizeX, SizeY);
+        else if (Round.Phase == EBackstagePhase::Edit || Round.Phase == EBackstagePhase::Results)
+            BackstageRect(FLinearColor(Ink.R, Ink.G, Ink.B, 0.88), 0, 0, SizeX, SizeY);
 
-        if (Round.Phase == EBackstagePhase::Live)
-            MaskStageWindow(SizeX, SizeY, 48, 125, 1184, 445);
-        else if (Round.Phase == EBackstagePhase::Preview)
-            MaskStageWindow(SizeX, SizeY, 48, 150, 1184, 440);
-        else
-            BackstageRect(FLinearColor(Ink.R, Ink.G, Ink.B, 0.84), 0, 0, SizeX, SizeY);
-
-        Text("营销达人  /  慈善活动后台", 48, 34, Mint, 1.15);
         switch (Round.Phase)
         {
-            case EBackstagePhase::Briefing: Briefing(); break;
-            case EBackstagePhase::Live: Live(Round); break;
-            case EBackstagePhase::Edit: Edit(Round, Controller.EditSlot, Controller.BackstagePointer()); break;
+            case EBackstagePhase::Briefing: Briefing(Controller.BackstagePointer()); break;
+            case EBackstagePhase::Live: Live(Round, Controller.MenuClock); break;
+            case EBackstagePhase::Edit:
+                Text("营销达人  /  慈善活动后台", 48, 34, Mint, 1.15);
+                Edit(Round, Controller.EditSlot, Controller.BackstagePointer());
+                break;
             case EBackstagePhase::Preview: Preview(Round); break;
-            case EBackstagePhase::Results: Results(Round); break;
+            case EBackstagePhase::Results:
+                Text("营销达人  /  慈善活动后台", 48, 34, Mint, 1.15);
+                Results(Round, Controller.BackstagePointer());
+                break;
         }
     }
 
-    void MaskStageWindow(int SizeX, int SizeY, float X, float Y, float W, float H)
+    FString TwoDigit(int Value)
     {
-        const float Left = OriginX + X * Scale;
-        const float Top = OriginY + Y * Scale;
-        const float Right = OriginX + (X + W) * Scale;
-        const float Bottom = OriginY + (Y + H) * Scale;
-        if (Top > 0)
-            BackstageRect(Ink, 0, 0, SizeX, Top);
-        if (Bottom < SizeY)
-            BackstageRect(Ink, 0, Bottom, SizeX, SizeY - Bottom);
-        if (Left > 0)
-            BackstageRect(Ink, 0, Top, Left, Bottom - Top);
-        if (Right < SizeX)
-            BackstageRect(Ink, Right, Top, SizeX - Right, Bottom - Top);
+        const int Clamped = Math::Clamp(Value, 0, 99);
+        return Clamped < 10 ? f"0{Clamped}" : f"{Clamped}";
+    }
+
+    void ShadowText(FString Value, float X, float Y, FLinearColor Color, float Size = 1)
+    {
+        BackstageText(Value, FLinearColor(0.01, 0.015, 0.025, 0.88), OriginX + (X + 1.5) * Scale,
+            OriginY + (Y + 1.5) * Scale, nullptr, Size * Scale, false);
+        BackstageText(Value, Color, OriginX + X * Scale, OriginY + Y * Scale, nullptr, Size * Scale, false);
+    }
+
+    void CornerBrackets(float X, float Y, float W, float H, float Arm, float Thick, FLinearColor Color)
+    {
+        Box(Color, X, Y, Arm, Thick);
+        Box(Color, X, Y, Thick, Arm);
+        Box(Color, X + W - Arm, Y, Arm, Thick);
+        Box(Color, X + W - Thick, Y, Thick, Arm);
+        Box(Color, X, Y + H - Thick, Arm, Thick);
+        Box(Color, X, Y + H - Arm, Thick, Arm);
+        Box(Color, X + W - Arm, Y + H - Thick, Arm, Thick);
+        Box(Color, X + W - Thick, Y + H - Arm, Thick, Arm);
+    }
+
+    void MainMenu(FVector2D Pointer, float Clock)
+    {
+        Box(FLinearColor(0.035, 0.055, 0.085, 1.0), 0, 0, 1280, 720);
+        // Subtle 90s CRT monitor bands
+        for (int Row = 0; Row < 6; ++Row)
+            Box(FLinearColor(0.05, 0.08, 0.12, 0.35), 28, 80 + float(Row) * 108.0, 1224, 2);
+
+        CornerBrackets(28, 22, 1224, 676, 36, 2.5, Mint);
+        const bool bBlink = (int(Clock * 2.0) % 2) == 0;
+        ShadowText(bBlink ? "● STANDBY" : "  STANDBY", 54, 42, ArtistColor, 1.20);
+        ShadowText("HI-8 MASTER DECK  //  CH-01 BACKSTAGE", 210, 42, Muted, 1.12);
+        ShadowText("VHS SP   BAT [■■■]", 1042, 42, Mint, 1.12);
+
+        ShadowText("焦点背面  /  BACKSTAGE FOCUS", 340, 150, Paper, 2.55);
+        ShadowText("90s CAMCORDER  ×  BRAINDANCE REWIND PROTOTYPE", 392, 222, Mint, 1.16);
+        ShadowText("透过取景器捕捉真实瞬间  ·  自由倒放超梦时间轴  ·  用三帧剪辑重塑真相", 312, 264, Muted, 1.12);
+
+        const bool bHoverStart = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 360 && Pointer.Y <= 430;
+        const bool bHoverQuit = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 455 && Pointer.Y <= 515;
+
+        Box(bHoverStart ? FLinearColor(0.11, 0.24, 0.24, 0.95) : Panel, 420, 360, 440, 70);
+        CornerBrackets(420, 360, 440, 70, 16, 2, bHoverStart ? Mint : Muted);
+        ShadowText("▶  进入第一关：慈善活动后台", 495, 381, bHoverStart ? Mint : Paper, 1.38);
+
+        Box(bHoverQuit ? FLinearColor(0.22, 0.09, 0.12, 0.95) : Panel, 420, 455, 440, 60);
+        CornerBrackets(420, 455, 440, 60, 14, 2, bHoverQuit ? ArtistColor : Muted);
+        ShadowText("■  退出游戏  (ESC)", 565, 473, bHoverQuit ? ArtistColor : Muted, 1.20);
+
+        ShadowText("第一关操作一览：鼠标 移动与俯仰(W/S)  |  滚轮/Q/E 变焦  |  1–3 机位  |  A/D 倒放/快进  |  R/右键 暂停  |  空格 拍摄", 136, 628, Muted, 1.02);
+        ShadowText("[ Enter ] 或鼠标点击按钮进入第一关", 482, 658, Mint, 1.12);
     }
 
     void Viewfinder(const FBackstagePhoto&in Photo, float X, float Y, float W, float H, bool bLive)
     {
-        const FLinearColor Edge(0.36, 0.93, 0.73, 0.35);
+        const FLinearColor Edge(0.36, 0.93, 0.73, 0.22);
         Box(Edge, X, Y, W, 1);
         Box(Edge, X, Y + H - 1, W, 1);
         Box(Edge, X, Y, 1, H);
         Box(Edge, X + W - 1, Y, 1, H);
-
-        const float Bracket = 26;
-        const float Thick = 3;
-        Box(Mint, X, Y, Bracket, Thick);
-        Box(Mint, X, Y, Thick, Bracket);
-        Box(Mint, X + W - Bracket, Y, Bracket, Thick);
-        Box(Mint, X + W - Thick, Y, Thick, Bracket);
-        Box(Mint, X, Y + H - Thick, Bracket, Thick);
-        Box(Mint, X, Y + H - Bracket, Thick, Bracket);
-        Box(Mint, X + W - Bracket, Y + H - Thick, Bracket, Thick);
-        Box(Mint, X + W - Thick, Y + H - Bracket, Thick, Bracket);
-
-        const FLinearColor Guide(0.94, 0.97, 1.0, 0.14);
-        Box(Guide, X + W / 3.0, Y + 12, 1, H - 24);
-        Box(Guide, X + W * 2.0 / 3.0, Y + 12, 1, H - 24);
+        CornerBrackets(X, Y, W, H, 28, 2, Mint);
 
         if (bLive)
         {
-            Box(Paper, X + W * 0.5 - 10, Y + H * 0.5, 20, 1);
-            Box(Paper, X + W * 0.5, Y + H * 0.5 - 10, 1, 20);
-            Box(FLinearColor(Ink.R, Ink.G, Ink.B, 0.65), X + 14, Y + 12, 92, 28);
-            Text("● REC", X + 22, Y + 17, ArtistColor);
+            // Minimal segmented center reticle (keeps center subject unobstructed)
+            const float Cx = X + W * 0.5;
+            const float Cy = Y + H * 0.5;
+            const FLinearColor Reticle(0.94, 0.97, 1.0, 0.48);
+            Box(Reticle, Cx - 22, Cy, 12, 1.5);
+            Box(Reticle, Cx + 10, Cy, 12, 1.5);
+            Box(Reticle, Cx, Cy - 18, 1.5, 9);
+            Box(Reticle, Cx, Cy + 9, 1.5, 9);
+
+            // Right-side 90s vertical tilt ladder
+            const float LadderX = X + W - 34;
+            const float LadderY = Cy;
+            for (int Tick = -2; Tick <= 2; ++Tick)
+            {
+                const float Ty = LadderY + float(Tick) * 24.0;
+                const float Tw = Tick == 0 ? 14.0 : 8.0;
+                Box(FLinearColor(0.58, 0.68, 0.77, 0.45), LadderX - Tw, Ty, Tw, 1.5);
+            }
+            const float PipY = LadderY - Photo.Tilt * 44.0;
+            Box(Gold, LadderX - 18, PipY - 2, 16, 4);
         }
     }
 
@@ -292,66 +442,108 @@ class ABackstageHUD : AHUD
         BackstageText(Value, Color, OriginX + X * Scale, OriginY + Y * Scale, nullptr, Size * Scale, false);
     }
 
-    void Briefing()
+    void Briefing(FVector2D Pointer)
     {
-        Text("活动简报", 48, 96, Paper, 2.6);
-        Box(Panel, 48, 186, 1184, 386);
-        Text("公司  /  活动回顾", 80, 218, Mint, 1.28);
-        Text("去慈善活动后台拍三张照片，剪成一条能体现艺人亲和力的作品。", 80, 262, Paper, 1.48);
-        Text("艺人私信", 80, 331, ArtistColor, 1.28);
-        Text("我赶着上场。后台如果有乱七八糟的事，麻烦别发出去。", 80, 375, Paper, 1.48);
-        Text("50 秒超梦回放（支持倒放与暂停）   ·   6 次快门   ·   发布 3 张", 80, 483, Muted, 1.30);
-        Text("[ Enter ]  前往后台", 48, 638, Mint, 1.55);
+        Box(FLinearColor(0.03, 0.05, 0.08, 0.82), 230, 130, 820, 460);
+        CornerBrackets(230, 130, 820, 460, 26, 2.5, Mint);
+
+        ShadowText("LEVEL 01  //  任务简报", 268, 162, Mint, 1.24);
+        ShadowText("慈善活动后台纪实", 268, 198, Paper, 2.10);
+        ShadowText("公司回顾任务：", 268, 274, Mint, 1.18);
+        ShadowText("前往后台拍摄三张能体现艺人亲和力的现场照片并剪辑发布。", 268, 304, Paper, 1.28);
+        ShadowText("艺人私信：", 268, 362, ArtistColor, 1.18);
+        ShadowText("“我赶着上场，后台如果有乱七八糟的事，麻烦别发出去。”", 268, 392, Paper, 1.28);
+        ShadowText("90s 超梦摄像机：50 秒回放（A/D 倒放/快进 · R 暂停 · 6 次快门 · 选 3 张成片）", 268, 456, Muted, 1.08);
+
+        const bool bHoverStart = Pointer.X >= 340 && Pointer.X <= 670 && Pointer.Y >= 518 && Pointer.Y <= 568;
+        const bool bHoverMenu = Pointer.X >= 700 && Pointer.X <= 940 && Pointer.Y >= 518 && Pointer.Y <= 568;
+
+        Box(bHoverStart ? FLinearColor(0.11, 0.25, 0.24, 0.96) : Panel, 340, 518, 330, 50);
+        CornerBrackets(340, 518, 330, 50, 12, 2, bHoverStart ? Mint : Muted);
+        ShadowText("▶ 进入拍摄现场  (Enter)", 382, 532, bHoverStart ? Mint : Paper, 1.22);
+
+        Box(bHoverMenu ? FLinearColor(0.16, 0.12, 0.14, 0.96) : Panel, 700, 518, 240, 50);
+        CornerBrackets(700, 518, 240, 50, 12, 2, bHoverMenu ? Gold : Muted);
+        ShadowText("返回主菜单  (M)", 748, 532, bHoverMenu ? Gold : Muted, 1.16);
     }
 
-    void Live(const FBackstageRound&in Round)
+    void Live(const FBackstageRound&in Round, float Clock)
     {
-        const int WholeSec = int(Round.Camera.Time);
-        const int Tenths = int(Round.Camera.Time * 10.0) % 10;
-        const FString StatusLabel = Math::Abs(Round.ScrubInput) > 0.05
-            ? (Round.ScrubInput < 0 ? "倒放 << 3x" : "快进 >> 3x")
-            : (Round.bPaused ? "暂停 ||" : "超梦回放 1x");
-        const FLinearColor StatusColor = Math::Abs(Round.ScrubInput) > 0.05 ? Gold : (Round.bPaused ? ArtistColor : Mint);
+        Viewfinder(Round.Camera, 28, 22, 1224, 676, true);
 
-        Text(f"机位 {Round.Camera.Station + 1}  /  {WholeSec}.{Tenths} 秒", 48, 82, Paper, 1.30);
-        Text(StatusLabel, 330, 82, StatusColor, 1.24);
-        Text(f"横移 {int(Round.Camera.Pan * 30)}°   俯仰 {int(Round.Camera.Tilt * 15)}°   变焦 {int(Round.Camera.Zoom * 100)}%", 520, 82, Muted, 1.12);
-        Text(f"快门 {Round.Shutters} / 6", 1070, 82, Paper, 1.30);
-
-        Viewfinder(Round.Camera, 48, 125, 1184, 435, true);
-        if (Round.ReplayNotice > 0)
+        const bool bBlink = (int(Clock * 2.0) % 2) == 0;
+        FString ModeText = bBlink ? "● PLAY 1.0x  超梦" : "  PLAY 1.0x  超梦";
+        FLinearColor ModeColor = Mint;
+        if (Math::Abs(Round.ScrubInput) > 0.05)
         {
-            Box(Ink, 365, 136, 538, 43);
-            Text("已返回超梦时间轴，可继续倒放、微调机位与补拍", 389, 145, Mint, 1.16);
+            ModeText = Round.ScrubInput < 0 ? "<< REW 3.0x  倒放" : ">> FF 3.0x   快进";
+            ModeColor = Gold;
+        }
+        else if (Round.bPaused)
+        {
+            ModeText = "|| PAUSE     暂停";
+            ModeColor = ArtistColor;
         }
 
+        // Top-Left 90s Camcorder OSD
+        ShadowText(ModeText, 48, 40, ModeColor, 1.24);
+        ShadowText(f"CAM-0{Round.Camera.Station + 1}   PAN {int(Round.Camera.Pan * 30)}°   TILT {int(Round.Camera.Tilt * 15)}°",
+            48, 68, Paper, 1.05);
+
+        // Top-Right Shutter Pips & Zoom Meter
+        ShadowText(f"SHUTTER  {Round.Shutters}/6", 988, 40, Paper, 1.16);
+        for (int i = 0; i < Backstage::MaxPhotos; ++i)
+        {
+            const bool bAvail = i < Round.Shutters;
+            Box(bAvail ? Mint : FLinearColor(0.25, 0.30, 0.36, 0.55), 1126 + float(i) * 18, 44, 12, 14);
+        }
+        ShadowText(f"W        T  {int(Round.Camera.Zoom * 100)}%", 988, 69, Muted, 1.02);
+        Box(FLinearColor(0.58, 0.68, 0.77, 0.55), 1012, 76, 68, 2);
+        const float ZoomAlpha = Math::Clamp((Round.Camera.Zoom - Backstage::ZoomMin) / (Backstage::ZoomMax - Backstage::ZoomMin), 0.0, 1.0);
+        Box(Mint, 1010 + ZoomAlpha * 64.0, 72, 6, 10);
+        ShadowText("BAT [■■]", 1166, 69, Mint, 0.98);
+
+        if (Round.ReplayNotice > 0)
+        {
+            Box(FLinearColor(0.02, 0.04, 0.06, 0.72), 400, 38, 480, 32);
+            ShadowText("已返回超梦时间轴，可继续倒放、调整视角与补拍", 432, 44, Mint, 1.08);
+        }
+
+        // Bottom-Left 90s VHS Timecode & Beat Tag
+        const int WholeSec = Math::Clamp(int(Round.Camera.Time), 0, 50);
+        const int Frames = Math::Clamp(int((Round.Camera.Time - float(WholeSec)) * 30.0), 0, 29);
+        ShadowText(f"TC 00:00:{TwoDigit(WholeSec)}:{TwoDigit(Frames)}", 48, 634, Paper, 1.18);
+        ShadowText(f"[ {Backstage::BeatName(Backstage::BeatAt(Round.Camera.Time))} ]", 242, 634, Gold, 1.14);
+
+        ShadowText("● 艺人", 1020, 636, ArtistColor, 0.98);
+        ShadowText("● 志愿者", 1084, 636, VolunteerColor, 0.98);
+        ShadowText("● 场务", 1164, 636, CoordinatorColor, 0.98);
+
+        // Slim Full-Width Braindance Timeline at Bottom Edge
         const float TrackX = 48;
-        const float TrackY = 576;
+        const float TrackY = 666;
         const float TrackW = 1184;
-        Box(Panel, TrackX, TrackY, TrackW, 10);
-        Box(StatusColor, TrackX, TrackY, TrackW * (Round.Camera.Time / Backstage::Duration), 10);
+        Box(FLinearColor(0.03, 0.05, 0.08, 0.65), TrackX, TrackY, TrackW, 4);
+        Box(ModeColor, TrackX, TrackY, TrackW * (Round.Camera.Time / Backstage::Duration), 4);
 
         const float MarkScale = TrackW / Backstage::Duration;
-        Box(Ink, TrackX + 7.0 * MarkScale - 1, TrackY - 2, 2, 14);
-        Box(Ink, TrackX + 14.0 * MarkScale - 1, TrackY - 2, 2, 14);
-        Box(Ink, TrackX + 23.0 * MarkScale - 1, TrackY - 2, 2, 14);
-        Box(Ink, TrackX + 33.0 * MarkScale - 1, TrackY - 2, 2, 14);
-        Box(Ink, TrackX + 42.0 * MarkScale - 1, TrackY - 2, 2, 14);
+        Box(Ink, TrackX + 7.0 * MarkScale - 1, TrackY - 2, 2, 8);
+        Box(Ink, TrackX + 14.0 * MarkScale - 1, TrackY - 2, 2, 8);
+        Box(Ink, TrackX + 23.0 * MarkScale - 1, TrackY - 2, 2, 8);
+        Box(Ink, TrackX + 33.0 * MarkScale - 1, TrackY - 2, 2, 8);
+        Box(Ink, TrackX + 42.0 * MarkScale - 1, TrackY - 2, 2, 8);
 
         for (int PhotoIdx = 0; PhotoIdx < Round.Photos.Num(); ++PhotoIdx)
         {
             const float PinX = TrackX + TrackW * (Round.Photos[PhotoIdx].Time / Backstage::Duration);
-            Box(Gold, PinX - 2, TrackY - 4, 4, 18);
+            Box(Gold, PinX - 1.5, TrackY - 4, 3, 12);
         }
 
         const float HeadX = TrackX + TrackW * (Round.Camera.Time / Backstage::Duration);
-        Box(Paper, HeadX - 2, TrackY - 6, 4, 22);
+        Box(Paper, HeadX - 1.5, TrackY - 5, 3, 14);
 
-        Text("艺人", 48, 608, ArtistColor, 1.08);
-        Text("志愿者", 126, 608, VolunteerColor, 1.08);
-        Text("工作人员", 230, 608, CoordinatorColor, 1.08);
-        Text("金色刻度 = 已拍照片时间点   |   Backspace 回到 0 秒", 805, 608, Muted, 1.04);
-        Text("鼠标 转向/俯仰   滚轮/Q/E 变焦   1–3 机位   A/D 倒放/快进   R/右键 暂停   空格 拍摄   Enter 剪辑", 48, 656, Mint, 1.08);
+        ShadowText("鼠标 移动/俯仰(W/S)   滚轮/Q/E 变焦   1-3 机位   A/D 倒放/快进   R/右键 暂停   Backspace 归零   空格 拍摄   Enter 剪辑",
+            48, 678, Muted, 0.94);
     }
 
     void Shot(const FBackstagePhoto&in Photo, float X, float Y, float W, float H, bool bLive = false)
@@ -480,14 +672,14 @@ class ABackstageHUD : AHUD
     void Preview(const FBackstageRound&in Round)
     {
         const int Frame = Math::Min(int(Round.PreviewTime / Backstage::PreviewSecondsPerFrame), Backstage::FrameCount - 1);
-        Text(HeadlineText(Round.Headline), 48, 88, Paper, 1.65);
-        Text(Round.bPublishing ? "发布中" : "作品预览", 1084, 92, Mint, 1.22);
-        Viewfinder(Round.Cut[Frame], 48, 150, 1184, 440, false);
-        Text(f"{Frame + 1} / 3", 48, 621, Mint, 1.32);
-        if (!Round.bPublishing) Text("Backspace 返回剪辑", 875, 621, Muted, 1.15);
+        Viewfinder(Round.Cut[Frame], 28, 22, 1224, 676, false);
+        ShadowText(Round.bPublishing ? "▶ VCR PUBLISHING  //  发布中" : "▶ VCR PLAYBACK  //  成片预览", 48, 40, Mint, 1.20);
+        ShadowText(HeadlineText(Round.Headline), 48, 68, Paper, 1.48);
+        ShadowText(f"FRAME  0{Frame + 1} / 03", 48, 656, Mint, 1.24);
+        if (!Round.bPublishing) ShadowText("Backspace 返回剪辑", 1048, 658, Muted, 1.12);
     }
 
-    void Results(const FBackstageRound&in Round)
+    void Results(const FBackstageRound&in Round, FVector2D Pointer)
     {
         const FBackstageResult Result = Round.Result;
         Text(HeadlineText(Round.Headline), 48, 90, Paper, 1.8);
@@ -506,7 +698,17 @@ class ABackstageHUD : AHUD
         Text("观众：" + Result.Comment, 78, 412, Paper, 1.30);
         Text("公司：" + Result.Company, 78, 464, Paper, 1.30);
         Text(Result.Person, 78, 516, Paper, 1.30);
-        Text("[ Enter ]  重新拍摄", 48, 648, Mint, 1.45);
+
+        const bool bHoverReplay = Pointer.X >= 48 && Pointer.X <= 290 && Pointer.Y >= 636 && Pointer.Y <= 684;
+        const bool bHoverMenu = Pointer.X >= 320 && Pointer.X <= 560 && Pointer.Y >= 636 && Pointer.Y <= 684;
+
+        Box(bHoverReplay ? FLinearColor(0.11, 0.25, 0.24, 0.96) : Panel, 48, 636, 242, 48);
+        CornerBrackets(48, 636, 242, 48, 12, 2, bHoverReplay ? Mint : Muted);
+        ShadowText("▶ 重新拍摄  (Enter)", 76, 650, bHoverReplay ? Mint : Paper, 1.20);
+
+        Box(bHoverMenu ? FLinearColor(0.16, 0.12, 0.14, 0.96) : Panel, 320, 636, 240, 48);
+        CornerBrackets(320, 636, 240, 48, 12, 2, bHoverMenu ? Gold : Muted);
+        ShadowText("返回主菜单  (M)", 368, 650, bHoverMenu ? Gold : Muted, 1.16);
     }
 
     FString Signed(int Value)
