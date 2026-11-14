@@ -1066,7 +1066,24 @@ void BindDelegateEvent(FAngelscriptBinds& Binds, UFunction* Function, bool bIsMu
 		else
 		{
 			ArgumentTypes.Add(Type);
-			ArgumentNames.Add(Property->GetName());
+			FString ArgumentName = Property->GetName();
+			const FTCHARToUTF8 Utf8Name(*ArgumentName);
+			asUINT TokenLength = 0;
+			const auto TokenClass = Binds.GetTargetScriptEngine().ParseToken(
+				Utf8Name.Get(), Utf8Name.Length(), &TokenLength);
+			// Non-editor FNames need not preserve case: e.g. a native "Float"
+			// parameter can become the reserved word "float" in a packaged game.
+			// Keep valid names, and use a collision-free alias only when necessary.
+			if (TokenClass != asTC_IDENTIFIER || TokenLength != static_cast<asUINT>(Utf8Name.Length()))
+			{
+				ArgumentName = FString::Printf(TEXT("__ASDelegateArg%d"), ArgumentNames.Num());
+				while (FindFProperty<FProperty>(Function, FName(*ArgumentName)) != nullptr
+					|| ArgumentNames.Contains(ArgumentName))
+				{
+					ArgumentName += TEXT("_");
+				}
+			}
+			ArgumentNames.Add(ArgumentName);
 
 			// This is a hack!
 			//  We want to add the &in to the parameter if it is a const reference,
