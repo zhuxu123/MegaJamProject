@@ -1,8 +1,8 @@
 # 项目内 UE Skills
 
-此目录包含本机已安装的 **27 个 `ue-*` 技能**的原文快照，共 **75 个技能及参考 Markdown 文件**，复制日期为 2026-11-14。保留每个技能的 `SKILL.md` 与 `references/` 结构，没有将原文改写成项目专属 API。
+此目录包含上游 **31 个 `ue-*` 技能**的原文快照，共 **90 个技能及参考 Markdown 文件**，更新日期为 2026-11-14。保留每个技能的 `SKILL.md` 与 `references/` 结构，没有将原文改写成项目专属 API。
 
-复制来自本机用户级技能目录，不需要接手者拥有相同的用户名或磁盘路径。文件校验清单位于 [skills-manifest.json](../skills-manifest.json)，以本目录为相对路径根。清单只覆盖导入的 75 个原始文件，不覆盖本索引及项目上下文。
+来源为 [quodsoler/unreal-engine-skills](https://github.com/quodsoler/unreal-engine-skills)，固定提交 `f3742d7b688690810df369802b90430324e380b9`；不需要接手者拥有相同的用户名或磁盘路径。文件校验清单位于 [skills-manifest.json](../skills-manifest.json)，以本目录为相对路径根。清单只覆盖导入的 90 个原始文件，不覆盖本索引及项目上下文。
 
 ## 使用方法
 
@@ -31,6 +31,7 @@
 | --- | --- |
 | [ue-animation-system](ue-animation-system/SKILL.md) | 骨骼动画、AnimInstance、Montage、IK |
 | [ue-sequencer-cinematics](ue-sequencer-cinematics/SKILL.md) | 镜头、Sequencer、过场演出 |
+| [ue-gameplay-cameras](ue-gameplay-cameras/SKILL.md) | 相机系统、镜头切换与相机效果 |
 | [ue-physics-collision](ue-physics-collision/SKILL.md) | 引入真实碰撞、查询、射线或物理交互 |
 | [ue-character-movement](ue-character-movement/SKILL.md) | 加入可移动角色与 CharacterMovement |
 | [ue-audio-system](ue-audio-system/SKILL.md) | 音效、音乐、空间音频 |
@@ -42,6 +43,9 @@
 
 | 技能 | 何时读取 |
 | --- | --- |
+| [ue-blueprint-cpp-interop](ue-blueprint-cpp-interop/SKILL.md) | 蓝图与 C++ 互操作 |
+| [ue-gameplay-tags-messaging](ue-gameplay-tags-messaging/SKILL.md) | Gameplay Tags 与消息系统 |
+| [ue-mover](ue-mover/SKILL.md) | 实验性 Mover 移动系统 |
 | [ue-ai-navigation](ue-ai-navigation/SKILL.md) | AI、寻路、行为树、感知 |
 | [ue-state-trees](ue-state-trees/SKILL.md) | UE StateTree 系统 |
 | [ue-gameplay-abilities](ue-gameplay-abilities/SKILL.md) | 实际接入 GAS 能力、效果和属性 |
@@ -55,7 +59,7 @@
 
 ## 维护
 
-- 原始快照的文件内容已与来源逐一核对 SHA256；具体版本以各 `SKILL.md` 的 metadata 为准。
+- 原始快照的文件内容已与固定提交的下载文件逐一核对 SHA256；具体版本以各 `SKILL.md` 的 metadata 为准。
 - 更新时按技能目录完整替换或审阅合并，保留参考文件、来源声明，并更新清单；不要用全局技能路径创建符号链接。
 - 技能之间的关联名称可在本目录直接定位。项目约定放在根 `AGENTS.md` 与共同上下文，不散落修改所有技能副本。
 - Git 共享需包含根 `AGENTS.md`、整个 `.agents/skills/`、`.agents/ue-project-context.md` 和 `.agents/skills-manifest.json`。本次只准备文件，不自动提交或推送。

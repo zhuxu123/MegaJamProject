@@ -1005,20 +1005,26 @@ asCScriptEngine::~asCScriptEngine()
 	scriptTypeBehaviours.ReleaseAllFunctions();
 	functionBehaviours.ReleaseAllFunctions();
 
-	//[UE++]: Guard against cascade-freed functions during DestroyInternal.
-	// DestroyInternal may release references that cascade-free THIS function,
-	// setting scriptFunctions[n] to null. Re-check before writing engine = 0.
+	// Pin the remaining functions before releasing their references. A function
+	// can indirectly release itself during DestroyInternal; checking the table
+	// afterwards is too late to prevent use-after-free inside that call.
+	// Keep the id table intact until every function has released its bytecode
+	// references, including references to functions visited earlier in the loop.
+	TArray<asCScriptFunction*> RemainingFunctions;
 	for( asUINT n = 0; n < scriptFunctions.GetLength(); n++ )
 		if( scriptFunctions[n] )
 		{
-			scriptFunctions[n]->DestroyInternal();
-
-			// Set the engine pointer to null to signal that the function is no longer part of the engine
-			if( scriptFunctions[n] )
-				scriptFunctions[n]->engine = 0;
+			scriptFunctions[n]->AddRefInternal();
+			RemainingFunctions.Add(scriptFunctions[n]);
 		}
+	for (asCScriptFunction* Function : RemainingFunctions)
+	{
+		Function->DestroyInternal();
+		Function->engine = 0;
+	}
 	scriptFunctions.SetLength(0);
-	//[UE--]
+	for (asCScriptFunction* Function : RemainingFunctions)
+		Function->ReleaseInternal();
 
 	// Increase the internal ref count for these builtin object types, so the destructor is not called incorrectly
 	scriptTypeBehaviours.AddRefInternal();

@@ -6,7 +6,7 @@
 
 - 项目：`MegaJamProject`，游戏《营销达人》，通过拍照、选图、顺序、裁切和标题影响事件解读。
 - 引擎：本机验证 UE **5.8.4**，项目关联 `5.8`。引擎发行渠道、是否存在外部引擎修改未在仓库中确认。
-- 平台：已验证 Windows / Win64 Editor；正式发布平台和打包验收尚未确定。配置中的其他平台段落不能视为已验证支持。
+- 平台：已验证 Windows / Win64 Editor，以及 Win64 Development 打包版的脚本初始化、简报/3D 演出渲染与正常退出。Shipping 和其他平台尚未验收。
 - 当前入口：`/Game/levels/Backstage.Backstage`；单关卡、单玩家回合原型。
 
 ## Module Structure
@@ -63,6 +63,8 @@
 - 原生桥接变更需重建 Editor；AS 普通变更可热重载并检查编译结果。DLL 占用时协调保存关闭编辑器。
 - 构建命令与 `AngelscriptTest` 验证命令见根目录 `AGENTS.md`。当日已知逻辑测试基线为 5 项，不等于未来每次修改自动通过。
 - `NullRHI` 不验证真实输入和渲染；舞台、材质、镜头、HUD 修改还需带渲染验收。
+- 打包必须保留 `DefaultGame.ini` 中将 `../Script` 纳入 UFS 的配置，包含 Cook 生成的 `Binds.Cache`。发布回归入口为 `Tools/Test-PackagedGame.ps1`，加 `-Render` 验证真实渲染启动；不能只看进程是否出现。
+- 插件本地修复包括委托参数名避开 AS 保留字，以及引擎退出时避免脚本函数级联释放后的访问。详见根 `AGENTS.md` 的打包回归小节；更新插件时需保留等效修复。
 - AngelScript 的第三方运行时随插件源码提供；游戏模块未额外声明第三方库。
 
 ## Team Context

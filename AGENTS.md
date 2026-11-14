@@ -19,7 +19,7 @@
 
 ### 仓库内的 UE Skills
 
-本项目随仓库携带 27 个 UE 技能及完整参考文件，入口是 [.agents/skills/README.md](.agents/skills/README.md)，共同上下文是 [.agents/ue-project-context.md](.agents/ue-project-context.md)。不依赖原开发者的用户目录，也不需要重新下载技能。
+本项目随仓库携带 31 个 UE 技能及完整参考文件，入口是 [.agents/skills/README.md](.agents/skills/README.md)，共同上下文是 [.agents/ue-project-context.md](.agents/ue-project-context.md)。不依赖原开发者的用户目录，也不需要重新下载技能。
 
 - 根据当前任务从索引选择相关技能，先读对应 `SKILL.md`，再按需读其 `references/`；不要每次加载全部技能。
 - 支持项目 `.agents/skills/` 发现的客户端可按自身机制加载；未自动发现时直接按仓库路径读取。不能假定所有 Agent 客户端都自动安装了这些技能。
@@ -138,6 +138,14 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 - 新增 AS 测试参考 `UBackstageRoundTests : UAngelscriptTestSuite`，类标注 `AngelscriptTestFlags="CommandletContext;EngineFilter"`，测试方法为无参 `void()` 且标注 `UFUNCTION(meta=(AngelscriptTest))`。
 - 纯文档修改检查路径、命令和差异即可；玩法逻辑修改跑相关脚本测试；原生代码修改先重建再测试；输入、HUD、材质或演出修改还需实际带渲染运行。`NullRHI` 测试不验证画面和真实鼠标输入。
 - 历史测试日志和截图在 `Saved/`，已被 Git 忽略，其他 checkout 不一定拥有。不要把旧日志称为本次测试结果。
+
+### 打包版启动回归
+
+- `Config/DefaultGame.ini` 的 `DirectoriesToAlwaysStageAsUFS=(Path="../Script")` 必须保留；路径相对于 `Content`，将玩法 `.as` 和 Cook 生成的 `Script/Binds.Cache` 一起纳入发布包。生成缓存仍不提交 Git，但不能从发布包漏掉。
+- 打包后检查 `Windows/Manifest_UFSFiles_Win64.txt` 包含 `MegaJamProject/Script/Binds.Cache` 和玩法脚本；缓存必须来自匹配的引擎、插件与本次 Cook。
+- 运行 `./Tools/Test-PackagedGame.ps1 -PackageRoot '<发布目录>/Windows'`；需要验证真实渲染启动时加 `-Render`。脚本检查 AS 初始化、正确 GameMode、无错误和正常退出码，日志保存在项目 `Saved/PackagedSmoke/`。
+- 此测试针对 Development 发布包；不替代手动输入、完整回合和 Shipping 验收。只有窗口出现不算通过，脚本绑定失败可能让游戏退回 `GameModeBase`。
+- 2026-11-14 修复了两个插件问题：`Bind_BlueprintEvent.cpp` 为非法委托参数名生成安全别名（非编辑器 FName 可能将 `Float` 显示为保留字 `float`）；`as_scriptengine.cpp` 在退出销毁残余函数时持有临时引用，防止级联释放造成 use-after-free。同步插件上游时应审阅并保留等效修复。
 
 ### 手动验收
 
