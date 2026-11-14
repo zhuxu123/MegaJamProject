@@ -18,6 +18,7 @@ class ABackstageController : APlayerController
     bool bMapChecked = false;
     bool bInMainMenu = false;
     float MenuClock = 0.0;
+    float LiveArmTimer = 0.0;
 
     void EnsureStage()
     {
@@ -79,6 +80,7 @@ class ABackstageController : APlayerController
         Round.EnableBraindance();
         BackstageClearPhotos();
         EditSlot = 0;
+        LiveArmTimer = 0.18;
     }
 
     UFUNCTION(BlueprintOverride)
@@ -116,7 +118,7 @@ class ABackstageController : APlayerController
                 }
                 if (Pressed(n"M"))
                 {
-                    BackstageOpenMap(n"/Game/levels/MainLevel");
+                    BackstageOpenMap(n"/Game/levels/MainMenu");
                     return;
                 }
                 if (Pressed(n"LeftMouseButton"))
@@ -126,7 +128,7 @@ class ABackstageController : APlayerController
                         StartStageRound();
                     else if (Pointer.X >= 700 && Pointer.X <= 940 && Pointer.Y >= 518 && Pointer.Y <= 568)
                     {
-                        BackstageOpenMap(n"/Game/levels/MainLevel");
+                        BackstageOpenMap(n"/Game/levels/MainMenu");
                         return;
                     }
                 }
@@ -141,7 +143,7 @@ class ABackstageController : APlayerController
                 }
                 if (Pressed(n"M"))
                 {
-                    BackstageOpenMap(n"/Game/levels/MainLevel");
+                    BackstageOpenMap(n"/Game/levels/MainMenu");
                     return;
                 }
                 if (Pressed(n"LeftMouseButton"))
@@ -151,7 +153,7 @@ class ABackstageController : APlayerController
                         StartStageRound();
                     else if (Pointer.X >= 320 && Pointer.X <= 560 && Pointer.Y >= 636 && Pointer.Y <= 684)
                     {
-                        BackstageOpenMap(n"/Game/levels/MainLevel");
+                        BackstageOpenMap(n"/Game/levels/MainMenu");
                         return;
                     }
                 }
@@ -173,6 +175,8 @@ class ABackstageController : APlayerController
         {
             SetBackstagePointer(Round.Phase == EBackstagePhase::Briefing
                 || Round.Phase == EBackstagePhase::Edit || Round.Phase == EBackstagePhase::Results);
+            if (Round.Phase == EBackstagePhase::Live)
+                LiveArmTimer = 0.18;
         }
 
         if (StageActor != nullptr)
@@ -194,21 +198,23 @@ class ABackstageController : APlayerController
 
     void HandleCamera(float Delta)
     {
+        LiveArmTimer = Math::Max(0.0, LiveArmTimer - Delta);
         if (Pressed(n"One")) Round.SetTargetStation(0);
         if (Pressed(n"Two")) Round.SetTargetStation(1);
         if (Pressed(n"Three")) Round.SetTargetStation(2);
 
         const FVector2D Mouse = BackstageMouseDelta();
         const float Wheel = BackstageWheelDelta();
+        const float PanAxis = CameraAxis(n"A", n"D", bWasA, bWasD, Delta);
         const float TiltAxis = CameraAxis(n"S", n"W", bWasS, bWasW, Delta);
         const float ZoomAxis = CameraAxis(n"Q", n"E", bWasQ, bWasE, Delta);
-        Round.PushCamera(Mouse.X * 0.28, Mouse.Y * 0.20 + TiltAxis * 1.6, Wheel * 0.28 + ZoomAxis * 1.8);
+        Round.PushCamera(PanAxis * 2.4 + Mouse.X * 0.22, TiltAxis * 1.6 + Mouse.Y * 0.16, Wheel * 0.28 + ZoomAxis * 1.8);
 
-        const bool bRewind = BackstageHeld(n"A") || BackstageHeld(n"Left");
-        const bool bForward = BackstageHeld(n"D") || BackstageHeld(n"Right");
+        const bool bRewind = BackstageHeld(n"Left") || BackstageHeld(n"Z");
+        const bool bForward = BackstageHeld(n"Right") || BackstageHeld(n"C");
         Round.SetScrubInput((bForward ? 1.0 : 0.0) - (bRewind ? 1.0 : 0.0));
 
-        if (Pressed(n"R") || Pressed(n"RightMouseButton") || Pressed(n"Down"))
+        if (Pressed(n"SpaceBar") || Pressed(n"R") || Pressed(n"RightMouseButton"))
             Round.TogglePause();
 
         if (Pressed(n"BackSpace") || Pressed(n"Home"))
@@ -218,7 +224,7 @@ class ABackstageController : APlayerController
             Round.PlaybackSpeed = 0.0;
         }
 
-        if (Pressed(n"SpaceBar"))
+        if (Pressed(n"LeftMouseButton") && LiveArmTimer <= 0.0)
         {
             const int PrevCount = Round.Photos.Num();
             Round.Capture();
@@ -384,7 +390,7 @@ class ABackstageHUD : AHUD
         CornerBrackets(420, 455, 440, 60, 14, 2, bHoverQuit ? ArtistColor : Muted);
         ShadowText("■  退出游戏  (ESC)", 565, 473, bHoverQuit ? ArtistColor : Muted, 1.20);
 
-        ShadowText("第一关操作一览：鼠标 移动与俯仰(W/S)  |  滚轮/Q/E 变焦  |  1–3 机位  |  A/D 倒放/快进  |  R/右键 暂停  |  空格 拍摄", 136, 628, Muted, 1.02);
+        ShadowText("第一关操作一览：WASD 移动视角  |  滚轮 缩放  |  1–3 机位  |  空格 暂停  |  左键 拍照  |  ←/→(Z/C) 倒放/快进", 150, 628, Muted, 1.02);
         ShadowText("[ Enter ] 或鼠标点击按钮进入第一关", 482, 658, Mint, 1.12);
     }
 
@@ -453,7 +459,7 @@ class ABackstageHUD : AHUD
         ShadowText("前往后台拍摄三张能体现艺人亲和力的现场照片并剪辑发布。", 268, 304, Paper, 1.28);
         ShadowText("艺人私信：", 268, 362, ArtistColor, 1.18);
         ShadowText("“我赶着上场，后台如果有乱七八糟的事，麻烦别发出去。”", 268, 392, Paper, 1.28);
-        ShadowText("90s 超梦摄像机：50 秒回放（A/D 倒放/快进 · R 暂停 · 6 次快门 · 选 3 张成片）", 268, 456, Muted, 1.08);
+        ShadowText("90s 超梦摄像机：50 秒回放（WASD 视角 · 滚轮缩放 · 空格暂停 · 左键拍照 · ←/→ 倒放/快进）", 268, 456, Muted, 1.08);
 
         const bool bHoverStart = Pointer.X >= 340 && Pointer.X <= 670 && Pointer.Y >= 518 && Pointer.Y <= 568;
         const bool bHoverMenu = Pointer.X >= 700 && Pointer.X <= 940 && Pointer.Y >= 518 && Pointer.Y <= 568;
@@ -542,7 +548,7 @@ class ABackstageHUD : AHUD
         const float HeadX = TrackX + TrackW * (Round.Camera.Time / Backstage::Duration);
         Box(Paper, HeadX - 1.5, TrackY - 5, 3, 14);
 
-        ShadowText("鼠标 移动/俯仰(W/S)   滚轮/Q/E 变焦   1-3 机位   A/D 倒放/快进   R/右键 暂停   Backspace 归零   空格 拍摄   Enter 剪辑",
+        ShadowText("WASD 移动视角   滚轮/Q/E 缩放   1-3 机位   空格 暂停   左键 拍照   ←/→(Z/C) 倒放/快进   Backspace 归零   Enter 剪辑",
             48, 678, Muted, 0.94);
     }
 

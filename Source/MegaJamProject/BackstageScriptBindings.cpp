@@ -1371,7 +1371,7 @@ namespace
 		{
 			return false;
 		}
-		return Controller->GetWorld()->GetMapName().Contains(TEXT("MainLevel"), ESearchCase::IgnoreCase);
+		return Controller->GetWorld()->GetMapName().Contains(TEXT("MainMenu"), ESearchCase::IgnoreCase);
 	}
 
 	void BackstageOpenMap(APlayerController* Controller, const FName& MapName)
