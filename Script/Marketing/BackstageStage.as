@@ -580,11 +580,14 @@ class ABackstageStageActor : AActor
         if (bRainLevel)
         {
             ConfigureStageMesh(FloorMesh, CubePath, FVector(120.0, 0.0, -20.0), FVector(12.0, 18.0, 0.4),
-                FLinearColor(0.045, 0.06, 0.085, 1.0), 0.22, 0.18, false);
+                FLinearColor(0.015, 0.020, 0.030, 1.0), 0.72, 0.02, false);
             ConfigureStageMesh(StageBorderMesh, CubePath, FVector(15.0, 0.0, -0.5), FVector(5.1, 7.6, 0.03),
-                FLinearColor(0.28, 0.34, 0.42, 1.0), 0.32, 0.55, false);
+                FLinearColor(0.05, 0.06, 0.08, 1.0), 0.65, 0.15, false);
             ConfigureStageMesh(StageCarpetMesh, CubePath, FVector(15.0, 0.0, 1.2), FVector(4.8, 7.2, 0.03),
-                FLinearColor(0.26, 0.06, 0.10, 1.0), 0.48, 0.10, false);
+                FLinearColor(0.12, 0.02, 0.035, 1.0), 0.85, 0.02, false);
+            FloorMesh.BackstageSetVisible(false);
+            StageBorderMesh.BackstageSetVisible(false);
+            StageCarpetMesh.BackstageSetVisible(false);
             ConfigureStageMesh(BackWallMesh, CubePath, FVector(280.0, 0.0, 300.0), FVector(0.4, 18.0, 6.0),
                 FLinearColor(0.03, 0.05, 0.095, 1.0), 0.78, 0.08, false);
             ConfigureStageMesh(LeftCurtainMesh, CubePath, FVector(20.0, -680.0, 260.0), FVector(5.2, 0.5, 5.2),
@@ -592,16 +595,16 @@ class ABackstageStageActor : AActor
             ConfigureStageMesh(RightCurtainMesh, CubePath, FVector(20.0, 680.0, 260.0), FVector(5.2, 0.5, 5.2),
                 FLinearColor(0.025, 0.04, 0.075, 1.0), 0.88, 0.0, false);
             ConfigureStageMesh(TrussMesh, CubePath, FVector(-140.0, 0.0, 420.0), FVector(0.35, 16.0, 0.35),
-                FLinearColor(0.18, 0.22, 0.28, 1.0), 0.30, 0.82, false);
+                FLinearColor(0.12, 0.15, 0.20, 1.0), 0.45, 0.65, false);
         }
         else
         {
             ConfigureStageMesh(FloorMesh, CubePath, FVector(120.0, 0.0, -20.0), FVector(12.0, 18.0, 0.4),
-                FLinearColor(0.075, 0.105, 0.145, 1.0), 0.60, 0.08, false);
+                FLinearColor(0.035, 0.048, 0.068, 1.0), 0.75, 0.04, false);
             ConfigureStageMesh(StageBorderMesh, CubePath, FVector(15.0, 0.0, -0.5), FVector(5.1, 7.6, 0.03),
-                FLinearColor(0.24, 0.30, 0.38, 1.0), 0.42, 0.45, false);
+                FLinearColor(0.10, 0.13, 0.18, 1.0), 0.60, 0.25, false);
             ConfigureStageMesh(StageCarpetMesh, CubePath, FVector(15.0, 0.0, 1.2), FVector(4.8, 7.2, 0.03),
-                FLinearColor(0.11, 0.155, 0.22, 1.0), 0.72, 0.04, false);
+                FLinearColor(0.07, 0.10, 0.15, 1.0), 0.82, 0.02, false);
             ConfigureStageMesh(BackWallMesh, CubePath, FVector(280.0, 0.0, 300.0), FVector(0.4, 18.0, 6.0),
                 FLinearColor(0.05, 0.08, 0.12, 1.0), 0.85, 0.05, false);
             ConfigureStageMesh(LeftCurtainMesh, CubePath, FVector(20.0, -680.0, 260.0), FVector(5.2, 0.5, 5.2),
@@ -609,7 +612,7 @@ class ABackstageStageActor : AActor
             ConfigureStageMesh(RightCurtainMesh, CubePath, FVector(20.0, 680.0, 260.0), FVector(5.2, 0.5, 5.2),
                 FLinearColor(0.035, 0.05, 0.08, 1.0), 0.92, 0.0, false);
             ConfigureStageMesh(TrussMesh, CubePath, FVector(-140.0, 0.0, 420.0), FVector(0.35, 16.0, 0.35),
-                FLinearColor(0.14, 0.17, 0.22, 1.0), 0.35, 0.78, false);
+                FLinearColor(0.10, 0.13, 0.18, 1.0), 0.45, 0.65, false);
         }
 
         ConfigureStageMesh(Pillar0, CylinderPath, StagePoint(FVector2D(-4.0, -0.9), 210.0), FVector(0.32, 0.32, 4.2),
@@ -655,30 +658,30 @@ class ABackstageStageActor : AActor
         if (bRainLevel)
         {
             KeySpot.BackstageSetupSpotLight(FVector(-120.0, -20.0, 415.0), FRotator(-65.0, 10.0, 0.0),
-                FLinearColor(0.86, 0.94, 1.0, 1.0), 72000.0, 2600.0, 30.0, 62.0, false);
+                FLinearColor(0.86, 0.94, 1.0, 1.0), 1800.0, 2600.0, 30.0, 62.0, false);
             RimSpotLeft.BackstageSetupSpotLight(FVector(160.0, -440.0, 320.0), FRotator(-28.0, 110.0, 0.0),
-                FLinearColor(0.32, 0.68, 1.0, 1.0), 42000.0, 2200.0, 24.0, 52.0, false);
+                FLinearColor(0.32, 0.68, 1.0, 1.0), 1100.0, 2200.0, 24.0, 52.0, false);
             RimSpotRight.BackstageSetupSpotLight(FVector(160.0, 440.0, 320.0), FRotator(-28.0, -110.0, 0.0),
-                FLinearColor(1.0, 0.42, 0.56, 1.0), 42000.0, 2200.0, 24.0, 52.0, false);
+                FLinearColor(1.0, 0.42, 0.56, 1.0), 1100.0, 2200.0, 24.0, 52.0, false);
             StageFill.BackstageSetupPointLight(FVector(-260.0, 0.0, 220.0),
-                FLinearColor(0.60, 0.76, 0.98, 1.0), 25000.0, 2200.0, false);
+                FLinearColor(0.60, 0.76, 0.98, 1.0), 450.0, 2200.0, false);
             BounceDir.BackstageSetupDirectionalLight(FRotator(-35.0, 18.0, 0.0),
-                FLinearColor(0.70, 0.84, 1.0, 1.0), 1.9, false);
-            StageFog.BackstageSetupFog(0.0075, FLinearColor(0.05, 0.09, 0.16, 1.0), false);
+                FLinearColor(0.70, 0.84, 1.0, 1.0), 0.22, false);
+            StageFog.BackstageSetupFog(0.0005, FLinearColor(0.04, 0.07, 0.13, 1.0), false);
         }
         else
         {
             KeySpot.BackstageSetupSpotLight(FVector(-120.0, -40.0, 410.0), FRotator(-66.0, 14.0, 0.0),
-                FLinearColor(1.0, 0.93, 0.82, 1.0), 65000.0, 2400.0, 28.0, 56.0, false);
+                FLinearColor(1.0, 0.93, 0.82, 1.0), 1600.0, 2400.0, 28.0, 56.0, false);
             RimSpotLeft.BackstageSetupSpotLight(FVector(160.0, -440.0, 320.0), FRotator(-28.0, 110.0, 0.0),
-                FLinearColor(0.26, 0.64, 1.0, 1.0), 38000.0, 2200.0, 22.0, 50.0, false);
+                FLinearColor(0.26, 0.64, 1.0, 1.0), 950.0, 2200.0, 22.0, 50.0, false);
             RimSpotRight.BackstageSetupSpotLight(FVector(160.0, 440.0, 320.0), FRotator(-28.0, -110.0, 0.0),
-                FLinearColor(1.0, 0.34, 0.48, 1.0), 38000.0, 2200.0, 22.0, 50.0, false);
+                FLinearColor(1.0, 0.34, 0.48, 1.0), 950.0, 2200.0, 22.0, 50.0, false);
             StageFill.BackstageSetupPointLight(FVector(-260.0, 0.0, 220.0),
-                FLinearColor(0.68, 0.80, 0.98, 1.0), 22000.0, 2000.0, false);
+                FLinearColor(0.68, 0.80, 0.98, 1.0), 420.0, 2000.0, false);
             BounceDir.BackstageSetupDirectionalLight(FRotator(-35.0, 18.0, 0.0),
-                FLinearColor(0.75, 0.85, 0.98, 1.0), 1.8, false);
-            StageFog.BackstageSetupFog(0.0045, FLinearColor(0.05, 0.09, 0.14, 1.0), false);
+                FLinearColor(0.75, 0.85, 0.98, 1.0), 0.20, false);
+            StageFog.BackstageSetupFog(0.0004, FLinearColor(0.05, 0.09, 0.14, 1.0), false);
         }
 
         ParcelShadow.BackstageSetupPart(n"Shadow", FVector2D(46.0, 26.0), FVector2D(0.5, 0.5),
@@ -881,10 +884,10 @@ class ABackstageStageActor : AActor
             }
 
             const FVector2D UmbStage = Backstage::UmbrellaAt(View.Time);
-            const FVector UmbWorld = Controller.BackstageWorldPoint(UmbStage, bUmbrellaOpen ? 168.0 : 108.0);
+            const FVector UmbWorld = Controller.BackstageWorldPoint(UmbStage, bUmbrellaOpen ? 196.0 : 108.0);
             const FVector UmbFloor = Controller.BackstageWorldPoint(UmbStage, 1.5);
             UmbrellaShadow.SetRelativeLocation(FVector(UmbFloor.X - 4.0, UmbFloor.Y, 1.5));
-            UmbrellaSprite.SetRelativeLocation(FVector(UmbWorld.X - 6.0, UmbWorld.Y, UmbWorld.Z));
+            UmbrellaSprite.SetRelativeLocation(FVector(UmbWorld.X + 4.0, UmbWorld.Y, UmbWorld.Z));
             UmbrellaSprite.SetRelativeRotation(FacingCam);
 
             const FVector2D SignStage = Backstage::FanSignAt(View.Time);

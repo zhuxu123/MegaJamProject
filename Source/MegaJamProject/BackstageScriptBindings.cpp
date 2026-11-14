@@ -9,6 +9,8 @@
 #include "Components/SpotLightComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/Canvas.h"
+#include "Engine/Engine.h"
+#include "Engine/Font.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/Texture2D.h"
 #include "Engine/TextureRenderTarget2D.h"
@@ -25,6 +27,7 @@
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialInterface.h"
 #include "Misc/App.h"
+#include "Misc/CommandLine.h"
 #include "Misc/FileHelper.h"
 #include "Misc/PackageName.h"
 #include "Misc/Paths.h"
@@ -33,6 +36,7 @@
 #include "PaperSpriteComponent.h"
 #include "Styling/CoreStyle.h"
 #include "TextureResource.h"
+#include "UnrealClient.h"
 #include "UObject/Package.h"
 
 namespace
@@ -1694,6 +1698,16 @@ namespace
 		Camera->bConstrainAspectRatio = false;
 		Camera->SetFieldOfView(FOV);
 		Camera->SetWorldLocationAndRotation(Location, Rotation);
+		Camera->PostProcessSettings.bOverride_AutoExposureMethod = true;
+		Camera->PostProcessSettings.AutoExposureMethod = AEM_Histogram;
+		Camera->PostProcessSettings.bOverride_AutoExposureMinBrightness = true;
+		Camera->PostProcessSettings.AutoExposureMinBrightness = 1.0f;
+		Camera->PostProcessSettings.bOverride_AutoExposureMaxBrightness = true;
+		Camera->PostProcessSettings.AutoExposureMaxBrightness = 1.0f;
+		Camera->PostProcessSettings.bOverride_AutoExposureBias = true;
+		Camera->PostProcessSettings.AutoExposureBias = -0.35f;
+		Camera->PostProcessSettings.bOverride_BloomIntensity = true;
+		Camera->PostProcessSettings.BloomIntensity = 0.12f;
 
 		if (bActivateViewTarget && Controller->GetViewTarget() != CameraHost)
 		{
@@ -1739,6 +1753,16 @@ namespace
 
 		Capture->TextureTarget = RT;
 		Capture->FOVAngle = FOV;
+		Capture->PostProcessSettings.bOverride_AutoExposureMethod = true;
+		Capture->PostProcessSettings.AutoExposureMethod = AEM_Histogram;
+		Capture->PostProcessSettings.bOverride_AutoExposureMinBrightness = true;
+		Capture->PostProcessSettings.AutoExposureMinBrightness = 1.0f;
+		Capture->PostProcessSettings.bOverride_AutoExposureMaxBrightness = true;
+		Capture->PostProcessSettings.AutoExposureMaxBrightness = 1.0f;
+		Capture->PostProcessSettings.bOverride_AutoExposureBias = true;
+		Capture->PostProcessSettings.AutoExposureBias = -0.35f;
+		Capture->PostProcessSettings.bOverride_BloomIntensity = true;
+		Capture->PostProcessSettings.BloomIntensity = 0.12f;
 		Capture->SetWorldLocationAndRotation(Location, Rotation);
 		Capture->CaptureScene();
 	}
@@ -1924,6 +1948,21 @@ namespace
 		}
 	};
 
+	UFont* GetBackstageUIFont()
+	{
+		static TWeakObjectPtr<UFont> CachedRoboto;
+		if (CachedRoboto.IsValid())
+		{
+			return CachedRoboto.Get();
+		}
+		UFont* Font = LoadObject<UFont>(nullptr, TEXT("/Engine/EngineFonts/Roboto.Roboto"));
+		if (Font)
+		{
+			CachedRoboto = Font;
+		}
+		return Font;
+	}
+
 	void BackstageDrawText(AHUD* HUD, const FString& Text, FLinearColor Color, float X, float Y, UFont* Font, float Scale, bool bScalePosition)
 	{
 		UCanvas* HudCanvas = HUD ? static_cast<FBackstageHudAccessor*>(HUD)->GetProtectedCanvas() : nullptr;
@@ -1932,10 +1971,15 @@ namespace
 			return;
 		}
 		const int32 FontPx = FMath::Clamp(FMath::RoundToInt(14.0f * FMath::Max(Scale, 0.25f)), 8, 96);
-		const FSlateFontInfo FontInfo = FCoreStyle::GetDefaultFontStyle("Regular", FontPx);
-		FCanvasTextItem TextItem(FVector2D(X, Y), FText::FromString(Text), FontInfo, Color);
-		TextItem.Scale = FVector2D(1.0, 1.0);
-		HudCanvas->DrawItem(TextItem);
+		if (UFont* Roboto = GetBackstageUIFont())
+		{
+			const FSlateFontInfo FontInfo(Roboto, FontPx);
+			FCanvasTextItem TextItem(FVector2D(X, Y), FText::FromString(Text), FontInfo, Color);
+			TextItem.Scale = FVector2D(1.0, 1.0);
+			HudCanvas->DrawItem(TextItem);
+			return;
+		}
+		HUD->DrawText(Text, Color, X, Y, GEngine ? GEngine->GetLargeFont() : nullptr, FMath::Max(Scale * 0.72f, 0.35f), false);
 	}
 
 	float BackstageMeasureTextWidth(const AHUD* HUD, const FString& Text, float Scale)
@@ -1945,9 +1989,21 @@ namespace
 			return 0.0f;
 		}
 		const int32 FontPx = FMath::Clamp(FMath::RoundToInt(14.0f * FMath::Max(Scale, 0.25f)), 8, 96);
-		const FSlateFontInfo FontInfo = FCoreStyle::GetDefaultFontStyle("Regular", FontPx);
+		UFont* Roboto = GetBackstageUIFont();
+		const FSlateFontInfo FontInfo = Roboto ? FSlateFontInfo(Roboto, FontPx) : FCoreStyle::GetDefaultFontStyle("Regular", FontPx);
 		const TSharedRef<FSlateFontMeasure> FontMeasure = FSlateApplication::Get().GetRenderer()->GetFontMeasureService();
 		return static_cast<float>(FontMeasure->Measure(Text, FontInfo).X);
+	}
+
+	bool BackstageHasCommandArg(const APlayerController* Controller, const FString& Arg)
+	{
+		return FParse::Param(FCommandLine::Get(), *Arg);
+	}
+
+	void BackstageRequestScreenshot(const APlayerController* Controller, const FString& FileName)
+	{
+		const FString FullPath = FPaths::ProjectSavedDir() / TEXT("Screenshots") / FileName;
+		FScreenshotRequest::RequestScreenshot(FullPath, true, false);
 	}
 
 	FVector2D BackstageProjectWorld(const APlayerController* Controller, const FVector& WorldPos)
@@ -2024,6 +2080,8 @@ static const FAngelscriptBind BindBackstageControls(
 		Controller.Method("void BackstageOpenMap(const FName& MapName)", &BackstageOpenMap);
 		Controller.Method("void BackstageSetLevel(int32 LevelIndex)", &BackstageSetLevel);
 		Controller.Method("int32 BackstageGetLevel() const", &BackstageGetLevel);
+		Controller.Method("bool BackstageHasCommandArg(const FString& Arg) const", &BackstageHasCommandArg);
+		Controller.Method("void BackstageRequestScreenshot(const FString& FileName) const", &BackstageRequestScreenshot);
 		Controller.Method("void BackstageQuitGame()", &BackstageQuitGame);
 		Controller.Method("AActor BackstageFindStageActor() const", &BackstageFindStageActor);
 

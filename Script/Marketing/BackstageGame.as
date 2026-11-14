@@ -25,6 +25,8 @@ class ABackstageController : APlayerController
     float MenuClock = 0.0;
     float LiveArmTimer = 0.0;
     float ShutterFlash = 0.0;
+    int SnapStep = 0;
+    int SnapTicks = 0;
 
     void EnsureStage()
     {
@@ -135,6 +137,63 @@ class ABackstageController : APlayerController
 
         EnsureStage();
 
+        if (BackstageHasCommandArg("BackstageSnap"))
+        {
+            ++SnapTicks;
+            if (SnapStep == 0 && SnapTicks == 15)
+            {
+                StartStageRound();
+                Round.Camera.Time = 26.0;
+                Round.TargetCamera.Time = 26.0;
+                Round.Camera.Pan = 0.85;
+                Round.TargetCamera.Pan = 0.85;
+                Round.Camera.Zoom = 1.60;
+                Round.TargetCamera.Zoom = 1.60;
+                Round.bPaused = true;
+                SnapStep = 1;
+                SnapTicks = 0;
+            }
+            else if (SnapStep == 1 && SnapTicks == 12)
+            {
+                BackstageRequestScreenshot("Verify_Live.png");
+                SnapStep = 2;
+                SnapTicks = 0;
+            }
+            else if (SnapStep == 2 && SnapTicks == 10)
+            {
+                Round.CapturePending();
+                if (StageActor != nullptr)
+                {
+                    StageActor.SyncToView(this, Round.PendingPhoto, true, Round.LevelIndex);
+                    BackstageCapturePhoto(StageActor, Backstage::PendingCaptureSlot, Backstage::EffectiveAngle(Round.PendingPhoto),
+                        Backstage::EffectiveCenter(Round.PendingPhoto), Round.PendingPhoto.Pan, Round.PendingPhoto.Tilt, Round.PendingPhoto.Zoom);
+                }
+                Round.AcceptPending();
+                if (StageActor != nullptr && Round.Photos.Num() > 0)
+                {
+                    BackstageCapturePhoto(StageActor, 0, Backstage::EffectiveAngle(Round.Photos[0]),
+                        Backstage::EffectiveCenter(Round.Photos[0]), Round.Photos[0].Pan, Round.Photos[0].Tilt, Round.Photos[0].Zoom);
+                }
+                Round.ResultsClock = 1.0;
+                SnapStep = 3;
+                SnapTicks = 0;
+            }
+            else if (SnapStep == 3 && SnapTicks == 12)
+            {
+                BackstageRequestScreenshot("Verify_Results.png");
+                SnapStep = 4;
+                SnapTicks = 0;
+            }
+            else if (SnapStep == 4 && SnapTicks == 10)
+            {
+                BackstageQuitGame();
+                return;
+            }
+            if (StageActor != nullptr)
+                StageActor.SyncToView(this, Round.Camera, true, Round.LevelIndex);
+            return;
+        }
+
         const auto PreviousPhase = Round.Phase;
         switch (Round.Phase)
         {
@@ -184,15 +243,15 @@ class ABackstageController : APlayerController
                 if (Pressed(n"LeftMouseButton"))
                 {
                     const FVector2D Pointer = BackstagePointer();
-                    if (Pointer.X >= 48 && Pointer.X <= 278 && Pointer.Y >= 644 && Pointer.Y <= 692)
+                    if (Pointer.X >= 48 && Pointer.X <= 306 && Pointer.Y >= 644 && Pointer.Y <= 692)
                         StartStageRound();
-                    else if (Round.LevelIndex == 0 && Pointer.X >= 296 && Pointer.X <= 564 && Pointer.Y >= 644 && Pointer.Y <= 692)
+                    else if (Round.LevelIndex == 0 && Pointer.X >= 324 && Pointer.X <= 592 && Pointer.Y >= 644 && Pointer.Y <= 692)
                     {
                         BackstageSetLevel(1);
                         Round.PrepareBriefing(1);
                         break;
                     }
-                    else if (Pointer.X >= 582 && Pointer.X <= 810 && Pointer.Y >= 644 && Pointer.Y <= 692)
+                    else if (Pointer.X >= 610 && Pointer.X <= 838 && Pointer.Y >= 644 && Pointer.Y <= 692)
                     {
                         BackstageOpenMap(n"/Game/levels/MainMenu");
                         return;
@@ -706,25 +765,32 @@ class ABackstageHUD : AHUD
             }
         }
 
+        // 90s VHS / Director Monitor top & bottom letterbox OSD bands for crisp legibility
+        Box(FLinearColor(0.02, 0.03, 0.05, 0.78), 0, 0, 1280, 96);
+        Box(FLinearColor(0.02, 0.03, 0.05, 0.82), 0, 622, 1280, 98);
+        Box(FLinearColor(Mint.R, Mint.G, Mint.B, 0.25), 0, 96, 1280, 1);
+        Box(FLinearColor(Mint.R, Mint.G, Mint.B, 0.25), 0, 622, 1280, 1);
+
         Viewfinder(Round.Camera, 28, 22, 1224, 676, true);
 
         const bool bBlink = (int(Clock * 2.0) % 2) == 0;
-        FString ModeText = bBlink ? "● PLAY 1.0x  超梦" : "  PLAY 1.0x  超梦";
+        FString ModeText = bBlink ? "● REC  1.0x  导演取景" : "  REC  1.0x  导演取景";
         FLinearColor ModeColor = Mint;
         if (Math::Abs(Round.ScrubInput) > 0.05)
         {
-            ModeText = Round.ScrubInput < 0 ? "<< REW 3.0x  倒放" : ">> FF 3.0x   快进";
+            ModeText = Round.ScrubInput < 0 ? "<< REW 3.0x  倒带" : ">> FF  3.0x  快进";
             ModeColor = Gold;
         }
         else if (Round.bPaused)
         {
-            ModeText = "|| PAUSE     暂停";
+            ModeText = "|| PAUSE     定格审片";
             ModeColor = ArtistColor;
         }
 
-        ShadowText(ModeText, 48, 40, ModeColor, 1.24);
-        ShadowText(f"CAM-0{Round.Camera.Station + 1}   PAN {int(Round.Camera.Pan * 30)}°   TILT {int(Round.Camera.Tilt * 15)}°",
-            48, 68, Paper, 1.05);
+        ShadowText(ModeText, 48, 34, ModeColor, 1.24);
+        ShadowText(f"CH-0{Round.Camera.Station + 1}   PAN {int(Round.Camera.Pan * 30)}°   TILT {int(Round.Camera.Tilt * 15)}°",
+            48, 64, Paper, 1.05);
+        CenteredShadowText("VHS-HQ  SP  //  1996.11.14  DIRECTOR CUT", 640, 38, Gold, 0.98);
 
         ShadowText(f"GOAL  {Round.Photos.Num()}/{Round.RequiredFrameCount()}   SHUTTER {Round.Shutters}/6", 880, 40, Paper, 1.12);
         for (int i = 0; i < Backstage::MaxPhotos; ++i)
@@ -1038,23 +1104,28 @@ class ABackstageHUD : AHUD
 
         // Verification & Editorial Columns on Right Side
         const float ColX = SheetX + 576;
-        Text("▶ 采编判定结果", ColX, SheetY + 170, PrintInk, 1.24);
-        Text(Result.CheckTimeText, ColX, SheetY + 206, Result.bTimeMatched ? PrintGreen : PrintCrimson, 1.08);
-        Text(Result.CheckSubjectText, ColX, SheetY + 236, Result.bSubjectsMatched ? PrintGreen : PrintCrimson, 1.08);
-        Text(Result.Evidence, ColX, SheetY + 268, PrintMuted, 1.04);
+        Text("▶ 采编判定结果", ColX, SheetY + 170, PrintInk, 1.22);
+        Text(Result.CheckTimeText, ColX, SheetY + 206, Result.bTimeMatched ? PrintGreen : PrintCrimson, 0.96);
+        Text(Result.CheckSubjectText, ColX, SheetY + 236, Result.bSubjectsMatched ? PrintGreen : PrintCrimson, 0.92);
+        if (Round.Cut.Num() > 0)
+        {
+            const FBackstagePhoto& Shot0 = Round.Cut[0];
+            Text(f"成片参数：CH-0{Shot0.Station + 1} · 时码 {int(Shot0.Time)}s · 变焦 {int(Shot0.Zoom * 100)}%",
+                ColX, SheetY + 268, PrintMuted, 0.92);
+        }
 
         Box(PrintInk, ColX, SheetY + 304, 540, 1);
         Text(f"关注度 {Signed(Result.Attention)}    公司信任 {Signed(Result.CompanyTrust)}    公众信任 {Signed(Result.PublicTrust)}",
-            ColX, SheetY + 318, PrintInk, 1.18);
-        Text("热搜评论：" + Result.Comment, ColX, SheetY + 358, PrintInk, 1.04);
-        Text("公关反馈：" + Result.Company, ColX, SheetY + 392, PrintInk, 1.04);
-        Text(Result.Person, ColX, SheetY + 426, PrintMuted, 1.02);
+            ColX, SheetY + 318, PrintInk, 1.14);
+        Text("热搜评论：" + Result.Comment, ColX, SheetY + 358, PrintInk, 0.94);
+        Text("公关反馈：" + Result.Company, ColX, SheetY + 392, PrintInk, 0.92);
+        Text(Result.Person, ColX, SheetY + 426, PrintMuted, 0.92);
 
         Box(FLinearColor(0.08, 0.10, 0.12, 0.08 * Fade), SheetX + 32, SheetY + 478, SheetW - 64, 90);
         Text(Result.bPassed
             ? "▶ 本关达成：舆论走势已按照公关预期发酵，头版报道顺利发出！"
             : "▶ 未过审提示：请点击下方【重新拍摄本关】，调整时机、缩放或左右构图后再试。",
-            SheetX + 48, SheetY + 498, Result.bPassed ? PrintGreen : PrintCrimson, 1.18);
+            SheetX + 48, SheetY + 498, Result.bPassed ? PrintGreen : PrintCrimson, 1.12);
 
         // Animated editorial stamp seal
         const float StampT = EaseOutCubic((Round.ResultsClock - 0.32) / 0.28);
@@ -1070,23 +1141,23 @@ class ABackstageHUD : AHUD
         if (Fade < 0.35)
             return;
 
-        const bool bHoverReplay = Pointer.X >= 48 && Pointer.X <= 278 && Pointer.Y >= 644 && Pointer.Y <= 692;
-        Box(bHoverReplay ? FLinearColor(0.11, 0.25, 0.24, 0.96) : Panel, 48, 644, 230, 48);
-        CornerBrackets(48, 644, 230, 48, 12, 2, bHoverReplay ? Mint : Muted);
-        ShadowText("▶ 重新拍摄本关 (Enter)", 70, 658, bHoverReplay ? Mint : Paper, 1.12);
+        const bool bHoverReplay = Pointer.X >= 48 && Pointer.X <= 306 && Pointer.Y >= 644 && Pointer.Y <= 692;
+        Box(bHoverReplay ? FLinearColor(0.11, 0.25, 0.24, 0.96) : Panel, 48, 644, 258, 48);
+        CornerBrackets(48, 644, 258, 48, 12, 2, bHoverReplay ? Mint : Muted);
+        ShadowText("▶ 重新拍摄本关 (Enter)", 68, 658, bHoverReplay ? Mint : Paper, 1.06);
 
         if (Round.LevelIndex == 0)
         {
-            const bool bHoverNext = Pointer.X >= 296 && Pointer.X <= 564 && Pointer.Y >= 644 && Pointer.Y <= 692;
-            Box(bHoverNext ? FLinearColor(0.11, 0.24, 0.18, 0.96) : Panel, 296, 644, 268, 48);
-            CornerBrackets(296, 644, 268, 48, 12, 2, bHoverNext ? Mint : Muted);
-            ShadowText("▶ 下一关：慈善后台 (N)", 324, 658, bHoverNext ? Mint : Paper, 1.12);
+            const bool bHoverNext = Pointer.X >= 324 && Pointer.X <= 592 && Pointer.Y >= 644 && Pointer.Y <= 692;
+            Box(bHoverNext ? FLinearColor(0.11, 0.24, 0.18, 0.96) : Panel, 324, 644, 268, 48);
+            CornerBrackets(324, 644, 268, 48, 12, 2, bHoverNext ? Mint : Muted);
+            ShadowText("▶ 下一关：慈善后台 (N)", 350, 658, bHoverNext ? Mint : Paper, 1.06);
         }
 
-        const bool bHoverMenu = Pointer.X >= 582 && Pointer.X <= 810 && Pointer.Y >= 644 && Pointer.Y <= 692;
-        Box(bHoverMenu ? FLinearColor(0.16, 0.12, 0.14, 0.96) : Panel, 582, 644, 228, 48);
-        CornerBrackets(582, 644, 228, 48, 12, 2, bHoverMenu ? Gold : Muted);
-        ShadowText("返回主菜单  (M)", 626, 658, bHoverMenu ? Gold : Muted, 1.12);
+        const bool bHoverMenu = Pointer.X >= 610 && Pointer.X <= 838 && Pointer.Y >= 644 && Pointer.Y <= 692;
+        Box(bHoverMenu ? FLinearColor(0.16, 0.12, 0.14, 0.96) : Panel, 610, 644, 228, 48);
+        CornerBrackets(610, 644, 228, 48, 12, 2, bHoverMenu ? Gold : Muted);
+        ShadowText("返回主菜单  (M)", 652, 658, bHoverMenu ? Gold : Muted, 1.06);
     }
 
     FString Signed(int Value)
