@@ -13,6 +13,8 @@ class ABackstageController : APlayerController
     bool bWasD = false;
     bool bWasQ = false;
     bool bWasE = false;
+    bool bWasW = false;
+    bool bWasS = false;
 
     void EnsureStage()
     {
@@ -56,6 +58,7 @@ class ABackstageController : APlayerController
                 if (Pressed(n"Enter"))
                 {
                     Round.Start();
+                    Round.EnableBraindance();
                     BackstageClearPhotos();
                     EditSlot = 0;
                 }
@@ -94,11 +97,30 @@ class ABackstageController : APlayerController
 
     void HandleCamera(float Delta)
     {
-        if (Pressed(n"One")) Round.Camera.Station = 0;
-        if (Pressed(n"Two")) Round.Camera.Station = 1;
-        if (Pressed(n"Three")) Round.Camera.Station = 2;
-        Backstage::AdjustView(Round.Camera, CameraAxis(n"A", n"D", bWasA, bWasD, Delta),
-            CameraAxis(n"Q", n"E", bWasQ, bWasE, Delta));
+        if (Pressed(n"One")) Round.SetTargetStation(0);
+        if (Pressed(n"Two")) Round.SetTargetStation(1);
+        if (Pressed(n"Three")) Round.SetTargetStation(2);
+
+        const FVector2D Mouse = BackstageMouseDelta();
+        const float Wheel = BackstageWheelDelta();
+        const float TiltAxis = CameraAxis(n"S", n"W", bWasS, bWasW, Delta);
+        const float ZoomAxis = CameraAxis(n"Q", n"E", bWasQ, bWasE, Delta);
+        Round.PushCamera(Mouse.X * 0.28, Mouse.Y * 0.20 + TiltAxis * 1.6, Wheel * 0.28 + ZoomAxis * 1.8);
+
+        const bool bRewind = BackstageHeld(n"A") || BackstageHeld(n"Left");
+        const bool bForward = BackstageHeld(n"D") || BackstageHeld(n"Right");
+        Round.SetScrubInput((bForward ? 1.0 : 0.0) - (bRewind ? 1.0 : 0.0));
+
+        if (Pressed(n"R") || Pressed(n"RightMouseButton") || Pressed(n"Down"))
+            Round.TogglePause();
+
+        if (Pressed(n"BackSpace") || Pressed(n"Home"))
+        {
+            Round.Camera.Time = 0.0;
+            Round.TargetCamera.Time = 0.0;
+            Round.PlaybackSpeed = 0.0;
+        }
+
         if (Pressed(n"SpaceBar"))
         {
             const int PrevCount = Round.Photos.Num();
@@ -108,10 +130,10 @@ class ABackstageController : APlayerController
                 const int NewIndex = Round.Photos.Num() - 1;
                 const FBackstagePhoto& Captured = Round.Photos[NewIndex];
                 StageActor.SyncToView(this, Captured, true);
-                BackstageCapturePhoto(StageActor, NewIndex, Captured.Station, Captured.Pan, Captured.Zoom);
+                BackstageCapturePhoto(StageActor, NewIndex, Backstage::EffectiveAngle(Captured),
+                    Backstage::EffectiveCenter(Captured), Captured.Pan, Captured.Tilt, Captured.Zoom);
             }
         }
-        if (Pressed(n"R")) Round.Replay();
         if (Pressed(n"Enter") && Round.Photos.Num() >= Backstage::FrameCount) Round.Phase = EBackstagePhase::Edit;
     }
 
@@ -142,7 +164,13 @@ class ABackstageController : APlayerController
             Round.Headline = EBackstageHeadline((int(Round.Headline) + 1) % 3);
         if (Pressed(n"P")) Round.Preview(false);
         if (Pressed(n"Enter")) Round.Preview(true);
-        if (Pressed(n"R")) Round.Replay();
+        if (Pressed(n"R"))
+        {
+            if (Round.bBraindanceActive)
+                Round.ReturnToBraindance();
+            else
+                Round.Replay();
+        }
         if (Pressed(n"BackSpace"))
         {
             Round = FBackstageRound();
@@ -272,27 +300,58 @@ class ABackstageHUD : AHUD
         Text("去慈善活动后台拍三张照片，剪成一条能体现艺人亲和力的作品。", 80, 262, Paper, 1.48);
         Text("艺人私信", 80, 331, ArtistColor, 1.28);
         Text("我赶着上场。后台如果有乱七八糟的事，麻烦别发出去。", 80, 375, Paper, 1.48);
-        Text("现场 50 秒   ·   6 次快门   ·   1 次回看   ·   发布 3 张", 80, 483, Muted, 1.30);
+        Text("50 秒超梦回放（支持倒放与暂停）   ·   6 次快门   ·   发布 3 张", 80, 483, Muted, 1.30);
         Text("[ Enter ]  前往后台", 48, 638, Mint, 1.55);
     }
 
     void Live(const FBackstageRound&in Round)
     {
-        Text(f"机位 {Round.Camera.Station + 1}  /  {int(Round.Camera.Time)} 秒", 48, 82, Paper, 1.36);
-        Text(f"转向 {int(Round.Camera.Pan * 30)}°   变焦 {int(Round.Camera.Zoom * 100)}%", 460, 82, Muted, 1.18);
-        Text(f"快门 {Round.Shutters} / 6    回看 {Round.Replays} / 1", 898, 82, Paper, 1.36);
-        Viewfinder(Round.Camera, 48, 125, 1184, 445, true);
+        const int WholeSec = int(Round.Camera.Time);
+        const int Tenths = int(Round.Camera.Time * 10.0) % 10;
+        const FString StatusLabel = Math::Abs(Round.ScrubInput) > 0.05
+            ? (Round.ScrubInput < 0 ? "倒放 << 3x" : "快进 >> 3x")
+            : (Round.bPaused ? "暂停 ||" : "超梦回放 1x");
+        const FLinearColor StatusColor = Math::Abs(Round.ScrubInput) > 0.05 ? Gold : (Round.bPaused ? ArtistColor : Mint);
+
+        Text(f"机位 {Round.Camera.Station + 1}  /  {WholeSec}.{Tenths} 秒", 48, 82, Paper, 1.30);
+        Text(StatusLabel, 330, 82, StatusColor, 1.24);
+        Text(f"横移 {int(Round.Camera.Pan * 30)}°   俯仰 {int(Round.Camera.Tilt * 15)}°   变焦 {int(Round.Camera.Zoom * 100)}%", 520, 82, Muted, 1.12);
+        Text(f"快门 {Round.Shutters} / 6", 1070, 82, Paper, 1.30);
+
+        Viewfinder(Round.Camera, 48, 125, 1184, 435, true);
         if (Round.ReplayNotice > 0)
         {
             Box(Ink, 365, 136, 538, 43);
-            Text("已回到开场，保留已拍素材和剩余快门", 389, 145, Mint, 1.18);
+            Text("已返回超梦时间轴，可继续倒放、微调机位与补拍", 389, 145, Mint, 1.16);
         }
-        Box(Panel, 48, 580, 1184, 5);
-        Box(Mint, 48, 580, 1184 * Round.Camera.Time / Backstage::Duration, 5);
-        Text("艺人", 48, 607, ArtistColor, 1.08);
-        Text("志愿者", 126, 607, VolunteerColor, 1.08);
-        Text("工作人员", 230, 607, CoordinatorColor, 1.08);
-        Text("1–3 机位    A / D 转向    Q / E 变焦    空格 拍摄    R 回看    Enter 剪辑", 48, 659, Mint, 1.18);
+
+        const float TrackX = 48;
+        const float TrackY = 576;
+        const float TrackW = 1184;
+        Box(Panel, TrackX, TrackY, TrackW, 10);
+        Box(StatusColor, TrackX, TrackY, TrackW * (Round.Camera.Time / Backstage::Duration), 10);
+
+        const float MarkScale = TrackW / Backstage::Duration;
+        Box(Ink, TrackX + 7.0 * MarkScale - 1, TrackY - 2, 2, 14);
+        Box(Ink, TrackX + 14.0 * MarkScale - 1, TrackY - 2, 2, 14);
+        Box(Ink, TrackX + 23.0 * MarkScale - 1, TrackY - 2, 2, 14);
+        Box(Ink, TrackX + 33.0 * MarkScale - 1, TrackY - 2, 2, 14);
+        Box(Ink, TrackX + 42.0 * MarkScale - 1, TrackY - 2, 2, 14);
+
+        for (int PhotoIdx = 0; PhotoIdx < Round.Photos.Num(); ++PhotoIdx)
+        {
+            const float PinX = TrackX + TrackW * (Round.Photos[PhotoIdx].Time / Backstage::Duration);
+            Box(Gold, PinX - 2, TrackY - 4, 4, 18);
+        }
+
+        const float HeadX = TrackX + TrackW * (Round.Camera.Time / Backstage::Duration);
+        Box(Paper, HeadX - 2, TrackY - 6, 4, 22);
+
+        Text("艺人", 48, 608, ArtistColor, 1.08);
+        Text("志愿者", 126, 608, VolunteerColor, 1.08);
+        Text("工作人员", 230, 608, CoordinatorColor, 1.08);
+        Text("金色刻度 = 已拍照片时间点   |   Backspace 回到 0 秒", 805, 608, Muted, 1.04);
+        Text("鼠标 转向/俯仰   滚轮/Q/E 变焦   1–3 机位   A/D 倒放/快进   R/右键 暂停   空格 拍摄   Enter 剪辑", 48, 656, Mint, 1.08);
     }
 
     void Shot(const FBackstagePhoto&in Photo, float X, float Y, float W, float H, bool bLive = false)
@@ -411,7 +470,9 @@ class ABackstageHUD : AHUD
             Text("P 预览    Enter 发布", 48, 614, Mint, 1.30);
         else
             Text("选满 3 张后可预览或发布。", 48, 614, Paper, 1.30);
-        if (Round.Replays > 0)
+        if (Round.bBraindanceActive)
+            Text("R 返回超梦时间轴继续倒放与补拍", 472, 655, Muted, 1.09);
+        else if (Round.Replays > 0)
             Text("R 回看现场（保留素材和剩余快门）", 472, 655, Muted, 1.09);
         Text("Backspace 返回简报", 48, 655, Muted, 1.09);
     }

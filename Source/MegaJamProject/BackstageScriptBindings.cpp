@@ -13,6 +13,7 @@
 #include "GameFramework/Actor.h"
 #include "GameFramework/HUD.h"
 #include "GameFramework/PlayerController.h"
+#include "InputCoreTypes.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialInterface.h"
 #include "Misc/App.h"
@@ -1010,17 +1011,16 @@ namespace
 		return FMath::RadiansToDegrees(AngleRad);
 	}
 
-	void BackstageComputeCameraTransform(int32 Station, float Pan, float Zoom, FVector& OutLocation, FRotator& OutRotation, float& OutFOV)
+	void BackstageComputeCameraTransform(float AngleRad, float Center, float Pan, float Tilt, float Zoom, FVector& OutLocation, FRotator& OutRotation, float& OutFOV)
 	{
-		const float AngleRad = (Station == 0) ? 0.0f : ((Station == 1) ? -0.63f : 0.63f);
-		const float Center = (Station == 0) ? 0.0f : ((Station == 1) ? -0.78f : 0.65f);
 		const float YawDeg = FMath::RadiansToDegrees(AngleRad);
 		const FVector Forward(FMath::Cos(AngleRad), FMath::Sin(AngleRad), 0.0);
 		const FVector Right(-FMath::Sin(AngleRad), FMath::Cos(AngleRad), 0.0);
 		const double LateralShift = static_cast<double>(Center + Pan) * 100.0;
+		const double VerticalShift = static_cast<double>(Tilt) * 22.0;
 
-		OutLocation = Right * LateralShift - Forward * static_cast<double>(BackstageCameraDistance) + FVector(0.0, 0.0, 112.0);
-		OutRotation = FRotator(-3.2, YawDeg, 0.0);
+		OutLocation = Right * LateralShift - Forward * static_cast<double>(BackstageCameraDistance) + FVector(0.0, 0.0, 112.0 + VerticalShift);
+		OutRotation = FRotator(-3.2 + static_cast<double>(Tilt) * 4.8, YawDeg, 0.0);
 
 		const float TanHalfFOV = (100.0f / BackstageCameraDistance) / (2.0f * BackstageProjectionScale * FMath::Max(Zoom, 0.5f));
 		OutFOV = FMath::Clamp(FMath::RadiansToDegrees(2.0f * FMath::Atan(TanHalfFOV)), 18.0f, 90.0f);
@@ -1107,7 +1107,83 @@ namespace
 		return BackstageStationYaw(Station);
 	}
 
-	void BackstageSyncCamera(APlayerController* Controller, AActor* CameraHost, int32 Station, float Pan, float Zoom, bool bActivateViewTarget)
+	FVector2D BackstageMouseDelta(APlayerController* Controller)
+	{
+		if (!Controller)
+		{
+			return FVector2D::ZeroVector;
+		}
+
+		float RawDx = 0.0f;
+		float RawDy = 0.0f;
+		Controller->GetInputMouseDelta(RawDx, RawDy);
+
+		int32 Width = 0;
+		int32 Height = 0;
+		Controller->GetViewportSize(Width, Height);
+		float MouseX = 0.0f;
+		float MouseY = 0.0f;
+		const bool bHasMousePos = (Width > 0 && Height > 0 && Controller->GetMousePosition(MouseX, MouseY));
+
+		static TWeakObjectPtr<APlayerController> LastController;
+		static FVector2D LastMousePos = FVector2D::ZeroVector;
+		static bool bHasLastMousePos = false;
+
+		FVector2D PosDelta = FVector2D::ZeroVector;
+		if (bHasMousePos)
+		{
+			if (LastController.Get() == Controller && bHasLastMousePos)
+			{
+				PosDelta = FVector2D(MouseX - LastMousePos.X, MouseY - LastMousePos.Y);
+			}
+			LastController = Controller;
+			LastMousePos = FVector2D(MouseX, MouseY);
+			bHasLastMousePos = true;
+		}
+		else
+		{
+			bHasLastMousePos = false;
+		}
+
+		if (!FMath::IsNearlyZero(RawDx) || !FMath::IsNearlyZero(RawDy))
+		{
+			return FVector2D(
+				FMath::Clamp(static_cast<double>(RawDx) * 0.045, -0.35, 0.35),
+				FMath::Clamp(static_cast<double>(RawDy) * 0.045, -0.35, 0.35));
+		}
+
+		if (Width > 0 && Height > 0 && (FMath::Abs(PosDelta.X) < 250.0 && FMath::Abs(PosDelta.Y) < 250.0))
+		{
+			const double Scale = FMath::Max(1.0, FMath::Min(Width / 1280.0, Height / 720.0));
+			return FVector2D(
+				FMath::Clamp(PosDelta.X / (Scale * 180.0), -0.35, 0.35),
+				FMath::Clamp(-PosDelta.Y / (Scale * 180.0), -0.35, 0.35));
+		}
+		return FVector2D::ZeroVector;
+	}
+
+	float BackstageWheelDelta(const APlayerController* Controller)
+	{
+		if (!Controller)
+		{
+			return 0.0f;
+		}
+		float Wheel = Controller->GetInputAnalogKeyState(EKeys::MouseWheelAxis);
+		if (FMath::IsNearlyZero(Wheel))
+		{
+			if (Controller->WasInputKeyJustPressed(EKeys::MouseScrollUp))
+			{
+				Wheel += 1.0f;
+			}
+			if (Controller->WasInputKeyJustPressed(EKeys::MouseScrollDown))
+			{
+				Wheel -= 1.0f;
+			}
+		}
+		return Wheel;
+	}
+
+	void BackstageSyncCamera(APlayerController* Controller, AActor* CameraHost, float AngleRad, float Center, float Pan, float Tilt, float Zoom, bool bActivateViewTarget)
 	{
 		if (!Controller || !CameraHost)
 		{
@@ -1128,7 +1204,7 @@ namespace
 		FVector Location;
 		FRotator Rotation;
 		float FOV = 50.0f;
-		BackstageComputeCameraTransform(Station, Pan, Zoom, Location, Rotation, FOV);
+		BackstageComputeCameraTransform(AngleRad, Center, Pan, Tilt, Zoom, Location, Rotation, FOV);
 
 		Camera->bConstrainAspectRatio = false;
 		Camera->SetFieldOfView(FOV);
@@ -1140,7 +1216,7 @@ namespace
 		}
 	}
 
-	void BackstageCapturePhoto(APlayerController* Controller, AActor* CameraHost, int32 PhotoIndex, int32 Station, float Pan, float Zoom)
+	void BackstageCapturePhoto(APlayerController* Controller, AActor* CameraHost, int32 PhotoIndex, float AngleRad, float Center, float Pan, float Tilt, float Zoom)
 	{
 		if (IsRunningCommandlet() || !FApp::CanEverRender() || !CameraHost)
 		{
@@ -1171,7 +1247,7 @@ namespace
 		FVector Location;
 		FRotator Rotation;
 		float FOV = 50.0f;
-		BackstageComputeCameraTransform(Station, Pan, Zoom, Location, Rotation, FOV);
+		BackstageComputeCameraTransform(AngleRad, Center, Pan, Tilt, Zoom, Location, Rotation, FOV);
 
 		Capture->TextureTarget = RT;
 		Capture->FOVAngle = FOV;
@@ -1337,10 +1413,12 @@ static const FAngelscriptBind BindBackstageControls(
 		Controller.Method("bool BackstageHeld(const FName& KeyName) const", &BackstageHeld);
 		Controller.Method("void SetBackstagePointer(bool bVisible)", &SetBackstagePointer);
 		Controller.Method("FVector2D BackstagePointer() const", &BackstagePointer);
+		Controller.Method("FVector2D BackstageMouseDelta()", &BackstageMouseDelta);
+		Controller.Method("float32 BackstageWheelDelta() const", &BackstageWheelDelta);
 		Controller.Method("FVector BackstageWorldPoint(const FVector2D& StagePoint, float32 HeightUU) const", &BackstageWorldPoint);
 		Controller.Method("float32 BackstageCameraYaw(int32 Station) const", &BackstageCameraYaw);
-		Controller.Method("void BackstageSyncCamera(AActor CameraHost, int32 Station, float32 Pan, float32 Zoom, bool bActivateViewTarget)", &BackstageSyncCamera);
-		Controller.Method("void BackstageCapturePhoto(AActor CameraHost, int32 PhotoIndex, int32 Station, float32 Pan, float32 Zoom)", &BackstageCapturePhoto);
+		Controller.Method("void BackstageSyncCamera(AActor CameraHost, float32 AngleRad, float32 Center, float32 Pan, float32 Tilt, float32 Zoom, bool bActivateViewTarget)", &BackstageSyncCamera);
+		Controller.Method("void BackstageCapturePhoto(AActor CameraHost, int32 PhotoIndex, float32 AngleRad, float32 Center, float32 Pan, float32 Tilt, float32 Zoom)", &BackstageCapturePhoto);
 		Controller.Method("void BackstageClearPhotos()", &BackstageClearPhotos);
 
 		auto HUD = Binds.ExistingClassForTarget("AHUD");

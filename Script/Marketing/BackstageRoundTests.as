@@ -186,4 +186,98 @@ class UBackstageRoundTests : UAngelscriptTestSuite
         AssertTrue(TogetherCoord.State == EBackstageAnimState::Warm);
         AssertEquals(NAME_None, TogetherCoord.EmotionBadge);
     }
+
+    UFUNCTION(meta=(AngelscriptTest))
+    void BraindanceTimelineAndSmoothCameraWithElasticityWork()
+    {
+        FBackstageRound Round;
+        Round.Start();
+        Round.EnableBraindance();
+
+        // 1. Smooth curve damping on Pan, Tilt and Zoom
+        Round.PushCamera(1.0, 0.5, 0.5);
+        const float TargetPan = Round.TargetCamera.Pan;
+        const float TargetTilt = Round.TargetCamera.Tilt;
+        Round.Advance(0.04);
+        AssertTrue(Round.Camera.Pan > 0.05 && Round.Camera.Pan < TargetPan);
+        AssertTrue(Round.Camera.Tilt > 0.02 && Round.Camera.Tilt < TargetTilt);
+        AssertTrue(Round.Camera.Zoom > Backstage::InitialZoom && Round.Camera.Zoom < Round.TargetCamera.Zoom);
+
+        for (int Step = 0; Step < 25; ++Step)
+            Round.Advance(0.05);
+        AssertTrue(Math::Abs(Round.Camera.Pan - TargetPan) < 0.02);
+        AssertTrue(Math::Abs(Round.Camera.Tilt - TargetTilt) < 0.02);
+
+        // Subtle Limbus-style vertical tilt shifts viewfinder projection height slightly
+        FBackstagePhoto Tilted = Round.Camera;
+        FBackstagePhoto Flat = Round.Camera;
+        Tilted.Tilt = 0.8;
+        Flat.Tilt = 0.0;
+        AssertTrue(Backstage::ProjectHeight(Tilted, 0.67) > Backstage::ProjectHeight(Flat, 0.67));
+
+        // 2. Edge rubber-band overshoot & elastic rebound on Pan, Tilt, Zoom
+        Round.PushCamera(6.0, 6.0, 6.0);
+        Round.Advance(0.25);
+        AssertTrue(Round.Camera.Pan > Backstage::PanLimit);
+        AssertTrue(Round.Camera.Tilt > Backstage::TiltLimit);
+        AssertTrue(Round.Camera.Zoom > Backstage::ZoomMax);
+
+        for (int Step = 0; Step < 35; ++Step)
+            Round.Advance(0.05);
+        AssertTrue(Round.Camera.Pan <= Backstage::PanLimit + 0.02);
+        AssertTrue(Round.Camera.Tilt <= Backstage::TiltLimit + 0.02);
+        AssertTrue(Round.Camera.Zoom <= Backstage::ZoomMax + 0.02);
+
+        // 3. Smooth Station 1 -> 2 arc transition
+        Round.SetTargetStation(1);
+        Round.Advance(0.06);
+        AssertTrue(Round.Camera.SmoothAngle < -0.05 && Round.Camera.SmoothAngle > -0.58);
+        for (int Step = 0; Step < 30; ++Step)
+            Round.Advance(0.05);
+        AssertTrue(Math::Abs(Round.Camera.SmoothAngle - Backstage::StationAngle(1)) < 0.02);
+
+        // 4. Braindance timeline: play, rewind, pause, 50s hold, and Edit roundtrip
+        for (int Step = 0; Step < 10; ++Step)
+            Round.Advance(0.2);
+        const float PeakTime = Round.Camera.Time;
+        AssertTrue(PeakTime > 1.0);
+
+        Round.SetScrubInput(-1.0);
+        for (int Step = 0; Step < 8; ++Step)
+            Round.Advance(0.05);
+        const float RewoundTime = Round.Camera.Time;
+        AssertTrue(RewoundTime < PeakTime);
+
+        Round.SetScrubInput(0.0);
+        Round.TogglePause();
+        for (int Step = 0; Step < 15; ++Step)
+            Round.Advance(0.05);
+        const float HeldTime = Round.Camera.Time;
+        Round.Advance(1.0);
+        AssertTrue(Math::Abs(Round.Camera.Time - HeldTime) < 0.001);
+
+        Round.TogglePause();
+        for (int Step = 0; Step < 60; ++Step)
+            Round.Advance(1.0);
+        AssertTrue(Round.Phase == EBackstagePhase::Live);
+        AssertTrue(Round.Camera.Time >= Backstage::Duration - 0.01);
+        AssertTrue(Round.bPaused);
+
+        // Scrubbing backward from the 50s end works cleanly
+        Round.SetScrubInput(-1.0);
+        for (int Step = 0; Step < 10; ++Step)
+            Round.Advance(0.1);
+        Round.SetScrubInput(0.0);
+        AssertTrue(Round.Camera.Time < Backstage::Duration - 1.0);
+
+        Round.Capture();
+        Round.Capture();
+        Round.Capture();
+        Round.Phase = EBackstagePhase::Edit;
+        const int PrevReplays = Round.Replays;
+        Round.ReturnToBraindance();
+        AssertTrue(Round.Phase == EBackstagePhase::Live);
+        AssertEquals(3, Round.Photos.Num());
+        AssertEquals(PrevReplays, Round.Replays);
+    }
 }

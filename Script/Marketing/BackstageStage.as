@@ -405,8 +405,10 @@ class ABackstageStageActor : AActor
             return;
         InitializeStage(Controller);
 
-        const float CameraYaw = Controller.BackstageCameraYaw(View.Station);
-        Controller.BackstageSyncCamera(this, View.Station, View.Pan, View.Zoom, bActivateCamera);
+        const float CamAngleRad = Backstage::EffectiveAngle(View);
+        const float CamCenter = Backstage::EffectiveCenter(View);
+        const float CameraYaw = Math::RadiansToDegrees(CamAngleRad);
+        Controller.BackstageSyncCamera(this, CamAngleRad, CamCenter, View.Pan, View.Tilt, View.Zoom, bActivateCamera);
 
         if (ArtistPuppet != nullptr)
             ArtistPuppet.Sync(View.Time, Controller.BackstageWorldPoint(Backstage::ArtistAt(View.Time), 0.0), CameraYaw);

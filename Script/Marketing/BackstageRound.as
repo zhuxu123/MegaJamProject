@@ -23,7 +23,11 @@ struct FBackstagePhoto
     float Time = 0;
     int Station = 0;
     float Pan = 0;
+    float Tilt = 0;
     float Zoom = 1;
+    float SmoothAngle = 0;
+    float SmoothCenter = 0;
+    bool bHasSmoothStation = false;
 }
 
 struct FBackstageResult
@@ -47,6 +51,13 @@ namespace Backstage
     const float InitialZoom = 1.45;
     const float ProjectionScale = 0.136;
     const float CameraTap = 0.12;
+    const float PanLimit = 2.0;
+    const float PanOvershoot = 0.42;
+    const float TiltLimit = 1.0;
+    const float TiltOvershoot = 0.32;
+    const float ZoomMin = 1.0;
+    const float ZoomMax = 2.8;
+    const float ZoomOvershoot = 0.22;
 
     float PhotoLeft(int Index) { return 48 + Index * 200; }
     float SlotLeft(int Index) { return 48 + Index * 245; }
@@ -79,10 +90,65 @@ namespace Backstage
         return Positive - Negative;
     }
 
-    void AdjustView(FBackstagePhoto&inout View, float PanInput, float ZoomInput)
+    void AdjustView(FBackstagePhoto&inout View, float PanInput, float ZoomInput, float TiltInput = 0.0)
     {
-        View.Pan = Math::Clamp(View.Pan + PanInput * 2.5, -2.0, 2.0);
-        View.Zoom = Math::Clamp(View.Zoom + ZoomInput * 1.8, 1.0, 2.8);
+        View.Pan = Math::Clamp(View.Pan + PanInput * 2.5, -PanLimit, PanLimit);
+        View.Tilt = Math::Clamp(View.Tilt + TiltInput * 1.8, -TiltLimit, TiltLimit);
+        View.Zoom = Math::Clamp(View.Zoom + ZoomInput * 1.8, ZoomMin, ZoomMax);
+    }
+
+    float StationAngle(int Station)
+    {
+        return Station == 0 ? 0.0 : (Station == 1 ? -0.63 : 0.63);
+    }
+
+    float StationCenter(int Station)
+    {
+        return Station == 0 ? 0.0 : (Station == 1 ? -0.78 : 0.65);
+    }
+
+    float EffectiveAngle(const FBackstagePhoto&in Photo)
+    {
+        return Photo.bHasSmoothStation ? Photo.SmoothAngle : StationAngle(Photo.Station);
+    }
+
+    float EffectiveCenter(const FBackstagePhoto&in Photo)
+    {
+        return Photo.bHasSmoothStation ? Photo.SmoothCenter : StationCenter(Photo.Station);
+    }
+
+    float DampCurve(float Current, float Target, float Delta, float Speed)
+    {
+        const float Alpha = 1.0 - Math::Exp(-Speed * Math::Max(Delta, 0.0));
+        return Math::Lerp(Current, Target, Alpha);
+    }
+
+    float ElasticStep(float Current, float Delta, float MinVal, float MaxVal, float MaxOvershoot)
+    {
+        if (Delta == 0)
+            return Current;
+        float Resistance = 1.0;
+        if (Current < MinVal && Delta < 0)
+        {
+            const float T = Math::Clamp((MinVal - Current) / Math::Max(MaxOvershoot, 0.001), 0.0, 1.0);
+            Resistance = Math::Max(0.12, (1.0 - T) * (1.0 - T));
+        }
+        else if (Current > MaxVal && Delta > 0)
+        {
+            const float T = Math::Clamp((Current - MaxVal) / Math::Max(MaxOvershoot, 0.001), 0.0, 1.0);
+            Resistance = Math::Max(0.12, (1.0 - T) * (1.0 - T));
+        }
+        return Math::Clamp(Current + Delta * Resistance, MinVal - MaxOvershoot, MaxVal + MaxOvershoot);
+    }
+
+    float ReboundToRange(float Value, float MinVal, float MaxVal, float Delta, float Rate)
+    {
+        const float Alpha = 1.0 - Math::Exp(-Rate * Math::Max(Delta, 0.0));
+        if (Value < MinVal)
+            return Math::Lerp(Value, MinVal, Alpha);
+        if (Value > MaxVal)
+            return Math::Lerp(Value, MaxVal, Alpha);
+        return Value;
     }
 
     EBackstageBeat BeatAt(float Time)
@@ -130,15 +196,15 @@ namespace Backstage
 
     FVector2D Project(const FBackstagePhoto&in Photo, FVector2D Point)
     {
-        const float Angle = Photo.Station == 0 ? 0.0 : (Photo.Station == 1 ? -0.63 : 0.63);
-        const float Center = Photo.Station == 0 ? 0.0 : (Photo.Station == 1 ? -0.78 : 0.65);
+        const float Angle = EffectiveAngle(Photo);
+        const float Center = EffectiveCenter(Photo);
         return FVector2D(0.5 + (Point.X * Math::Cos(Angle) + Point.Y * Math::Sin(Angle)
             - Center - Photo.Pan) * ProjectionScale * Photo.Zoom, ProjectHeight(Photo, 0.67 + Point.Y * 0.15));
     }
 
     float ProjectHeight(const FBackstagePhoto&in Photo, float HeightAtWideAngle)
     {
-        return 0.65 + (HeightAtWideAngle - 0.65) * Photo.Zoom;
+        return 0.65 + (HeightAtWideAngle - 0.65) * Photo.Zoom + Photo.Tilt * 0.08 * Photo.Zoom;
     }
 
     bool Visible(const FBackstagePhoto&in Photo, FVector2D Point)
@@ -231,6 +297,7 @@ struct FBackstageRound
 {
     EBackstagePhase Phase = EBackstagePhase::Briefing;
     FBackstagePhoto Camera;
+    FBackstagePhoto TargetCamera;
     TArray<FBackstagePhoto> Photos;
     TArray<int> Slots;
     TArray<FBackstagePhoto> Edits;
@@ -242,12 +309,109 @@ struct FBackstageRound
     float PreviewTime = 0;
     float ReplayNotice = 0;
     bool bPublishing = false;
+    bool bBraindanceActive = false;
+    bool bSmoothCamera = false;
+    bool bPaused = false;
+    float PlaybackSpeed = 1.0;
+    float ScrubInput = 0.0;
+    bool bPushingPan = false;
+    bool bPushingTilt = false;
+    bool bPushingZoom = false;
 
     void Start()
     {
         this = FBackstageRound();
         Camera.Zoom = Backstage::InitialZoom;
+        TargetCamera = Camera;
         Phase = EBackstagePhase::Live;
+    }
+
+    void EnableBraindance()
+    {
+        bBraindanceActive = true;
+        bSmoothCamera = true;
+        bPaused = false;
+        PlaybackSpeed = 1.0;
+        ScrubInput = 0.0;
+        Camera.SmoothAngle = Backstage::StationAngle(Camera.Station);
+        Camera.SmoothCenter = Backstage::StationCenter(Camera.Station);
+        Camera.bHasSmoothStation = true;
+        TargetCamera = Camera;
+    }
+
+    void SetTargetStation(int Station)
+    {
+        const int ClampedStation = Math::Clamp(Station, 0, 2);
+        if (!bSmoothCamera)
+        {
+            TargetCamera = Camera;
+            bSmoothCamera = true;
+        }
+        if (!Camera.bHasSmoothStation)
+        {
+            Camera.SmoothAngle = Backstage::StationAngle(Camera.Station);
+            Camera.SmoothCenter = Backstage::StationCenter(Camera.Station);
+            Camera.bHasSmoothStation = true;
+        }
+        TargetCamera.Station = ClampedStation;
+        TargetCamera.SmoothAngle = Backstage::StationAngle(ClampedStation);
+        TargetCamera.SmoothCenter = Backstage::StationCenter(ClampedStation);
+        TargetCamera.bHasSmoothStation = true;
+        Camera.Station = ClampedStation;
+    }
+
+    void PushCamera(float PanDelta, float TiltDelta, float ZoomDelta)
+    {
+        if (!bSmoothCamera)
+        {
+            TargetCamera = Camera;
+            bSmoothCamera = true;
+        }
+        if (Math::Abs(PanDelta) > 0.0001)
+        {
+            TargetCamera.Pan = Backstage::ElasticStep(TargetCamera.Pan, PanDelta,
+                -Backstage::PanLimit, Backstage::PanLimit, Backstage::PanOvershoot);
+            bPushingPan = true;
+        }
+        if (Math::Abs(TiltDelta) > 0.0001)
+        {
+            TargetCamera.Tilt = Backstage::ElasticStep(TargetCamera.Tilt, TiltDelta,
+                -Backstage::TiltLimit, Backstage::TiltLimit, Backstage::TiltOvershoot);
+            bPushingTilt = true;
+        }
+        if (Math::Abs(ZoomDelta) > 0.0001)
+        {
+            TargetCamera.Zoom = Backstage::ElasticStep(TargetCamera.Zoom, ZoomDelta,
+                Backstage::ZoomMin, Backstage::ZoomMax, Backstage::ZoomOvershoot);
+            bPushingZoom = true;
+        }
+    }
+
+    void SetScrubInput(float Input)
+    {
+        ScrubInput = Math::Clamp(Input, -1.0, 1.0);
+    }
+
+    void TogglePause()
+    {
+        if (Phase != EBackstagePhase::Live)
+            return;
+        bPaused = !bPaused;
+        if (!bPaused && Camera.Time >= Backstage::Duration - 0.01)
+            Camera.Time = 0.0;
+    }
+
+    void ReturnToBraindance()
+    {
+        if (Phase != EBackstagePhase::Edit && Phase != EBackstagePhase::Live)
+            return;
+        Phase = EBackstagePhase::Live;
+        bBraindanceActive = true;
+        bSmoothCamera = true;
+        bPaused = true;
+        PlaybackSpeed = 0.0;
+        ScrubInput = 0.0;
+        ReplayNotice = 1.8;
     }
 
     void Advance(float Delta)
@@ -255,9 +419,52 @@ struct FBackstageRound
         if (Phase == EBackstagePhase::Live)
         {
             ReplayNotice = Math::Max(0, ReplayNotice - Delta);
-            Camera.Time = Math::Min(Camera.Time + Delta, Backstage::Duration);
-            if (Camera.Time >= Backstage::Duration)
-                Phase = EBackstagePhase::Edit;
+
+            if (bSmoothCamera)
+            {
+                if (!bPushingPan)
+                    TargetCamera.Pan = Backstage::ReboundToRange(TargetCamera.Pan, -Backstage::PanLimit, Backstage::PanLimit, Delta, 10.0);
+                if (!bPushingTilt)
+                    TargetCamera.Tilt = Backstage::ReboundToRange(TargetCamera.Tilt, -Backstage::TiltLimit, Backstage::TiltLimit, Delta, 10.0);
+                if (!bPushingZoom)
+                    TargetCamera.Zoom = Backstage::ReboundToRange(TargetCamera.Zoom, Backstage::ZoomMin, Backstage::ZoomMax, Delta, 10.0);
+
+                bPushingPan = false;
+                bPushingTilt = false;
+                bPushingZoom = false;
+
+                Camera.Pan = Backstage::DampCurve(Camera.Pan, TargetCamera.Pan, Delta, 13.5);
+                Camera.Tilt = Backstage::DampCurve(Camera.Tilt, TargetCamera.Tilt, Delta, 13.5);
+                Camera.Zoom = Backstage::DampCurve(Camera.Zoom, TargetCamera.Zoom, Delta, 12.0);
+                if (Camera.bHasSmoothStation)
+                {
+                    Camera.SmoothAngle = Backstage::DampCurve(Camera.SmoothAngle, TargetCamera.SmoothAngle, Delta, 9.5);
+                    Camera.SmoothCenter = Backstage::DampCurve(Camera.SmoothCenter, TargetCamera.SmoothCenter, Delta, 9.5);
+                }
+            }
+
+            if (bBraindanceActive)
+            {
+                float TargetSpeed = bPaused ? 0.0 : 1.0;
+                if (Math::Abs(ScrubInput) > 0.05)
+                    TargetSpeed = ScrubInput * 3.0;
+
+                PlaybackSpeed = Backstage::DampCurve(PlaybackSpeed, TargetSpeed, Delta, 12.0);
+                Camera.Time = Math::Clamp(Camera.Time + Delta * PlaybackSpeed, 0.0, Backstage::Duration);
+                TargetCamera.Time = Camera.Time;
+
+                if (Camera.Time >= Backstage::Duration && !bPaused && ScrubInput >= 0.0)
+                {
+                    bPaused = true;
+                    PlaybackSpeed = 0.0;
+                }
+            }
+            else
+            {
+                Camera.Time = Math::Min(Camera.Time + Delta, Backstage::Duration);
+                if (Camera.Time >= Backstage::Duration)
+                    Phase = EBackstagePhase::Edit;
+            }
         }
         else if (Phase == EBackstagePhase::Preview)
         {
@@ -278,6 +485,11 @@ struct FBackstageRound
 
     void Replay()
     {
+        if (bBraindanceActive)
+        {
+            ReturnToBraindance();
+            return;
+        }
         if ((Phase != EBackstagePhase::Edit && Phase != EBackstagePhase::Live) || Replays == 0)
             return;
         --Replays;
