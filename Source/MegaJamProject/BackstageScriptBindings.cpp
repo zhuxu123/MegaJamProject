@@ -64,7 +64,9 @@ namespace
 		Texture->Filter = TF_Bilinear;
 		Texture->AddressX = TA_Clamp;
 		Texture->AddressY = TA_Clamp;
+#if WITH_EDITORONLY_DATA
 		Texture->MipGenSettings = TMGS_NoMipmaps;
+#endif
 
 		FTexturePlatformData* PlatformData = Texture->GetPlatformData();
 		if (!PlatformData || PlatformData->Mips.Num() == 0)

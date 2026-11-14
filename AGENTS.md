@@ -141,6 +141,7 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 
 ### 打包版启动回归
 
+- `Config/DefaultGame.ini` 的 `MapsToCook` 必须包含 `/Game/levels/MainMenu` 和 `/Game/levels/Backstage`。选关通过脚本按名称打开 `Backstage`，打包后需从主菜单点击第一关并确认进入简报。
 - `Config/DefaultGame.ini` 的 `DirectoriesToAlwaysStageAsUFS=(Path="../Script")` 必须保留；路径相对于 `Content`，将玩法 `.as` 和 Cook 生成的 `Script/Binds.Cache` 一起纳入发布包。生成缓存仍不提交 Git，但不能从发布包漏掉。
 - 打包后检查 `Windows/Manifest_UFSFiles_Win64.txt` 包含 `MegaJamProject/Script/Binds.Cache` 和玩法脚本；缓存必须来自匹配的引擎、插件与本次 Cook。
 - 运行 `./Tools/Test-PackagedGame.ps1 -PackageRoot '<发布目录>/Windows'`；需要验证真实渲染启动时加 `-Render`。脚本检查 AS 初始化、正确 GameMode、无错误和正常退出码，日志保存在项目 `Saved/PackagedSmoke/`。
