@@ -7,6 +7,15 @@ class ABackstageGameMode : AGameModeBase
 class ABackstageController : APlayerController
 {
     FBackstageRound Round;
+    UPROPERTY()
+    AActor Stage;
+
+    UFUNCTION(BlueprintOverride)
+    void BeginPlay()
+    {
+        if (IsLocalController())
+            Stage = SpawnBackstageStage();
+    }
     int EditSlot = 0;
     bool bWasA = false;
     bool bWasD = false;
@@ -116,7 +125,7 @@ class ABackstageHUD : AHUD
     const FLinearColor ArtistColor = FLinearColor(0.97, 0.36, 0.46, 1);
     const FLinearColor VolunteerColor = FLinearColor(0.30, 0.66, 0.98, 1);
     const FLinearColor CoordinatorColor = FLinearColor(0.37, 0.84, 0.61, 1);
-    const FLinearColor Gold = FLinearColor(1, 0.72, 0.30, 1);
+    AActor Stage;
     float Scale = 1;
     float OriginX = 0;
     float OriginY = 0;
@@ -132,6 +141,7 @@ class ABackstageHUD : AHUD
         Scale = Math::Min(SizeX / 1280.0, SizeY / 720.0);
         OriginX = (SizeX - Scale * 1280) * 0.5;
         OriginY = (SizeY - Scale * 720) * 0.5;
+        Stage = Controller.Stage;
         const FBackstageRound& Round = Controller.Round;
         Text("营销达人  /  慈善活动后台", 48, 34, Mint, 1.15);
         switch (Round.Phase)
@@ -171,7 +181,7 @@ class ABackstageHUD : AHUD
         Text(f"机位 {Round.Camera.Station + 1}  /  {int(Round.Camera.Time)} 秒", 48, 82, Paper, 1.36);
         Text(f"转向 {int(Round.Camera.Pan * 30)}°   变焦 {int(Round.Camera.Zoom * 100)}%", 460, 82, Muted, 1.18);
         Text(f"快门 {Round.Shutters} / 6    回看 {Round.Replays} / 1", 898, 82, Paper, 1.36);
-        Shot(Round.Camera, 48, 125, 1184, 445, true);
+        Shot(Round.Camera, 48, 125, 1184, 445, 0, true);
         if (Round.ReplayNotice > 0)
         {
             Box(Ink, 365, 136, 538, 43);
@@ -185,37 +195,16 @@ class ABackstageHUD : AHUD
         Text("1–3 机位    A / D 转向    Q / E 变焦    空格 拍摄    R 回看    Enter 剪辑", 48, 659, Mint, 1.18);
     }
 
-    void Shot(const FBackstagePhoto&in Photo, float X, float Y, float W, float H, bool bLive = false)
+    void Shot(const FBackstagePhoto&in Photo, float X, float Y, float W, float H, int CacheSlot, bool bLive = false)
     {
-        Box(FLinearColor(0.10, 0.15, 0.22, 1), X, Y, W, H);
-        const float Floor = Math::Clamp(Backstage::ProjectHeight(Photo, 0.62), 0.0, 1.0);
-        Box(FLinearColor(0.14, 0.20, 0.25, 1), X, Y + H * Floor, W, H * (1 - Floor));
-        for (int Index = -2; Index <= 2; ++Index)
-        {
-            const float Post = Backstage::Project(Photo, FVector2D(Index * 2.0, -0.9)).X;
-            ShotBox(FLinearColor(0.19, 0.25, 0.31, 1), Post - 0.006 * Photo.Zoom, 0,
-                0.012 * Photo.Zoom, Floor, X, Y, W, H);
-        }
-        const auto Beat = Backstage::BeatAt(Photo.Time);
-        Person(Photo, Backstage::CoordinatorAt(Photo.Time), CoordinatorColor, false, false, X, Y, W, H);
-        Person(Photo, Backstage::VolunteerAt(Photo.Time), VolunteerColor, false, Beat == EBackstageBeat::Handoff, X, Y, W, H);
-        Person(Photo, Backstage::ArtistAt(Photo.Time), ArtistColor, Beat == EBackstageBeat::Pickup,
-            Beat == EBackstageBeat::Collision || Beat == EBackstageBeat::Argument || Beat == EBackstageBeat::Handoff, X, Y, W, H);
-
-        const FVector2D Parcel = Backstage::ParcelAt(Photo.Time);
-        if (Backstage::Visible(Photo, Parcel))
-        {
-            const FVector2D Position = Backstage::Project(Photo, Parcel);
-            const bool bDropped = Beat == EBackstageBeat::Collision || Beat == EBackstageBeat::Argument;
-            const float Z = Photo.Zoom;
-            const float ParcelY = Position.Y - Z * (bDropped ? 0.02 : (Beat == EBackstageBeat::Pickup ? 0.12 : 0.24));
-            ShotBox(Gold, Position.X - Z * 0.016, ParcelY, Z * 0.032, Z * 0.068, X, Y, W, H);
-            if (bDropped)
-            {
-                ShotBox(Gold, Position.X - Z * 0.043, ParcelY + Z * 0.04, Z * 0.018, Z * 0.041, X, Y, W, H);
-                ShotBox(Gold, Position.X + Z * 0.028, ParcelY + Z * 0.025, Z * 0.019, Z * 0.045, X, Y, W, H);
-            }
-        }
+        Box(Panel, X, Y, W, H);
+        const float ImageWidth = Math::Min(W, H * (8.0 / 3.0));
+        const float ImageHeight = ImageWidth * (3.0 / 8.0);
+        const float ImageX = X + (W - ImageWidth) * 0.5;
+        const float ImageY = Y + (H - ImageHeight) * 0.5;
+        auto Frame = BackstageRendering::Frame(Stage, Photo.Time, Photo.Station, Photo.Pan, Photo.Zoom, CacheSlot);
+        DrawBackstageFrame(Frame, OriginX + ImageX * Scale, OriginY + ImageY * Scale,
+            ImageWidth * Scale, ImageHeight * Scale);
         if (bLive)
         {
             Box(Paper, X + W * 0.5 - 10, Y + H * 0.5, 20, 1);
@@ -223,39 +212,6 @@ class ABackstageHUD : AHUD
             Text("● REC", X + 20, Y + 18, ArtistColor);
         }
     }
-
-    void ShotBox(FLinearColor Color, float Left, float Top, float Width, float Height, float X, float Y, float W, float H)
-    {
-        const float Right = Math::Min(1, Left + Width);
-        const float Bottom = Math::Min(1, Top + Height);
-        const float ClippedLeft = Math::Max(0, Left);
-        const float ClippedTop = Math::Max(0, Top);
-        if (ClippedLeft < Right && ClippedTop < Bottom)
-            Box(Color, X + W * ClippedLeft, Y + H * ClippedTop, W * (Right - ClippedLeft), H * (Bottom - ClippedTop));
-    }
-
-    void Person(const FBackstagePhoto&in Photo, FVector2D Point, FLinearColor Color, bool bCrouch,
-        bool bReach, float X, float Y, float W, float H)
-    {
-        if (!Backstage::Visible(Photo, Point))
-            return;
-        const FVector2D Position = Backstage::Project(Photo, Point);
-        const float BodyX = Position.X;
-        const float Feet = Position.Y;
-        const float Height = (bCrouch ? 0.18 : 0.29) * Photo.Zoom;
-        const float Width = 0.034 * Photo.Zoom;
-        ShotBox(Color, BodyX - Width * 0.31, Feet - Height, Width * 0.62, Height * 0.24, X, Y, W, H);
-        ShotBox(Color, BodyX - Width * 0.5, Feet - Height * 0.69, Width, Height * 0.47, X, Y, W, H);
-        ShotBox(Color, BodyX - Width * 0.40, Feet - Height * 0.25, Width * 0.30, Height * 0.25, X, Y, W, H);
-        ShotBox(Color, BodyX + Width * 0.10, Feet - Height * 0.25, Width * 0.30, Height * 0.25, X, Y, W, H);
-        if (bReach || bCrouch)
-        {
-            const float Arm = Width * 1.15;
-            const float ArmX = Point.X < 0 ? BodyX : BodyX - Arm;
-            ShotBox(Color, ArmX, Feet - Height * (bCrouch ? 0.32 : 0.62), Arm, Height * 0.13, X, Y, W, H);
-        }
-    }
-
     FString HeadlineText(EBackstageHeadline Headline)
     {
         if (Headline == EBackstageHeadline::Helpful) return "后台暖心一幕";
@@ -274,7 +230,7 @@ class ABackstageHUD : AHUD
             Box(Panel, X, 177, 184, 146);
             if (Round.Photos.IsValidIndex(Index))
             {
-                Shot(Round.Photos[Index], X, 177, 184, 110);
+                Shot(Round.Photos[Index], X, 177, 184, 110, 1 + Index);
                 const int Slot = Round.Slots.FindIndex(Index);
                 if (HoveredPhoto == Index || Slot >= 0) Box(Mint, X, 177, 184, 3);
                 Text(f"{Index + 1}   {int(Round.Photos[Index].Time)} 秒", X + 11, 296, Slot >= 0 ? Mint : Paper);
@@ -288,7 +244,7 @@ class ABackstageHUD : AHUD
             const float X = Backstage::SlotLeft(Index);
             Box(Panel, X, 392, 222, 156);
             if (Round.Slots.IsValidIndex(Index))
-                Shot(Round.Edits[Round.Slots[Index]], X, 392, 222, 120);
+                Shot(Round.Edits[Round.Slots[Index]], X, 392, 222, 120, 7 + Index);
             if (Index == ActiveSlot) Box(Mint, X, 392, 222, 3);
             Text(f"槽 {Index + 1}", X + 12, 519, Index == ActiveSlot ? Mint : Paper);
         }
@@ -308,7 +264,7 @@ class ABackstageHUD : AHUD
         const int Frame = Math::Min(int(Round.PreviewTime / Backstage::PreviewSecondsPerFrame), Backstage::FrameCount - 1);
         Text(HeadlineText(Round.Headline), 48, 88, Paper, 1.65);
         Text(Round.bPublishing ? "发布中" : "作品预览", 1084, 92, Mint, 1.22);
-        Shot(Round.Cut[Frame], 48, 150, 1184, 440);
+        Shot(Round.Cut[Frame], 48, 150, 1184, 440, 0);
         Text(f"{Frame + 1} / 3", 48, 621, Mint, 1.32);
         if (!Round.bPublishing) Text("Backspace 返回剪辑", 875, 621, Muted, 1.15);
     }
@@ -318,7 +274,7 @@ class ABackstageHUD : AHUD
         const FBackstageResult Result = Round.Result;
         Text(HeadlineText(Round.Headline), 48, 90, Paper, 1.8);
         for (int Index = 0; Index < Backstage::FrameCount; ++Index)
-            Shot(Round.Cut[Index], 48 + float(Index) * 211, 140, 198, 110);
+            Shot(Round.Cut[Index], 48 + float(Index) * 211, 140, 198, 110, 7 + Index);
         Text(f"关注度  {Signed(Result.Attention)}", 730, 149, Mint, 1.30);
         Text(f"公司信任  {Signed(Result.CompanyTrust)}", 730, 188, Paper, 1.30);
         Text(f"公众信任  {Signed(Result.PublicTrust)}", 972, 188, Paper, 1.30);

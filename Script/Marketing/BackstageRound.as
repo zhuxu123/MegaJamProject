@@ -95,58 +95,6 @@ namespace Backstage
         return EBackstageBeat::Together;
     }
 
-    FVector2D ArtistAt(float Time)
-    {
-        if (Time < 7)
-            return FVector2D(Math::Lerp(-2.7, -0.55, Time / 7.0), 0.45);
-        if (Time < 14)
-            return FVector2D(Math::Lerp(-0.55, -1.15, Math::Clamp((Time - 7) / 2.5, 0.0, 1.0)), 0.45);
-        if (Time < 42)
-            return FVector2D(-1.15, 0.45);
-        return FVector2D(-0.84, 0.22);
-    }
-
-    FVector2D VolunteerAt(float Time)
-    {
-        return FVector2D(Time < 7 ? 0.12 : 0.82, -0.12);
-    }
-
-    FVector2D CoordinatorAt(float Time)
-    {
-        return FVector2D(2.85 - Math::Clamp((Time - 31) / 8.0, 0.0, 1.0) * 1.17, 0.7);
-    }
-
-    FVector2D ParcelAt(float Time)
-    {
-        auto Person = VolunteerAt(Time);
-        if (Time < 7 || Time >= 42)
-            return Person + FVector2D(-0.30, 0);
-        if (Time < 23)
-            return FVector2D(0.05, 0.40);
-        if (Time < 33)
-            return FVector2D(-0.37, 0.40);
-        return FVector2D(-0.06, 0.18);
-    }
-
-    FVector2D Project(const FBackstagePhoto&in Photo, FVector2D Point)
-    {
-        const float Angle = Photo.Station == 0 ? 0.0 : (Photo.Station == 1 ? -0.63 : 0.63);
-        const float Center = Photo.Station == 0 ? 0.0 : (Photo.Station == 1 ? -0.78 : 0.65);
-        return FVector2D(0.5 + (Point.X * Math::Cos(Angle) + Point.Y * Math::Sin(Angle)
-            - Center - Photo.Pan) * ProjectionScale * Photo.Zoom, ProjectHeight(Photo, 0.67 + Point.Y * 0.15));
-    }
-
-    float ProjectHeight(const FBackstagePhoto&in Photo, float HeightAtWideAngle)
-    {
-        return 0.65 + (HeightAtWideAngle - 0.65) * Photo.Zoom;
-    }
-
-    bool Visible(const FBackstagePhoto&in Photo, FVector2D Point)
-    {
-        const double X = Project(Photo, Point).X;
-        return X >= 0.11 && X <= 0.89;
-    }
-
     FBackstageResult Evaluate(const TArray<FBackstagePhoto>&in Sequence, EBackstageHeadline Headline)
     {
         int Collision = -1;
@@ -159,9 +107,10 @@ namespace Backstage
         {
             const FBackstagePhoto Photo = Sequence[Index];
             const auto Beat = BeatAt(Photo.Time);
-            const bool Artist = Visible(Photo, ArtistAt(Photo.Time));
-            const bool Volunteer = Visible(Photo, VolunteerAt(Photo.Time));
-            const bool Parcel = Visible(Photo, ParcelAt(Photo.Time));
+            const int Visible = BackstageRendering::Evidence(Photo.Time, Photo.Station, Photo.Pan, Photo.Zoom);
+            const bool Artist = (Visible & 1) != 0;
+            const bool Volunteer = (Visible & 2) != 0;
+            const bool Parcel = (Visible & 4) != 0;
             if (Beat == EBackstageBeat::Collision && Artist && Volunteer && Parcel && Collision < 0 && Photo.Time < 9)
                 Collision = Index;
             if (Beat == EBackstageBeat::Argument && Artist && Volunteer && Argument < 0)
