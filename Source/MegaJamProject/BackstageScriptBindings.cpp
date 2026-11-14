@@ -1,5 +1,6 @@
 #include "Core/AngelscriptBinds.h"
 #include "Camera/CameraComponent.h"
+#include "CanvasItem.h"
 #include "Components/DirectionalLightComponent.h"
 #include "Components/ExponentialHeightFogComponent.h"
 #include "Components/LocalLightComponent.h"
@@ -7,21 +8,30 @@
 #include "Components/SceneCaptureComponent2D.h"
 #include "Components/SpotLightComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Engine/Canvas.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/Texture2D.h"
 #include "Engine/TextureRenderTarget2D.h"
 #include "Engine/World.h"
+#include "Fonts/FontMeasure.h"
+#include "Framework/Application/SlateApplication.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/HUD.h"
 #include "GameFramework/PlayerController.h"
+#include "IImageWrapper.h"
+#include "IImageWrapperModule.h"
 #include "InputCoreTypes.h"
 #include "Kismet/GameplayStatics.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialInterface.h"
 #include "Misc/App.h"
+#include "Misc/FileHelper.h"
 #include "Misc/PackageName.h"
+#include "Misc/Paths.h"
+#include "Modules/ModuleManager.h"
 #include "PaperSprite.h"
 #include "PaperSpriteComponent.h"
+#include "Styling/CoreStyle.h"
 #include "TextureResource.h"
 #include "UObject/Package.h"
 
@@ -32,6 +42,209 @@ namespace
 	constexpr float BackstageCameraDistance = 550.0f;
 	constexpr int32 BackstageMaxCaptureSlots = 8;
 	static int32 GBackstageSelectedLevel = 0;
+
+	UTexture2D* CreateTransientTextureBGRA(int32 Width, int32 Height, const uint8* SrcBGRA, bool bSRGB = true)
+	{
+		if (Width <= 0 || Height <= 0 || !SrcBGRA)
+		{
+			return nullptr;
+		}
+		UTexture2D* Texture = UTexture2D::CreateTransient(Width, Height, PF_B8G8R8A8);
+		if (!Texture)
+		{
+			return nullptr;
+		}
+		Texture->AddToRoot();
+		Texture->SRGB = bSRGB;
+		Texture->CompressionSettings = TC_EditorIcon;
+		Texture->Filter = TF_Bilinear;
+		Texture->AddressX = TA_Clamp;
+		Texture->AddressY = TA_Clamp;
+		Texture->MipGenSettings = TMGS_NoMipmaps;
+
+		FTexturePlatformData* PlatformData = Texture->GetPlatformData();
+		if (!PlatformData || PlatformData->Mips.Num() == 0)
+		{
+			return nullptr;
+		}
+		void* TextureData = PlatformData->Mips[0].BulkData.Lock(LOCK_READ_WRITE);
+		FMemory::Memcpy(TextureData, SrcBGRA, static_cast<SIZE_T>(Width) * Height * 4);
+		PlatformData->Mips[0].BulkData.Unlock();
+		Texture->UpdateResource();
+		return Texture;
+	}
+
+	UTexture2D* LoadCustomArtTexture(const FString& FileName, bool bChromaKeyGreen)
+	{
+		static TMap<FName, TWeakObjectPtr<UTexture2D>> CachedCustomArt;
+		const FName Key(*FString::Printf(TEXT("%s_%d"), *FileName, bChromaKeyGreen ? 1 : 0));
+		if (TWeakObjectPtr<UTexture2D>* Existing = CachedCustomArt.Find(Key))
+		{
+			if (Existing->IsValid())
+			{
+				return Existing->Get();
+			}
+		}
+
+		const FString FullPath = FPaths::ProjectContentDir() / TEXT("Backstage/Art") / FileName;
+		TArray<uint8> FileBytes;
+		if (!FFileHelper::LoadFileToArray(FileBytes, *FullPath) || FileBytes.Num() == 0)
+		{
+			return nullptr;
+		}
+
+		IImageWrapperModule& ImageWrapperModule = FModuleManager::LoadModuleChecked<IImageWrapperModule>(FName("ImageWrapper"));
+		EImageFormat Format = ImageWrapperModule.DetectImageFormat(FileBytes.GetData(), FileBytes.Num());
+		if (Format == EImageFormat::Invalid)
+		{
+			Format = FileName.EndsWith(TEXT(".png"), ESearchCase::IgnoreCase) ? EImageFormat::PNG : EImageFormat::JPEG;
+		}
+		TSharedPtr<IImageWrapper> Wrapper = ImageWrapperModule.CreateImageWrapper(Format);
+		if (!Wrapper.IsValid() || !Wrapper->SetCompressed(FileBytes.GetData(), FileBytes.Num()))
+		{
+			return nullptr;
+		}
+
+		TArray<uint8> RawBGRA;
+		if (!Wrapper->GetRaw(ERGBFormat::BGRA, 8, RawBGRA))
+		{
+			return nullptr;
+		}
+
+		int32 SrcW = Wrapper->GetWidth();
+		int32 SrcH = Wrapper->GetHeight();
+		if (SrcW <= 0 || SrcH <= 0 || RawBGRA.Num() < SrcW * SrcH * 4)
+		{
+			return nullptr;
+		}
+
+		UTexture2D* ResultTex = nullptr;
+		if (bChromaKeyGreen)
+		{
+			int32 MinX = SrcW;
+			int32 MaxX = -1;
+			int32 MinY = SrcH;
+			int32 MaxY = -1;
+
+			for (int32 Y = 0; Y < SrcH; ++Y)
+			{
+				for (int32 X = 0; X < SrcW; ++X)
+				{
+					const int32 Idx = (Y * SrcW + X) * 4;
+					uint8 B = RawBGRA[Idx + 0];
+					uint8 G = RawBGRA[Idx + 1];
+					uint8 R = RawBGRA[Idx + 2];
+					const int32 MaxRB = FMath::Max<int32>(R, B);
+					const int32 GreenExcess = static_cast<int32>(G) - MaxRB;
+					if (G > 95 && GreenExcess > 24)
+					{
+						const float AlphaFrac = FMath::Clamp(1.0f - (static_cast<float>(GreenExcess) - 24.0f) / 36.0f, 0.0f, 1.0f);
+						const uint8 Alpha = static_cast<uint8>(FMath::RoundToInt(AlphaFrac * 255.0f));
+						RawBGRA[Idx + 3] = Alpha;
+						if (G > MaxRB)
+						{
+							RawBGRA[Idx + 1] = static_cast<uint8>(MaxRB);
+						}
+					}
+					if (RawBGRA[Idx + 3] > 24)
+					{
+						MinX = FMath::Min(MinX, X);
+						MaxX = FMath::Max(MaxX, X);
+						MinY = FMath::Min(MinY, Y);
+						MaxY = FMath::Max(MaxY, Y);
+					}
+				}
+			}
+
+			if (MaxX > MinX && MaxY > MinY)
+			{
+				const int32 Pad = 6;
+				MinX = FMath::Max(0, MinX - Pad);
+				MaxX = FMath::Min(SrcW - 1, MaxX + Pad);
+				MinY = FMath::Max(0, MinY - Pad);
+				MaxY = FMath::Min(SrcH - 1, MaxY + 2);
+				const int32 CropW = MaxX - MinX + 1;
+				const int32 CropH = MaxY - MinY + 1;
+				TArray<uint8> Cropped;
+				Cropped.SetNumUninitialized(CropW * CropH * 4);
+				for (int32 Y = 0; Y < CropH; ++Y)
+				{
+					FMemory::Memcpy(
+						Cropped.GetData() + Y * CropW * 4,
+						RawBGRA.GetData() + ((MinY + Y) * SrcW + MinX) * 4,
+						CropW * 4);
+				}
+				ResultTex = CreateTransientTextureBGRA(CropW, CropH, Cropped.GetData(), true);
+			}
+		}
+
+		if (!ResultTex)
+		{
+			ResultTex = CreateTransientTextureBGRA(SrcW, SrcH, RawBGRA.GetData(), true);
+		}
+		if (ResultTex)
+		{
+			CachedCustomArt.Add(Key, ResultTex);
+		}
+		return ResultTex;
+	}
+
+	UTexture2D* CreateCharityBackdropTexture()
+	{
+		static TWeakObjectPtr<UTexture2D> Cached;
+		if (Cached.IsValid())
+		{
+			return Cached.Get();
+		}
+
+		const int32 W = 512;
+		const int32 H = 288;
+		TArray<uint8> Pixels;
+		Pixels.SetNumUninitialized(W * H * 4);
+
+		for (int32 Y = 0; Y < H; ++Y)
+		{
+			const float Ny = static_cast<float>(Y) / static_cast<float>(H - 1);
+			for (int32 X = 0; X < W; ++X)
+			{
+				const float Nx = static_cast<float>(X) / static_cast<float>(W - 1);
+				float R = FMath::Lerp(14.0f, 26.0f, Ny);
+				float G = FMath::Lerp(22.0f, 38.0f, Ny);
+				float B = FMath::Lerp(36.0f, 58.0f, Ny);
+
+				// Velvet stage curtains on far left/right
+				if (Nx < 0.14f || Nx > 0.86f)
+				{
+					const float Fold = 0.78f + 0.22f * FMath::Sin(Nx * 95.0f);
+					R = 46.0f * Fold;
+					G = 16.0f * Fold;
+					B = 26.0f * Fold;
+				}
+				// Warm & cool stage spotlight cones
+				const float BeamLeft = FMath::Exp(-FMath::Square((Nx - (0.34f + Ny * 0.08f)) * 9.0f)) * (1.0f - Ny * 0.45f);
+				const float BeamRight = FMath::Exp(-FMath::Square((Nx - (0.66f - Ny * 0.08f)) * 9.0f)) * (1.0f - Ny * 0.45f);
+				R += BeamLeft * 36.0f + BeamRight * 62.0f;
+				G += BeamLeft * 74.0f + BeamRight * 56.0f;
+				B += BeamLeft * 98.0f + BeamRight * 28.0f;
+
+				// Subtle overhead rigging bar
+				if (Ny > 0.08f && Ny < 0.12f)
+				{
+					R *= 0.55f; G *= 0.55f; B *= 0.55f;
+				}
+
+				const int32 Idx = (Y * W + X) * 4;
+				Pixels[Idx + 0] = static_cast<uint8>(FMath::Clamp(FMath::RoundToInt(B), 0, 255));
+				Pixels[Idx + 1] = static_cast<uint8>(FMath::Clamp(FMath::RoundToInt(G), 0, 255));
+				Pixels[Idx + 2] = static_cast<uint8>(FMath::Clamp(FMath::RoundToInt(R), 0, 255));
+				Pixels[Idx + 3] = 255;
+			}
+		}
+
+		UTexture2D* Tex = CreateTransientTextureBGRA(W, H, Pixels.GetData(), true);
+		Cached = Tex;
+		return Tex;
+	}
 
 	// Access protected UPaperSprite backing fields so runtime cutout sprites work without editor asset baking.
 	struct FBackstagePaperSpriteAccessor : public UPaperSprite
@@ -614,6 +827,36 @@ namespace
 			Canvas.FillSegment(28.0f, 88.0f, 100.0f, 88.0f, 2.2f, GlowCyan);
 			Canvas.AddInkOutline(3, Ink);
 		}
+		else if (PartKind == FName(TEXT("Backdrop_Rain")))
+		{
+			UTexture2D* CustomTex = LoadCustomArtTexture(TEXT("bg_rain_event.jpg"), false);
+			if (!CustomTex)
+			{
+				CustomTex = LoadCustomArtTexture(TEXT("bg_rain_event.png"), false);
+			}
+			if (!CustomTex)
+			{
+				CustomTex = CreateCharityBackdropTexture();
+			}
+			if (CustomTex)
+			{
+				CachedTextures.Add(PartKind, CustomTex);
+			}
+			return CustomTex;
+		}
+		else if (PartKind == FName(TEXT("Backdrop_Charity")))
+		{
+			UTexture2D* CustomTex = LoadCustomArtTexture(TEXT("bg_charity_backstage.jpg"), false);
+			if (!CustomTex)
+			{
+				CustomTex = CreateCharityBackdropTexture();
+			}
+			if (CustomTex)
+			{
+				CachedTextures.Add(PartKind, CustomTex);
+			}
+			return CustomTex;
+		}
 		else if (PartKind == FName(TEXT("Emotion_Shock")) || PartKind == FName(TEXT("Emotion_Anger")) || PartKind == FName(TEXT("Emotion_Care")) || PartKind == FName(TEXT("Emotion_Warm")))
 		{
 			DrawEmotionTexture(Canvas, PartKind);
@@ -956,6 +1199,30 @@ namespace
 			}
 		}
 
+		const FString SeqStr = SequenceName.ToString();
+		FString CustomCharFile;
+		if (SeqStr.StartsWith(TEXT("LinWan_")))
+		{
+			CustomCharFile = TEXT("char_linwan.jpg");
+		}
+		else if (SeqStr.StartsWith(TEXT("XiaoBei_")))
+		{
+			CustomCharFile = TEXT("char_xiaobei.jpg");
+		}
+		else if (SeqStr.StartsWith(TEXT("Fan_")))
+		{
+			CustomCharFile = TEXT("char_fan.jpg");
+		}
+
+		if (!CustomCharFile.IsEmpty())
+		{
+			if (UTexture2D* CustomChar = LoadCustomArtTexture(CustomCharFile, true))
+			{
+				CachedSequenceTextures.Add(CacheKey, CustomChar);
+				return CustomChar;
+			}
+		}
+
 		FBackstagePixelCanvas Canvas;
 		DrawCharacterSequenceFrame(Canvas, SequenceName, ClampedFrame);
 		UTexture2D* Texture = CreateTextureFromCanvas(Canvas);
@@ -1155,6 +1422,8 @@ namespace
 			TEXT("FanSign"),
 			TEXT("RainStreak"),
 			TEXT("BrandBanner"),
+			TEXT("Backdrop_Rain"),
+			TEXT("Backdrop_Charity"),
 			TEXT("Emotion_Shock"),
 			TEXT("Emotion_Anger"),
 			TEXT("Emotion_Care"),
@@ -1646,6 +1915,63 @@ namespace
 		Fog->SetFogInscatteringColor(InscatteringColor);
 		Fog->SetVolumetricFog(bVolumetric);
 	}
+
+	struct FBackstageHudAccessor : public AHUD
+	{
+		UCanvas* GetProtectedCanvas() const
+		{
+			return Canvas.Get();
+		}
+	};
+
+	void BackstageDrawText(AHUD* HUD, const FString& Text, FLinearColor Color, float X, float Y, UFont* Font, float Scale, bool bScalePosition)
+	{
+		UCanvas* HudCanvas = HUD ? static_cast<FBackstageHudAccessor*>(HUD)->GetProtectedCanvas() : nullptr;
+		if (!HudCanvas || Text.IsEmpty())
+		{
+			return;
+		}
+		const int32 FontPx = FMath::Clamp(FMath::RoundToInt(14.0f * FMath::Max(Scale, 0.25f)), 8, 96);
+		const FSlateFontInfo FontInfo = FCoreStyle::GetDefaultFontStyle("Regular", FontPx);
+		FCanvasTextItem TextItem(FVector2D(X, Y), FText::FromString(Text), FontInfo, Color);
+		TextItem.Scale = FVector2D(1.0, 1.0);
+		HudCanvas->DrawItem(TextItem);
+	}
+
+	float BackstageMeasureTextWidth(const AHUD* HUD, const FString& Text, float Scale)
+	{
+		if (Text.IsEmpty() || !FSlateApplication::IsInitialized())
+		{
+			return 0.0f;
+		}
+		const int32 FontPx = FMath::Clamp(FMath::RoundToInt(14.0f * FMath::Max(Scale, 0.25f)), 8, 96);
+		const FSlateFontInfo FontInfo = FCoreStyle::GetDefaultFontStyle("Regular", FontPx);
+		const TSharedRef<FSlateFontMeasure> FontMeasure = FSlateApplication::Get().GetRenderer()->GetFontMeasureService();
+		return static_cast<float>(FontMeasure->Measure(Text, FontInfo).X);
+	}
+
+	FVector2D BackstageProjectWorld(const APlayerController* Controller, const FVector& WorldPos)
+	{
+		if (!Controller)
+		{
+			return FVector2D(-9999.0, -9999.0);
+		}
+		int32 Width = 0;
+		int32 Height = 0;
+		Controller->GetViewportSize(Width, Height);
+		if (Width <= 0 || Height <= 0)
+		{
+			return FVector2D(-9999.0, -9999.0);
+		}
+		FVector2D ScreenPos = FVector2D::ZeroVector;
+		if (!Controller->ProjectWorldLocationToScreen(WorldPos, ScreenPos, true))
+		{
+			return FVector2D(-9999.0, -9999.0);
+		}
+		const double ViewScale = FMath::Min(Width / 1280.0, Height / 720.0);
+		const FVector2D Origin((Width - 1280.0 * ViewScale) * 0.5, (Height - 720.0 * ViewScale) * 0.5);
+		return (ScreenPos - Origin) / FMath::Max(ViewScale, 0.001);
+	}
 }
 
 static const FAngelscriptBind BindBackstageControls(
@@ -1689,6 +2015,7 @@ static const FAngelscriptBind BindBackstageControls(
 		Controller.Method("float32 BackstageWheelDelta() const", &BackstageWheelDelta);
 		Controller.Method("FVector BackstageWorldPoint(const FVector2D& StagePoint, float32 HeightUU) const", &BackstageWorldPoint);
 		Controller.Method("float32 BackstageCameraYaw(int32 Station) const", &BackstageCameraYaw);
+		Controller.Method("FVector2D BackstageProjectWorld(const FVector& WorldPos) const", &BackstageProjectWorld);
 		Controller.Method("void BackstageSyncCamera(AActor CameraHost, float32 AngleRad, float32 Center, float32 Pan, float32 Tilt, float32 Zoom, bool bActivateViewTarget)", &BackstageSyncCamera);
 		Controller.Method("void BackstageCapturePhoto(AActor CameraHost, int32 PhotoIndex, float32 AngleRad, float32 Center, float32 Pan, float32 Tilt, float32 Zoom)", &BackstageCapturePhoto);
 		Controller.Method("void BackstageClearPhotos()", &BackstageClearPhotos);
@@ -1703,6 +2030,7 @@ static const FAngelscriptBind BindBackstageControls(
 		auto HUD = Binds.ExistingClassForTarget("AHUD");
 		HUD.Method("APlayerController BackstagePlayer() const", METHOD_TRIVIAL(AHUD, GetOwningPlayerController));
 		HUD.Method("void BackstageRect(FLinearColor Color, float32 X, float32 Y, float32 W, float32 H)", METHOD_TRIVIAL(AHUD, DrawRect));
-		HUD.Method("void BackstageText(const FString& Text, FLinearColor Color, float32 X, float32 Y, UFont Font, float32 Scale, bool bScalePosition)", METHOD_TRIVIAL(AHUD, DrawText));
+		HUD.Method("void BackstageText(const FString& Text, FLinearColor Color, float32 X, float32 Y, UFont Font, float32 Scale, bool bScalePosition)", &BackstageDrawText);
+		HUD.Method("float32 BackstageMeasureTextWidth(const FString& Text, float32 Scale) const", &BackstageMeasureTextWidth);
 		HUD.Method("bool BackstageDrawPhoto(int32 PhotoIndex, float32 X, float32 Y, float32 W, float32 H, float32 OriginalPan, float32 OriginalZoom, float32 CropPan, float32 CropZoom)", &BackstageDrawPhoto);
 	});

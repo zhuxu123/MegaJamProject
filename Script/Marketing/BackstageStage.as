@@ -336,13 +336,20 @@ class ABackstagePuppet : AActor
         BackstageSetTransform(WorldFootPos, FRotator(0.0, CameraYawDeg + 90.0, CameraPitchDeg * 0.55));
 
         const FBackstagePuppetPose Pose = BackstagePuppet::EvaluatePose(Role, Time);
+        const bool bIllustrated = (Role == EBackstageRole::LinWan || Role == EBackstageRole::XiaoBei);
+        const FVector2D SpriteSize = bIllustrated ? FVector2D(82.0, 162.0) : FVector2D(104.0, 156.0);
         if (Pose.SequenceKey != LastSequenceKey || Pose.FrameIndex != LastFrameIndex)
         {
-            BodySprite.BackstageSetSpriteFrame(Pose.SequenceKey, Pose.FrameIndex, FVector2D(104.0, 156.0),
+            BodySprite.BackstageSetSpriteFrame(Pose.SequenceKey, Pose.FrameIndex, SpriteSize,
                 FVector2D(0.5, 1.0), RoleColor, true, false);
             LastSequenceKey = Pose.SequenceKey;
             LastFrameIndex = Pose.FrameIndex;
         }
+        const float WalkBob = (Pose.SequenceKey == n"LinWan_Walk" || Pose.SequenceKey == n"XiaoBei_Walk"
+            || Pose.SequenceKey == n"Artist_Walk" || Pose.SequenceKey == n"Coordinator_Walk")
+            ? Math::Abs(Math::Sin(Time * 8.5)) * 4.5
+            : Math::Sin(Time * 2.4) * 1.2;
+        BodySprite.SetRelativeLocation(FVector(0.0, 0.0, WalkBob));
         if (Math::Abs(Pose.FacingSign - LastFacingSign) > 0.01)
         {
             BodySprite.BackstageSetScale(FVector(Pose.FacingSign, 1.0, 1.0));
@@ -471,6 +478,9 @@ class ABackstageStageActor : AActor
 
     UPROPERTY(DefaultComponent, Attach = Root)
     UPaperSpriteComponent BrandBannerSprite;
+
+    UPROPERTY(DefaultComponent, Attach = Root)
+    UPaperSpriteComponent BackdropSprite;
 
     UPROPERTY(DefaultComponent, Attach = Root)
     UPaperSpriteComponent RainSprite0;
@@ -613,6 +623,22 @@ class ABackstageStageActor : AActor
         ConfigureStageMesh(Pillar4, CylinderPath, StagePoint(FVector2D(4.0, -0.9), 210.0), FVector(0.32, 0.32, 4.2),
             FLinearColor(0.12, 0.16, 0.22, 1.0), 0.58, 0.25, false);
 
+        // Hide primitive background walls/pillars in favor of the illustrated stage backdrop
+        BackWallMesh.BackstageSetVisible(false);
+        LeftCurtainMesh.BackstageSetVisible(false);
+        RightCurtainMesh.BackstageSetVisible(false);
+        Pillar0.BackstageSetVisible(false);
+        Pillar1.BackstageSetVisible(false);
+        Pillar2.BackstageSetVisible(false);
+        Pillar3.BackstageSetVisible(false);
+        Pillar4.BackstageSetVisible(false);
+
+        BackdropSprite.BackstageSetupPart(bRainLevel ? n"Backdrop_Rain" : n"Backdrop_Charity",
+            FVector2D(1560.0, 878.0), FVector2D(0.5, 0.5), FLinearColor::White, false, false);
+        BackdropSprite.SetRelativeLocation(FVector(250.0, 0.0, 210.0));
+        BackdropSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
+        BackdropSprite.BackstageSetVisible(true);
+
         ConfigureStageMesh(LightCan0, CylinderPath, FVector(-140.0, -360.0, 396.0), FVector(0.24, 0.24, 0.38),
             FLinearColor(0.22, 0.26, 0.32, 1.0), 0.28, 0.85, false);
         LightCan0.SetRelativeRotation(FRotator(-24.0, 0.0, 0.0));
@@ -676,7 +702,7 @@ class ABackstageStageActor : AActor
             FLinearColor::White, false, false);
         BrandBannerSprite.SetRelativeLocation(StagePoint(FVector2D(0.0, -0.78), 145.0));
         BrandBannerSprite.SetRelativeRotation(FRotator(0.0, 90.0, 0.0));
-        BrandBannerSprite.BackstageSetVisible(bRainLevel);
+        BrandBannerSprite.BackstageSetVisible(false);
 
         UmbrellaShadow.BackstageSetupPart(n"Shadow", FVector2D(62.0, 24.0), FVector2D(0.5, 0.5),
             FLinearColor(0.02, 0.04, 0.06, 0.60), false, false);

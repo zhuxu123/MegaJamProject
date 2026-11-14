@@ -10,7 +10,7 @@ public class MegaJamProject : ModuleRules
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Paper2D" });
 
-		PrivateDependencyModuleNames.Add("AngelscriptRuntime");
+		PrivateDependencyModuleNames.AddRange(new string[] { "AngelscriptRuntime", "Slate", "SlateCore", "ImageWrapper" });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
