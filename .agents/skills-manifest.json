@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 1,
+  "snapshotDate": "2026-11-14",
+  "source": "Local installed ue-* skill snapshot; original content preserved",
+  "skillRoot": ".agents/skills",
+  "skillCount": 27,
+  "fileCount": 75,
+  "files": [
+    {
+      "path": "ue-actor-component-architecture/references/actor-lifecycle.md",
+      "sha256": "3e7ceda444ede21dcd2a4c322db47015d79dbbfa5872ada8fc5aa4e3f01214fb",
+      "bytes": 12742
+    },
+    {
+      "path": "ue-actor-component-architecture/references/component-types.md",
+      "sha256": "a0377dc05b74c513437e4d2129b8c591ced85432db19d150aab111bf4ffd9f6f",
+      "bytes": 21360
+    },
+    {
+      "path": "ue-actor-component-architecture/SKILL.md",
+      "sha256": "bbbc3488ae9b061ccd05bdc60a2a003e04645ed20300be95512a5832903d0686",
+      "bytes": 16407
+    },
+    {
+      "path": "ue-ai-navigation/references/behavior-tree-patterns.md",
+      "sha256": "ca015e276fecd65931885df0a4e0f99d52a9a9ff267991eb5157e07923e7a545",
+      "bytes": 14063
+    },
+    {
+      "path": "ue-ai-navigation/references/eqs-reference.md",
+      "sha256": "bef70b38d595517af3b58632869625da8123ce02fab8e2a651dd1babd0d1ff7e",
+      "bytes": 14504
+    },
+    {
+      "path": "ue-ai-navigation/SKILL.md",
+      "sha256": "0bf9137d18e78456b773cacce95d1e6e28dd7a0031ce80aeb7d02217c6466ec9",
+      "bytes": 20302
+    },
+    {
+      "path": "ue-animation-system/references/anim-notify-reference.md",
+      "sha256": "baf7fd3927580728ba8b60fc0f8dcb98e8c6fc48cde89618ea2f668b9f4b8177",
+      "bytes": 14260
+    },
+    {
+      "path": "ue-animation-system/references/locomotion-setup.md",
+      "sha256": "ab6823bb9630ab3c2da094ead7b523d1f9caa0c4f194856af7bacbcb6aa1728f",
+      "bytes": 17961
+    },
+    {
+      "path": "ue-animation-system/SKILL.md",
+      "sha256": "8853d427ec409b2578d73085ae4da8be307fadb08c31a26cd915c8fe055916a1",
+      "bytes": 17442
+    },
+    {
+      "path": "ue-async-threading/references/thread-safety-guide.md",
+      "sha256": "cc4b21f498f499cfc61ef674eba49f4c30f0c258f45a9e6626de0626a24fe219",
+      "bytes": 8091
+    },
+    {
+      "path": "ue-async-threading/references/threading-patterns.md",
+      "sha256": "56b6e0aab4b90797448f049cc8a7afd722065193b7b9a38955afeb71dadaf2e1",
+      "bytes": 9293
+    },
+    {
+      "path": "ue-async-threading/SKILL.md",
+      "sha256": "910de3624727f4d1615456dd910cc93f61284a54b759c7f4df0bf001623759fe",
+      "bytes": 14677
+    },
+    {
+      "path": "ue-audio-system/references/audio-setup-patterns.md",
+      "sha256": "a594e0470ae2febfa443e6a23da831ffd08a4bddca3d6edd0d612f8bd39ced20",
+      "bytes": 20307
+    },
+    {
+      "path": "ue-audio-system/SKILL.md",
+      "sha256": "f6582672fec71347eec0a0908c3fae1d45aaf532286c1d2a047d494d190d99f3",
+      "bytes": 20101
+    },
+    {
+      "path": "ue-character-movement/references/cmc-extension-patterns.md",
+      "sha256": "b3401c5f6029705dc9a90f1d2924c461deefb89a129af5b601acb0a519c08530",
+      "bytes": 8910
+    },
+    {
+      "path": "ue-character-movement/references/movement-pipeline.md",
+      "sha256": "c339633ae025681a30f1c2d84be99f1c23703c3b2a27e14b6bc2831b30d65929",
+      "bytes": 6822
+    },
+    {
+      "path": "ue-character-movement/SKILL.md",
+      "sha256": "6c6001e4134f2afd114113bea5e027506e357a2dfb8d62ce3a767912244e6f2d",
+      "bytes": 19730
+    },
+    {
+      "path": "ue-cpp-foundations/references/container-patterns.md",
+      "sha256": "6fe25edf7f72d24d6c88491a5a5efb49e3e56bb8d254b2b53687fcca1d9ce2b0",
+      "bytes": 14577
+    },
+    {
+      "path": "ue-cpp-foundations/references/delegate-patterns.md",
+      "sha256": "b2bfc4415854b5ae9846e5493afbae01bd72f8217de3da3afebe2aa18be1df72",
+      "bytes": 15429
+    },
+    {
+      "path": "ue-cpp-foundations/references/property-specifiers.md",
+      "sha256": "0fba798f2e1d5d8b1c61efbbf478c9a75811bb2fc28b06ea705729330127f73f",
+      "bytes": 11600
+    },
+    {
+      "path": "ue-cpp-foundations/SKILL.md",
+      "sha256": "7dec7aa88f26c31bd7a8f654358d0a2b25e3a844fbedb84d2ed21022909689ce",
+      "bytes": 16947
+    },
+    {
+      "path": "ue-data-assets-tables/references/asset-loading-patterns.md",
+      "sha256": "78d9cd6ef76ee9aefba87dd28474353def86cf1964465e0d7c5ec56b348e9251",
+      "bytes": 8685
+    },
+    {
+      "path": "ue-data-assets-tables/references/data-driven-design.md",
+      "sha256": "168cecc485e0f473cc9af3f8cacb3d3065932f3ee4e27f84aa4d8f87e1cc9772",
+      "bytes": 12035
+    },
+    {
+      "path": "ue-data-assets-tables/SKILL.md",
+      "sha256": "90a22f5f4a0253becee3889a32b334a0ae694123b1f504ca879e256834906d10",
+      "bytes": 17708
+    },
+    {
+      "path": "ue-editor-tools/references/detail-customization-patterns.md",
+      "sha256": "9040530d8e126f1f195245488a3fd66a13dc94cc7e9ea0bd20000db4f78b6583",
+      "bytes": 12327
+    },
+    {
+      "path": "ue-editor-tools/references/editor-module-setup.md",
+      "sha256": "f076cef7145e6d1a77783811afee6681a5b249daf6b744951e1b15d05132cb8b",
+      "bytes": 13684
+    },
+    {
+      "path": "ue-editor-tools/SKILL.md",
+      "sha256": "c57f9d4367e7aa1bee122afe865ab9565d699a110be0e70f29f18d323696a801",
+      "bytes": 18467
+    },
+    {
+      "path": "ue-game-features/references/experience-system.md",
+      "sha256": "5872e1fd483147d1f591ed70d4a0a2db363c0f72876197f35506d3ccf32c0e03",
+      "bytes": 7393
+    },
+    {
+      "path": "ue-game-features/references/game-feature-patterns.md",
+      "sha256": "ff9a2d373a3e62dad0e2f09eb4103c13b47710d698bb4a619687683d7a55490d",
+      "bytes": 9646
+    },
+    {
+      "path": "ue-game-features/SKILL.md",
+      "sha256": "b82d948dfbaca54463ed789374138173c85f4e0a7a8f490954c73f2ab97ac43a",
+      "bytes": 17580
+    },
+    {
+      "path": "ue-gameplay-abilities/references/ability-task-reference.md",
+      "sha256": "7477fe5fed8b7f7ad3c074af53a021ece80d9ac5776938fb57ba32cdf5274713",
+      "bytes": 13328
+    },
+    {
+      "path": "ue-gameplay-abilities/references/gameplay-effect-reference.md",
+      "sha256": "54731010813cd3b4634cc06b24789d43a12c111b7929f002a0180eba078f0033",
+      "bytes": 14074
+    },
+    {
+      "path": "ue-gameplay-abilities/references/gas-setup-patterns.md",
+      "sha256": "4ad7f74fb26d3b3b474978a5b404c25bed98165a0175343f7cb9fe97b40dd90a",
+      "bytes": 10478
+    },
+    {
+      "path": "ue-gameplay-abilities/SKILL.md",
+      "sha256": "3f2ca9dd29cc0ea6db2fa8bd9bec4234f3b01522a8601b26fa61fa3945d751d5",
+      "bytes": 19521
+    },
+    {
+      "path": "ue-gameplay-framework/references/framework-class-map.md",
+      "sha256": "524736b81598c6c43601e25105f20d24c904342509b7800286de2f126975fc13",
+      "bytes": 9807
+    },
+    {
+      "path": "ue-gameplay-framework/SKILL.md",
+      "sha256": "1122d754250a0e60becfccc7f34b356368d41695a0d4ab97461bed51adeb935d",
+      "bytes": 18844
+    },
+    {
+      "path": "ue-input-system/references/input-action-reference.md",
+      "sha256": "79f9a486254539fa01e8087a593410924fe4b93e6d0e66de8d158b7ae0704b78",
+      "bytes": 26727
+    },
+    {
+      "path": "ue-input-system/SKILL.md",
+      "sha256": "ddea0ce10a937dcd712956a71383d02c92ccf5df21f71557f4cc80d8d317649e",
+      "bytes": 16689
+    },
+    {
+      "path": "ue-mass-entity/references/mass-entity-patterns.md",
+      "sha256": "fb20c6e6a194611c8133f64e5c2e826052dd9a62427652ec52d8e3df6fc003d7",
+      "bytes": 9534
+    },
+    {
+      "path": "ue-mass-entity/references/mass-fragment-reference.md",
+      "sha256": "bdc764dbbf54532342e33c438f58ed8d278250d92dda7c66c73fa340e64ae810",
+      "bytes": 7089
+    },
+    {
+      "path": "ue-mass-entity/SKILL.md",
+      "sha256": "7728d3b4cdecb327d17d6306819a9a2a86a98a193a71130e09541726a11db478",
+      "bytes": 19265
+    },
+    {
+      "path": "ue-materials-rendering/references/material-parameter-reference.md",
+      "sha256": "732ce6087b6feb23fff27502a17f5cc69c2cafaabd8668fcdac84ccff448e2d0",
+      "bytes": 11388
+    },
+    {
+      "path": "ue-materials-rendering/references/post-process-settings.md",
+      "sha256": "b475cbc8864f721883b99791e507bca51ab64f4c5f060a632270752374de999d",
+      "bytes": 17712
+    },
+    {
+      "path": "ue-materials-rendering/SKILL.md",
+      "sha256": "0a9d465d4b74b22f3c151bba474d4caafc8a1cc2c9e4e63d1012ba5b4da39a2c",
+      "bytes": 19844
+    },
+    {
+      "path": "ue-module-build-system/references/build-cs-reference.md",
+      "sha256": "05973557bb2ec7a9645ba11697b773629ff25bdb5086dd76dd311c30e7db7525",
+      "bytes": 12968
+    },
+    {
+      "path": "ue-module-build-system/references/common-build-errors.md",
+      "sha256": "b2e8c2f4b7c632ceeabc4b0152e824acf77dc47b72e1fa766576d50edfa5b07a",
+      "bytes": 11385
+    },
+    {
+      "path": "ue-module-build-system/SKILL.md",
+      "sha256": "506afe821b19747e894840e968a3497bc533c8f970bca01327c66ac23c6880f2",
+      "bytes": 15502
+    },
+    {
+      "path": "ue-networking-replication/references/replication-patterns.md",
+      "sha256": "4f46bafb581ed727b4c899694a7ab1b2b027995a73e81148972a8e2fe3a924e8",
+      "bytes": 14487
+    },
+    {
+      "path": "ue-networking-replication/references/rpc-decision-guide.md",
+      "sha256": "1c76e74e3a13d2679ba3ae535441f1394cb06358a24a66fe92d5ed36c8c21396",
+      "bytes": 14984
+    },
+    {
+      "path": "ue-networking-replication/SKILL.md",
+      "sha256": "b0abd44159815d713dd9e7a11b95111621b395c0cbe28b35a946fc90742dfe23",
+      "bytes": 19113
+    },
+    {
+      "path": "ue-niagara-effects/references/niagara-data-interfaces.md",
+      "sha256": "db41631afbdc0ea27da4c3273547d8bd012be38b4043f5ae438573046b182957",
+      "bytes": 17405
+    },
+    {
+      "path": "ue-niagara-effects/references/niagara-parameter-types.md",
+      "sha256": "13fbaab28acdcdf7ed2cd72516d080b3dd9394bca6415a78a2f92ab725aba3bd",
+      "bytes": 8891
+    },
+    {
+      "path": "ue-niagara-effects/SKILL.md",
+      "sha256": "42daf574c5ff2324e8279922c3fdac51b3472030f652bf99c12486e5fcfd9405",
+      "bytes": 20069
+    },
+    {
+      "path": "ue-physics-collision/references/collision-channel-setup.md",
+      "sha256": "c5d8cccaa715e9bab25f9931b52832cd125f7e8cb961809250362c55ed41dffd",
+      "bytes": 9624
+    },
+    {
+      "path": "ue-physics-collision/references/trace-patterns.md",
+      "sha256": "a046b9bd7db38c1d7a251716623d533e8841c0e38b1993b9346d059f7c487852",
+      "bytes": 16979
+    },
+    {
+      "path": "ue-physics-collision/SKILL.md",
+      "sha256": "70f8d9547d85c74e18a4db18f45622a4b702336b6b9082b997aa8fb08b7f6954",
+      "bytes": 18639
+    },
+    {
+      "path": "ue-procedural-generation/references/pcg-node-reference.md",
+      "sha256": "9b8b3e59015fc1125d41b274281cbb7bc41283e1a36e6030ce6d5cebc55707e4",
+      "bytes": 15140
+    },
+    {
+      "path": "ue-procedural-generation/references/procedural-mesh-patterns.md",
+      "sha256": "16046b313127b8d4c0e9ac9ac9abe28bc58f901444ec58bb0d67cd250a1667e6",
+      "bytes": 32540
+    },
+    {
+      "path": "ue-procedural-generation/SKILL.md",
+      "sha256": "743b9457eeeaef43ddb63f454877ef5a0e6223d32cf411c152e5bbc07b0571bd",
+      "bytes": 20505
+    },
+    {
+      "path": "ue-project-context/SKILL.md",
+      "sha256": "3cb7f9655c5969cfb2e3e08b86e88b73d2a82a743386bc6895753bb6d38cad0a",
+      "bytes": 11086
+    },
+    {
+      "path": "ue-sequencer-cinematics/references/sequencer-patterns.md",
+      "sha256": "f3595a913aed57878adb44f91d01c8556c927430980dfbb9fbc2eba2569f8d24",
+      "bytes": 20644
+    },
+    {
+      "path": "ue-sequencer-cinematics/SKILL.md",
+      "sha256": "b033fd66c584df91b2fbd30200ffb23c3ad8b6fbd3779b23cc2cd972b7b9e845",
+      "bytes": 19788
+    },
+    {
+      "path": "ue-serialization-savegames/references/save-system-architecture.md",
+      "sha256": "6123d57116b6a181f0c7bf6a2f45e9ce65eccb28e444b6fe7eae28363f00d130",
+      "bytes": 21093
+    },
+    {
+      "path": "ue-serialization-savegames/SKILL.md",
+      "sha256": "424d805efe8c7cb2858789a8c73ada235441275aa6183b051d72ccc719368eca",
+      "bytes": 18617
+    },
+    {
+      "path": "ue-state-trees/references/state-tree-mass-integration.md",
+      "sha256": "341466a3727af791ecaceff95594ddafd8366d305d146e604cff9ac868e4691a",
+      "bytes": 7525
+    },
+    {
+      "path": "ue-state-trees/references/state-tree-patterns.md",
+      "sha256": "d7de92765ccff284a43e03906bcf9d6a1b5b0ce4ce2f3d4baaacf23e86215351",
+      "bytes": 10142
+    },
+    {
+      "path": "ue-state-trees/SKILL.md",
+      "sha256": "3911e49659404591f51c85e19678e57194eb26e1e96eaf7fbf5a6cd2daa1b64f",
+      "bytes": 20055
+    },
+    {
+      "path": "ue-testing-debugging/references/automation-test-patterns.md",
+      "sha256": "6e335e7949e3c87427268e649258147a05f27dedd81530fd37a77e7a5c1765d7",
+      "bytes": 11477
+    },
+    {
+      "path": "ue-testing-debugging/references/profiling-commands.md",
+      "sha256": "9c6ab8875464e93fef8fde3d906a47d073ffb60e50f61dfecc37521da48cc916",
+      "bytes": 10035
+    },
+    {
+      "path": "ue-testing-debugging/SKILL.md",
+      "sha256": "805afdd397d0209ab567c00e3d4e8a540a3911dfb79c17e91104e429f10a4012",
+      "bytes": 19181
+    },
+    {
+      "path": "ue-ui-umg-slate/references/common-ui-setup.md",
+      "sha256": "8c39c38bfc3846092552bf5686377e7b844ebbbbf331777649653f193f601bcb",
+      "bytes": 16269
+    },
+    {
+      "path": "ue-ui-umg-slate/references/widget-types.md",
+      "sha256": "9a1401ab9ad38ad879a129fb000df78c71a589de2560d2c5d2275fbb4ee48f35",
+      "bytes": 15694
+    },
+    {
+      "path": "ue-ui-umg-slate/SKILL.md",
+      "sha256": "7a4c65ea3e05de14032dba1cfb1727bd2c13ae2dfeb3dacd1ee95ca616a256df",
+      "bytes": 16732
+    },
+    {
+      "path": "ue-world-level-streaming/references/streaming-patterns.md",
+      "sha256": "7344ceb6c99e00dbe7a12467d5db166ba866aefd777be022f81c3ef890f0e321",
+      "bytes": 14420
+    },
+    {
+      "path": "ue-world-level-streaming/SKILL.md",
+      "sha256": "30932ed9e0702cd3ad19827b6420e426cd05244be6cd06f6012b8f685c99118f",
+      "bytes": 20644
+    }
+  ]
+}
