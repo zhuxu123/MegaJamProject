@@ -207,5 +207,5 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 - 用户确认片场导演=李谋。新预演临时复用原有四种2D情绪符号，通过 `BackstageArt.h` 只读桥接和 `story.json` 的 `emotion_placeholder/emotions` 控制；不更改旧关卡符号行为，真实表情生成任务仍保留。
 - 预演专属BGM在 `Content/SuperstarStory/Audio/`：七首原创合成器乐、39段映射，`SuperstarMusic.*` 管理循环/1.4秒换曲淡化/暂停/退出清理；M静音。新增 `AudioExtensions` 和 `AudioMixer` 原生模块依赖。音乐与真实引擎输出检查见 [BGM说明](Docs/SuperstarStory/BGM.md)，不要用无声 `NullRHI` 测试代替音频验收。
 - 新预演摄影位于 `SuperstarPhotography.cpp`：1–3机位、WASD/左拖构图、Q/E/滚轮变焦、Enter拍照确认、Tab相册，最多保留6张/选3张裁切排序发布；跳幕改F1–F4，剧情证据快捷键改V。照片为当时取景框像素，保存在Saved，按不同路径保存每次发布；不套用原两关评分。表情改用 `head_anchors.json` 逐帧锚点，结合精灵镜像和相机投影。生成新素材后须重建/复核锚点。
-- 保留新 `Json` 模块依赖与 `DirectoriesToAlwaysStageAsUFS=(Path="SuperstarStory")`。替换素材运行 `Tools/Import-SuperstarAnimations.py`，验证运行 `Tools/Validate-SuperstarStory.py`。
+- 保留新 `Json` 模块依赖与 `DirectoriesToAlwaysStageAsUFS=(Path="SuperstarStory")`。当前增量素材使用 `clips.json.path` 指向版本目录，本批入口为 `Tools/Import-SuperstarPartial.py`；旧18项导入器不能覆盖扩展后的注册表。人物 `sequence/delay/hold_frame` 统一按绝对时间求值，母版与图片道具不代表互动动画完成。详见 [首批补件记录](Docs/SuperstarStory/Partial-20261115.md)。验证运行 `Tools/Validate-SuperstarStory.py`。
 - 操作、文件职责、已知缺口和带渲染 smoke 命令详见 [独立预演说明](Docs/SuperstarStory/README.md)。不得用本模式的透视参数更改原有照片投影契约。

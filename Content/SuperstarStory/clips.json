@@ -33,7 +33,8 @@
       "443d1f91f9361983a347d2058a37c9d57a6764eb3c5a2ab02724e3cff09fcbf7",
       "1337d86bdbac2a0ba69e55113e5c0fb4218855991ae3a9aac8fc2dae962f751e",
       "27dcb01ec9300a6f258ee57cdfd449bec184a64cfab88e61f5e0d830f04341b1"
-    ]
+    ],
+    "retired": true
   },
   "C02_xiaobei_jog_papers": {
     "frames": 5,
@@ -130,32 +131,34 @@
       0.5,
       0.890625
     ],
-    "path": "Animations/C05_xiaobei_rise_papers",
+    "path": "Animations/Partial20261115/C05_xiaobei_rise_papers",
     "sha256": [
-      "014a529839e42e10573fff31d4616b05b21e67c907ef49886a34937b2660751c",
-      "fd7724fab7bf2876949e13527e5bf6f66e6dffe3aa1d3ed4e65647ccb3bc2aa6",
-      "ec25044d8c810b2421bfeba818d1fefdcb799e26902e5c46bf1f36ac795305ed",
-      "34426feaa64c69c6f2e4191ab3bc9d4044af4239ce0d24cce7151b4180b51071",
-      "560fa49eecc4e64ca5cd623fcaad974651d8375683e4bf4434a5a30f2c60ccd9",
-      "a264d1ddf93af8db7066df6103d1a1bc06ab1b4bdb2ea37facaf0b39bd2db0da",
-      "5c6d3e0f1556dd2677ad73d5506e43361959e7adf5c6eb4a7ceffc034780398e",
-      "065e1061c818ad9e12a250420492190b63afc6a5e8ba53f22a6523e954f29818",
-      "03d01850ffee09ec0ec83a3737d1e9b660ecd859703340c35f1e572ba692e510",
-      "73165b9c06e3bf4d74592e05556a62c1aaa42eb982bc21277d2a15f008f26abf",
-      "d2ba0dc9ad73a4a23ca6b77f1509d9af5faa10040d26cccafff128936f7a8452",
-      "c02077338c41804fec15b9c34ce5699b6df2d9a69096cfe405ca23f07b770eb5",
-      "c68dc8a69e3e0bff472744e2a96914b4c9c3a2d366e477be7d3bdad667354e7d",
-      "799fc6f0eaaec42ea4a920044e3e78f56a2377d1c549770a99d0f129ba684ea3",
-      "bef53978a7b1886d488d3fdfa2201b918155a3e47deab45cea3e658295b4327e",
-      "30ada49ee53cddebc1d269e1246fed15f2633096b61b287b5e3a9f23e9e3dd39",
-      "a8f9803b53bd8fb005a48e99ee4c0f0833587b77f1b3befd2dc2978880b28d51",
-      "f785b8d69a1ffdef7802b5221762a2aed3b1f00888106671ce5fb07641c4d81b",
-      "8d56c1ced1fff3e93d74e57ac531b3bf48c031def543ce211ebd16ea6dce1af7",
-      "de523d6f127a422a53f4ee44e63604eb9ebd56cd47e09f7f76fbd138b84f3467",
-      "098dcae8eb91e27923662219fd76fb15d855057eb8d4ecb6ffa24a8dfade2665",
-      "2208ef471351f4ccb5f623a77ecc770004ae5e06a06a99fe534758a6f75ed5d3",
-      "ee17880e363fc7a259c0e0803ea1d6c3227658948ab72ec6cf911e339bfaf738"
-    ]
+      "b46fe97d0e7ae522b78decda299479adc2c5e96c7ec172b62523f5c4bb862417",
+      "30a540cd69e6edbf631826579dbf1b942bf0ee8cd1272a8766e46fc19f827a69",
+      "18dafc71dbabd5b4b14fded202f44d784a25efc3031e8376465fdb0ad0b6c0ab",
+      "ca16a40c056b94ad9ebaeb20beccbac3fbf507975a869438b0170aebb04af1af",
+      "249c49da098e8b62890f2d309fcfbc55a9b0120d94d90dc0bf2fd6e789d04d93",
+      "bd75f5f49336e11194f6a9f3142e8f8c720d723adc597b1c72ff3d2cf00f2f48",
+      "d8decf8f4b4c5b55f6662e1de5bf2e11680e0465ccd71560d42e1800ab92d842",
+      "28a44376953f677498a32803b901c41422f395229d9d430b1e594e9481e9f845",
+      "95f7b52b601331739d5da94b67f783901b58ecb30bdb82607c408c9660258b87",
+      "9ca0a0fd19a363086412da068c7c915da02beae53ba0cbf795e3c7995f97f599",
+      "24e604d795cb8c0abf642524b4a2439f61ce460d3a42c879d4821db35e2ba886",
+      "0bfdd9b03fb9dc360474d74c8b0c069b63e525edfd3b1897e95e00a42ab5ace8",
+      "2cce772cf536874735534f1e8b2206113839cbd80bc7d08f81fb61181d5fc8aa",
+      "cbd502ae09fe88cc822a1e97b69f3a088156c73e0db1b601ddc2bde45fd3bef1",
+      "7a61b5b636d17e49bc5ca28f031417ae9b9295dd27098bfdbbbe55e88f8dd09f",
+      "98dfa411b898a64c69dc52adb8dec128f2b07f691eff38e54dbe3ea12f212ecf",
+      "f759540bbd3e556b6e636a004ff49bbd851677dc975fe826b3709c6456927215",
+      "15ad7d2f3ec10770c1bf472e94a628ed8676a51b86b7566fe85b7307a944757f",
+      "044154909911294b69cf5286c3a228b035f66451f7c04f0f362bd8b7ffce031b",
+      "3fdb4124b58d6eceff9fecb1727b881935a3ff10b7701871523ee9d4ce68dfd5",
+      "003dcb4230ee0f6e6b34b59587188cc4b5f32a19423e93df898a187af3381a68",
+      "2840fc1ab3a750e777a5ccb81fb42ecaaabe05f0b9f569a2db29c499ffe3ad18",
+      "b160e6a5d34bc9daae71fcda2069846e5b005afa9bff6eca1fc8700c779b8144"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
   },
   "C06_linwan_push_palm": {
     "frames": 22,
@@ -165,126 +168,122 @@
       0.5,
       0.890625
     ],
-    "path": "Animations/C06_linwan_push_palm",
+    "path": "Animations/Partial20261115/C06_linwan_push_palm",
     "sha256": [
-      "c4c1844fbebff10091016c467287a72c8d40a9e2cc7435f246e86378a17fb6bf",
-      "e810aa0d2adbada8ab7324ad4af86203b1aebfe6e6abc30e5126dc90edcb6b7d",
-      "c93f8c330e6a5a7e6064abe27d1799864ffe3a8e1f22c33333e9fb8f5e440acd",
-      "13403fd40fbf9b8d0b7414997f33793d9942c94654cb86f39552074f64646e80",
-      "e23686e7ab2d60cb5f50d5c590e98e32e1528887d4bd99e54673a4267b5f4eae",
-      "9160edce832ab73600a6c43c6932e2e90dead7f260f5b3bf72d5a9355da2be0a",
-      "db0eef6f9e5bde9f549bd4c83d1fa1db37b07ac581a41586229aa59c2f1cf6b0",
-      "7b55e90de94eb5493dbe04e024b3b975ce41627efc601d6d62af40b925a13875",
-      "f868d521e7e2e70382805aa779a93b4e423f45e35502153d2d9bda91879bf5a0",
-      "b9851e7e90d96a894d269e00285f60c75f1272d5c4ca001fb179d6c86e104784",
-      "436fc80157a0695ea4c041d7c78055e9decc5d8d3836a87a4872b3b91f6f4838",
-      "4285f3c4c0b405a0454e0e0356c9acd8a0a452be86d3863a0e155d3713d5e549",
-      "bfcf89d931a5a7845a0cc0bb72a503f3a20f9e95b3df98460cb0147d644ecbfb",
-      "0c05b90b76183e6cb2bab22effa84f0fdf239b016a3d4e6735987a640f6e4e12",
-      "2f53bfe64181ba5bd4de74216532f962148cd11109ab713af798c5791b4d205d",
-      "79891ec1ec94ec04859d44bf5167c9b142487274729ec3f9b53b234abb000e4e",
-      "3caf27190485a2a8ee1f6c1926e7fd0db1d3c697d4cc552fcd66f894561985ef",
-      "e3c428b0ffcae1caf551601fd1523ac958e9eb8bfa40438795b8adec69c57b60",
-      "8f48e50612f9101729a5576c26d93a62cea3163917ff18e1d3a14b3ffdbe9379",
-      "9c54dc56e89d2738901c13864187d7ebc0ba6b5b4207a0b4870053ce7befa990",
-      "d8b7665394ee22f54ed4dedaba1d562ff8681b65e3fc75a30ee4181ccaf9121e",
-      "0c8e29ec45fa92d0df84360e36dde73b20f3bf1344194af8bb20034843c91894"
-    ]
+      "5af64a28bc7eda6882b13400b84497c2380e852fcc731cc8c01a58754ae380e9",
+      "a16388409b4975a46f93f1af069ffc9c820cbfe436f91905a56ca2810a1be5d9",
+      "8c01a6eaa627e512f113066d3076ab64122ffce3fd22584328f45453c0394033",
+      "780eb27d07b8317e754fd90bac8b54d2df8f19eae1eaa7cafbe6e9984d2d064e",
+      "b4131934356a5cc9b393f4ac17fef4346c5164dc1c02f2061ad2ca8db258a99a",
+      "ec514dab547808453a46baec7d3c6dc3feab03b263e6448e38cf4e9aed65c222",
+      "6727c6d7d72cdf71b4a3e593ae047b313f9793651bbac3d18f06c2627591fbac",
+      "c5010f2b2ed84c7f7e8e8617457cf37df5ae219c8f84926e6fdf392598680db7",
+      "161c96a1b66ecd82dd1ffc034c4e7dc56e0ccd8889008a89719e3c25cc86c162",
+      "92c6422c41fd8bfc6f3e5c464409af6d0a470a8518e89acd0bf53b5687ec2cc4",
+      "a0f76e2c1435b139573d00f1930adf795dec53fc16f6c34c5fd16a38e121745e",
+      "4efe96685d9ccf9091e545a6268f0307d58227c748cc896626c5d90c47e160d8",
+      "06f09b6b32c742d2ab739e3b241ed3abf34423c90a3e54ba29b3f988517af92d",
+      "7c148d1a08d1f4b51d70d95f65c3ee917341669c70e5b1b5285ef5d938d97d46",
+      "2afed9bf7d7689c949a158898810e8e8ee990428000f82f138e6a0643ed37168",
+      "02d88253193cfdfee22c5d37e7d3c191a9f493bf6b11242593e3629e24de47d8",
+      "d631a8a159fea0a36a0b75ec2321345b4b05609b1894393edfeec1479476aeb4",
+      "a82cf74ee7460e5bb94ebe31c47c25787aec94a34bac2a540fae80f5712d6c1f",
+      "abf634d902f0eed8702ced1d1e2d0ea874f1afc9e0e7614f8191a14956e7dc6e",
+      "2e0528df057c7d6ee8dac83bcb3da72688db0231eac55f0640955e4b3e3a1089",
+      "ccc0899e998a9d0a4c5815aef5f9a7e7cc7e300df88f1d20f60e8364bcdc2cdd",
+      "da012012c1f5e613776d4c2ece35b926a3d5b2208de224951121a61c09f9969c"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
   },
   "C07_linwan_stamp": {
-    "frames": 17,
+    "frames": 12,
     "fps": 5,
     "loop": false,
     "pivot": [
       0.5,
       0.890625
     ],
-    "path": "Animations/C07_linwan_stamp",
+    "path": "Animations/Partial20261115/C07_linwan_stamp",
     "sha256": [
-      "311bb8de025b290d0b4f23719f5a37d1da3cba65e48e653478d5ab43c6f89576",
-      "3e632e252934f4f91221df302dfc01938c1e34044d2cb4e04d7b2e54cc2d544c",
-      "d11ff3cf0ef753e71464f66201c808075eb46abb0e52ccd97e07b0cf11bfa933",
-      "12c5bfe90e6d40e3a3111e254d1ba27315fe77816dd7eaf34201ee81bf7a9392",
-      "558b4b5fb7468df3914cb506cfdfbc871f2aa3eb39d1c85705e7c80c48b91397",
-      "51091bf6b47e70e6ae85bd83cf52c3eb7b8759ec93062406f6d206bee36a8bd7",
-      "c1bd0609b4f39b57f6847ab8cf12192d27abd9bf3650007d403f5979de86998c",
-      "f60718f5d0351ff7cca7dbf4402de1661dde43b8f7367e0caad89c8951fcd1f0",
-      "90d1ad3bcd10e4c2d195296ccb2528ffa35c64de64aca0077bfad1676a58c96d",
-      "38b75dc9b827d6eeec93364d123d83467245ba91c8d97d17da80a7c02ac5cf5e",
-      "fb2d7b67ae88fdabe312a2e03b1874f212ea626664e541c7cbc781cc4e921806",
-      "4942f054a072342a48bd61fe8b66ba3ccbdd9b71f69bcd0655335d1a8d81c070",
-      "1422ab671da6810a4d5bb9fc040fa2e865b746cc0f897ecc6d2134de39a2f3c3",
-      "052d03664ad8666cc7f0eb2b78de63a864e2211cb5601883b25b6e4bf2ce21b7",
-      "3bb50ebf13425abc8c5bea5d769978c43f9be0961387d4f20c0f73931a10c98a",
-      "0666830a6cffd300522d2a672a5c9ad3b919186218b4b57cb71cea6fab52157f",
-      "efa93868e69f12a8e5ae620955a5b1c7f1b6bdbb2c1dcad1211212551653d8da"
-    ]
+      "a8d34884397f78e9ce865e348c60a5e3008eab4739161d3518286458b69b3b67",
+      "b4b875825e42a38d1d075f83498ebaf9e704d13325be7e4f19a9b00d8f63f901",
+      "8ee6d5df492d631c193acb0eec84e2d3a24c64fcbcc7c83e9a4870483859f970",
+      "e1981a4423b8742470b556383b7f303b0a6d649ba2dfd7b892499c516436a942",
+      "5d1bc0bf53bff59c2adc98a3a304289acb4bbab1ac3045e1d28c8857df8ca70f",
+      "05769c0ba7057e5ae41f577805dbd45922532951cdaf60c1d826b5f8cb538874",
+      "6c0b59025dcfaf0513568035d955cb5cec8ba02e4b314636fc0ffe30edcb2a80",
+      "285a1efa15767fa15e73bc87b23fd825e8a07c6b6988df706e518ee96cbd45e2",
+      "8c70a0d03f7fdc0a25e0252bcab9816d6de84b19ec7c172927e653ce0cdb859a",
+      "d64f941edb03c965e31216238b35866c824949f1626038da03cd19189ccfe65a",
+      "4946571b111454c0e9a8d1cbd053bc61d1333ee92f92e1c5143dfb4bc83c9a18",
+      "32e3e118c8602d5634bb3283d07ad86f17676cd5bf8b813dbb76319910be3394"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
   },
   "C08_suyao_fall_kneel": {
-    "frames": 20,
+    "frames": 14,
     "fps": 5,
     "loop": false,
     "pivot": [
       0.5,
       0.890625
     ],
-    "path": "Animations/C08_suyao_fall_kneel",
+    "path": "Animations/Partial20261115/C08_suyao_fall_kneel",
     "sha256": [
-      "2f00c901a1e602db80e338630a966c2f08d0f9108ecc0e4f34cf09bf5fd9cb9c",
-      "10e22baf241f0dc1d3005fc872b2b0e3475e6058b51c9ac76e4901fa61598a32",
-      "46fc3b2b32dad3d723b52c21cf6ecbd45d1c75d1f35aed230560bc5c07552ca6",
-      "6bc6a05b05960e6f41a4e0b5051d00ec05fcb4004acf605856156752ba4a061a",
-      "7bf1f77309e6112a4484734665cac1013a61a92b743452cb1ac596c30440f752",
-      "97f25209e4cfb246d08a7c66bdc12a30415441a5a57a70b9e1169488134558a2",
-      "09dd82f13a31e0ff2429f9cae765daaa1f61ec5e529210391f3d2b94400cd0e7",
-      "c607890fccdd1565243d31bd6b4c92e0424d9106828ac6ffcc02a3fc06ab5bd9",
-      "0d8936470d89ffee0bfc5d6eb5577625c7899f4718679baa781e0b1a83d0517c",
-      "29d5d781882666c7648ff9ed51fd6b4fc135d493438c70479ffbb420eba33e43",
-      "0ea664b0ed07d067b78186fcbad0dae90c733fc01c8eccc3c04bc060759565d5",
-      "ba7289238fcd0958f514d6cf295cd624689e4c2bd73f164f56ff8f653a253e03",
-      "33b602d4b22d8b441bcfd4e9bf93cd413dc7bfa5c842fa595682dbd9cabefdbb",
-      "5a9fd2a8339c4a12a6844cb7607a30046035e00256048dbbdef2c5a62dfebf2b",
-      "143062fb26b548c36fa6c1df7379f72d562f0fae7d090d1c57413cf5f0768765",
-      "eb46c03fd2cbe25a01f053d46850691ded4c36ac046c077782d1f234b962f895",
-      "02f950635277e64d8f077e45bfd06532c27367395f025399022f37ecd7c118b0",
-      "c37d6ffb3955596c57b8c80fcb331fc1ee16d26f86aea5789a8fbadf590586ee",
-      "bfeaaf95da1e187b75d61eed8fcc1241f173ca57e4924e6dee2094cd58d8a19d",
-      "a18f9ea9611c5ffb11d810c51ee71eaba6268b7e3560f96c2042492e0c3852da"
-    ]
+      "06e293a635d20cb6943221c5737e02c5810385c74af0f50345b35f38032ca320",
+      "ce5d77f25f93f005b2cf4add9a2c8274cca35a25f556fd81308eaaf4a28bdec3",
+      "a240e07b59fe78774982dbf1e4e45ab310d08d10e957ffc248f4e56b6a4c8298",
+      "bd580b9f2a4e3610b419f808d43248b8f3587ed8194303d8ec6302a4432555cf",
+      "3f8846f4e85a15cd97923d3028b5360a569a210bd79035e8458025b1d29d339d",
+      "87995be8ab36df7faf9f66887881bdae4412f679cfcd965dd0c763782c8fc7c0",
+      "65517a339d83500c1b74ce98a4ef17bfd7f3d64e71bbc18bebb2a1084dd5d906",
+      "7cd3aa1d1a6b278e504d96dffdd7d29eef6b6eb979a9530652b0d41f66c937b6",
+      "74ce0e829cf5bab12e7596fbd76b49bf2f62232be16b9bf40283767c065bede2",
+      "1ad351b9b9ee3ac01671f86700ca07b96cb6cd34983952318d93752b2b739cb6",
+      "8d8cc5fe0066525d029b7febd1cea91ec72974725f34cecdb83956b72ea1ea4a",
+      "015190c0cc2e5a8528ca8963e69aa31b4abee504da6d9ec7eba2a77467ba3c68",
+      "55738707333121a7400907dce1a44f20144339363c68e7385dc38e16cb751a14",
+      "c518a41c887306316216020ee7e42450c3444bc44ad4355da81ee788d6a69ba3"
+    ],
+    "screen_facing": "left",
+    "source_delivery": "Partial20261115"
   },
   "C09_suyao_rise": {
-    "frames": 22,
+    "frames": 21,
     "fps": 5,
     "loop": false,
     "pivot": [
       0.5,
       0.890625
     ],
-    "path": "Animations/C09_suyao_rise",
+    "path": "Animations/Partial20261115/C09_suyao_rise",
     "sha256": [
-      "e26675888257ca401aeff73450cfab0d718fb273ec7424ffc1298a2570fe6c7f",
-      "744976377c246a80710a5aea51aeeaf8ecbb6ca34079a0714be1f26f1f1de94f",
-      "4ba2363109b8f20f059a1a3e38b898bb81bdc98d4d27fbd8d27a3583176d3c3e",
-      "463bf1119dbcacdd8927723bf8cda053380cfbe202b50be4835d4c1f8ea9a52b",
-      "b60970a9a942cbcc1a1973b062004a44370f9e539b4f230d291ff06647044f89",
-      "f31e3354b7c3eabe2af2a7423c4bafc29a386129076363371cfeae92d2431cf2",
-      "494c21b2a144b4f4880d52b2c8b31c881034c7ed8eb8982868f347670bf839ee",
-      "f8144c0fb6b2fd9ac475d0911e465a937064e9c279f8b339c7c3ca2894b772ab",
-      "d4237ac08469774b014f79ef7d28ee6873960ef633c185c2c4b8643451e26689",
-      "c2847769f79c683188c243a5aefd2dbbaf70c1d470e1278706441e38a6394fb0",
-      "dc09230cf40f49516e606eb8df1c4a44eda733aa4ad86b897cb42312f7a5c7e7",
-      "3c45355799b42fc4582b07f2ccf09009f382c2e6bf8a3e7c6e60026fca80fe41",
-      "ed53e854124c1d17aa69976c2c7475ddfa0ea3832bd694c6753db74b39745524",
-      "383a979305932fcf2b542b326d15f60f3eea8b1dbf94487a1e2ddeb651b89355",
-      "93422adb4979c64fc3f265d1faebcdbed968b74d95780f4247f440b42e4c6f7d",
-      "0b234160ebbf996812de1668694a9d13890ac01814c48c608ba80834c52fa549",
-      "6d7f5a7fd1ecfaaa9e3989b091712a825b469526ceb7a240fdd9170fb458d352",
-      "9e4fe70b1528a0de73c54718c5e0176e2ed1b843d7dbd68cf6a9f792d4a17e4a",
-      "62ccf2b2bd6d0f06f3fcb44be01a36465c6ed8d8e5d818f087162930e5e19e6c",
-      "cedafe7b322e04e2ce3d85a8a2a8f904cd8330e90afed019f2c4f972badb8802",
-      "27be322fd398d7c3e463f665a1ba054e11674e099b54b08587e99dbcb0dd00e6",
-      "5845b1bcd17b622660fc35ad1ab8d2803aa2ef67d3921f8303c293a38a44b57c"
-    ]
+      "e179263825e3d2be6ceda0c8ccc6e0519ac3007526963ed8a43797fa40175217",
+      "8bcf64c5722c658a1d604e210794db7343c38b750a6acb5250774a7dddaa28e8",
+      "b3369e9bc0e52cd9bcecd1954fb2e4a49501d84ae8da7bad65a0ffed2877d8fe",
+      "2827ad449564c76226cc7afa36807f5956fcaf77badd7fd4f105fcb32cfe7c6c",
+      "054a21fdba7453f980f4af7208ffc9cda9268ec2a8d1a5c1c43fa0508aba7b1e",
+      "fa8e690610c36468d5be78222a2d631b2df9e57eec1a752b5e9e9ef34e4a4b7a",
+      "c44e81a15a8a2652c6958a2b7acb0d716e179af9cbd960cf71cd0d519059c357",
+      "7b5e42d8013490da4ce4477be9ecbe954d0a05af68430c59a75224243c8d5920",
+      "bbb15de1b6253e0f5595d85436d9d2d3002e5eaae9814b3ceaae571c5357461d",
+      "61b6dc2bd59f5c718e86c5dfa205dbde8435ec8f00a6ca512cad631b2b90e42a",
+      "7ecf8756c413294f96cbd064dfe2ac243a5e44cea15653ecbe6bfb10026ba82d",
+      "b6a7ec12bf73b611fce2f0b3004325da323577ab90d3603cff80db3c221dcc0e",
+      "58b207158a4a1b75fb4f9548489516a075103be42424357cf7aa2c7b08b298d6",
+      "c2bd37cc131fb4a9335cbe56cff5b18771e43992a52fd53caffe2eefca40d102",
+      "40d314d3b35cd27a904c6020f5f6de6803b18554b646e66a45dedbc1a8e3b374",
+      "8e159b587544a4df7758117b877d5442b0396c74fcecf88ab173c2e6f8199d9d",
+      "cc2845304f13a0ae958d521f9fda7d7b7de57c3123385bdf6f3fa260024ce2cc",
+      "1431b006e5161f1ff1428a1849ad9aab6cb1820a5075b33a383ea5e31482ee8c",
+      "0a388b3b412b5ed384ffd9fd1ddf205fa37f708cc3d9aa1df34e90f843824df1",
+      "5b1cc44429666fb75567e5d1b7cd724fc14a55d0c6d1ac826ab497e5bc785752",
+      "9cc2905d59ed5228e3d456e1f563a3e7e26129a2a6484da485d6d65c6745ae25"
+    ],
+    "screen_facing": "left",
+    "source_delivery": "Partial20261115"
   },
   "E01_extra_f_idle": {
     "frames": 12,
@@ -480,6 +479,197 @@
       "c23a861bc1122ce523d90ecfaf8d318fb0737f0527ec85c5dd46de7a30bbb3c8",
       "25d2b67b5955a6f091e89efb4edc9c4caf7265b9ca00224c625721839558aef0",
       "789b8b0da0cdd29867aa1e7ef5e28f81c3d224642c801e59404c4d2bfe92332b"
-    ]
+    ],
+    "retired": true
+  },
+  "A16_xiaobei_rise_empty": {
+    "frames": 13,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/A16_xiaobei_rise_empty",
+    "sha256": [
+      "567c91779b58ffeb98e55268e8dbe089b9695aaceb44447d9231775fce681229",
+      "e8dfc05e061811a67196bac8ca6b5e24c2f3bb9519746bce334d0729bd544309",
+      "559a707760d226d0a114cd0c0e030d33289938bbde44036f7110feb3f66c3666",
+      "1979b186d6cfbf7ca645f61d0751e00b66eb8b93284dce7b974441ca8c50e8bf",
+      "eb87d8837b40de3bc6ec3bfe3cd341a63835a0dc3fc0450b5774ec387154088e",
+      "5e96cb7392c2d621ffff9545b4829491ffe86a39404594ec901665829d221f72",
+      "83b5cb8428ab2f598b8f67d7f13725e8ad37d93db25f322488d26757205920a6",
+      "91b86ffb44cdd05043365a5da08fd0116b76f0f5f028ef5d50b60cbd0e7e9f6c",
+      "5363cbdbaaa3c3c0c74b2637798e3554e72558de95cc0e69bab9dfc943808ed9",
+      "374ffee5348361a31b61ed4eb1ac495672f52002792ec7f33f67a27e31c8a918",
+      "2e34fd5abf80f359bdd7f63c9cbf8ab30dd41927ba68c310fd378f48e6d485b5",
+      "af3916e9f6df551c9161f85cbc0428027ce7e69e290a2626f48538e3fd79524a",
+      "de1be523cb79b537adde99bb592dfa7a1d2514ea2d6d163cd9722ab9aa911259"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
+  },
+  "A17_xiaobei_crouch_empty": {
+    "frames": 16,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/A17_xiaobei_crouch_empty",
+    "sha256": [
+      "aca8ffb64504c7c84ac5d63d644559be2bfa0873c2f9ef2c317b0ca6c06bb821",
+      "f94afa6b1d59a83df11e89423887dd89e6e5ed183c2c47162cd4dea59cb2e24b",
+      "3a5c026304b5e36f3cd948eafa50cd961ed2cfdeb5e3490b9aeb89a97b4f1237",
+      "5b67370ecf8cc3d088b08ad4c4484f3b020f75df13f12e9b794642b92d84b15b",
+      "5e86eff411afe2796e590a091f429fac33bb60c7cfe45c9b41b2807bc963e9b2",
+      "44e3537d6e74eabc5711f1cd182dee19677d0b31e448da9397d9f6fd75da699b",
+      "26ecc1c96cf5522d11c3acc0aa36914cd8278ee157659c80844ddfaa80a5ea75",
+      "5682033680b55bd8f39ca6b8a0745868d5f8d8bb6829d076be6bacf0853da641",
+      "cab27efc303155eecf0e609a721729ecaf120893aa53b33975f46ca5fc1b018f",
+      "b2a447ae5cfcac11f9879fa7e942b6b6ae41efb548fbf35e8513a2503f305c98",
+      "d3de6764a42bed9d678a6dd3ae7c123357633e682120288fab4404928788cc65",
+      "8083dd58f4e323b862683904cdc48f0aca9ccef6ad4faf119c290b63d9d042a6",
+      "b68a86cb37913e69ec2774379ed73b996a3a52eb9c094dc0d2e6bd238c212ca9",
+      "85bfd923af45c165517f13d5ac8f788f9fbb0af68eaf189a8cb249ab04d70993",
+      "f5fa83d03baf11cc017da2efdf6fdea3a272de0fd7e1a33f0a6ab84dcc6b1eb7",
+      "826fceb63e721b7d42996ae0299b7fa77f4e1f096998fa759c1c18b133322f81"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
+  },
+  "A49_linwan_deep_breath": {
+    "frames": 17,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/A49_linwan_deep_breath",
+    "sha256": [
+      "1a8b56cd062cbceb4b6ac5a3c30ab2baf44a68074c62781a3cc8dd1dfbaf2591",
+      "e9d5dc5c877f8535bd633cc44b6d25753d038b62f0b26e32aca66e6e60f73492",
+      "eabc0fc30a1a5b3756e81301f6bcf4d3170098288c45a6a59a0e0a3fe44335b0",
+      "01bc25d05ce6d39168d643ac5c41d002e87cf10ab0ac7482e650f1f819577269",
+      "5731ac729ecbb993134bd42db4d99910332192deebf671f868eab6e50a138106",
+      "f5b8618e5a20429706f7c983033c0afd699ed430bd4230c79e21cff1bf10c65c",
+      "e0894543fb5f71c64a07c7b22d3ca86a0587332ea007828ee9afb1f6c1ece1c9",
+      "f9a3b86cc48f3bd3f0f54437d87463cb4055b77840579970ac3fd10084de44dc",
+      "ddaa91c7a7ca9929baa384b2385d32cf0ae986acfa2d832a276cb4fc1062d94a",
+      "75b53bfb0ba51a95a07fe4509f43ae15e24916fb90c247699f746661fdd0a389",
+      "b94d89eaf75431c733f0a7c98758bdc50c6b9287a26c28001d01a75754208938",
+      "e19bee38e346727e86ada593b1197a0e22be1d83ff8a21809bca13779caf799e",
+      "e10ba97b17e28fbd049acd7a17c46ab9132e78998c4213673e81c324d92feb58",
+      "a35bebe9e0e77f88604e93270b3359ea53c56102559d4d5c0c7172676359a562",
+      "c9592cb864ab0789d5e9b1c8c842aa9b5a6c4e017eb15769dce42649431981b0",
+      "51c1681d6d6de9a415a213e3a193a91bf13f1914048d2427ee5429837e12fbb5",
+      "d0adf51ccd0b93f9e45bbc7124819a30822ddeecebff233f96fb684e0835949b"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
+  },
+  "M_actress": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_actress",
+    "sha256": [
+      "2ee9562962b95c51aa489be540dff9cede3376b15054d2ef16b89a443bec43a2"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "953eb1b91cc703fd2cb2172008f42f6c235f80db4c6a5cd589c39e52d92827f5"
+  },
+  "M_chenmo": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_chenmo",
+    "sha256": [
+      "d3f124e7c54e7f656d465efb372249329e4b9e5ed273f3bdc4014b3e9b74912f"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "e16748e154c08ba9d1feb62dab3b31fc34fe0d4a143bd12204bcc20541bf960c"
+  },
+  "M_limou": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_limou",
+    "sha256": [
+      "9fd1b0078d682492a2f6061b109077ceee56cfa106cb49337362592848c0cde2"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "620b17f5d070bfdf1beacb53decb25aafbf8a10da6e09b12209642dfb2582cd3"
+  },
+  "M_man": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_man",
+    "sha256": [
+      "e0abb164514cbeb59770752b5df0f1f83bb3d72a15656e4c4e49d6e5eb5fed21"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "d1e4f051bac1055ca95ef3353fd670abc2e3f4e91e6a0a626fbddbcdcabad20f"
+  },
+  "M_xiaoxia": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_xiaoxia",
+    "sha256": [
+      "a72f86e5f8f872cd13c8cef39516ef99b84d617b717b6c510fd72e4768d2cb4a"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "829202f7b67097e5e4ff95c87ed028d258ea8081207769266e3a923c6203baea"
+  },
+  "M_xiaozhou": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_xiaozhou",
+    "sha256": [
+      "9ee47cbf2baff9240f1632d2283bf95a0e4defb30a4a566fe67bdbfdb242cca1"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "818307524e5372ed02e43b9fbdf4a5a44ecee0efbf4b1f0c547c179ecb3ba239"
   }
 }

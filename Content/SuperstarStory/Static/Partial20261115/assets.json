@@ -1,0 +1,112 @@
+{
+  "P01_umbrella_closed": {
+    "grip": [
+      256,
+      390
+    ],
+    "canopy_tip": [
+      256,
+      108
+    ]
+  },
+  "P02_umbrella_open": {
+    "grip": [
+      256,
+      390
+    ],
+    "canopy_tip": [
+      256,
+      108
+    ]
+  },
+  "P07_photo_intact": {
+    "grip": [
+      151,
+      283
+    ],
+    "label_attachment": [
+      248,
+      92
+    ],
+    "peel_corner": [
+      351,
+      106
+    ]
+  },
+  "P08_old_label": {
+    "grip": [
+      408,
+      241
+    ],
+    "attachment": [
+      100,
+      197
+    ]
+  },
+  "P04_prop_knife": {
+    "grip": [
+      234,
+      336
+    ],
+    "rounded_tip": [
+      245,
+      120
+    ]
+  },
+  "P06_document_folder": {
+    "grip": [
+      95,
+      270
+    ],
+    "paper_opening": [
+      256,
+      213
+    ]
+  },
+  "P09_three_papers": {
+    "sheet_grips": [
+      [
+        103,
+        168
+      ],
+      [
+        293,
+        118
+      ],
+      [
+        219,
+        328
+      ]
+    ]
+  },
+  "P10_phone_stand": {
+    "cradle": [
+      235,
+      351
+    ],
+    "footprint": [
+      259,
+      389
+    ]
+  },
+  "P03_phone": {
+    "grip": [
+      178,
+      341
+    ],
+    "screen_center": [
+      256,
+      249
+    ]
+  },
+  "P05_white_rose": {
+    "grip": [
+      247,
+      385
+    ],
+    "flower_center": [
+      263,
+      143
+    ]
+  }
+}

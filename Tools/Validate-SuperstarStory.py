@@ -7,7 +7,7 @@ from PIL import Image
 root = Path(__file__).resolve().parents[1] / 'Content/SuperstarStory'
 clips = json.loads((root / 'clips.json').read_text(encoding='utf-8'))
 story = json.loads((root / 'story.json').read_text(encoding='utf-8'))
-assert len(clips) == 18
+assert len(clips) >= 18
 used = set()
 assert {b['chapter'] for b in story['beats']} == {1, 2, 3, 4}
 assert sum(bool(b['evidence']) for b in story['beats']) == 3
@@ -19,12 +19,22 @@ for beat in story['beats']:
         assert actor['clip'] in clips and isinstance(actor['flip'], bool)
         assert 0 <= actor['x'] <= 1280 and 0 <= actor['to'] <= 1280
         assert not actor['name'].startswith('导演'), 'Director must use the confirmed Li Mou identity.'
+        last_start=0
+        for part in actor.get('sequence',[]):
+            assert last_start<part['at']<beat['duration'] and part['clip'] in clips
+            used.add(part['clip']);last_start=part['at']
+        if 'hold_frame' in actor:assert 0<=actor['hold_frame']<clips[actor['clip']]['frames']
+        if 'delay' in actor:assert 0<=actor['delay']<beat['duration']
         previous = -1
         for emotion in actor.get('emotions', []):
             assert emotion['icon'] in {'Emotion_Anger', 'Emotion_Shock', 'Emotion_Care', 'Emotion_Warm'}
             assert previous <= emotion['at'] < beat['duration'] and emotion['label']
             previous = emotion['at']
-assert used == clips.keys(), 'Every required clip, including extra idle and walk, must be reachable.'
+    for prop in beat.get('props',[]):
+        assert (root/prop['image']).is_file() and prop['size']>0
+        if 'actor' in prop:assert 0<=prop['actor']<len(beat['actors'])
+    if 'evidence_image' in beat:assert (root/beat['evidence_image']).is_file()
+assert used == {id for id,c in clips.items() if not c.get('retired')}, 'Every active clip, including extra idle and walk, must be reachable.'
 total = 0
 anchors=json.loads((root/'head_anchors.json').read_text(encoding='utf-8'))
 for name, clip in clips.items():

@@ -1,0 +1,262 @@
+{
+  "id": "A16_xiaobei_rise_empty",
+  "fps": 5,
+  "frame_count": 13,
+  "playback_seconds": 2.6,
+  "loop": false,
+  "source": "runs/A16_xiaobei_rise_empty/attempt_01/source.mp4",
+  "source_sha256": "3605712594e1b18506e1420a72feb8cc9420641d7c99c38fdef4917a389cba20",
+  "cut": {
+    "video": "runs/A16_xiaobei_rise_empty/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.375,
+    "end_seconds_exclusive": 2.9583333333333335,
+    "loop": false,
+    "event_times": {
+      "action_onset": 0.4583333333333333,
+      "main_event": 1.4583333333333333,
+      "settled_end": 2.25
+    }
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 2.5833333333333335,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1
+  },
+  "events": {
+    "action_onset": {
+      "source_seconds": 0.4583333333333333,
+      "output_frame": 1,
+      "sample_offset_seconds": -0.08333333333333331
+    },
+    "main_event": {
+      "source_seconds": 1.4583333333333333,
+      "output_frame": 6,
+      "sample_offset_seconds": -0.08333333333333326
+    },
+    "settled_end": {
+      "source_seconds": 2.25,
+      "output_frame": 10,
+      "sample_offset_seconds": -0.08333333333333348
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.375,
+      "source_frame": 10,
+      "actual_source_seconds": 0.375,
+      "alpha_bbox": [
+        236,
+        324,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.575,
+      "source_frame": 15,
+      "actual_source_seconds": 0.5833333333333334,
+      "alpha_bbox": [
+        236,
+        332,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.775,
+      "source_frame": 20,
+      "actual_source_seconds": 0.7916666666666666,
+      "alpha_bbox": [
+        236,
+        330,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.975,
+      "source_frame": 24,
+      "actual_source_seconds": 0.9583333333333334,
+      "alpha_bbox": [
+        236,
+        298,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 1.175,
+      "source_frame": 29,
+      "actual_source_seconds": 1.1666666666666667,
+      "alpha_bbox": [
+        234,
+        250,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.375,
+      "source_frame": 34,
+      "actual_source_seconds": 1.375,
+      "alpha_bbox": [
+        232,
+        196,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.575,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        246,
+        146,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.775,
+      "source_frame": 44,
+      "actual_source_seconds": 1.7916666666666667,
+      "alpha_bbox": [
+        266,
+        116,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.975,
+      "source_frame": 48,
+      "actual_source_seconds": 1.9583333333333333,
+      "alpha_bbox": [
+        248,
+        108,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 2.175,
+      "source_frame": 53,
+      "actual_source_seconds": 2.1666666666666665,
+      "alpha_bbox": [
+        244,
+        106,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.375,
+      "source_frame": 58,
+      "actual_source_seconds": 2.375,
+      "alpha_bbox": [
+        246,
+        106,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.575,
+      "source_frame": 63,
+      "actual_source_seconds": 2.5833333333333335,
+      "alpha_bbox": [
+        246,
+        106,
+        576,
+        608
+      ]
+    },
+    {
+      "file": "frames/A16_xiaobei_rise_empty_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.775,
+      "source_frame": 68,
+      "actual_source_seconds": 2.7916666666666665,
+      "alpha_bbox": [
+        246,
+        106,
+        576,
+        608
+      ]
+    }
+  ],
+  "visual_review": "PASSED",
+  "screen_facing": "right",
+  "acceptance": {
+    "approved": true,
+    "no_intro": true,
+    "events_readable_5fps": true,
+    "alpha_on_light_dark": true,
+    "identity_and_props": true,
+    "anchor_and_bounds": true,
+    "loop_or_chain_checked": true,
+    "facial_acting_checked": true,
+    "notes": "Verified on green source and dark/light alpha: rises empty-handed with the initial three papers continuously on the floor, distressed rather than smiling. Last sampled source frame 68 supplies the next opening.",
+    "reviewer": "Codex"
+  }
+}

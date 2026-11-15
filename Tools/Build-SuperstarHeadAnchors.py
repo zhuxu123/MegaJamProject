@@ -1,5 +1,5 @@
 """Derive head-top anchors from the visible crown of each current 640px sprite.
-These clips have no props above the head. Future overhead poses need reviewed anchors.
+Current character frames have no props above the head. Separate scene props are excluded.
 Only writes metadata; preserves all original animation pixels.
 """
 from pathlib import Path
@@ -8,9 +8,11 @@ import numpy as np
 from PIL import Image
 root=Path(__file__).resolve().parents[1]/'Content/SuperstarStory'
 anchors={}
-for folder in sorted((root/'Animations').iterdir()):
+clips=json.loads((root/'clips.json').read_text(encoding='utf-8'))
+for id,clip in clips.items():
     frames=[]
-    for path in sorted(folder.glob('*.png')):
+    for i in range(1,clip['frames']+1):
+        path=root/clip['path']/f'{id}_{i:06d}.png'
         a=np.array(Image.open(path))
         mask=a[:,:,3]>128
         rows=np.flatnonzero(mask.sum(axis=1)>=8)
@@ -19,7 +21,7 @@ for folder in sorted((root/'Animations').iterdir()):
         band=mask[top:min(top+55,640)]
         xs=np.nonzero(band)[1]
         frames.append([round(float(np.median(xs)),2),top])
-    anchors[folder.name]=frames
+    anchors[id]=frames
 (root/'head_anchors.json').write_text(json.dumps(anchors,indent=2)+'\n',encoding='utf-8')
 assert anchors['C03_xiaobei_fall_scatter'][-1][1]>anchors['C03_xiaobei_fall_scatter'][0][1]+100
 assert anchors['C09_suyao_rise'][-1][1]<anchors['C09_suyao_rise'][0][1]-100

@@ -198,6 +198,9 @@ void ASuperstarStage::ResetCharacters()
     for(UPaperSpriteComponent* Character : Characters) if(Character) Character->DestroyComponent();
     Characters.Reset();
     CharacterTextures.Reset();
+    for (UPaperSpriteComponent* Prop : Props) if (Prop) Prop->DestroyComponent();
+    Props.Reset();
+    PropTextures.Reset();
 }
 
 void ASuperstarStage::SetCharacter(int32 Index, UTexture2D* Texture, float ScreenX, bool bFlip)
@@ -229,6 +232,30 @@ void ASuperstarStage::SetCharacter(int32 Index, UTexture2D* Texture, float Scree
 void ASuperstarStage::SetReferenceView(bool bReference)
 {
     for(UPaperSpriteComponent* Character : Characters) Character->SetVisibility(!bReference);
+    for(UPaperSpriteComponent* Prop : Props) Prop->SetVisibility(!bReference);
+}
+
+void ASuperstarStage::SetProp(int32 Index, UTexture2D* Texture, FVector Center, float Height)
+{
+    if (!Texture) return;
+    while (Props.Num()<=Index)
+    {
+        auto* Component=NewObject<UPaperSpriteComponent>(this);
+        Component->SetupAttachment(RootComponent);
+        Component->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+        Component->SetCastShadow(false);
+        Component->RegisterComponent();
+        Props.Add(Component);PropTextures.Add(nullptr);
+    }
+    UPaperSpriteComponent* Component=Props[Index];
+    if(PropTextures[Index]!=Texture)
+    {
+        auto* Sprite=NewObject<USuperstarRuntimeSprite>(Component);
+        Sprite->Initialize(Texture,SpriteMaterial);
+        Component->SetSprite(Sprite);PropTextures[Index]=Texture;
+    }
+    Component->SetRelativeScale3D(FVector(-Height/395.f*Texture->GetSizeX()/Texture->GetSizeY(),1.f,Height/395.f));
+    Component->SetRelativeLocation(Center-FVector(0,0,Height*.390625f));
 }
 
 void ASuperstarStage::SetView(float Station, float Pan, float Tilt, float Zoom)

@@ -105,6 +105,9 @@ private:
     void Background(const FString& Scene);
     void DrawActors();
     void UpdateActors();
+    void ResolveActorSample(const TSharedPtr<FJsonObject>& Actor, FString& Id, int32& Frame) const;
+    FString ClipFramePath(const FString& Id, int32 Frame) const;
+    float PropScreenX(const TSharedPtr<FJsonObject>& Prop) const;
     void UpdateCamera(float Delta);
     void TakePhoto();
     void OnPhotoCaptured(int32 Width, int32 Height, const TArray<FColor>& Pixels);

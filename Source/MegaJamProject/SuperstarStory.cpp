@@ -147,11 +147,21 @@ void ASuperstarStoryHUD::SelectBeat(int32 Index)
     TSet<FString> Needed;
     for (const auto& Value : Beats[Beat]->GetArrayField(TEXT("actors")))
     {
-        const FString Id = Value->AsObject()->GetStringField(TEXT("clip"));
-        const auto Clip = Data->GetObjectField(TEXT("clips"))->GetObjectField(Id);
-        for (int32 I = 1; I <= Clip->GetIntegerField(TEXT("frames")); ++I)
-            Needed.Add(FString::Printf(TEXT("Animations/%s/%s_%06d.png"), *Id, *Id, I));
+        TArray<FString> Ids{Value->AsObject()->GetStringField(TEXT("clip"))};
+        const TArray<TSharedPtr<FJsonValue>>* Sequence=nullptr;
+        if(Value->AsObject()->TryGetArrayField(TEXT("sequence"),Sequence))
+            for(const auto& Part:*Sequence) Ids.Add(Part->AsObject()->GetStringField(TEXT("clip")));
+        for(const auto& Id:Ids)
+        {
+            const auto Clip=Data->GetObjectField(TEXT("clips"))->GetObjectField(Id);
+            for(int32 I=0;I<Clip->GetIntegerField(TEXT("frames"));++I) Needed.Add(ClipFramePath(Id,I));
+        }
     }
+    const TArray<TSharedPtr<FJsonValue>>* Props=nullptr;
+    if(Beats[Beat]->TryGetArrayField(TEXT("props"),Props))
+        for(const auto& Prop:*Props) Needed.Add(Prop->AsObject()->GetStringField(TEXT("image")));
+    FString EvidenceImage;
+    if(Beats[Beat]->TryGetStringField(TEXT("evidence_image"),EvidenceImage)) Needed.Add(EvidenceImage);
     const FString Scene = Beats[Beat]->GetStringField(TEXT("scene"));
     if (Music) Music->SelectBeat(Beat + 1);
     if (Stage) { Stage->ResetCharacters(); Stage->SetScene(Scene); }
@@ -385,6 +395,48 @@ void ASuperstarStoryHUD::Background(const FString& Scene)
     }
 }
 
+FString ASuperstarStoryHUD::ClipFramePath(const FString& Id,int32 Frame) const
+{
+    const auto Clip=Data->GetObjectField(TEXT("clips"))->GetObjectField(Id);
+    return Clip->GetStringField(TEXT("path"))/FString::Printf(TEXT("%s_%06d.png"),*Id,Frame+1);
+}
+
+void ASuperstarStoryHUD::ResolveActorSample(const TSharedPtr<FJsonObject>& Actor,FString& Id,int32& Frame) const
+{
+    Id=Actor->GetStringField(TEXT("clip"));
+    double Delay=0.;Actor->TryGetNumberField(TEXT("delay"),Delay);
+    const double ActorTime=FMath::Max(0.,static_cast<double>(Clock)-Delay);
+    double LocalTime=ActorTime;
+    const TArray<TSharedPtr<FJsonValue>>* Sequence=nullptr;
+    if(Actor->TryGetArrayField(TEXT("sequence"),Sequence))
+        for(const auto& Part:*Sequence)
+        {
+            const auto P=Part->AsObject();const double At=P->GetNumberField(TEXT("at"));
+            if(ActorTime>=At) {Id=P->GetStringField(TEXT("clip"));LocalTime=ActorTime-At;}
+        }
+    const auto Clip=Data->GetObjectField(TEXT("clips"))->GetObjectField(Id);
+    const int32 Count=Clip->GetIntegerField(TEXT("frames"));
+    const int32 Sample=FMath::FloorToInt(LocalTime*Clip->GetNumberField(TEXT("fps")));
+    Frame=Clip->GetBoolField(TEXT("loop"))?Sample%Count:FMath::Min(Sample,Count-1);
+    double Hold=0.;if(Actor->TryGetNumberField(TEXT("hold_frame"),Hold)) Frame=FMath::Clamp(static_cast<int32>(Hold),0,Count-1);
+}
+
+float ASuperstarStoryHUD::PropScreenX(const TSharedPtr<FJsonObject>& Prop) const
+{
+    double Index=0.;
+    if(Prop->TryGetNumberField(TEXT("actor"),Index))
+    {
+        const auto& Actors=Beats[Beat]->GetArrayField(TEXT("actors"));
+        if(Actors.IsValidIndex(static_cast<int32>(Index)))
+        {
+            const auto A=Actors[static_cast<int32>(Index)]->AsObject();
+            const double Progress=FMath::Clamp(Clock/Beats[Beat]->GetNumberField(TEXT("duration")),0.,1.);
+            return FMath::Lerp(A->GetNumberField(TEXT("x")),A->GetNumberField(TEXT("to")),Progress)+Prop->GetNumberField(TEXT("offset_x"));
+        }
+    }
+    return Prop->GetNumberField(TEXT("x"));
+}
+
 void ASuperstarStoryHUD::UpdateActors()
 {
     if (!Stage || !Beats.IsValidIndex(Beat)) return;
@@ -393,15 +445,22 @@ void ASuperstarStoryHUD::UpdateActors()
     for (const auto& Value : Current->GetArrayField(TEXT("actors")))
     {
         const auto Actor = Value->AsObject();
-        const FString Id = Actor->GetStringField(TEXT("clip"));
-        const auto Clip = Data->GetObjectField(TEXT("clips"))->GetObjectField(Id);
-        const int32 Count = Clip->GetIntegerField(TEXT("frames"));
-        const int32 Sample = FMath::FloorToInt(FMath::Max(0.f, Clock)*5.f);
-        const int32 Frame = Clip->GetBoolField(TEXT("loop")) ? Sample%Count : FMath::Min(Sample,Count-1);
-        auto* Texture = LoadFrame(FString::Printf(TEXT("Animations/%s/%s_%06d.png"), *Id,*Id,Frame+1));
+        FString Id;int32 Frame;ResolveActorSample(Actor,Id,Frame);
+        auto* Texture = LoadFrame(ClipFramePath(Id,Frame));
         const float X = FMath::Lerp(Actor->GetNumberField(TEXT("x")),Actor->GetNumberField(TEXT("to")),
             FMath::Clamp(Clock/Current->GetNumberField(TEXT("duration")),0.,1.));
         Stage->SetCharacter(Index++,Texture,X,Actor->GetBoolField(TEXT("flip")));
+    }
+    const TArray<TSharedPtr<FJsonValue>>* Props=nullptr;
+    if(Current->TryGetArrayField(TEXT("props"),Props))
+    {
+        int32 PropIndex=0;
+        for(const auto& Value:*Props)
+        {
+            const auto P=Value->AsObject();
+            Stage->SetProp(PropIndex++,LoadFrame(P->GetStringField(TEXT("image"))),
+                FVector((640.f-PropScreenX(P))*1400.f/1280.f,P->GetNumberField(TEXT("depth")),P->GetNumberField(TEXT("z"))),P->GetNumberField(TEXT("size")));
+        }
     }
     Stage->SetReferenceView(bReferenceView || Current->GetStringField(TEXT("scene")) == TEXT("newspaper"));
 }
@@ -413,12 +472,8 @@ void ASuperstarStoryHUD::DrawActors()
     for (const auto& Value : Current->GetArrayField(TEXT("actors")))
     {
         const auto Actor = Value->AsObject();
-        const FString Id = Actor->GetStringField(TEXT("clip"));
-        const auto Clip = Data->GetObjectField(TEXT("clips"))->GetObjectField(Id);
-        const int32 Count = Clip->GetIntegerField(TEXT("frames"));
-        const int32 Sample = FMath::FloorToInt(FMath::Max(0.f, Clock) * 5.f);
-        const int32 Frame = Clip->GetBoolField(TEXT("loop")) ? Sample % Count : FMath::Min(Sample, Count - 1);
-        auto* Texture = LoadFrame(FString::Printf(TEXT("Animations/%s/%s_%06d.png"), *Id, *Id, Frame + 1));
+        FString Id;int32 Frame;ResolveActorSample(Actor,Id,Frame);
+        auto* Texture = LoadFrame(ClipFramePath(Id,Frame));
         const float Progress = FMath::Clamp(Clock / Current->GetNumberField(TEXT("duration")), 0., 1.);
         const float X = FMath::Lerp(Actor->GetNumberField(TEXT("x")), Actor->GetNumberField(TEXT("to")), Progress);
         const bool bFlip = Actor->GetBoolField(TEXT("flip"));
@@ -465,6 +520,16 @@ void ASuperstarStoryHUD::DrawActors()
             }
         }
     }
+    const TArray<TSharedPtr<FJsonValue>>* Props=nullptr;
+    if(bReferenceView&&Current->TryGetArrayField(TEXT("props"),Props))
+        for(const auto& Value:*Props)
+        {
+            const auto P=Value->AsObject();auto* Texture=LoadFrame(P->GetStringField(TEXT("image")));
+            if(!Texture) continue;
+            const float H=P->GetNumberField(TEXT("size"))*360.f/395.f,W=H*Texture->GetSizeX()/Texture->GetSizeY();
+            DrawTexture(Texture,Origin.X+(PropScreenX(P)-W/2)*Scale,Origin.Y+(494-P->GetNumberField(TEXT("z"))*360/395-H/2)*Scale,
+                W*Scale,H*Scale,0,0,1,1,FLinearColor::White,BLEND_Translucent);
+        }
 }
 
 void ASuperstarStoryHUD::DrawHUD()
@@ -502,8 +567,18 @@ void ASuperstarStoryHUD::DrawHUD()
     if (!Evidence.IsEmpty())
     {
         Rect(45, 416, 1190, 95, Ink);
-        Label(TEXT("证据卡（原图待补）"), 60, 425, 17, Mint);
-        Label(Evidence, 60, 457, 19);
+        FString EvidencePath;
+        if(Current->TryGetStringField(TEXT("evidence_image"),EvidencePath))
+        {
+            if(auto* Image=LoadFrame(EvidencePath)) DrawTexture(Image,Origin.X+60*Scale,Origin.Y+428*Scale,128*Scale,72*Scale,0,0,1,1,FLinearColor::White,BLEND_Opaque);
+            Label(TEXT("名单证据图"),205,432,17,Mint);
+            Label(Evidence,205,466,16);
+        }
+        else
+        {
+            Label(TEXT("证据卡（原图待补）"), 60, 425, 17, Mint);
+            Label(Evidence, 60, 457, 19);
+        }
         Rect(450, 435, 490, 62, FLinearColor(.08f,.16f,.18f));
         Label(bPublished ? TEXT("已发送到直播") : (bEvidencePlaced ? Evidence : TEXT("拖入或点击左侧证据卡")), 470, 454, 18, Mint);
         Rect(995, 445, 185, 48, bEvidencePlaced ? FLinearColor(.13f,.42f,.35f) : FLinearColor(.15f,.17f,.20f));

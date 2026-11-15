@@ -18,22 +18,22 @@
           "flip": false
         },
         {
-          "name": "女主演员 · 路人替身",
-          "clip": "E01_extra_f_idle",
+          "name": "女主演员 · 母版占位",
+          "clip": "M_actress",
           "x": 740,
           "to": 740,
-          "flip": false
+          "flip": true
         },
         {
-          "name": "李谋 · 路人替身",
-          "clip": "E03_extra_m_idle",
+          "name": "李谋 · 母版占位",
+          "clip": "M_limou",
           "x": 1040,
           "to": 1040,
-          "flip": false
+          "flip": true
         }
       ],
       "duration": 5,
-      "note": "专用动作待生成；当前以待机与位移占位。",
+      "note": "角色母版已接入；走路、敲桌与互动动作仍待补。",
       "evidence": ""
     },
     {
@@ -58,11 +58,11 @@
           ]
         },
         {
-          "name": "女主演员 · 路人替身",
-          "clip": "E01_extra_f_idle",
+          "name": "女主演员 · 母版占位",
+          "clip": "M_actress",
           "x": 700,
           "to": 760,
-          "flip": false,
+          "flip": true,
           "emotion_placeholder": true,
           "emotions": [
             {
@@ -73,15 +73,15 @@
           ]
         },
         {
-          "name": "李谋 · 路人替身",
-          "clip": "E03_extra_m_idle",
+          "name": "李谋 · 母版占位",
+          "clip": "M_limou",
           "x": 1040,
           "to": 1040,
-          "flip": false
+          "flip": true
         }
       ],
       "duration": 5,
-      "note": "专用动作待生成；当前以待机与位移占位。",
+      "note": "演员与李谋母版已接入；敲桌、后退撑桌动作待补。",
       "evidence": ""
     },
     {
@@ -106,11 +106,11 @@
           ]
         },
         {
-          "name": "女主演员 · 路人替身",
-          "clip": "E01_extra_f_idle",
+          "name": "女主演员 · 母版占位",
+          "clip": "M_actress",
           "x": 740,
           "to": 170,
-          "flip": false,
+          "flip": true,
           "emotion_placeholder": true,
           "emotions": [
             {
@@ -121,11 +121,11 @@
           ]
         },
         {
-          "name": "李谋 · 路人替身",
-          "clip": "E03_extra_m_idle",
+          "name": "李谋 · 母版占位",
+          "clip": "M_limou",
           "x": 1040,
           "to": 1040,
-          "flip": false,
+          "flip": true,
           "emotion_placeholder": true,
           "emotions": [
             {
@@ -137,7 +137,7 @@
         }
       ],
       "duration": 5,
-      "note": "专用动作待生成；当前以待机与位移占位。",
+      "note": "角色身份已替换；鼓掌、退场与回头表演待补。",
       "evidence": ""
     },
     {
@@ -162,8 +162,8 @@
           ]
         },
         {
-          "name": "小周 · 路人替身",
-          "clip": "E02_extra_f_walk",
+          "name": "小周 · 母版占位",
+          "clip": "M_xiaozhou",
           "x": 180,
           "to": 490,
           "flip": false,
@@ -178,8 +178,19 @@
         }
       ],
       "duration": 5,
-      "note": "专用动作待生成；当前以待机与位移占位。",
-      "evidence": ""
+      "note": "小周母版与收伞图已接入；跑近、夺伞接触动作待补。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P01_umbrella_closed.png",
+          "x": 450,
+          "z": 140,
+          "size": 160,
+          "depth": -60,
+          "actor": 1,
+          "offset_x": 85
+        }
+      ]
     },
     {
       "chapter": 1,
@@ -196,8 +207,19 @@
         }
       ],
       "duration": 5,
-      "note": "撑伞与雨伞素材待补；目前使用位移占位。",
-      "evidence": ""
+      "note": "雨伞图已接入；撑伞手势、行走与雨效待补。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P02_umbrella_open.png",
+          "x": 700,
+          "z": 290,
+          "size": 260,
+          "depth": -60,
+          "actor": 0,
+          "offset_x": 85
+        }
+      ]
     },
     {
       "chapter": 1,
@@ -206,18 +228,18 @@
       "description": "小夏与男人站在路灯下；林晚从后方拿手机拍照。",
       "actors": [
         {
-          "name": "小夏 · 路人替身",
-          "clip": "E01_extra_f_idle",
+          "name": "小夏 · 母版占位",
+          "clip": "M_xiaoxia",
           "x": 400,
           "to": 400,
           "flip": false
         },
         {
-          "name": "男人 · 路人替身",
-          "clip": "E03_extra_m_idle",
+          "name": "男人 · 母版占位",
+          "clip": "M_man",
           "x": 650,
           "to": 650,
-          "flip": false
+          "flip": true
         },
         {
           "name": "林晚",
@@ -228,8 +250,19 @@
         }
       ],
       "duration": 5,
-      "note": "人物、拍照动作与证据照片待补。参考底图含原有人物。",
-      "evidence": ""
+      "note": "小夏/男人母版及手机图已接入；拍照、拥抱表演待补。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P03_phone.png",
+          "x": 1030,
+          "z": 185,
+          "size": 80,
+          "depth": -60,
+          "actor": 2,
+          "offset_x": -70
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -260,8 +293,17 @@
         }
       ],
       "duration": 5,
-      "note": "照片墙采用临时图形，路人待机和走路均接入。",
-      "evidence": ""
+      "note": "名单证据图已上墙；工作人员继续使用原素材。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -271,7 +313,7 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "C01_linwan_tear_photo",
+          "clip": "S01_linwan_idle",
           "x": 390,
           "to": 390,
           "flip": false,
@@ -286,8 +328,17 @@
         }
       ],
       "duration": 4.8,
-      "note": "现有交付明确撕开整张照片；与本剧本“贴纸或旧标签”的歧义动作不完全一致，待重生成。",
-      "evidence": ""
+      "note": "完整照片已上墙；扯标签动画R01尚未交付，不再播放错误的撕整张照片。 道具已摆放，手部接触/交接动画未完成。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P07_photo_intact.png",
+          "x": 390,
+          "z": 270,
+          "size": 160,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -378,7 +429,7 @@
         },
         {
           "name": "小北",
-          "clip": "S02_xiaobei_idle",
+          "clip": "A16_xiaobei_rise_empty",
           "x": 730,
           "to": 730,
           "flip": true,
@@ -389,11 +440,17 @@
               "icon": "Emotion_Shock",
               "label": "慌乱"
             }
+          ],
+          "sequence": [
+            {
+              "at": 2.6,
+              "clip": "A17_xiaobei_crouch_empty"
+            }
           ]
         }
       ],
-      "duration": 3,
-      "note": "缺少不持资料的起身再蹲下动作，当前用站姿占位；不将此姿态当作已完成动画。",
+      "duration": 5.8,
+      "note": "已接入空手起身→再蹲下；地面三张纸已在动画中，不额外叠加。",
       "evidence": ""
     },
     {
@@ -459,7 +516,7 @@
         }
       ],
       "duration": 4.6,
-      "note": "",
+      "note": "抱资料起身已更新抠像及站立基线；后续持纸循环仍用旧版。",
       "evidence": ""
     },
     {
@@ -603,11 +660,12 @@
               "icon": "Emotion_Shock",
               "label": "错愕"
             }
-          ]
+          ],
+          "delay": 1.0
         }
       ],
       "duration": 4,
-      "note": "",
+      "note": "跺脚压缩悬停；失衡起点延后1秒，与落脚对齐。新版苏瑶跌倒表情已接入。",
       "evidence": ""
     },
     {
@@ -633,7 +691,7 @@
         },
         {
           "name": "苏瑶",
-          "clip": "S05_suyao_kneel_idle",
+          "clip": "C08_suyao_fall_kneel",
           "x": 790,
           "to": 790,
           "flip": false,
@@ -644,11 +702,12 @@
               "icon": "Emotion_Anger",
               "label": "羞愤"
             }
-          ]
+          ],
+          "hold_frame": 13
         }
       ],
       "duration": 2.8,
-      "note": "",
+      "note": "保持新版跌倒的实际末帧接续起身；这是停帧占位，不是已验收的跪姿循环。",
       "evidence": ""
     },
     {
@@ -680,8 +739,8 @@
           ]
         }
       ],
-      "duration": 4.4,
-      "note": "当前动画只有起身，整理裙摆和表情细节待补。",
+      "duration": 4.2,
+      "note": "起身已接续新版跪姿；恢复甜笑的表情仍待补，当前保持惊慌。",
       "evidence": ""
     },
     {
@@ -710,6 +769,13 @@
           "clip": "E01_extra_f_idle",
           "x": 1040,
           "to": 1040,
+          "flip": false
+        },
+        {
+          "name": "工作人员",
+          "clip": "E03_extra_m_idle",
+          "x": 920,
+          "to": 920,
           "flip": false
         }
       ],
@@ -817,8 +883,8 @@
           ]
         },
         {
-          "name": "陈默 · 路人替身",
-          "clip": "E04_extra_m_walk",
+          "name": "陈默 · 母版占位",
+          "clip": "M_chenmo",
           "x": 180,
           "to": 820,
           "flip": false,
@@ -833,7 +899,7 @@
         }
       ],
       "duration": 5,
-      "note": "专用动作待生成；当前以待机与位移占位。",
+      "note": "陈默母版已接入；走近、敲门与林晚坐姿待补。",
       "evidence": ""
     },
     {
@@ -858,11 +924,11 @@
           ]
         },
         {
-          "name": "陈默 · 路人替身",
-          "clip": "E03_extra_m_idle",
+          "name": "陈默 · 母版占位",
+          "clip": "M_chenmo",
           "x": 820,
           "to": 820,
-          "flip": false,
+          "flip": true,
           "emotion_placeholder": true,
           "emotions": [
             {
@@ -874,7 +940,7 @@
         }
       ],
       "duration": 5,
-      "note": "陈默参考与点赞图标待补。",
+      "note": "陈默母版已接入；安慰、镜前对话和坐姿待补。",
       "evidence": ""
     },
     {
@@ -891,8 +957,8 @@
           "flip": false
         },
         {
-          "name": "陈默 · 路人替身",
-          "clip": "E04_extra_m_walk",
+          "name": "陈默 · 母版占位",
+          "clip": "M_chenmo",
           "x": 820,
           "to": 200,
           "flip": true,
@@ -907,7 +973,7 @@
         }
       ],
       "duration": 4,
-      "note": "专用动作待生成；当前以待机与位移占位。",
+      "note": "陈默母版已接入；离开与回望目前以位移占位。",
       "evidence": ""
     },
     {
@@ -996,8 +1062,28 @@
         }
       ],
       "duration": 5,
-      "note": "起身、递交动作及玫瑰、道具刀采用临时道具标记。",
-      "evidence": ""
+      "note": "玫瑰和道具刀已摆放；交接与手部接触未完成。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P04_prop_knife.png",
+          "x": 580,
+          "z": 160,
+          "size": 95,
+          "depth": -60,
+          "actor": 0,
+          "offset_x": 65
+        },
+        {
+          "image": "Static/Partial20261115/P05_white_rose.png",
+          "x": 820,
+          "z": 175,
+          "size": 130,
+          "depth": -60,
+          "actor": 1,
+          "offset_x": -65
+        }
+      ]
     },
     {
       "chapter": 3,
@@ -1029,8 +1115,28 @@
         }
       ],
       "duration": 4,
-      "note": "道具刀与重心动作待补。",
-      "evidence": ""
+      "note": "道具已接入；握刀逼近与对白动作仍待补。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P04_prop_knife.png",
+          "x": 550,
+          "z": 160,
+          "size": 95,
+          "depth": -60,
+          "actor": 0,
+          "offset_x": 65
+        },
+        {
+          "image": "Static/Partial20261115/P05_white_rose.png",
+          "x": 790,
+          "z": 175,
+          "size": 130,
+          "depth": -60,
+          "actor": 1,
+          "offset_x": -65
+        }
+      ]
     },
     {
       "chapter": 3,
@@ -1062,8 +1168,19 @@
         }
       ],
       "duration": 4,
-      "note": "临时复用跌坐；捂肩、指认与尖叫音效未生成。",
-      "evidence": ""
+      "note": "仍用第二幕失衡片占位；第三幕假摔、捂肩与指认动作尚未交付。 道具已摆放，手部接触/交接动画未完成。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P04_prop_knife.png",
+          "x": 550,
+          "z": 160,
+          "size": 95,
+          "depth": -60,
+          "actor": 0,
+          "offset_x": 65
+        }
+      ]
     },
     {
       "chapter": 3,
@@ -1088,7 +1205,7 @@
         },
         {
           "name": "苏瑶",
-          "clip": "S05_suyao_kneel_idle",
+          "clip": "C08_suyao_fall_kneel",
           "x": 790,
           "to": 790,
           "flip": false,
@@ -1099,7 +1216,8 @@
               "icon": "Emotion_Shock",
               "label": "伪装委屈"
             }
-          ]
+          ],
+          "hold_frame": 13
         },
         {
           "name": "工作人员",
@@ -1110,7 +1228,7 @@
         }
       ],
       "duration": 6,
-      "note": "拖拽与画外音待补；屏幕文字表达事件。",
+      "note": "保持假摔占位的末帧；捂肩指认、三人押送与收刀互动仍待补。",
       "evidence": ""
     },
     {
@@ -1135,8 +1253,8 @@
           ]
         },
         {
-          "name": "陈默 · 路人替身",
-          "clip": "E04_extra_m_walk",
+          "name": "陈默 · 母版占位",
+          "clip": "M_chenmo",
           "x": 200,
           "to": 470,
           "flip": false,
@@ -1151,8 +1269,19 @@
         }
       ],
       "duration": 6,
-      "note": "递文件动作待补。",
-      "evidence": ""
+      "note": "陈默母版、文件夹已接入；递交接触动作待补。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P06_document_folder.png",
+          "x": 470,
+          "z": 130,
+          "size": 125,
+          "depth": -60,
+          "actor": 1,
+          "offset_x": 70
+        }
+      ]
     },
     {
       "chapter": 4,
@@ -1162,7 +1291,7 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A49_linwan_deep_breath",
           "x": 590,
           "to": 590,
           "flip": false,
@@ -1177,8 +1306,24 @@
         }
       ],
       "duration": 6,
-      "note": "剧本没有提供真相对白，不额外编造台词；对镜头讲话动作待补。",
-      "evidence": ""
+      "note": "深呼吸和手机支架已接入；直播发言动作待补。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P10_phone_stand.png",
+          "x": 1000,
+          "z": 125,
+          "size": 150,
+          "depth": -60
+        },
+        {
+          "image": "Static/Partial20261115/P03_phone.png",
+          "x": 1000,
+          "z": 170,
+          "size": 100,
+          "depth": -60
+        }
+      ]
     },
     {
       "chapter": 4,
@@ -1202,11 +1347,11 @@
           ]
         },
         {
-          "name": "陈默 · 路人替身",
-          "clip": "E03_extra_m_idle",
+          "name": "陈默 · 母版占位",
+          "clip": "M_chenmo",
           "x": 840,
           "to": 840,
-          "flip": false,
+          "flip": true,
           "emotion_placeholder": true,
           "emotions": [
             {
@@ -1218,8 +1363,24 @@
         }
       ],
       "duration": 5,
-      "note": "证据原图尚未提供，当前为文字卡占位。",
-      "evidence": "导演抱小北"
+      "note": "陈默母版和直播道具已接入；第一张证据照片尚未交付。",
+      "evidence": "导演抱小北",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P10_phone_stand.png",
+          "x": 1000,
+          "z": 125,
+          "size": 150,
+          "depth": -60
+        },
+        {
+          "image": "Static/Partial20261115/P03_phone.png",
+          "x": 1000,
+          "z": 170,
+          "size": 100,
+          "depth": -60
+        }
+      ]
     },
     {
       "chapter": 4,
@@ -1258,16 +1419,32 @@
           ]
         },
         {
-          "name": "陈默 · 路人替身",
-          "clip": "E03_extra_m_idle",
+          "name": "陈默 · 母版占位",
+          "clip": "M_chenmo",
           "x": 960,
           "to": 960,
-          "flip": false
+          "flip": true
         }
       ],
       "duration": 5,
-      "note": "证据原图尚未提供，当前为文字卡占位。",
-      "evidence": "导演和苏瑶喝酒"
+      "note": "陈默母版和直播道具已接入；第二张证据照片尚未交付。",
+      "evidence": "导演和苏瑶喝酒",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P10_phone_stand.png",
+          "x": 1000,
+          "z": 125,
+          "size": 150,
+          "depth": -60
+        },
+        {
+          "image": "Static/Partial20261115/P03_phone.png",
+          "x": 1000,
+          "z": 170,
+          "size": 100,
+          "depth": -60
+        }
+      ]
     },
     {
       "chapter": 4,
@@ -1321,8 +1498,32 @@
         }
       ],
       "duration": 5,
-      "note": "名单原图尚未提供，当前为文字卡占位。",
-      "evidence": "名单上除了苏瑶都被打 X"
+      "note": "名单证据图已接入；可选择并发送。",
+      "evidence": "名单上除了苏瑶都被打 X",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P10_phone_stand.png",
+          "x": 1000,
+          "z": 125,
+          "size": 150,
+          "depth": -60
+        },
+        {
+          "image": "Static/Partial20261115/P03_phone.png",
+          "x": 1000,
+          "z": 170,
+          "size": 100,
+          "depth": -60
+        },
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 260,
+          "z": 280,
+          "size": 170,
+          "depth": 270
+        }
+      ],
+      "evidence_image": "Static/Partial20261115/EV03_roster.png"
     },
     {
       "chapter": 4,
@@ -1372,8 +1573,19 @@
         }
       ],
       "duration": 5,
-      "note": "拿伞动作待补；此处与开场形成呼应。",
-      "evidence": ""
+      "note": "收伞图已接入；小北走近与交伞动作待补。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P01_umbrella_closed.png",
+          "x": 480,
+          "z": 140,
+          "size": 160,
+          "depth": -60,
+          "actor": 1,
+          "offset_x": 80
+        }
+      ]
     },
     {
       "chapter": 4,
@@ -1397,8 +1609,19 @@
         }
       ],
       "duration": 5,
-      "note": "抢伞动作待补；不额外添加剧本没有给出的结局解释。",
-      "evidence": ""
+      "note": "开伞图已接入；接触、开伞和持伞走路动作待补。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P02_umbrella_open.png",
+          "x": 800,
+          "z": 290,
+          "size": 260,
+          "depth": -60,
+          "actor": 0,
+          "offset_x": 85
+        }
+      ]
     }
   ]
 }
