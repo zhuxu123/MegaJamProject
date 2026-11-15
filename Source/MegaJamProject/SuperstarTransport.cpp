@@ -81,9 +81,9 @@ void ASuperstarStoryHUD::DrawTransport()
             Chapter?FLinearColor(.85f,.9f,1):FLinearColor(.32f,.42f,.48f));
     }
     Rect(32+1210*Fraction,613,6,20,FLinearColor::White);
-    Label(TEXT("拖动整段时间线 · ←/Z 倒放  →/C 快进 · 空格/R 暂停"),35,635,13);
+    FitLabel(TEXT("拖动整段时间线 · ←/Z 倒放  →/C 快进 · 空格/R 暂停"),35,633,770,20,13);
     const FString State=bTimelineDragging?TEXT("定位"):(PlaybackRate<0?TEXT("倒放"):(PlaybackRate>1?TEXT("快进"):(PlaybackRate>0?TEXT("播放"):TEXT("暂停/等待"))));
-    Label(FString::Printf(TEXT("%s %.0fx · %.1f / %.1f 秒 · 本段 %.1f 秒"),*State,FMath::Abs(PlaybackRate),SequenceTime(),SequenceDuration,Clock),825,635,12);
+    FitLabel(FString::Printf(TEXT("%s %.0fx · %.1f / %.1f 秒 · 本段 %.1f 秒"),*State,FMath::Abs(PlaybackRate),SequenceTime(),SequenceDuration,Clock),825,633,420,20,12);
 }
 
 void ASuperstarStoryHUD::RunTransportSmoke()

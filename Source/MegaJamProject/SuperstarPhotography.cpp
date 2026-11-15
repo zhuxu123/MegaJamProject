@@ -168,6 +168,7 @@ void ASuperstarStoryHUD::TogglePhoto(int32 Index)
     if (PhotoSlots.Contains(Index)) PhotoSlots.Remove(Index);
     else if (PhotoSlots.Num()<3) PhotoSlots.Add(Index);
     EditSlot=FMath::Clamp(EditSlot,0,FMath::Max(0,PhotoSlots.Num()-1));
+    PhotoNotice=PhotoSlots.Num()==3 ? TEXT("已选满3张；调整顺序与裁切后即可预览或发布。") : FString::Printf(TEXT("已选 %d/3 张；点击上方照片继续选择。"),PhotoSlots.Num());
 }
 
 void ASuperstarStoryHUD::StartPhotoPreview(bool bPublish)
@@ -292,9 +293,9 @@ void ASuperstarStoryHUD::DrawPhotography()
         Label(TEXT("确认这张现场照片"),35,35,28,PhotoMint);
         Label(FString::Printf(TEXT("第%d段 · %.1fs · 机位%d · 确认后占用一张名额"),PendingPhoto.Beat,PendingPhoto.Time,PendingPhoto.Station+1),35,85,18);
         DrawPhoto(PendingPhoto,85,160,1110,false);
-        Rect(340,560,260,48,PhotoMint);Label(TEXT("Enter / Y   保留"),365,574,20,PhotoInk);
-        Rect(680,560,260,48,FLinearColor(.3f,.2f,.2f));Label(TEXT("Backspace / N   重拍"),695,574,20);
-        Label(PhotoNotice,35,675,15,PhotoMint);
+        Button(TEXT("Enter / Y   保留"),340,560,260,48,20,PhotoMint,PhotoInk);
+        Button(TEXT("Backspace / N   重拍"),680,560,260,48,20,FLinearColor(.3f,.2f,.2f));
+        FitLabel(PhotoNotice,35,670,1210,28,15,PhotoMint);
         return;
     }
     if(PhotoPhase==ESuperstarPhotoPhase::Preview)
@@ -312,27 +313,27 @@ void ASuperstarStoryHUD::DrawPhotography()
     {
         const float X=35+I*203;
         Rect(X-3,142,196,112,PhotoSlots.Contains(I)?PhotoMint:FLinearColor(.12f,.16f,.20f));
-        if(Photos.IsValidIndex(I)) {DrawPhoto(Photos[I],X,147,190,false);Label(FString::Printf(TEXT("%d  第%d段 / %.1fs"),I+1,Photos[I].Beat,Photos[I].Time),X+3,220,14,PhotoInk);}
+        if(Photos.IsValidIndex(I)) {DrawPhoto(Photos[I],X,147,190,false);FitLabel(FString::Printf(TEXT("%d  第%d段 / %.1fs"),I+1,Photos[I].Beat,Photos[I].Time),X+3,220,184,29,14,PhotoInk);}
     }
     Label(TEXT("发布顺序（点击槽位选择裁切目标）"),35,300,20,PhotoMint);
     for(int32 I=0;I<3;++I)
     {
         const float X=35+I*410;
         Rect(X-3,342,396,153,I==EditSlot?PhotoMint:FLinearColor(.15f,.19f,.24f));
-        if(PhotoSlots.IsValidIndex(I)) {DrawPhoto(Photos[PhotoSlots[I]],X,348,390,true);Label(FString::Printf(TEXT("槽%d · 原片%d"),I+1,PhotoSlots[I]+1),X+8,478,13,PhotoInk);}
+        if(PhotoSlots.IsValidIndex(I)) {DrawPhoto(Photos[PhotoSlots[I]],X,348,390,true);Rect(X,477,390,18,FLinearColor(.12f,.16f,.20f));FitLabel(FString::Printf(TEXT("槽%d · 原片%d"),I+1,PhotoSlots[I]+1),X+8,477,374,18,12);}
     }
-    Label(PhotoNotice,35,535,17,PhotoMint);
+    FitLabel(PhotoNotice,35,530,1210,32,17,PhotoMint);
     if(bResults)
     {
         TSet<int32> Moments;for(int32 I:PhotoSlots) Moments.Add(Photos[I].Beat);
-        Label(FString::Printf(TEXT("3张现场图 · %d个剧情段落 · Enter 返回剪辑 / Tab 继续拍摄"),Moments.Num()),35,600,20);
+        FitLabel(FString::Printf(TEXT("3张现场图 · %d个剧情段落 · Enter 返回剪辑 / Tab 继续拍摄"),Moments.Num()),35,595,1210,38,20);
         Label(TEXT("选图顺序、裁切和标题，会让同一现场呈现不同的含义。"),35,650,16);
     }
     else
     {
-        Label(TEXT("1—6 选片 · C 选槽 · Z/X 调序 · WASD 裁切位置 · Q/E 裁切缩放 · T 标题"),35,575,16);
+        FitLabel(TEXT("1—6 选片 · C 选槽 · Z/X 调序 · WASD 裁切位置 · Q/E 裁切缩放 · T 标题"),35,570,1210,32,16);
         const TCHAR* Labels[]={TEXT("P 预览"),TEXT("Enter 发布"),TEXT("Tab 继续拍摄")};
-        for(int32 I=0;I<3;++I) {Rect(640+I*210,615,180,45,FLinearColor(.12f,.25f,.27f));Label(Labels[I],652+I*210,628,18);}
+        for(int32 I=0;I<3;++I) Button(Labels[I],640+I*210,615,180,45,18,FLinearColor(.12f,.25f,.27f));
     }
 }
 
@@ -353,7 +354,13 @@ void ASuperstarStoryHUD::RunPhotoSmoke()
     {
         bPlaying=false;SelectBeat(10);Clock=2.4f;UpdateActors();TakePhoto();++PhotoSmokeStep;
     }
-    else if(PhotoSmokeStep==1) {check(PhotoPhase==ESuperstarPhotoPhase::Confirm);RejectPhoto();check(Photos.IsEmpty());++PhotoSmokeStep;}
+    else if(PhotoSmokeStep==1)
+    {
+        check(PhotoPhase==ESuperstarPhotoPhase::Confirm);
+        static bool bCapturedConfirm=false;
+        if(!bCapturedConfirm) {FScreenshotRequest::RequestScreenshot(FPaths::ProjectSavedDir()/TEXT("Screenshots/SuperstarPhoto/Confirm.png"),true,false);bCapturedConfirm=true;return;}
+        RejectPhoto();check(Photos.IsEmpty());++PhotoSmokeStep;
+    }
     else if(PhotoSmokeStep>=2&&PhotoSmokeStep<=7)
     {
         if(PhotoSmokeStep%2==0)
@@ -374,10 +381,11 @@ void ASuperstarStoryHUD::RunPhotoSmoke()
         check(Photos.Num()==3);OpenAlbum();StartPhotoPreview(true);check(PhotoPhase==ESuperstarPhotoPhase::Edit);
         TogglePhoto(0);TogglePhoto(1);TogglePhoto(2);PhotoSlots.Swap(0,2);
         auto& P=Photos[PhotoSlots[1]];P.CropZoom=1.5f;P.CropX=.6f;CropBounds(P);
-        StartPhotoPreview(false);check(PhotoPhase==ESuperstarPhotoPhase::Preview);++PhotoSmokeStep;
+        FScreenshotRequest::RequestScreenshot(FPaths::ProjectSavedDir()/TEXT("Screenshots/SuperstarPhoto/Edit.png"),true,false);++PhotoSmokeStep;
     }
     else if(PhotoSmokeStep==9)
     {
+        StartPhotoPreview(false);check(PhotoPhase==ESuperstarPhotoPhase::Preview);
         PreviewClock=5.99f;TickPhotography(.1f);check(PhotoPhase==ESuperstarPhotoPhase::Edit);
         StartPhotoPreview(true);PreviewClock=5.99f;TickPhotography(.1f);check(PhotoPhase==ESuperstarPhotoPhase::Results);
         FScreenshotRequest::RequestScreenshot(FPaths::ProjectSavedDir()/TEXT("Screenshots/SuperstarPhoto/Results.png"),true,false);

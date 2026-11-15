@@ -9,3 +9,7 @@
 ZIP是交付快照，解压即可使用；同名展开目录是本地工作副本，不重复入Git。后续项目已增加BGM、表情头部跟随和摄影流程，最新运行说明以 `Docs/SuperstarStory/README.md` 为准。历史ZIP不回写，避免原包哈希和已发给生成机器的任务发生变化。
 
 项目内 `Tools/Build-SuperstarSupplement.py` 是早期任务资料著录脚本，依赖原机资料与展开的旧包；它不是完整交付重建器。生成机器执行的完整脚本、任务配置与提示词均在交付ZIP内。
+
+- `Superstar-Animation-Round2-20261115.zip`：**当前发送给生成机器的动画补件包**，78项必做（含21项表情）与10组同步验收；附当前347帧、人物/场景/道具参考、逐项首帧与视频提示词、ComfyUI API工作流、5FPS截帧及回传校验工具。约45MB，解压后从 `START_HERE.md` 开始。已回传8段复用，C07单列源事件复核，当前W_/H_仅作为原型对照。旁附SHA256。
+
+本轮可由仓库内已追踪输入重建：`python Tools/Build-SuperstarAnimationRound2.py`（依赖 Pillow/NumPy 与前两份素材ZIP，不需要Desktop附件）；任务说明见 [第二批动画](../Docs/SuperstarStory/Animation-Round2-20261115.md)。旧85项包是历史快照，不再作为当前欠件清单。

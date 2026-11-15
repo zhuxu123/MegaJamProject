@@ -213,3 +213,6 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 - 2026-11-15 演出修复：移动人物必须配置 `walk_clip/move_start/move_end`，朝向以移动方向与clip.screen_facing共同求值；道具使用逐帧hand_anchors及归一化grip附着，不再用固定offset伪装持物。原图、提示词在ArtSource，详见 [走路与持物修复](Docs/SuperstarStory/Motion-20261115.md)。`-SuperstarMotionSmoke`验证324个取样的方向、握点和时间回跳；不能替代最终艺术验收。
 
 - 超级巨星时间控制位于 `SuperstarTransport.cpp`：←/Z与→/C按住3倍倒放/快进，空格/R/右键暂停，PageUp/PageDown切段，Home/End跳全剧首尾。进度条连续拖动全剧时间并优先占用指针，松手暂停；已拍照片和已发证据保留。正常播放保留证据门槛，手动定位不自动发送。`-SuperstarTransportSmoke`含引擎键盘输入注入、拖动处理和跨sequence边界验证，详见 [时间线修复](Docs/SuperstarStory/Transport-20261115.md)。
+
+- 超级巨星 Canvas UI 的按钮统一用 `Button` / `FitLabel`，通过实际复合字体测量文字宽高，再缩小字号并居中；保留原设计坐标、点击区域与Pointer逆变换。新增按钮不要再次写固定偏移的无边界Label。`-SuperstarPhotoSmoke`另输出Confirm/Edit截图，使用 `-ForceRes -ResX=1024 -ResY=768` 验证4:3留边；验证记录见 [UI适配](Docs/SuperstarStory/UI-20261115.md)。
+- 最新补动画交接为 `Deliverables/Superstar-Animation-Round2-20261115.zip`，78项必做（含21项表情）、8项已回传复用和10组同步验收。构建入口 `Tools/Build-SuperstarAnimationRound2.py`，只依赖仓库内输入；生成机从包内START_HERE.md开始。不要将当前W_/H_原型视为对应正式动作任务已完成。

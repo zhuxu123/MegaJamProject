@@ -10,6 +10,9 @@
 #include "Engine/Canvas.h"
 #include "Engine/Font.h"
 #include "Engine/Texture2D.h"
+#include "Framework/Application/SlateApplication.h"
+#include "Fonts/FontMeasure.h"
+#include "Rendering/SlateRenderer.h"
 #include "Engine/GameViewportClient.h"
 #include "IImageWrapper.h"
 #include "IImageWrapperModule.h"
@@ -340,6 +343,34 @@ void ASuperstarStoryHUD::Label(const FString& Text, float X, float Y, int32 Size
     Canvas->DrawItem(Item);
 }
 
+void ASuperstarStoryHUD::FitLabel(const FString& Text, float X, float Y, float W, float H, int32 Size, FLinearColor Color, bool bCenter)
+{
+    if (!Canvas || !StoryFont || Text.IsEmpty() || W <= 0 || H <= 0) return;
+    // Measure the actual composite font, including Chinese fallback glyphs, in viewport pixels.
+    // Scale and Origin are the same transform used by drawing and pointer hit testing.
+    const auto Measure = FSlateApplication::Get().GetRenderer()->GetFontMeasureService();
+    FSlateFontInfo Font(StoryFont, FMath::Max(8, FMath::RoundToInt(Size * Scale)));
+    FVector2D Extent = Measure->Measure(Text, Font);
+    const FVector2D Available(W * Scale, H * Scale);
+    while (Font.Size > 8 && (Extent.X > Available.X || Extent.Y > Available.Y))
+    {
+        --Font.Size;
+        Extent = Measure->Measure(Text, Font);
+    }
+    const float Fit = FMath::Min(1.f, FMath::Min(Available.X / FMath::Max(1., Extent.X), Available.Y / FMath::Max(1., Extent.Y)));
+    Extent *= Fit;
+    const FVector2D Padding(bCenter ? (Available.X - Extent.X) * .5 : 0., (Available.Y - Extent.Y) * .5);
+    FCanvasTextItem Item(Origin + FVector2D(X,Y) * Scale + Padding, FText::FromString(Text), Font, Color);
+    Item.Scale = FVector2D(Fit,Fit);
+    Canvas->DrawItem(Item);
+}
+
+void ASuperstarStoryHUD::Button(const FString& Text, float X, float Y, float W, float H, int32 Size, FLinearColor Background, FLinearColor Color)
+{
+    Rect(X,Y,W,H,Background);
+    FitLabel(Text,X+8,Y+5,W-16,H-10,Size,Color,true);
+}
+
 void ASuperstarStoryHUD::RunMotionSmoke()
 {
     // Render three gait cycles at three camera stations. Deliberately seek away and back.
@@ -399,7 +430,7 @@ void ASuperstarStoryHUD::Background(const FString& Scene)
     {
         if (PhotoPhase == ESuperstarPhotoPhase::Capturing) return;
         Rect(45, 115, 310, 30, Ink);
-        Label(TEXT("3D 布景初版  ·  B 对照参考图"), 55, 120, 16, Mint);
+        FitLabel(TEXT("3D 布景初版  ·  B 对照参考图"), 55, 118, 290, 24, 16, Mint);
         if (Scene == TEXT("storage")) Label(TEXT("杂物间：李谋 · 苏瑶 / 提及小北"), 820, 180, 17);
         if (Scene == TEXT("stage")) Label(TEXT("扶 摇 直 上"), 550, 180, 25, Mint);
         return;
@@ -671,8 +702,8 @@ void ASuperstarStoryHUD::DrawHUD()
     Background(Current->GetStringField(TEXT("scene")));
     DrawActors();
     if (PhotoPhase == ESuperstarPhotoPhase::Capturing) return;
-    Label(Current->GetStringField(TEXT("description")), 35, 535, 18);
-    Label(Current->GetStringField(TEXT("note")), 35, 573, 15, FLinearColor(.9f,.72f,.42f));
+    FitLabel(Current->GetStringField(TEXT("description")), 35, 530, 1210, 34, 18);
+    FitLabel(Current->GetStringField(TEXT("note")), 35, 568, 1210, 26, 15, FLinearColor(.9f,.72f,.42f));
     const FString Evidence = Current->GetStringField(TEXT("evidence"));
     if (!Evidence.IsEmpty())
     {
@@ -682,26 +713,23 @@ void ASuperstarStoryHUD::DrawHUD()
         {
             if(auto* Image=LoadFrame(EvidencePath)) DrawTexture(Image,Origin.X+60*Scale,Origin.Y+428*Scale,128*Scale,72*Scale,0,0,1,1,FLinearColor::White,BLEND_Opaque);
             Label(TEXT("剧情证据图"),205,432,17,Mint);
-            Label(Evidence,205,466,16);
+            FitLabel(Evidence,205,462,235,32,16);
         }
         else
         {
             Label(TEXT("证据卡（原图待补）"), 60, 425, 17, Mint);
-            Label(Evidence, 60, 457, 19);
+            FitLabel(Evidence, 60, 457, 375, 36, 19);
         }
         Rect(450, 435, 490, 62, FLinearColor(.08f,.16f,.18f));
-        Label(bPublished ? TEXT("已发送到直播") : (bEvidencePlaced ? Evidence : TEXT("拖入或点击左侧证据卡")), 470, 454, 18, Mint);
-        Rect(995, 445, 185, 48, bEvidencePlaced ? FLinearColor(.13f,.42f,.35f) : FLinearColor(.15f,.17f,.20f));
-        Label(bPublished ? TEXT("已发送") : TEXT("发送 / V"), 1018, 458, 18);
+        FitLabel(bPublished ? TEXT("已发送到直播") : (bEvidencePlaced ? Evidence : TEXT("拖入或点击左侧证据卡")), 465, 443, 460, 46, 18, Mint, true);
+        Button(bPublished ? TEXT("已发送") : TEXT("发送 / V"), 995, 445, 185, 48, 18, bEvidencePlaced ? FLinearColor(.13f,.42f,.35f) : FLinearColor(.15f,.17f,.20f));
         if (bDragging) { const auto P = Pointer(); Label(Evidence, P.X + 14, P.Y - 28, 18, Mint); }
     }
     DrawTransport();
     const FString Buttons[] = {TEXT("上一段 PgUp"), bPlaying ? TEXT("暂停 空格") : TEXT("播放 空格"), TEXT("下一段 PgDn"), TEXT("本段重播")};
-    for (int32 I = 0; I < 4; ++I) { const int32 X = I == 3 ? 405 : 35 + I * 120; Rect(X, 655, 110, 40, FLinearColor(.10f,.17f,.21f)); Label(Buttons[I], X + 8, 666, 16); }
-    Label(TEXT("F1—F4 跳幕 · Tab 相册"), 550, 669, 16, Mint);
-    Label(FString::Printf(TEXT("机位 %d · WASD 构图 · Q/E/滚轮变焦 · Enter 拍照 · 已存 %d/6"),CameraStation+1,Photos.Num()),35,598,13,Mint);
-    Rect(875, 655, 185, 40, FLinearColor(.10f,.17f,.21f));
-    Label(bReferenceView ? TEXT("B 切换 3D 布景") : TEXT("B 查看参考图片"), 885, 666, 16);
-    Rect(1080, 655, 160, 40, FLinearColor(.10f,.17f,.21f));
-    Label(TEXT("返回主菜单 ESC"), 1090, 666, 16);
+    for (int32 I = 0; I < 4; ++I) { const int32 X = I == 3 ? 405 : 35 + I * 120; Button(Buttons[I], X, 655, 110, 40, 16, FLinearColor(.10f,.17f,.21f)); }
+    FitLabel(TEXT("F1—F4 跳幕 · Tab 相册"), 535, 655, 320, 40, 16, Mint, true);
+    FitLabel(FString::Printf(TEXT("机位 %d · WASD 构图 · Q/E/滚轮变焦 · Enter 拍照 · 已存 %d/6"),CameraStation+1,Photos.Num()),35,595,1210,20,13,Mint);
+    Button(bReferenceView ? TEXT("B 切换 3D 布景") : TEXT("B 查看参考图片"), 875, 655, 185, 40, 16, FLinearColor(.10f,.17f,.21f));
+    Button(TEXT("返回主菜单 ESC"), 1080, 655, 160, 40, 16, FLinearColor(.10f,.17f,.21f));
 }
