@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 HAN = re.compile(r'[\u3400-\u9fff]')
 TOKEN = re.compile(r'\{[^{}]+\}|%(?:[-+0 #]*\d*(?:\.\d+)?)?[dsf]')
-FIELDS = {'title','description','name','label','objective','intel','summary','headlines','paper_lead','note','evidence'}
+FIELDS = {'title','description','name','label','objective','client_statement','summary','headlines','paper_lead','note','evidence'}
 
 
 def visible_texts():
@@ -57,8 +57,9 @@ def main():
             probes.append({'source':sample,'en':expected})
         else:probes.append({'source':source,'en':en})
     # Runtime concatenation + translated variable inside a pattern.
+    first_objective=json.loads((ROOT/'Content/SuperstarStory/levels.json').read_text(encoding='utf-8'))['levels'][0]['objective']
     probes += [
-        {'source':'任务：'+next(s for s in catalog if s.startswith('记录片场冲突')),'en':'Objective: '+next(e['en'] for e in entries if e['source'].startswith('记录片场冲突'))},
+        {'source':'任务：'+first_objective,'en':'Objective: '+catalog[first_objective]['en']},
         {'source':'BGM · 镜头背后','en':'BGM · Behind the Lens'},
     ]
     if args.probes:

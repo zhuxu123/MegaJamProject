@@ -171,10 +171,12 @@ void ASuperstarStoryHUD::DrawLevelFlow()
     Rect(140,70,1000,2,Paper);Rect(140,633,1000,2,Paper);
     FitLabel(FString::Printf(TEXT("LEVEL %02d  //  摄制任务单（目标：3 张成片 · 磁带 %.1f 秒）"),LevelIndex+1,SequenceDuration),185,100,910,35,19,Gold);
     FitLabel(L->GetStringField(TEXT("title")),185,151,910,60,36,Paper);
-    FitLabel(TEXT("公关目标："),185,247,910,30,21,Gold);
-    FitLabel(L->GetStringField(TEXT("objective")),185,285,910,46,20,Paper);
-    FitLabel(TEXT("内部情报："),185,363,910,30,21,FLinearColor(.82f,.37f,.32f));
-    FitLabel(L->GetStringField(TEXT("intel")),185,402,910,43,19,Paper);
+    FitLabel(TEXT("你是林晚的危机公关顾问。"),185,211,910,30,20,Light);
+    Rect(185,254,910,1,Gold);
+    FitLabel(TEXT("顾客陈辞："),185,266,910,29,21,Gold);
+    FitLabel(L->GetStringField(TEXT("client_statement")),185,296,910,85,21,Paper);
+    FitLabel(TEXT("公关目标："),185,392,910,29,21,Gold);
+    FitLabel(L->GetStringField(TEXT("objective")),185,422,910,56,20,Paper);
     FitLabel(TEXT("WASD / 拖动构图 · Q/E/滚轮变焦 · 空格暂停 · Enter拍照 · Tab选图"),185,485,910,30,16,Light);
     Button(TEXT("▶ 进入拍摄现场  Enter"),255,550,365,52,20,FLinearColor(.19f,.18f,.15f),Paper);
     Button(TEXT("返回选关  M / ESC"),660,550,365,52,20,FLinearColor(.19f,.18f,.15f),Paper);

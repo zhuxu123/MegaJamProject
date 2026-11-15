@@ -151,6 +151,14 @@
       "en": "PR objective:"
     },
     {
+      "source": "你是林晚的危机公关顾问。",
+      "en": "You're Lin Wan's crisis PR adviser."
+    },
+    {
+      "source": "顾客陈辞：",
+      "en": "Client statement:"
+    },
+    {
       "source": "内部情报：",
       "en": "Inside information:"
     },
@@ -1609,12 +1617,12 @@
       "en": "The Set and the Rain"
     },
     {
-      "source": "记录片场冲突、雨伞交接与路灯下的相遇，选择3张照片完成报道。",
-      "en": "Record the on-set conflict, umbrella handover and streetlight encounter. Choose 3 photos for your report."
+      "source": "拍摄三张照片，帮助客户沉冤昭雪。",
+      "en": "Take three photos to help clear your client's name."
     },
     {
-      "source": "镜头里的强势可能是一场戏。记下导演的反应，也留意离开片场后的林晚。",
-      "en": "What looks like bullying may be acting. Watch the director's reaction, and Lin Wan's behavior after she leaves the set."
+      "source": "“我拿走了助理给我带的伞，却不知道哪里来的小人说我苛待他人。\n大师，您可要帮我伸张正义呀！”",
+      "en": "“I took the umbrella my assistant brought me, and some petty gossip turned that into me mistreating people. Master, you have to get me justice!”"
     },
     {
       "source": "一场戏、一次抢伞，还有路灯下的一张照片。",
@@ -1645,12 +1653,8 @@
       "en": "Reality Show Backstage"
     },
     {
-      "source": "记录资料散落、走廊冲突与门后交谈，选择3张照片发布后台报道。",
-      "en": "Record the scattered papers, corridor conflict and conversation behind the door. Publish a report using 3 photos."
-    },
-    {
-      "source": "舞台上的笑容并不等于后台的关系。请同时留意动作发生前与发生后。",
-      "en": "Smiles on stage tell little about relationships backstage. Watch what happens before each action and afterward."
+      "source": "“我当时赶着上场，不明白为什么就被人指责成业内霸凌了。\n大师，您可要帮我伸张正义呀！”",
+      "en": "“I was rushing to get onstage. How did that turn into people calling me a bully? Master, you have to get me justice!”"
     },
     {
       "source": "照片墙、散落的资料、重新挂起的甜笑。",
@@ -1681,12 +1685,12 @@
       "en": "Finals Controversy"
     },
     {
-      "source": "记录决赛前后的关键时刻及路灯下的文件交接，选择3张照片完成报道。",
-      "en": "Record key moments around the final and the file handover under the streetlight. Choose 3 photos for your report."
+      "source": "拍摄三张照片，帮助客户打败绿茶对家。",
+      "en": "Take three photos to help your client outplay her two-faced rival."
     },
     {
-      "source": "苏瑶的反应发生在何时？注意道具刀与身体的距离，不要只凭一个姿势下结论。",
-      "en": "When does Su Yao react? Watch the gap between the prop knife and her body. One pose alone cannot tell the story."
+      "source": "“遇到比我还茶的恶女演员，真是佩服！\n我赞叹她无外力作用下展现的虚空恐惧。大师，您可要帮我伸张正义呀！”",
+      "en": "“An actress who's even faker than I am? I'm impressed! No one even touched her, and you'd think she was fighting for her life. Master, you have to get me justice!”"
     },
     {
       "source": "化妆间的交锋，舞台上的尖叫与一份文件。",
@@ -1717,12 +1721,12 @@
       "en": "Truth on Livestream"
     },
     {
-      "source": "在直播中发送全部3份证据，再选择3张现场照片发布本关报道。",
-      "en": "Send all 3 pieces of evidence during the livestream, then publish this level's report with 3 photos."
+      "source": "向直播间发送全部三份证据，帮客户沉冤昭雪。再选三张现场照片发布报道。",
+      "en": "Send all three pieces of evidence to the livestream to clear your client's name. Then choose three photos and publish your report."
     },
     {
-      "source": "证据需要由你逐份送入直播窗口。事件结束后，也别错过新片场的雨伞。",
-      "en": "Send each piece of evidence into the livestream yourself. When it ends, watch the umbrella at the new film set."
+      "source": "“那些证据，现在就是出示的时候！老熟人，你不会背叛我的吧？”",
+      "en": "“Now's the time to show them the evidence! After all we've been through, you won't turn on me now, will you?”"
     },
     {
       "source": "三份证据进入直播，事件之后仍有新的镜头。",
