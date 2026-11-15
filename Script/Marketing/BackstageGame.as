@@ -64,7 +64,7 @@ class ABackstageController : APlayerController
             return;
         }
         if (Pressed(n"Three") || (BackstageHasCommandArg("SuperstarMenuSmoke") && MenuClock > 1.0)
-            || (Pressed(n"LeftMouseButton") && Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608))
+            || (Pressed(n"LeftMouseButton") && Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 492 && Pointer.Y <= 552))
         {
             BackstagePlayCue(n"chapter");
             OpenSuperstarStory();
@@ -91,21 +91,7 @@ class ABackstageController : APlayerController
         }
         if (Pressed(n"LeftMouseButton"))
         {
-            if (Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 312 && Pointer.Y <= 382)
-            {
-                BackstagePlayCue(n"chapter");
-                BackstageSetLevel(0);
-                BackstageOpenMap(n"/Game/levels/Backstage");
-                return;
-            }
-            if (Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 402 && Pointer.Y <= 472)
-            {
-                BackstagePlayCue(n"chapter");
-                BackstageSetLevel(1);
-                BackstageOpenMap(n"/Game/levels/Backstage");
-                return;
-            }
-            if (Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 492 && Pointer.Y <= 552)
+            if (Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608)
             {
                 BackstageQuitGame();
                 return;
@@ -770,32 +756,19 @@ class ABackstageHUD : AHUD
         CenteredShadowText("90年代手持摄像机  ×  新闻线性剪辑台", 640, 188, Mint, 1.14);
         CenteredShadowText("选好机位、时刻与构图按下快门  ·  用取景器里的画面重写头条", 640, 228, Muted, 1.12);
 
-        const bool bHoverLv1 = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 312 && Pointer.Y <= 382;
-        const bool bHoverLv2 = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 402 && Pointer.Y <= 472;
-        const bool bHoverQuit = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 492 && Pointer.Y <= 552;
-        const float Pulse = 0.75 + 0.25 * Math::Sin(Clock * 5.0);
+        const bool bHoverStory = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 492 && Pointer.Y <= 552;
+        const bool bHoverQuit = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608;
 
-        Box(bHoverLv1 ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 420, 312, 440, 70);
-        Box(FLinearColor(Mint.R, Mint.G, Mint.B, bHoverLv1 ? Pulse : 0.35), 420, 312, 5, 70);
-        CornerBrackets(420, 312, 440, 70, 16, 2, bHoverLv1 ? Mint : Muted);
-        CenteredShadowText("▶  第一关：林晚雨中暖心新闻 (拍1张)", 640, 336, bHoverLv1 ? Mint : Paper, 1.22, 404);
+        Box(bHoverStory ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 420, 492, 440, 60);
+        CenteredShadowText("[ 3 ] 超级巨星 · 四关独立选关", 640, 512, bHoverStory ? Mint : Paper, 1.14, 404);
 
-        Box(bHoverLv2 ? FLinearColor(0.11, 0.20, 0.30, 0.96) : Panel, 420, 402, 440, 70);
-        Box(FLinearColor(VolunteerColor.R, VolunteerColor.G, VolunteerColor.B, bHoverLv2 ? Pulse : 0.35), 420, 402, 5, 70);
-        CornerBrackets(420, 402, 440, 70, 16, 2, bHoverLv2 ? VolunteerColor : Muted);
-        CenteredShadowText("▶  第二关：慈善活动后台纪实 (拍3张)", 640, 426, bHoverLv2 ? VolunteerColor : Paper, 1.22, 404);
-
-        Box(bHoverQuit ? FLinearColor(0.22, 0.09, 0.12, 0.96) : Panel, 420, 492, 440, 60);
-        CornerBrackets(420, 492, 440, 60, 14, 2, bHoverQuit ? ArtistColor : Muted);
-        CenteredShadowText("■  退出游戏  (ESC)", 640, 512, bHoverQuit ? ArtistColor : Muted, 1.18, 404);
-
-        const bool bHoverStory = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608;
-        Box(bHoverStory ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 420, 566, 440, 42);
-        CenteredShadowText("[ 3 ] 超级巨星 · 四关独立选关", 640, 578, bHoverStory ? Mint : Paper, 1.14, 404);
+        Box(bHoverQuit ? FLinearColor(0.22, 0.09, 0.12, 0.96) : Panel, 420, 566, 440, 42);
+        CornerBrackets(420, 566, 440, 42, 14, 2, bHoverQuit ? ArtistColor : Muted);
+        CenteredShadowText("■  退出游戏  (ESC)", 640, 578, bHoverQuit ? ArtistColor : Muted, 1.18, 404);
 
         CenteredShadowText("操作：WASD 移动/俯仰  |  按住左键拖拽场景  |  滚轮/Q/E 缩放  |  1-3 机位  |  空格 暂停  |  Enter 拍照并确认",
             640, 622, Muted, 1.00);
-        CenteredShadowText("[ Enter / 1 ] 进入第一关   ·   [ 2 ] 进入第二关", 640, 654, Mint, 1.12);
+        CenteredShadowText("[ 3 ] 进入超级巨星选关   ·   [ ESC ] 退出游戏", 640, 654, Mint, 1.12);
     }
 
     void Viewfinder(const FBackstagePhoto&in Photo, float X, float Y, float W, float H, bool bLive)

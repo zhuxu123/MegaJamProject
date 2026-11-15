@@ -34,6 +34,8 @@ bool ASuperstarStoryHUD::LoadLevels()
         if(!Level || Level->GetIntegerField(TEXT("id"))!=Levels.Num()+1 || Level->GetIntegerField(TEXT("first_beat"))-1!=Next) return false;
         const int32 End=Level->GetIntegerField(TEXT("last_beat"));
         if(End<=Next || End>Beats.Num() || Level->GetArrayField(TEXT("headlines")).Num()!=3) return false;
+        for(int32 I=Next;I<End;++I)
+            if(Beats[I]->GetIntegerField(TEXT("chapter"))!=Levels.Num()+1) return false;
         Levels.Add(Level);Next=End;
     }
     return Next==Beats.Num();
@@ -118,8 +120,10 @@ bool ASuperstarStoryHUD::TickLevelFlow()
     if(LevelPhase==ESuperstarLevelPhase::Select)
     {
         const FKey Keys[]={EKeys::One,EKeys::Two,EKeys::Three,EKeys::Four};
+        const FKey Chapters[]={EKeys::F1,EKeys::F2,EKeys::F3,EKeys::F4};
         for(int32 I=0;I<4;++I)
-            if(PC->WasInputKeyJustPressed(Keys[I]) || (Click&&Hit(P,70+(I%2)*610,185+(I/2)*200,530,175))) {ChooseLevel(I);return true;}
+            if(PC->WasInputKeyJustPressed(Keys[I]) || PC->WasInputKeyJustPressed(Chapters[I])
+                || (Click&&Hit(P,70+(I%2)*610,185+(I/2)*200,530,175))) {ChooseLevel(I);return true;}
         if(Back || (Click&&Hit(P,70,625,260,48))) UGameplayStatics::OpenLevel(this,TEXT("/Game/levels/MainMenu"),true);
     }
     else if(LevelPhase==ESuperstarLevelPhase::Briefing)
@@ -143,8 +147,8 @@ void ASuperstarStoryHUD::DrawLevelFlow()
     DrawRect(FLinearColor(.025f,.030f,.032f),0,0,Canvas->SizeX,Canvas->SizeY);
     if(LevelPhase==ESuperstarLevelPhase::Select)
     {
-        FitLabel(TEXT("超级巨星  /  选择摄制任务"),70,45,1140,55,32,Paper);
-        FitLabel(TEXT("四个独立关卡 · 任务单 → 现场拍摄 → 本关报纸"),70,110,1140,35,19,Gold);
+        FitLabel(TEXT("超级巨星  /  四关独立选关"),70,45,1140,55,32,Paper);
+        FitLabel(TEXT("选择任意一关开始 · 每关独立拍摄与发布"),70,110,1140,35,19,Gold);
         const auto P=Pointer();
         for(int32 I=0;I<Levels.Num();++I)
         {
@@ -154,12 +158,12 @@ void ASuperstarStoryHUD::DrawLevelFlow()
             const auto& L=Levels[I];
             const int32 First=L->GetIntegerField(TEXT("first_beat"))-1,Last=L->GetIntegerField(TEXT("last_beat"));
             const float Duration=(Last<BeatStarts.Num()?BeatStarts[Last]:FullDuration)-BeatStarts[First];
-            FitLabel(FString::Printf(TEXT("[ %d ]  %s"),I+1,*L->GetStringField(TEXT("title"))),X+22,Y+17,486,44,26,Paper);
+            FitLabel(FString::Printf(TEXT("[ %d / F%d ]  %s"),I+1,I+1,*L->GetStringField(TEXT("title"))),X+22,Y+17,486,44,26,Paper);
             FitLabel(L->GetStringField(TEXT("summary")),X+22,Y+72,486,32,17,Light);
             FitLabel(FString::Printf(TEXT("3 张成片  ·  %.1f 秒%s"),Duration,L->GetArrayField(TEXT("interludes")).IsEmpty()?TEXT(""):TEXT("  ·  含间幕")),X+22,Y+120,486,28,16,Gold);
         }
         Button(TEXT("返回主菜单  M / ESC"),70,625,260,48,17,Dark,Paper);
-        FitLabel(TEXT("按 1–4 或点击任务卡查看任务详情"),380,625,800,48,18,Light);
+        FitLabel(TEXT("点击任务卡，或按 1–4 / F1–F4 选择对应关卡"),380,625,800,48,18,Light);
         return;
     }
     const auto& L=Levels[LevelIndex];
@@ -207,9 +211,17 @@ void ASuperstarStoryHUD::RunLevelsSmoke()
     if(PhotoPhase==ESuperstarPhotoPhase::Capturing) {check(FPlatformTime::Seconds()-CaptureStart<10);return;}
     auto Shot=[this](FString Name) {FScreenshotRequest::RequestScreenshot(FPaths::ProjectSavedDir()/TEXT("Screenshots/SuperstarLevels")/Name,true,false);};
     auto Key=[this](EInputEvent Event) {GetOwningPlayerController()->InputKey(FInputKeyEventArgs::CreateSimulated(EKeys::Enter,Event,Event==IE_Released?0.f:1.f));};
+    const FKey Chapters[]={EKeys::F1,EKeys::F2,EKeys::F3,EKeys::F4};
     if(LevelsSmokeStep==0) {ShowLevelSelect();Shot(TEXT("Select.png"));bReferenceView=true;}
-    else if(LevelsSmokeStep==1) ChooseLevel(LevelsSmokeIndex);
-    else if(LevelsSmokeStep==2) {check(LevelPhase==ESuperstarLevelPhase::Briefing);check(Photos.IsEmpty() && PublishedBeats.IsEmpty() && !bReferenceView);Shot(FString::Printf(TEXT("L%d-Briefing.png"),LevelIndex+1));}
+    else if(LevelsSmokeStep==1) GetOwningPlayerController()->InputKey(FInputKeyEventArgs::CreateSimulated(Chapters[LevelsSmokeIndex],IE_Pressed,1.f));
+    else if(LevelsSmokeStep==2)
+    {
+        GetOwningPlayerController()->InputKey(FInputKeyEventArgs::CreateSimulated(Chapters[LevelsSmokeIndex],IE_Released,0.f));
+        check(LevelPhase==ESuperstarLevelPhase::Briefing && LevelIndex==LevelsSmokeIndex);
+        check(Photos.IsEmpty() && PublishedBeats.IsEmpty() && !bReferenceView);
+        for(int32 I=FirstBeat;I<LastBeat;++I) check(Beats[I]->GetIntegerField(TEXT("chapter"))==LevelIndex+1);
+        Shot(FString::Printf(TEXT("L%d-Briefing.png"),LevelIndex+1));
+    }
     else if(LevelsSmokeStep==3) Key(IE_Pressed);
     else if(LevelsSmokeStep==4)
     {
@@ -262,7 +274,7 @@ void ASuperstarStoryHUD::RunLevelsSmoke()
         else
         {
             check(LevelPhase==ESuperstarLevelPhase::Select);
-            UE_LOG(LogTemp,Display,TEXT("SuperstarLevels smoke PASS: 4 independent briefings, Enter input, scoped seek/reverse/drag, end-stop, 12 real photos, 4 newspapers, evidence gate, continuation and reset"));
+            UE_LOG(LogTemp,Display,TEXT("SuperstarLevels smoke PASS: F1-F4 selection, 4 independent briefings, Enter input, scoped seek/reverse/drag, end-stop, 12 real photos, 4 newspapers, evidence gate, continuation and reset"));
             GetOwningPlayerController()->ConsoleCommand(TEXT("quit"));return;
         }
     }

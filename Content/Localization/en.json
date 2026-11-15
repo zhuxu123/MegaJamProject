@@ -121,8 +121,8 @@
       "en": "WASD Move/Tilt | Drag LMB Pan | Wheel/Q/E Zoom | 1-3 Camera | Space Pause | Enter Shoot/Confirm"
     },
     {
-      "source": "[ Enter / 1 ] 进入第一关   ·   [ 2 ] 进入第二关",
-      "en": "[ Enter / 1 ] Level 1   /   [ 2 ] Level 2"
+      "source": "[ 3 ] 进入超级巨星选关   ·   [ ESC ] 退出游戏",
+      "en": "[ 3 ] Superstar Level Select   /   [ ESC ] Quit Game"
     },
     {
       "source": "{Round.Config.CodeName}  //  摄制任务单   (目标：{Round.Config.RequiredPhotos} 张成片 · 磁带 {int(Round.ActiveDuration())} 秒)",
@@ -663,12 +663,12 @@
       "args": 2
     },
     {
-      "source": "超级巨星  /  选择摄制任务",
-      "en": "SUPERSTAR / SELECT AN ASSIGNMENT"
+      "source": "超级巨星  /  四关独立选关",
+      "en": "SUPERSTAR / SELECT FROM FOUR LEVELS"
     },
     {
-      "source": "四个独立关卡 · 任务单 → 现场拍摄 → 本关报纸",
-      "en": "Four independent levels / Brief > Shoot > Your newspaper"
+      "source": "选择任意一关开始 · 每关独立拍摄与发布",
+      "en": "Start with any level / Shoot and publish each one independently"
     },
     {
       "source": "3 张成片  ·  %.1f 秒%s",
@@ -685,8 +685,8 @@
       "en": "Main Menu M / ESC"
     },
     {
-      "source": "按 1–4 或点击任务卡查看任务详情",
-      "en": "Press 1-4 or click a card to view the brief"
+      "source": "点击任务卡，或按 1–4 / F1–F4 选择对应关卡",
+      "en": "Click a card or press 1-4 / F1-F4 to select a level"
     },
     {
       "source": "LEVEL %02d  //  摄制任务单（目标：3 张成片 · 磁带 %.1f 秒）",
