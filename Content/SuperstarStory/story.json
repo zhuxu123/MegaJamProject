@@ -48,7 +48,7 @@
         {
           "position": [
             -10.9375,
-            0,
+            115,
             165.5
           ],
           "size": [
@@ -65,7 +65,7 @@
         {
           "position": [
             -218.75,
-            -35,
+            80,
             78
           ],
           "size": [
@@ -82,7 +82,7 @@
         {
           "position": [
             -218.75,
-            35,
+            150,
             78
           ],
           "size": [
@@ -99,7 +99,7 @@
         {
           "position": [
             196.875,
-            -35,
+            80,
             78
           ],
           "size": [
@@ -116,7 +116,7 @@
         {
           "position": [
             196.875,
-            35,
+            150,
             78
           ],
           "size": [
@@ -194,7 +194,7 @@
         {
           "position": [
             -10.9375,
-            0,
+            115,
             165.5
           ],
           "size": [
@@ -211,7 +211,7 @@
         {
           "position": [
             -218.75,
-            -35,
+            80,
             78
           ],
           "size": [
@@ -228,7 +228,7 @@
         {
           "position": [
             -218.75,
-            35,
+            150,
             78
           ],
           "size": [
@@ -245,7 +245,7 @@
         {
           "position": [
             196.875,
-            -35,
+            80,
             78
           ],
           "size": [
@@ -262,7 +262,7 @@
         {
           "position": [
             196.875,
-            35,
+            150,
             78
           ],
           "size": [
@@ -358,7 +358,7 @@
         {
           "position": [
             -10.9375,
-            0,
+            115,
             165.5
           ],
           "size": [
@@ -375,7 +375,7 @@
         {
           "position": [
             -218.75,
-            -35,
+            80,
             78
           ],
           "size": [
@@ -392,7 +392,7 @@
         {
           "position": [
             -218.75,
-            35,
+            150,
             78
           ],
           "size": [
@@ -409,7 +409,7 @@
         {
           "position": [
             196.875,
-            -35,
+            80,
             78
           ],
           "size": [
@@ -426,7 +426,7 @@
         {
           "position": [
             196.875,
-            35,
+            150,
             78
           ],
           "size": [
@@ -444,7 +444,7 @@
     },
     {
       "chapter": 1,
-      "scene": "studio",
+      "scene": "outdoor",
       "title": "抢过雨伞",
       "description": "林晚回头微笑。助理小周跑近；林晚扫一眼，抢过雨伞，小周愣住。",
       "actors": [
@@ -503,6 +503,51 @@
           "walk_clip": "A08_xiaozhou_jog",
           "move_start": 0,
           "move_end": 3.6
+        },
+        {
+          "name": "粉丝",
+          "clip": "E01_extra_f_idle",
+          "x": 610,
+          "to": 610,
+          "flip": false,
+          "facing": "left",
+          "depth": 170,
+          "emotion_placeholder": false,
+          "presentation": {
+            "E01_extra_f_idle": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "name": "粉丝",
+          "clip": "E03_extra_m_idle",
+          "x": 755,
+          "to": 755,
+          "flip": false,
+          "facing": "left",
+          "depth": 170,
+          "emotion_placeholder": false,
+          "presentation": {
+            "E03_extra_m_idle": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "name": "粉丝",
+          "clip": "E01_extra_f_idle",
+          "x": 900,
+          "to": 900,
+          "flip": false,
+          "facing": "left",
+          "depth": 170,
+          "emotion_placeholder": false,
+          "presentation": {
+            "E01_extra_f_idle": {
+              "scale": 0.85
+            }
+          }
         }
       ],
       "duration": 10.6,
@@ -510,10 +555,10 @@
       "evidence": "",
       "props": [
         {
-          "image": "Static/Partial20261115/P01_umbrella_closed.png",
+          "image": "Static/Partial20261115/P02_umbrella_open.png",
           "x": 640,
           "z": 150,
-          "size": 210,
+          "size": 300,
           "depth": -45,
           "attach_actor": 1,
           "grip": [
@@ -529,25 +574,65 @@
       "chapter": 1,
       "scene": "outdoor",
       "title": "走进雨中",
-      "description": "林晚向右走到户外，撑伞离开。",
+      "description": "林晚拿着撑开的伞离去，身后等候的粉丝恰好进入镜头。",
       "actors": [
         {
           "name": "林晚",
-          "clip": "A11_linwan_open_umbrella",
+          "clip": "A12_linwan_walk_umbrella",
           "x": 500,
           "to": 1050,
           "flip": false,
           "emotion_placeholder": false,
-          "sequence": [
-            {
-              "at": 4.4,
-              "clip": "A12_linwan_walk_umbrella"
-            }
-          ],
           "move_start": 4.4,
           "move_end": 8.8,
           "walk_clip": "A12_linwan_walk_umbrella",
-          "facing": "right"
+          "facing": "right",
+          "hold_frame": 0
+        },
+        {
+          "name": "粉丝",
+          "clip": "E01_extra_f_idle",
+          "x": 610,
+          "to": 610,
+          "flip": false,
+          "facing": "left",
+          "depth": 170,
+          "emotion_placeholder": false,
+          "presentation": {
+            "E01_extra_f_idle": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "name": "粉丝",
+          "clip": "E03_extra_m_idle",
+          "x": 755,
+          "to": 755,
+          "flip": false,
+          "facing": "left",
+          "depth": 170,
+          "emotion_placeholder": false,
+          "presentation": {
+            "E03_extra_m_idle": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "name": "粉丝",
+          "clip": "E01_extra_f_idle",
+          "x": 900,
+          "to": 900,
+          "flip": false,
+          "facing": "left",
+          "depth": 170,
+          "emotion_placeholder": false,
+          "presentation": {
+            "E01_extra_f_idle": {
+              "scale": 0.85
+            }
+          }
         }
       ],
       "duration": 9,
@@ -564,9 +649,6 @@
           "grip": [
             0.5,
             0.76
-          ],
-          "visible_clips": [
-            "A12_linwan_walk_umbrella"
           ],
           "angle": 0
         }
@@ -706,7 +788,15 @@
       "duration": 4.8,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
-      "props": []
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -748,7 +838,16 @@
       ],
       "duration": 3,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -791,7 +890,16 @@
       ],
       "duration": 4.6,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -833,7 +941,16 @@
       ],
       "duration": 5.8,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -869,7 +986,16 @@
       ],
       "duration": 4.6,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -905,7 +1031,16 @@
       ],
       "duration": 4.6,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -947,7 +1082,16 @@
       ],
       "duration": 4.6,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -993,7 +1137,16 @@
       ],
       "duration": 5,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -1044,7 +1197,16 @@
       ],
       "duration": 7,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -1088,7 +1250,16 @@
       ],
       "duration": 4.4,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -1143,7 +1314,16 @@
       ],
       "duration": 4.2,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
@@ -1185,17 +1365,26 @@
       ],
       "duration": 6.4,
       "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
-      "evidence": ""
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/EV03_roster.png",
+          "x": 300,
+          "z": 275,
+          "size": 170,
+          "depth": 270
+        }
+      ]
     },
     {
       "chapter": 2,
       "scene": "stage",
       "title": "灯光之下",
-      "description": "林晚进入舞台，沉默、抬头，露出真假难辨的笑。画外掌声与尖叫。",
+      "description": "林晚赶到舞台中央，停步抬头，面对镜头挤出笑容；下台后，她将经过杂物间。",
       "actors": [
         {
           "name": "林晚",
-          "clip": "F03_linwan_ambiguous",
+          "clip": "A21_linwan_raise_head",
           "x": 230,
           "to": 600,
           "flip": false,
@@ -1208,30 +1397,19 @@
             }
           ],
           "move_start": 0,
-          "move_end": 4.8,
+          "move_end": 2.0,
           "walk_clip": "A01_linwan_walk",
-          "facing": "right"
-        },
-        {
-          "name": "工作人员",
-          "clip": "E01_extra_f_idle",
-          "x": 1040,
-          "to": 850,
-          "flip": false,
-          "emotion_placeholder": false,
-          "move_start": 0,
-          "move_end": 4.8,
-          "walk_clip": "E02_extra_f_walk",
-          "facing": "right"
-        },
-        {
-          "name": "工作人员",
-          "clip": "E03_extra_m_idle",
-          "x": 920,
-          "to": 920,
-          "flip": false,
-          "emotion_placeholder": false,
-          "facing": "right"
+          "facing": "right",
+          "sequence": [
+            {
+              "at": 2.0,
+              "clip": "A21_linwan_raise_head"
+            },
+            {
+              "at": 5.0,
+              "clip": "F03_linwan_ambiguous"
+            }
+          ]
         }
       ],
       "duration": 6,
@@ -1248,7 +1426,7 @@
           "name": "林晚",
           "clip": "A01_linwan_walk",
           "x": 220,
-          "to": 660,
+          "to": 450,
           "flip": false,
           "emotion_placeholder": false,
           "emotions": [
@@ -1283,8 +1461,8 @@
         {
           "name": "林晚",
           "clip": "A22_linwan_listen",
-          "x": 250,
-          "to": 250,
+          "x": 450,
+          "to": 450,
           "flip": false,
           "emotion_placeholder": false,
           "emotions": [
@@ -1350,8 +1528,8 @@
         {
           "name": "林晚",
           "clip": "A26_linwan_wall_fist",
-          "x": 660,
-          "to": 660,
+          "x": 450,
+          "to": 450,
           "flip": false,
           "emotion_placeholder": false,
           "emotions": [
@@ -1435,7 +1613,7 @@
         {
           "position": [
             -38.28125,
-            -16,
+            44,
             74
           ],
           "size": [
@@ -1452,7 +1630,7 @@
         {
           "position": [
             -71.09375,
-            -40,
+            20,
             35
           ],
           "size": [
@@ -1469,7 +1647,7 @@
         {
           "position": [
             -71.09375,
-            10,
+            70,
             35
           ],
           "size": [
@@ -1486,7 +1664,7 @@
         {
           "position": [
             -5.46875,
-            -40,
+            20,
             35
           ],
           "size": [
@@ -1503,7 +1681,7 @@
         {
           "position": [
             -5.46875,
-            10,
+            70,
             35
           ],
           "size": [
@@ -1577,7 +1755,7 @@
         {
           "position": [
             -38.28125,
-            -16,
+            44,
             74
           ],
           "size": [
@@ -1594,7 +1772,7 @@
         {
           "position": [
             -71.09375,
-            -40,
+            20,
             35
           ],
           "size": [
@@ -1611,7 +1789,7 @@
         {
           "position": [
             -71.09375,
-            10,
+            70,
             35
           ],
           "size": [
@@ -1628,7 +1806,7 @@
         {
           "position": [
             -5.46875,
-            -40,
+            20,
             35
           ],
           "size": [
@@ -1645,7 +1823,7 @@
         {
           "position": [
             -5.46875,
-            10,
+            70,
             35
           ],
           "size": [
@@ -1703,7 +1881,7 @@
         {
           "position": [
             -38.28125,
-            -16,
+            44,
             74
           ],
           "size": [
@@ -1720,7 +1898,7 @@
         {
           "position": [
             -71.09375,
-            -40,
+            20,
             35
           ],
           "size": [
@@ -1737,7 +1915,7 @@
         {
           "position": [
             -71.09375,
-            10,
+            70,
             35
           ],
           "size": [
@@ -1754,7 +1932,7 @@
         {
           "position": [
             -5.46875,
-            -40,
+            20,
             35
           ],
           "size": [
@@ -1771,7 +1949,7 @@
         {
           "position": [
             -5.46875,
-            10,
+            70,
             35
           ],
           "size": [
@@ -1860,7 +2038,7 @@
         {
           "position": [
             -38.28125,
-            -16,
+            44,
             74
           ],
           "size": [
@@ -1877,7 +2055,7 @@
         {
           "position": [
             -71.09375,
-            -40,
+            20,
             35
           ],
           "size": [
@@ -1894,7 +2072,7 @@
         {
           "position": [
             -71.09375,
-            10,
+            70,
             35
           ],
           "size": [
@@ -1911,7 +2089,7 @@
         {
           "position": [
             -5.46875,
-            -40,
+            20,
             35
           ],
           "size": [
@@ -1928,7 +2106,7 @@
         {
           "position": [
             -5.46875,
-            10,
+            70,
             35
           ],
           "size": [
@@ -2800,7 +2978,7 @@
       "chapter": 4,
       "scene": "newstudio",
       "title": "数周后 · 新片场",
-      "description": "明亮的新片场。林晚站在门口，小北从左侧拿着雨伞走来。",
+      "description": "数周后，新片场的户外入口。林晚等在路边，小北拿着雨伞走来。",
       "actors": [
         {
           "name": "林晚",
@@ -2883,21 +3061,16 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "A11_linwan_open_umbrella",
+          "clip": "A12_linwan_walk_umbrella",
           "x": 700,
           "to": 1080,
           "flip": false,
           "emotion_placeholder": false,
-          "sequence": [
-            {
-              "at": 4.4,
-              "clip": "A12_linwan_walk_umbrella"
-            }
-          ],
           "move_start": 4.4,
           "move_end": 8.8,
           "walk_clip": "A12_linwan_walk_umbrella",
-          "facing": "right"
+          "facing": "right",
+          "hold_frame": 0
         },
         {
           "name": "小北",
@@ -2923,9 +3096,6 @@
           "grip": [
             0.5,
             0.76
-          ],
-          "visible_clips": [
-            "A12_linwan_walk_umbrella"
           ]
         }
       ]

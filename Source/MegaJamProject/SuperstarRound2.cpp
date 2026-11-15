@@ -82,10 +82,15 @@ void ASuperstarStoryHUD::RunRound2Smoke()
         for(const auto& Entry:Data->GetObjectField(TEXT("clips"))->Values)
         {
             FString Delivery;Entry.Value->AsObject()->TryGetStringField(TEXT("delivery"),Delivery);
-            if(Delivery==TEXT("Round2Actual20261115")) {++Expected;checkf(Round2Seen.Contains(FString(*Entry.Key)),TEXT("Unreachable return clip %s"),*Entry.Key);}
+            bool bRetired=false;Entry.Value->AsObject()->TryGetBoolField(TEXT("retired"),bRetired);
+            if(Delivery==TEXT("Round2Actual20261115"))
+            {
+                ++Expected;
+                if(!bRetired) checkf(Round2Seen.Contains(FString(*Entry.Key)),TEXT("Unreachable return clip %s"),*Entry.Key);
+            }
         }
         check(Expected==78);
-        UE_LOG(LogTemp,Display,TEXT("SuperstarRound2 smoke PASS: 78 return clips sampled, 39 beats, 5 FPS deterministic reverse/seek, grip transforms and 156 rendered views"));
+        UE_LOG(LogTemp,Display,TEXT("SuperstarRound2 smoke PASS: active return clips sampled, 39 beats, 5 FPS deterministic reverse/seek, grip transforms and 156 rendered views"));
         GetOwningPlayerController()->ConsoleCommand(TEXT("quit"));return;
     }
     if(Sample==0)
@@ -122,6 +127,7 @@ void ASuperstarStoryHUD::RunRound2Smoke()
         if(Beats[Beat]->TryGetArrayField(TEXT("props"),Props)) for(const auto& V:*Props)
         {double T=0;if(V->AsObject()->TryGetNumberField(TEXT("transfer_at"),T)) {Clock=T;break;}}
     }
+    Stage->SetView(Sample==1?-1.f:(Sample==3?1.f:0.f),0,0,1);
     UpdateActors();
     FScreenshotRequest::RequestScreenshot(FPaths::ProjectSavedDir()/TEXT("Screenshots/SuperstarRound2")/FString::Printf(TEXT("B%02d-%d.png"),Beat+1,Sample),true,false);
     ++Round2SmokeStep;

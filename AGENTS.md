@@ -226,7 +226,11 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 - 动画时序仍按绝对时间取5 FPS帧；非循环前进动作也允许作为walk_clip，不能强制所有位移都套循环走路。`facing`用于停留/交互朝向，移动期间依移动方向求值。actor.presentation按clip指定scale及逐帧offsets，用于同步接触；3D和参考图共用。道具支持visible_clips、transfer_grip、mirror_with_holder，烘入道具的帧不重复叠加。少量support_boxes只在匹配段落生成临时桌椅，不保存/覆盖地图。
 - 本模式21种人物表情已替换2D占位；旧两关的2D符号逻辑不改。头部锚点构建脚本优先读取交付anchors.json，避免将烘入雨伞的伞顶当成头顶。`Tools/Validate-SuperstarRound2.py`核对78条的每帧可达、动作播完、握点和剧情隔离；`-SuperstarRound2Smoke`验证39段实际渲染、反向求值与道具握点。四关与原有测试仍须通过。
 
+- 最后抓 bug 修正将第4段改为户外撑开伞交接，第4–5段加入三名复用群众素材的背景粉丝。人物可用 `depth` 指定背景纵深，默认0。第1–3段桌子统一移至人物行走平面后方，进场、敲桌和离场共用相同布置，第21–23段使用隔墙和冷暖空间，结尾 `newstudio` 改为户外日景。变形的 `A11_linwan_open_umbrella` 已退役，原文件保留，第5/39段使用 `A12_linwan_walk_umbrella` 定帧接走路；当前第二轮77条活跃动作，验证器明确检查该退役例外。`-SuperstarRound2Smoke`含左右机位。不要直接重跑第二轮导入器覆盖这些演出修正。
+
 ## 9. 2026-11-15 新增：中英文显示
+
+- 四关结算报头统一为“骏风娱乐 / JUNFENG ENTERTAINMENT”。F1–F5 的玩家界面提示隐藏，现有快捷键仍可用，DefaultInput.ini移除了F1–F5的引擎调试渲染绑定，避免选关时切到线框等模式。“查看参考图片”按钮及点击区域已移除，B 键仍可切换参考图。角色名使用逐帧头部锚点，在表情区域上方显示，接近画幅顶端时侧移避让。决赛第24–27段凳子统一位于人物平面后方；走廊统一展示正式名单图片，旧六人照片墙占位几何已移除。
 
 - 首页右上角按钮 / `L` 切换中英文，写入用户 `GameUserSettings.ini`，跨地图和重启保留。首次默认中文。`-GameLanguage=en/zh` 可临时覆盖。
 - 原有两关与超级巨星四关统一使用 `GameLocalization` 显示层；`Content/Localization/en.json` 保存翻译和格式模板。保持原始中文剧情数据、评分及 ID，不用翻译后的文本参与逻辑判断。

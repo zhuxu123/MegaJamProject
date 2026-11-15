@@ -792,7 +792,7 @@ class ABackstageHUD : AHUD
 
         CenteredShadowText("操作：WASD 移动/俯仰  |  按住左键拖拽场景  |  滚轮/Q/E 缩放  |  1-3 机位  |  空格 暂停  |  Enter 拍照并确认",
             640, 622, Muted, 1.00);
-        CenteredShadowText("[ 1–4 / F1–F4 ] 选择关卡   ·   [ Enter ] 开始第一关   ·   [ ESC ] 退出游戏", 640, 654, Mint, 1.12);
+        CenteredShadowText("[ 1–4 ] 选择关卡   ·   [ Enter ] 开始第一关   ·   [ ESC ] 退出游戏", 640, 654, Mint, 1.12);
     }
 
     void Viewfinder(const FBackstagePhoto&in Photo, float X, float Y, float W, float H, bool bLive)

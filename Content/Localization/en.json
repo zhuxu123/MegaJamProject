@@ -19,8 +19,8 @@
       "en": "[ 4 ] Level 4 · Truth on Air"
     },
     {
-      "source": "[ 1–4 / F1–F4 ] 选择关卡   ·   [ Enter ] 开始第一关   ·   [ ESC ] 退出游戏",
-      "en": "[ 1–4 / F1–F4 ] Select level   ·   [ Enter ] Start Level 1   ·   [ ESC ] Quit"
+      "source": "[ 1–4 ] 选择关卡   ·   [ Enter ] 开始第一关   ·   [ ESC ] 退出游戏",
+      "en": "[ 1–4 ] Select level   ·   [ Enter ] Start Level 1   ·   [ ESC ] Quit"
     },
     {
       "source": "FramingFame  /  {Round.Config.Title}",
@@ -709,8 +709,8 @@
       "en": "Main Menu M / ESC"
     },
     {
-      "source": "点击任务卡，或按 1–4 / F1–F4 选择对应关卡",
-      "en": "Click a card or press 1-4 / F1-F4 to select a level"
+      "source": "点击任务卡，或按 1–4 选择对应关卡",
+      "en": "Click a card or press 1-4 to select a level"
     },
     {
       "source": "LEVEL %02d  //  摄制任务单（目标：3 张成片 · 磁带 %.1f 秒）",
@@ -731,8 +731,8 @@
       "en": "Level Select M / ESC"
     },
     {
-      "source": "聚 光 灯 日 报",
-      "en": "THE SPOTLIGHT DAILY"
+      "source": "骏 风 娱 乐",
+      "en": "JUNFENG ENTERTAINMENT"
     },
     {
       "source": "第 %02d 期  /  %s  /  本关现场报道",
@@ -1029,8 +1029,8 @@
       "en": "Replay Beat"
     },
     {
-      "source": "F1—F4 任务单 · Tab 相册",
-      "en": "F1-F4 Brief / Tab Photos"
+      "source": "Tab 相册",
+      "en": "Tab Photos"
     },
     {
       "source": "机位 %d · WASD 构图 · Q/E/滚轮变焦 · Enter 拍照 · 已存 %d/6",
@@ -1173,8 +1173,8 @@
       "en": "Into the Rain"
     },
     {
-      "source": "林晚向右走到户外，撑伞离开。",
-      "en": "Lin Wan walks right, opens the umbrella and leaves in the rain."
+      "source": "林晚拿着撑开的伞离去，身后等候的粉丝恰好进入镜头。",
+      "en": "Lin Wan leaves with the open umbrella. Fans waiting behind her happen to fall into the frame."
     },
     {
       "source": "间幕 · 路灯下的照片",
@@ -1357,8 +1357,8 @@
       "en": "Under the Lights"
     },
     {
-      "source": "林晚进入舞台，沉默、抬头，露出真假难辨的笑。画外掌声与尖叫。",
-      "en": "Lin Wan enters the stage in silence, lifts her head and smiles. Is it real? Applause and cheers sound off screen."
+      "source": "林晚赶到舞台中央，停步抬头，面对镜头挤出笑容；下台后，她将经过杂物间。",
+      "en": "Lin Wan hurries to center stage, stops, looks up and forces a smile for the cameras. After leaving the stage, she will pass the storage room."
     },
     {
       "source": "难辨的笑",
@@ -1593,8 +1593,8 @@
       "en": "Weeks Later / A New Set"
     },
     {
-      "source": "明亮的新片场。林晚站在门口，小北从左侧拿着雨伞走来。",
-      "en": "At a bright new film set, Lin Wan waits by the entrance. Xiao Bei approaches from the left with an umbrella."
+      "source": "数周后，新片场的户外入口。林晚等在路边，小北拿着雨伞走来。",
+      "en": "Weeks later, outside the new film set. Lin Wan waits by the road as Xiao Bei approaches with an umbrella."
     },
     {
       "source": "平静",
@@ -1795,6 +1795,10 @@
     {
       "source": "名单上除了苏瑶都被打 X",
       "en": "Every contestant except Su Yao is crossed out"
+    },
+    {
+      "source": "粉丝",
+      "en": "Fan"
     }
   ]
 }

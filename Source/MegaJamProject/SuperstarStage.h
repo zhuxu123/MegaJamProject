@@ -27,7 +27,7 @@ class MEGAJAMPROJECT_API ASuperstarStage : public AActor
 public:
     ASuperstarStage();
     void SetScene(const FString& Scene);
-    void SetCharacter(int32 Index, UTexture2D* Texture, float ScreenX, bool bFlip, float RenderScale = 1.f, float HeightOffset = 0.f);
+    void SetCharacter(int32 Index, UTexture2D* Texture, float ScreenX, bool bFlip, float RenderScale = 1.f, float HeightOffset = 0.f, float Depth = 0.f);
     void ResetCharacters();
     void AddStoryBox(FVector Position, FVector Size, FLinearColor Color);
     void SetReferenceView(bool bReference);

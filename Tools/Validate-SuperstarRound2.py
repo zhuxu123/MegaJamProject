@@ -17,7 +17,10 @@ def sample(a,t):
  return id,f
 for n,b in enumerate(s['beats']):
  o=old['beats'][n]
- for field in ['title','description','scene','chapter','evidence']:assert b[field]==o[field],(n,field)
+ for field in ['title','chapter','evidence']:assert b[field]==o[field],(n,field)
+ if n!=3:assert b['scene']==o['scene'],(n,'scene')
+ else:assert b['scene']=='outdoor'
+ if n not in [4,19,37]:assert b['description']==o['description'],(n,'description')
  for a in b['actors']:
   assert not a.get('emotion_placeholder'),(n,a['name'])
   if a.get('walk_clip'):
@@ -36,11 +39,30 @@ for n,b in enumerate(s['beats']):
     if c[id].get('prop_mode')=='baked':continue
     assert len(c[id].get('hand_anchors',[]))==c[id]['frames'],(n+1,id,'missing hand')
 for id in r['imported_ids']:
+ if id=='A11_linwan_open_umbrella':
+  assert c[id]['retired'] and id not in seen
+  continue
  assert seen.get(id)==set(range(c[id]['frames'])),(id,'unplayed frames',set(range(c[id]['frames']))-seen.get(id,set()))
  assert not c[id].get('retired')
 assert s['beats'][16]['actors'][1]['delay']==1.2
 # Single umbrella instance per handover, and a single knife through confiscation/escort.
-for n,image in [(4,'P01_umbrella_closed'),(38,'P01_umbrella_closed'),(31,'P04_prop_knife')]:
+for n,image in [(4,'P02_umbrella_open'),(38,'P01_umbrella_closed'),(31,'P04_prop_knife')]:
  assert sum(image in p['image'] for p in s['beats'][n-1]['props'])==1
 assert [sum(b['duration'] for b in s['beats'] if b['chapter']==i) for i in range(1,5)]==r['level_seconds']
-print('PASS: all 78 returned clips / 1168 frames reachable; every action completes; captions, 39 beats, scenes, evidence and chapter identity preserved; attached props have per-frame grips.')
+for n in [4,5]:
+ assert sum(a['name']=='粉丝' and a['depth']>0 for a in s['beats'][n-1]['actors'])==3
+for n in [5,39]:assert s['beats'][n-1]['actors'][0]['clip']=='A12_linwan_walk_umbrella'
+# The studio table persists across entrance, confrontation and exit. All moving
+# sprites stay in front of its nearest surface throughout their absolute-time paths.
+for beat in s['beats'][:3]:
+ assert beat['support_boxes']==s['beats'][1]['support_boxes'], 'Studio table jumps between beats'
+ nearest_surface=min(box['position'][1]-box['size'][1]/2 for box in beat['support_boxes'])
+ for index,actor in enumerate(beat['actors']):
+  actor_depth=-45-index*.5+actor.get('depth',0)
+  assert nearest_surface-actor_depth>=50, 'Studio table intersects the actor walking plane'
+for beat in s['beats'][23:27]:
+ assert beat['support_boxes']==s['beats'][23]['support_boxes'], 'Dressing-room stool jumps between beats'
+ nearest_surface=min(box['position'][1]-box['size'][1]/2 for box in beat['support_boxes'])
+ for index,actor in enumerate(beat['actors']):
+  assert nearest_surface-(-45-index*.5+actor.get('depth',0))>=50, 'Stool intersects an actor plane'
+print('PASS: 77 active returned clips reachable; distorted open-umbrella clip retired; outdoor handover, background fans, 39 beats, chapter timing and attached grips verified.')

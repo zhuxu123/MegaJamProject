@@ -119,16 +119,20 @@ void ASuperstarStage::SetScene(const FString& Scene)
     for (UStaticMeshComponent* Mesh : Pieces) if (Mesh) Mesh->DestroyComponent();
     Pieces.Reset();
     if (!BaseMaterial) BaseMaterial = LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/LevelPrototyping/Materials/M_FlatCol.M_FlatCol"));
-    const bool bOutdoor = Scene == TEXT("outdoor");
+    const bool bOutdoor = Scene == TEXT("outdoor") || Scene == TEXT("newstudio");
+    const bool bDayExterior = Scene == TEXT("newstudio");
     const bool bStage = Scene == TEXT("stage");
-    const FLinearColor Wall = bOutdoor ? FLinearColor(.09f,.15f,.25f) : FLinearColor(.28f,.36f,.44f);
+    const FLinearColor Wall = bDayExterior ? FLinearColor(.38f,.57f,.70f) : (bOutdoor ? FLinearColor(.09f,.15f,.25f) : FLinearColor(.28f,.36f,.44f));
     const FLinearColor Trim(.07f,.12f,.18f), Light(.5f,.78f,.83f);
     Box({0,70,-16}, {1500,850,30}, bOutdoor ? FLinearColor(.13f,.19f,.26f) : FLinearColor(.32f,.38f,.43f));
     Box({0,330,270},{1500,25,550},Wall);
-    Box({-740,60,270},{25,550,550},Trim);
-    Box({740,60,270},{25,550,550},Trim);
+    if (!bOutdoor)
+    {
+        Box({-740,60,270},{25,550,550},Trim);
+        Box({740,60,270},{25,550,550},Trim);
+    }
     Box({0,310,32},{1500,12,32},Trim);
-    Box({0,310,460},{1500,15,12},Light);
+    if (!bOutdoor) Box({0,310,460},{1500,15,12},Light);
     // Floor seams make the geometry depth legible without a texture dependency.
     for (int32 I=-3; I<=3; ++I) Box({I*190.,60,.1},{2,800,1},Trim);
     for (int32 I=-2; I<=2; ++I) Box({0,I*170.,.1},{1500,2,1},Trim);
@@ -136,13 +140,18 @@ void ASuperstarStage::SetScene(const FString& Scene)
     {
         for (int32 I=-3; I<=3; ++I) for (int32 R=0; R<2; ++R)
         {
-            Box({I*200.,309.,240.+R*155.},{170,10,100},Trim);
-            Box({I*200.,302.,240.+R*155.},{150,4,80},FLinearColor(.15f,.26f,.38f));
+            Box({I*200.,309.,70.+R*65.},{160,10,45},Trim);
+            Box({I*200.,302.,70.+R*65.},{140,4,30},FLinearColor(.15f,.26f,.38f));
         }
         Box({-470,75,170},{12,12,340},Trim,TEXT("Cylinder"));
         Box({-470,75,340},{90,90,25},Trim,TEXT("Cylinder"));
         Box({-470,75,317},{58,58,30},FLinearColor(1.f,.83f,.45f),TEXT("Cylinder"));
         for (int32 I=0; I<3; ++I) { Box({200.+I*125.,240,55},{60,60,110},Trim,TEXT("Cylinder")); Box({200.+I*125.,240,113},{70,70,10},Light,TEXT("Cylinder")); }
+        // A low studio boundary and open sky keep the exterior readable from all stations.
+        Box({0,280,115},{1500,24,12},Light);
+        Box({0,140,3},{1450,80,4},FLinearColor(.08f,.13f,.19f));
+        for (int32 I=0; I<(bDayExterior ? 0 : 24); ++I)
+            Box({-700.+I*59.,250,220.+(I%4)*65.},{1.5,1.5,25},FLinearColor(.38f,.55f,.67f));
     }
     else if (bStage)
     {
@@ -161,10 +170,20 @@ void ASuperstarStage::SetScene(const FString& Scene)
     else if (Scene == TEXT("corridor") || Scene == TEXT("storage"))
     {
         for (float X : {-220.f,250.f,590.f}) { Box({X,307,150},{150,10,290},Trim); Box({X+50,295,130},{9,8,9},Light); }
-        Box({-510,300,265},{285,15,210},Trim);
-        for (int32 I=0; I<6; ++I) { Box({-600.+(I%3)*88.,287,310.-(I/3)*90.},{65,8,75},FLinearColor(.81f,.80f,.69f)); Box({-600.+(I%3)*88.,281,320.-(I/3)*90.},{28,5,30},Light,TEXT("Sphere")); }
+        // The roster is a textured story prop. Do not layer the old six-person
+        // placeholder board behind it, where side cameras expose the mismatch.
         Box({590,285,360},{130,10,35},FLinearColor(.13f,.5f,.36f));
-        if (Scene == TEXT("storage")) for (int32 I=0; I<4; ++I) Box({-500.+I*80.,110,40.+I%2*40.},{75,75,80},FLinearColor(.37f,.28f,.20f));
+        if (Scene == TEXT("storage"))
+        {
+            Box({-435,315,235},{590,12,450},FLinearColor(.12f,.25f,.36f));
+            Box({310,315,235},{880,12,450},FLinearColor(.40f,.25f,.13f));
+            Box({-145,80,220},{24,480,440},Trim);
+            Box({-160,-70,175},{12,120,350},FLinearColor(.16f,.21f,.25f));
+            Box({-168,-135,170},{5,8,320},FLinearColor(.87f,.62f,.25f));
+            Box({-440,100,1},{560,420,3},FLinearColor(.14f,.27f,.37f));
+            Box({310,100,1},{850,420,3},FLinearColor(.42f,.28f,.15f));
+            for (int32 I=0; I<3; ++I) Box({420.+I*80.,170,40.+I%2*40.},{75,75,80},FLinearColor(.37f,.28f,.20f));
+        }
         Equipment(480,180);
     }
     else if (Scene == TEXT("dressing"))
@@ -205,7 +224,7 @@ void ASuperstarStage::ResetCharacters()
     PropTextures.Reset();
 }
 
-void ASuperstarStage::SetCharacter(int32 Index, UTexture2D* Texture, float ScreenX, bool bFlip, float RenderScale, float HeightOffset)
+void ASuperstarStage::SetCharacter(int32 Index, UTexture2D* Texture, float ScreenX, bool bFlip, float RenderScale, float HeightOffset, float Depth)
 {
     if (!Texture) return;
     while (Characters.Num() <= Index)
@@ -228,7 +247,8 @@ void ASuperstarStage::SetCharacter(int32 Index, UTexture2D* Texture, float Scree
         Component->SetSprite(Sprite);
         CharacterTextures[Index] = Texture;
     }
-    Component->SetRelativeLocation(FVector((640.f-ScreenX)*1400.f/1280.f, -45.f - Index*.5f, 3.f + HeightOffset));
+    Component->SetTranslucentSortPriority(Depth > 0.f ? 5 : 10);
+    Component->SetRelativeLocation(FVector((640.f-ScreenX)*1400.f/1280.f, -45.f - Index*.5f + Depth, 3.f + HeightOffset));
     Component->SetRelativeScale3D(FVector((bFlip ? 1.f : -1.f)*RenderScale, 1.f, RenderScale));
 }
 

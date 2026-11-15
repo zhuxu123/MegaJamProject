@@ -158,12 +158,12 @@ void ASuperstarStoryHUD::DrawLevelFlow()
             const auto& L=Levels[I];
             const int32 First=L->GetIntegerField(TEXT("first_beat"))-1,Last=L->GetIntegerField(TEXT("last_beat"));
             const float Duration=(Last<BeatStarts.Num()?BeatStarts[Last]:FullDuration)-BeatStarts[First];
-            FitLabel(FString::Printf(TEXT("[ %d / F%d ]  %s"),I+1,I+1,*L->GetStringField(TEXT("title"))),X+22,Y+17,486,44,26,Paper);
+            FitLabel(FString::Printf(TEXT("[ %d ]  %s"),I+1,*L->GetStringField(TEXT("title"))),X+22,Y+17,486,44,26,Paper);
             FitLabel(L->GetStringField(TEXT("summary")),X+22,Y+72,486,32,17,Light);
             FitLabel(FString::Printf(TEXT("3 张成片  ·  %.1f 秒%s"),Duration,L->GetArrayField(TEXT("interludes")).IsEmpty()?TEXT(""):TEXT("  ·  含间幕")),X+22,Y+120,486,28,16,Gold);
         }
         Button(TEXT("返回主菜单  M / ESC"),70,625,260,48,17,Dark,Paper);
-        FitLabel(TEXT("点击任务卡，或按 1–4 / F1–F4 选择对应关卡"),380,625,800,48,18,Light);
+        FitLabel(TEXT("点击任务卡，或按 1–4 选择对应关卡"),380,625,800,48,18,Light);
         return;
     }
     const auto& L=Levels[LevelIndex];
@@ -186,7 +186,7 @@ void ASuperstarStoryHUD::DrawNewspaper()
 {
     DrawRect(FLinearColor(.035f,.032f,.028f),0,0,Canvas->SizeX,Canvas->SizeY);
     Rect(50,28,1180,665,Paper);
-    FitLabel(TEXT("聚 光 灯 日 报"),80,48,1120,58,38,Dark,true);
+    FitLabel(TEXT("骏 风 娱 乐"),80,48,1120,58,38,Dark,true);
     Rect(80,111,1120,3,Dark);
     FitLabel(FString::Printf(TEXT("第 %02d 期  /  %s  /  本关现场报道"),LevelIndex+1,*Levels[LevelIndex]->GetStringField(TEXT("title"))),80,119,1120,30,16,Dark,true);
     FitLabel(PublicationHeadline(),80,163,1120,51,30,Dark,true);
