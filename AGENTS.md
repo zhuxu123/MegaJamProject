@@ -225,3 +225,11 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 - 2026-11-15 第二轮动画回传已接入：78条/1168帧，版本目录 `Animations/Round2Actual20261115`；旧帧保留，三项同ID更新使用版本路径，`ImportHistory/Round2Actual20261115`保存原注册表、剧情及源同步记录。当前112条/1471帧（91活跃、21退役），不得用旧18项/首批导入器覆盖。`Tools/Import-SuperstarRound2.py --zip <回传包>`是本批专用重建脚本，从保留基线重建，后续已有新剧情修改时不可直接重跑。验收见 [第二轮接入](Docs/SuperstarStory/Round2-Integration-20261115.md)。
 - 动画时序仍按绝对时间取5 FPS帧；非循环前进动作也允许作为walk_clip，不能强制所有位移都套循环走路。`facing`用于停留/交互朝向，移动期间依移动方向求值。actor.presentation按clip指定scale及逐帧offsets，用于同步接触；3D和参考图共用。道具支持visible_clips、transfer_grip、mirror_with_holder，烘入道具的帧不重复叠加。少量support_boxes只在匹配段落生成临时桌椅，不保存/覆盖地图。
 - 本模式21种人物表情已替换2D占位；旧两关的2D符号逻辑不改。头部锚点构建脚本优先读取交付anchors.json，避免将烘入雨伞的伞顶当成头顶。`Tools/Validate-SuperstarRound2.py`核对78条的每帧可达、动作播完、握点和剧情隔离；`-SuperstarRound2Smoke`验证39段实际渲染、反向求值与道具握点。四关与原有测试仍须通过。
+
+## 9. 2026-11-15 新增：中英文显示
+
+- 首页右上角按钮 / `L` 切换中英文，写入用户 `GameUserSettings.ini`，跨地图和重启保留。首次默认中文。`-GameLanguage=en/zh` 可临时覆盖。
+- 原有两关与超级巨星四关统一使用 `GameLocalization` 显示层；`Content/Localization/en.json` 保存翻译和格式模板。保持原始中文剧情数据、评分及 ID，不用翻译后的文本参与逻辑判断。
+- 新文案需运行 `python Tools/Validate-GameLocalization.py --probes`；按实际翻译后的宽度测量按钮和标题，英文段落可换行。原1280×720坐标及鼠标逆变换不变。
+- `Content/Localization` 必须作为 UFS 打包；英文名单图仅语言分支引用，不覆盖原参考图。已拍照片保留拍摄时语言。发布元数据新增 `language/display_headline`，原字段兼容。
+- 本次测试、运行参数及图片生成来源见 [中英文接入记录](Docs/Localization-20261115.md)。`LanguageMenuSmoke/LanguageReloadSmoke/GameLocalizationAudit` 是显式测试开关，不影响普通流程。

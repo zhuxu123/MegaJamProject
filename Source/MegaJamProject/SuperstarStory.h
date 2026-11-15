@@ -139,6 +139,7 @@ private:
     void Label(const FString& Text, float X, float Y, int32 Size = 18, FLinearColor Color = FLinearColor::White);
     void FitLabel(const FString& Text, float X, float Y, float W, float H, int32 Size = 18, FLinearColor Color = FLinearColor::White, bool bCenter = false);
     void Button(const FString& Text, float X, float Y, float W, float H, int32 Size, FLinearColor Background, FLinearColor Color = FLinearColor::White);
+    void LocalizedArtOverlay(const FString& Path, float X, float Y, float W, float H);
     void Background(const FString& Scene);
     void DrawActors();
     void UpdateActors();

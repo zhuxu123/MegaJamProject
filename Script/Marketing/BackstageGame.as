@@ -57,6 +57,12 @@ class ABackstageController : APlayerController
     void HandleMainMenu()
     {
         const FVector2D Pointer = BackstagePointer();
+        if (Pressed(n"L") || (Pressed(n"LeftMouseButton") && Pointer.X >= 982 && Pointer.X <= 1222 && Pointer.Y >= 82 && Pointer.Y <= 118))
+        {
+            BackstageToggleLanguage();
+            BackstagePlayCue(n"chapter");
+            return;
+        }
         if (Pressed(n"Three") || (BackstageHasCommandArg("SuperstarMenuSmoke") && MenuClock > 1.0)
             || (Pressed(n"LeftMouseButton") && Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608))
         {
@@ -143,6 +149,7 @@ class ABackstageController : APlayerController
 
         if (bInMainMenu)
         {
+            BackstageLanguageSmoke();
             HandleMainMenu();
             return;
         }
@@ -152,6 +159,8 @@ class ABackstageController : APlayerController
         if (BackstageHasCommandArg("BackstageSnap"))
         {
             ++SnapTicks;
+            if (SnapStep == 0 && SnapTicks == 12)
+                BackstageRequestScreenshot("Verify_Briefing.png");
             if (SnapStep == 0 && SnapTicks == 15)
             {
                 StartStageRound();
@@ -180,6 +189,18 @@ class ABackstageController : APlayerController
                     BackstageCapturePhoto(StageActor, Backstage::PendingCaptureSlot, Backstage::EffectiveAngle(Round.PendingPhoto),
                         Backstage::EffectiveCenter(Round.PendingPhoto), Round.PendingPhoto.Pan, Round.PendingPhoto.Tilt, Round.PendingPhoto.Zoom);
                 }
+                SnapStep = 20;
+                SnapTicks = 0;
+            }
+            else if (SnapStep == 20 && SnapTicks == 12)
+            {
+                Round.ConfirmClock = 1.0;
+                BackstageRequestScreenshot("Verify_Confirm.png");
+                SnapStep = 21;
+                SnapTicks = 0;
+            }
+            else if (SnapStep == 21 && SnapTicks == 12)
+            {
                 Round.AcceptPending();
                 if (StageActor != nullptr && Round.Photos.Num() > 0)
                 {
@@ -607,10 +628,11 @@ class ABackstageHUD : AHUD
         ShadowText(Value, X, Y, Color, FitScale(Value, MaxWidth, Size));
     }
 
-    void CenteredShadowText(FString Value, float CenterX, float Y, FLinearColor Color, float Size = 1)
+    void CenteredShadowText(FString Value, float CenterX, float Y, FLinearColor Color, float Size = 1, float MaxWidth = 1160)
     {
-        const float MeasuredW = BackstageMeasureTextWidth(Value, Size * Scale) / Math::Max(Scale, 0.001);
-        ShadowText(Value, CenterX - MeasuredW * 0.5, Y, Color, Size);
+        const float ActualSize = FitScale(Value, MaxWidth, Size);
+        const float MeasuredW = BackstageMeasureTextWidth(Value, ActualSize * Scale) / Math::Max(Scale, 0.001);
+        ShadowText(Value, CenterX - MeasuredW * 0.5, Y, Color, ActualSize);
     }
 
     void DrawSpeechBubble(APlayerController Controller, FVector WorldHeadPos, FString Line,
@@ -638,7 +660,7 @@ class ABackstageHUD : AHUD
         Box(FLinearColor(0.86, 0.92, 1.0, 0.28), X, Y + BoxH - 1, BoxW, 1);
         Box(FLinearColor(0.05, 0.08, 0.13, 0.92), ScreenPos.X - 4, Y + BoxH, 8, 6);
         Box(Accent, ScreenPos.X - 2, Y + BoxH + 5, 4, 3);
-        ShadowText(Line, X + PadX, Y + 8.0, Paper, TextScale);
+        FitShadowText(Line, X + PadX, Y + 8.0, BoxW - PadX * 2, Paper, TextScale);
     }
 
     void DrawCharacterBubbles(APlayerController Controller, const FBackstageRound&in Round, float Clock)
@@ -740,6 +762,10 @@ class ABackstageHUD : AHUD
         ShadowText("VHS-C HANDYCAM  //  1996.11.14  CH-01", 210, 42, Muted, 1.12);
         ShadowText("SP   BAT [■■■]", 1054, 42, Mint, 1.12);
 
+        const bool bHoverLanguage = Pointer.X >= 982 && Pointer.X <= 1222 && Pointer.Y >= 82 && Pointer.Y <= 118;
+        Box(bHoverLanguage ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 982, 82, 240, 36);
+        CenteredShadowText("语言：中文 / English (L)", 1102, 92, bHoverLanguage ? Mint : Paper, 1.0, 220);
+
         CenteredShadowText("营销达人  /  MARKETING MASTER", 640, 118, Paper, 2.35);
         CenteredShadowText("90年代手持摄像机  ×  新闻线性剪辑台", 640, 188, Mint, 1.14);
         CenteredShadowText("选好机位、时刻与构图按下快门  ·  用取景器里的画面重写头条", 640, 228, Muted, 1.12);
@@ -752,20 +778,20 @@ class ABackstageHUD : AHUD
         Box(bHoverLv1 ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 420, 312, 440, 70);
         Box(FLinearColor(Mint.R, Mint.G, Mint.B, bHoverLv1 ? Pulse : 0.35), 420, 312, 5, 70);
         CornerBrackets(420, 312, 440, 70, 16, 2, bHoverLv1 ? Mint : Muted);
-        CenteredShadowText("▶  第一关：林晚雨中暖心新闻 (拍1张)", 640, 336, bHoverLv1 ? Mint : Paper, 1.22);
+        CenteredShadowText("▶  第一关：林晚雨中暖心新闻 (拍1张)", 640, 336, bHoverLv1 ? Mint : Paper, 1.22, 404);
 
         Box(bHoverLv2 ? FLinearColor(0.11, 0.20, 0.30, 0.96) : Panel, 420, 402, 440, 70);
         Box(FLinearColor(VolunteerColor.R, VolunteerColor.G, VolunteerColor.B, bHoverLv2 ? Pulse : 0.35), 420, 402, 5, 70);
         CornerBrackets(420, 402, 440, 70, 16, 2, bHoverLv2 ? VolunteerColor : Muted);
-        CenteredShadowText("▶  第二关：慈善活动后台纪实 (拍3张)", 640, 426, bHoverLv2 ? VolunteerColor : Paper, 1.22);
+        CenteredShadowText("▶  第二关：慈善活动后台纪实 (拍3张)", 640, 426, bHoverLv2 ? VolunteerColor : Paper, 1.22, 404);
 
         Box(bHoverQuit ? FLinearColor(0.22, 0.09, 0.12, 0.96) : Panel, 420, 492, 440, 60);
         CornerBrackets(420, 492, 440, 60, 14, 2, bHoverQuit ? ArtistColor : Muted);
-        CenteredShadowText("■  退出游戏  (ESC)", 640, 512, bHoverQuit ? ArtistColor : Muted, 1.18);
+        CenteredShadowText("■  退出游戏  (ESC)", 640, 512, bHoverQuit ? ArtistColor : Muted, 1.18, 404);
 
         const bool bHoverStory = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608;
         Box(bHoverStory ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 420, 566, 440, 42);
-        CenteredShadowText("[ 3 ] 超级巨星 · 四关独立选关", 640, 578, bHoverStory ? Mint : Paper, 1.14);
+        CenteredShadowText("[ 3 ] 超级巨星 · 四关独立选关", 640, 578, bHoverStory ? Mint : Paper, 1.14, 404);
 
         CenteredShadowText("操作：WASD 移动/俯仰  |  按住左键拖拽场景  |  滚轮/Q/E 缩放  |  1-3 机位  |  空格 暂停  |  Enter 拍照并确认",
             640, 622, Muted, 1.00);
@@ -824,6 +850,11 @@ class ABackstageHUD : AHUD
         BackstageText(Value, Color, OriginX + X * Scale, OriginY + Y * Scale, nullptr, Size * Scale, false);
     }
 
+    void Paragraph(FString Value, float X, float Y, float W, float H, FLinearColor Color, float Size = 1)
+    {
+        BackstageParagraph(Value, Color, OriginX + X * Scale, OriginY + Y * Scale, W * Scale, H * Scale, Size * Scale);
+    }
+
     void Briefing(const FBackstageRound&in Round, FVector2D Pointer)
     {
         Box(FLinearColor(0.06, 0.052, 0.044, 0.90), 210, 120, 860, 480);
@@ -835,7 +866,7 @@ class ABackstageHUD : AHUD
         ShadowText("公关目标：", 248, 268, Mint, 1.14);
         FitShadowText(Round.Config.TaskBrief, 248, 298, 784, Paper, 1.18);
         ShadowText("内部情报：", 248, 356, ArtistColor, 1.14);
-        FitShadowText(Round.Config.TruthBrief, 248, 386, 784, Paper, 1.16);
+        Paragraph(Round.Config.TruthBrief, 248, 386, 784, 58, Paper, 1.16);
         FitShadowText("操作：WASD 上下左右移动  ·  按住左键拖拽场景  ·  滚轮/Q/E 缩放  ·  空格 暂停  ·  Enter 拍摄确认",
             248, 452, 784, Muted, 1.02);
 
@@ -844,11 +875,11 @@ class ABackstageHUD : AHUD
 
         Box(bHoverStart ? FLinearColor(0.11, 0.25, 0.24, 0.96) : Panel, 340, 518, 330, 50);
         CornerBrackets(340, 518, 330, 50, 12, 2, bHoverStart ? Mint : Muted);
-        ShadowText("▶ 进入拍摄现场  (Enter)", 382, 532, bHoverStart ? Mint : Paper, 1.22);
+        CenteredShadowText("▶ 进入拍摄现场  (Enter)", 505, 532, bHoverStart ? Mint : Paper, 1.22, 300);
 
         Box(bHoverMenu ? FLinearColor(0.16, 0.12, 0.14, 0.96) : Panel, 700, 518, 240, 50);
         CornerBrackets(700, 518, 240, 50, 12, 2, bHoverMenu ? Gold : Muted);
-        ShadowText("返回主菜单  (M)", 748, 532, bHoverMenu ? Gold : Muted, 1.16);
+        CenteredShadowText("返回主菜单  (M)", 820, 532, bHoverMenu ? Gold : Muted, 1.16, 212);
     }
 
     void Live(const FBackstageRound&in Round, float Clock)
@@ -965,8 +996,8 @@ class ABackstageHUD : AHUD
         const float HeadX = TrackX + TrackW * (Round.Camera.Time / Dur);
         Box(Paper, HeadX - 1.5, TrackY - 5, 3, 14);
 
-        ShadowText("WASD 移动/俯仰   按住左键拖拽场景   滚轮/Q/E 缩放   1-3 机位   空格 暂停   ←/→(Z/C) 倒放/快进   Enter 拍照确认",
-            48, 678, Muted, 0.92);
+        FitShadowText("WASD 移动/俯仰   按住左键拖拽场景   滚轮/Q/E 缩放   1-3 机位   空格 暂停   ←/→(Z/C) 倒放/快进   Enter 拍照确认",
+            48, 678, 1184, Muted, 0.92);
     }
 
     void Confirm(const FBackstageRound&in Round, FVector2D Pointer)
@@ -1004,11 +1035,11 @@ class ABackstageHUD : AHUD
 
         Box(bHoverAccept ? FLinearColor(0.11, 0.26, 0.24, 0.98) : Panel, 360, 546 + SlideY, 260, 54);
         CornerBrackets(360, 546 + SlideY, 260, 54, 12, 2, bHoverAccept ? Mint : Muted);
-        CenteredShadowText("✓  确认选用  (Enter)", 490, 563 + SlideY, bHoverAccept ? Mint : Paper, 1.20);
+        CenteredShadowText("✓  确认选用  (Enter)", 490, 563 + SlideY, bHoverAccept ? Mint : Paper, 1.20, 232);
 
         Box(bHoverReject ? FLinearColor(0.24, 0.10, 0.12, 0.98) : Panel, 660, 546 + SlideY, 260, 54);
         CornerBrackets(660, 546 + SlideY, 260, 54, 12, 2, bHoverReject ? ArtistColor : Muted);
-        CenteredShadowText("↺  放弃重拍  (BackSpace)", 790, 563 + SlideY, bHoverReject ? ArtistColor : Paper, 1.14);
+        CenteredShadowText("↺  放弃重拍  (BackSpace)", 790, 563 + SlideY, bHoverReject ? ArtistColor : Paper, 1.14, 232);
     }
 
     void Shot(const FBackstagePhoto&in Photo, float X, float Y, float W, float H, bool bLive = false)
@@ -1171,7 +1202,7 @@ class ABackstageHUD : AHUD
         ShadowText(Round.bPublishing ? "▶ VCR PUBLISHING  //  发布中" : "▶ VCR PLAYBACK  //  成片预览", 48, 40, Mint, 1.20);
         ShadowText(HeadlineText(Round.Headline), 48, 68, Paper, 1.48);
         ShadowText(f"FRAME  0{Frame + 1} / 0{Need}", 48, 656, Mint, 1.24);
-        if (!Round.bPublishing) ShadowText("Backspace 返回剪辑", 1048, 658, Muted, 1.12);
+        if (!Round.bPublishing) FitShadowText("Backspace 返回剪辑", 1048, 658, 184, Muted, 1.12);
     }
 
     void Results(const FBackstageRound&in Round, FVector2D Pointer)
@@ -1198,15 +1229,15 @@ class ABackstageHUD : AHUD
         Box(PrintInk, SheetX + 24, SheetY + 62, SheetW - 48, 2);
 
         Text("娱乐快报  ·  ENTERTAINMENT DAILY", SheetX + 32, SheetY + 28, PrintInk, 1.38);
-        Text(Result.bPassed ? "今日头条特刊  //  PASS" : "编辑部退稿评审  //  RETRY",
-            SheetX + 860, SheetY + 30, Result.bPassed ? PrintGreen : PrintCrimson, 1.20);
+        FitText(Result.bPassed ? "今日头条特刊  //  PASS" : "编辑部退稿评审  //  RETRY",
+            SheetX + 860, SheetY + 30, 270, Result.bPassed ? PrintGreen : PrintCrimson, 1.20);
 
         const FString MainHeadline = Result.NewspaperHeadline.IsEmpty()
             ? HeadlineText(Round.Headline)
             : Result.NewspaperHeadline;
-        Text(MainHeadline, SheetX + 32, SheetY + 76, PrintInk, 1.72);
+        FitText(MainHeadline, SheetX + 32, SheetY + 76, SheetW - 64, PrintInk, 1.72);
         if (!Result.NewspaperLead.IsEmpty())
-            Text(Result.NewspaperLead, SheetX + 32, SheetY + 124, PrintMuted, 1.08);
+            Paragraph(Result.NewspaperLead, SheetX + 32, SheetY + 119, SheetW - 64, 33, PrintMuted, 1.08);
         Box(PrintInk, SheetX + 24, SheetY + 154, SheetW - 48, 1);
 
         // Newspaper Photograph Block
@@ -1217,7 +1248,7 @@ class ABackstageHUD : AHUD
             const FBackstagePhoto& Original = Round.Photos.IsValidIndex(PhotoIndex) ? Round.Photos[PhotoIndex] : Round.Cut[0];
             Box(PrintInk, SheetX + 30, SheetY + 170, 520, 290);
             DrawPhotoOrShot(Original, Round.Cut[0], PhotoIndex, SheetX + 36, SheetY + 176, 508, 260);
-            Text("图：现场独家直击（玩家拍摄成片）", SheetX + 168, SheetY + 440, Newsprint, 0.94);
+            FitText("图：现场独家直击（玩家拍摄成片）", SheetX + 50, SheetY + 440, 480, Newsprint, 0.94);
         }
         else
         {
@@ -1238,8 +1269,8 @@ class ABackstageHUD : AHUD
         // Verification & Editorial Columns on Right Side
         const float ColX = SheetX + 576;
         Text("▶ 采编判定结果", ColX, SheetY + 170, PrintInk, 1.22);
-        FitText(Result.CheckTimeText, ColX, SheetY + 206, 540, Result.bTimeMatched ? PrintGreen : PrintCrimson, 0.96);
-        FitText(Result.CheckSubjectText, ColX, SheetY + 236, 540, Result.bSubjectsMatched ? PrintGreen : PrintCrimson, 0.92);
+        Paragraph(Result.CheckTimeText, ColX, SheetY + 206, 540, 28, Result.bTimeMatched ? PrintGreen : PrintCrimson, 0.96);
+        Paragraph(Result.CheckSubjectText, ColX, SheetY + 236, 540, 30, Result.bSubjectsMatched ? PrintGreen : PrintCrimson, 0.92);
         if (Round.Cut.Num() > 0)
         {
             const FBackstagePhoto& Shot0 = Round.Cut[0];
@@ -1250,9 +1281,9 @@ class ABackstageHUD : AHUD
         Box(PrintInk, ColX, SheetY + 304, 540, 1);
         FitText(f"关注度 {Signed(Result.Attention)}    公司信任 {Signed(Result.CompanyTrust)}    公众信任 {Signed(Result.PublicTrust)}",
             ColX, SheetY + 318, 540, PrintInk, 1.14);
-        FitText("热搜评论：" + Result.Comment, ColX, SheetY + 358, 540, PrintInk, 0.94);
-        FitText("公关反馈：" + Result.Company, ColX, SheetY + 392, 540, PrintInk, 0.92);
-        FitText(Result.Person, ColX, SheetY + 426, 540, PrintMuted, 0.92);
+        Paragraph("热搜评论：" + Result.Comment, ColX, SheetY + 358, 540, 32, PrintInk, 0.94);
+        Paragraph("公关反馈：" + Result.Company, ColX, SheetY + 392, 540, 32, PrintInk, 0.92);
+        Paragraph(Result.Person, ColX, SheetY + 426, 540, 32, PrintMuted, 0.92);
 
         Box(FLinearColor(0.08, 0.10, 0.12, 0.08 * Fade), SheetX + 32, SheetY + 478, SheetW - 64, 90);
         FitText(Result.bPassed
@@ -1268,7 +1299,7 @@ class ABackstageHUD : AHUD
             const float SX = SheetX + 960;
             const float SY = SheetY + 492 - (1.0 - StampT) * 14.0;
             CornerBrackets(SX, SY, 162, 54, 14, 3, StampColor);
-            Text(Result.bPassed ? "已过审刊登" : "退稿重拍", SX + 24, SY + 16, StampColor, 1.30);
+            FitText(Result.bPassed ? "已过审刊登" : "退稿重拍", SX + 12, SY + 16, 138, StampColor, 1.30);
         }
 
         if (Fade < 0.35)
@@ -1284,7 +1315,7 @@ class ABackstageHUD : AHUD
             const bool bHoverNext = Pointer.X >= 324 && Pointer.X <= 592 && Pointer.Y >= 644 && Pointer.Y <= 692;
             Box(bHoverNext ? FLinearColor(0.11, 0.24, 0.18, 0.96) : Panel, 324, 644, 268, 48);
             CornerBrackets(324, 644, 268, 48, 12, 2, bHoverNext ? Mint : Muted);
-            ShadowText("▶ 下一关：慈善后台 (N)", 350, 658, bHoverNext ? Mint : Paper, 1.06);
+            FitShadowText("▶ 下一关：慈善后台 (N)", 340, 658, 236, bHoverNext ? Mint : Paper, 1.06);
         }
 
         const bool bHoverMenu = Pointer.X >= 610 && Pointer.X <= 838 && Pointer.Y >= 644 && Pointer.Y <= 692;

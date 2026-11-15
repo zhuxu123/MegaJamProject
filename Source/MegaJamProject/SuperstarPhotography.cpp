@@ -1,3 +1,4 @@
+#include "GameLocalization.h"
 #include "SuperstarStory.h"
 #include "SuperstarStage.h"
 #include "SuperstarMusic.h"
@@ -212,6 +213,8 @@ void ASuperstarStoryHUD::SavePublication()
         Shots.Add(MakeShared<FJsonValueObject>(J));
     }
     Manifest->SetArrayField(TEXT("shots"),Shots);
+    Manifest->SetStringField(TEXT("language"), GameLocalization::IsEnglish()?TEXT("en"):TEXT("zh"));
+    Manifest->SetStringField(TEXT("display_headline"), GameLocalization::Translate(PublicationHeadline()));
     TArray<TSharedPtr<FJsonValue>> Evidence;
     for(int32 I=FirstBeat;I<LastBeat;++I) if(PublishedBeats.Contains(I)) Evidence.Add(MakeShared<FJsonValueNumber>(I+1));
     Manifest->SetArrayField(TEXT("published_evidence_beats"),Evidence);

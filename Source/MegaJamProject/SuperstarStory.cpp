@@ -1,4 +1,5 @@
 #include "SuperstarStory.h"
+#include "GameLocalization.h"
 #include "SuperstarStage.h"
 #include "SuperstarMusic.h"
 #include "BackstageSfx.h"
@@ -132,7 +133,10 @@ UTexture2D* ASuperstarStoryHUD::LoadFrame(const FString& Path)
 {
     if (const auto* Found = Frames.Find(Path)) return Found->Get();
     TArray<uint8> Bytes;
-    if (!FFileHelper::LoadFileToArray(Bytes, *(FPaths::ProjectContentDir() / TEXT("SuperstarStory") / Path)))
+    const FString File=GameLocalization::IsEnglish() && Path==TEXT("Static/Partial20261115/EV03_roster.png")
+        ? FPaths::ProjectContentDir()/TEXT("Localization/Images/EV03_roster_en.png")
+        : FPaths::ProjectContentDir()/TEXT("SuperstarStory")/Path;
+    if (!FFileHelper::LoadFileToArray(Bytes, *File))
     {
         UE_LOG(LogTemp, Error, TEXT("SuperstarStory: cannot load %s"), *Path);
         return nullptr;
@@ -375,23 +379,26 @@ void ASuperstarStoryHUD::Rect(float X, float Y, float W, float H, FLinearColor C
 }
 void ASuperstarStoryHUD::Label(const FString& Text, float X, float Y, int32 Size, FLinearColor Color)
 {
-    if (!Canvas || !StoryFont) return;
-    FCanvasTextItem Item(Origin + FVector2D(X, Y) * Scale, FText::FromString(Text), FSlateFontInfo(StoryFont, FMath::Max(8, FMath::RoundToInt(Size * Scale))), Color);
-    Canvas->DrawItem(Item);
+    FitLabel(Text, X, Y, FMath::Max(1.f, 1260.f-X), Size*1.8f, Size, Color, false);
 }
 
-void ASuperstarStoryHUD::FitLabel(const FString& Text, float X, float Y, float W, float H, int32 Size, FLinearColor Color, bool bCenter)
+void ASuperstarStoryHUD::FitLabel(const FString& Source, float X, float Y, float W, float H, int32 Size, FLinearColor Color, bool bCenter)
 {
+    const FString Translated = GameLocalization::Translate(Source);
+    FString Text = Translated;
     if (!Canvas || !StoryFont || Text.IsEmpty() || W <= 0 || H <= 0) return;
     // Measure the actual composite font, including Chinese fallback glyphs, in viewport pixels.
     // Scale and Origin are the same transform used by drawing and pointer hit testing.
     const auto Measure = FSlateApplication::Get().GetRenderer()->GetFontMeasureService();
     FSlateFontInfo Font(StoryFont, FMath::Max(8, FMath::RoundToInt(Size * Scale)));
+    const bool bWrap=GameLocalization::IsEnglish() && !bCenter && W>400 && H>=30 && Size<=21;
+    if(bWrap) Text=GameLocalization::WrapForWidth(Translated,Font,W*Scale);
     FVector2D Extent = Measure->Measure(Text, Font);
     const FVector2D Available(W * Scale, H * Scale);
     while (Font.Size > 8 && (Extent.X > Available.X || Extent.Y > Available.Y))
     {
         --Font.Size;
+        if(bWrap) Text=GameLocalization::WrapForWidth(Translated,Font,W*Scale);
         Extent = Measure->Measure(Text, Font);
     }
     const float Fit = FMath::Min(1.f, FMath::Min(Available.X / FMath::Max(1., Extent.X), Available.Y / FMath::Max(1., Extent.Y)));
@@ -461,6 +468,33 @@ void ASuperstarStoryHUD::RunMotionSmoke()
     if(Phase==3) ++MotionSmokeStep;
 }
 
+// Render translated signage as UI panels over the reference art. Source PNGs stay intact.
+// Normalized rectangles keep the overlay aligned with the image at every viewport size.
+void ASuperstarStoryHUD::LocalizedArtOverlay(const FString& Path, float X, float Y, float W, float H)
+{
+    if (!GameLocalization::IsEnglish()) return;
+    auto Panel = [&](float L,float T,float Width,float Height,const TCHAR* Text,FLinearColor BG,FLinearColor FG)
+    {
+        Rect(X+L*W,Y+T*H,Width*W,Height*H,BG);
+        FitLabel(Text,X+L*W+2,Y+T*H+1,Width*W-4,Height*H-2,18,FG,true);
+    };
+    const FLinearColor Blue(.08f,.12f,.3f), White(.9f,.95f,1.f), Paper(.78f,.75f,.68f), Black(.025f,.025f,.03f);
+    if(Path==TEXT("References/stage.png"))
+    {
+        Panel(.012f,.315f,.222f,.14f,TEXT("RISE TO STARDOM"),Blue,White);
+        Panel(.39f,.325f,.20f,.122f,TEXT("RISE TO STARDOM"),Blue,White);
+        Panel(.725f,.315f,.235f,.145f,TEXT("RISE TO STARDOM"),Blue,White);
+    }
+    else if(Path==TEXT("References/dressing.png"))
+    {
+        Panel(.229f,.208f,.089f,.093f,TEXT("RISE TO STARDOM"),Blue,White);
+        Panel(.785f,.443f,.027f,.045f,TEXT("RISE"),Blue,White);
+        Panel(.937f,.447f,.033f,.047f,TEXT("RISE"),Blue,White);
+    }
+    else if(Path==TEXT("References/newspaper.png"))
+        Panel(.275f,.022f,.447f,.07f,TEXT("JUNFENG ENTERTAINMENT"),Paper,Black);
+}
+
 void ASuperstarStoryHUD::Background(const FString& Scene)
 {
     if (!bReferenceView && Scene != TEXT("newspaper"))
@@ -483,11 +517,12 @@ void ASuperstarStoryHUD::Background(const FString& Scene)
         const float W = Texture->GetSizeX() * Fit, H = Texture->GetSizeY() * Fit;
         DrawTexture(Texture, Origin.X + (640 - W / 2) * Scale, Origin.Y + (310 - H / 2) * Scale,
             W * Scale, H * Scale, 0, 0, 1, 1, FLinearColor::White, BLEND_Translucent);
+        LocalizedArtOverlay(TEXT("References/")+Ref+TEXT(".png"),640-W/2,310-H/2,W,H);
     }
     if (Scene == TEXT("corridor"))
     {
         Rect(55, 155, 230, 185, Ink);
-        Label(TEXT("选手照片墙"), 80, 165, 18, Mint);
+        FitLabel(TEXT("选手照片墙"), 65, 165, 210, 28, 18, Mint,true);
         for (int32 I = 0; I < 6; ++I)
         {
             Rect(78 + (I % 3) * 65, 205 + (I / 3) * 62, 48, 52, FLinearColor(.65f,.70f,.75f));
@@ -497,9 +532,9 @@ void ASuperstarStoryHUD::Background(const FString& Scene)
     if (Scene == TEXT("storage"))
     {
         Rect(850, 150, 170, 350, Ink);
-        Label(TEXT("杂物间"), 892, 180, 20, Mint);
-        Label(TEXT("李谋 · 苏瑶"), 874, 240, 18);
-        Label(TEXT("提及小北"), 885, 285, 18);
+        FitLabel(TEXT("杂物间"), 858, 180, 154, 32, 18, Mint, true);
+        FitLabel(TEXT("李谋 · 苏瑶"), 858, 240, 154, 32, 18, Mint, true);
+        FitLabel(TEXT("提及小北"), 858, 285, 154, 32, 18, Mint, true);
     }
     if (Scene == TEXT("newspaper"))
     {
@@ -507,12 +542,12 @@ void ASuperstarStoryHUD::Background(const FString& Scene)
         Rect(567, 153, 147, 94, Ink);
         Rect(567, 270, 147, 89, Ink);
         Rect(567, 384, 147, 94, Ink);
-        Label(TEXT("李谋"), 619, 177, 16, Mint);
-        Label(TEXT("被警方带走"), 588, 205, 16, Mint);
-        Label(TEXT("苏瑶"), 619, 294, 16, Mint);
-        Label(TEXT("被行业封杀"), 588, 322, 16, Mint);
-        Label(TEXT("《扶摇直上》"), 580, 407, 16, Mint);
-        Label(TEXT("换导重拍"), 601, 437, 16, Mint);
+        FitLabel(TEXT("李谋"), 571, 177, 139, 26, 16, Mint, true);
+        FitLabel(TEXT("被警方带走"), 571, 205, 139, 26, 16, Mint, true);
+        FitLabel(TEXT("苏瑶"), 571, 294, 139, 26, 16, Mint, true);
+        FitLabel(TEXT("被行业封杀"), 571, 322, 139, 26, 16, Mint, true);
+        FitLabel(TEXT("《扶摇直上》"), 571, 407, 139, 26, 16, Mint, true);
+        FitLabel(TEXT("换导重拍"), 571, 437, 139, 26, 16, Mint, true);
     }
 }
 
@@ -667,6 +702,7 @@ void ASuperstarStoryHUD::DrawActors()
                 W*Scale,H*Scale,0,0,1,1,FLinearColor::White,BLEND_Translucent);
         }
     int32 ActorIndex = 0;
+    TMap<FString,FVector2D> DrawnRoleLabels;
     for (const auto& Value : Current->GetArrayField(TEXT("actors")))
     {
         const auto Actor = Value->AsObject();
@@ -700,7 +736,16 @@ void ASuperstarStoryHUD::DrawActors()
             Foot = (ScreenFoot-Origin)/Scale;
         }
         if (PhotoPhase != ESuperstarPhotoPhase::Capturing && Inside(Foot,70,125,1140,380))
-            Label(Actor->GetStringField(TEXT("name")), Foot.X-45, Foot.Y, 16);
+        {
+            const FString Name=Actor->GetStringField(TEXT("name"));
+            const FVector2D* Previous=DrawnRoleLabels.Find(Name);
+            // Crowded extras with the same role share one readable label.
+            if(!Previous || FVector2D::Distance(*Previous,Foot)>100)
+            {
+                FitLabel(Name, Foot.X-45, Foot.Y, 90, 24, 16, FLinearColor::White, true);
+                DrawnRoleLabels.Add(Name,Foot);
+            }
+        }
         bool bEmotionPlaceholder = false;
         const TArray<TSharedPtr<FJsonValue>>* Emotions = nullptr;
         if (Actor->TryGetBoolField(TEXT("emotion_placeholder"), bEmotionPlaceholder) && bEmotionPlaceholder
@@ -714,7 +759,7 @@ void ASuperstarStoryHUD::DrawActors()
                 if (auto* Badge = BackstageGetEmotionTexture(FName(*ActiveEmotion->GetStringField(TEXT("icon")))))
                     DrawTexture(Badge, Origin.X + (Head.X - 24) * Scale, Origin.Y + (Head.Y - 57) * Scale,
                         48 * Scale, 48 * Scale, 0, 0, 1, 1, FLinearColor::White, BLEND_Translucent);
-                Label(ActiveEmotion->GetStringField(TEXT("label")), Head.X-30, Head.Y-13, 13, Mint);
+                FitLabel(ActiveEmotion->GetStringField(TEXT("label")), Head.X-48, Head.Y-13, 96, 22, 13, Mint, true);
             }
         }
     }
@@ -746,7 +791,7 @@ void ASuperstarStoryHUD::DrawHUD()
     const auto Current = Beats[Beat];
     FitLabel(bFullStoryDebug?TEXT("超级巨星  /  剧情预演"):FString::Printf(TEXT("超级巨星  /  %s"),*Levels[LevelIndex]->GetStringField(TEXT("title"))),35,26,780,44,28,Mint);
     Label(FString::Printf(TEXT("第 %d 关   %02d / %02d   ·   5 FPS"), Current->GetIntegerField(TEXT("chapter")), Beat - FirstBeat + 1, LastBeat-FirstBeat), 850, 35, 20);
-    Label(Current->GetStringField(TEXT("title")), 35, 73, 21);
+    FitLabel(Current->GetStringField(TEXT("title")), 35, 73, 780, 30, 21);
     if (Music) Label(Music->Status(), 850, 77, 14, Mint);
     Background(Current->GetStringField(TEXT("scene")));
     DrawActors();

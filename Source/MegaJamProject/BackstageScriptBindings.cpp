@@ -1,3 +1,4 @@
+#include "GameLocalization.h"
 #include "Core/AngelscriptBinds.h"
 #include "BackstageArt.h"
 #include "Camera/CameraComponent.h"
@@ -1995,8 +1996,9 @@ namespace
 		return Font;
 	}
 
-	void BackstageDrawText(AHUD* HUD, const FString& Text, FLinearColor Color, float X, float Y, UFont* Font, float Scale, bool bScalePosition)
+	void BackstageDrawText(AHUD* HUD, const FString& Source, FLinearColor Color, float X, float Y, UFont* Font, float Scale, bool bScalePosition)
 	{
+		const FString Text = GameLocalization::Translate(Source);
 		UCanvas* HudCanvas = HUD ? static_cast<FBackstageHudAccessor*>(HUD)->GetProtectedCanvas() : nullptr;
 		if (!HudCanvas || Text.IsEmpty())
 		{
@@ -2007,15 +2009,17 @@ namespace
 		{
 			const FSlateFontInfo FontInfo(Roboto, FontPx);
 			FCanvasTextItem TextItem(FVector2D(X, Y), FText::FromString(Text), FontInfo, Color);
-			TextItem.Scale = FVector2D(1.0, 1.0);
+			const float Fit=FMath::Min(1.f,14.f*Scale/FontPx);
+			TextItem.Scale = FVector2D(Fit, Fit);
 			HudCanvas->DrawItem(TextItem);
 			return;
 		}
 		HUD->DrawText(Text, Color, X, Y, GEngine ? GEngine->GetLargeFont() : nullptr, FMath::Max(Scale * 0.72f, 0.35f), false);
 	}
 
-	float BackstageMeasureTextWidth(const AHUD* HUD, const FString& Text, float Scale)
+	float BackstageMeasureTextWidth(const AHUD* HUD, const FString& Source, float Scale)
 	{
+		const FString Text = GameLocalization::Translate(Source);
 		if (Text.IsEmpty() || !FSlateApplication::IsInitialized())
 		{
 			return 0.0f;
@@ -2024,8 +2028,63 @@ namespace
 		UFont* Roboto = GetBackstageUIFont();
 		const FSlateFontInfo FontInfo = Roboto ? FSlateFontInfo(Roboto, FontPx) : FCoreStyle::GetDefaultFontStyle("Regular", FontPx);
 		const TSharedRef<FSlateFontMeasure> FontMeasure = FSlateApplication::Get().GetRenderer()->GetFontMeasureService();
-		return static_cast<float>(FontMeasure->Measure(Text, FontInfo).X);
+		return static_cast<float>(FontMeasure->Measure(Text, FontInfo).X) * FMath::Min(1.f,14.f*Scale/FontPx);
 	}
+
+    void BackstageParagraph(AHUD* HUD,const FString& Source,FLinearColor Color,float X,float Y,float W,float H,float Scale)
+    {
+        UCanvas* Canvas=HUD?static_cast<FBackstageHudAccessor*>(HUD)->GetProtectedCanvas():nullptr;
+        if(!Canvas || W<=0 || H<=0) return;
+        const FString Text=GameLocalization::Translate(Source);
+        const auto Measure=FSlateApplication::Get().GetRenderer()->GetFontMeasureService();
+        FSlateFontInfo Font(GetBackstageUIFont(),FMath::Max(8,FMath::RoundToInt(14*Scale)));
+        FString Wrapped=GameLocalization::IsEnglish()?GameLocalization::WrapForWidth(Text,Font,W):Text;
+        FVector2D Extent=Measure->Measure(Wrapped,Font);
+        while(Font.Size>8 && (Extent.X>W || Extent.Y>H))
+        {
+            --Font.Size;
+            Wrapped=GameLocalization::IsEnglish()?GameLocalization::WrapForWidth(Text,Font,W):Text;
+            Extent=Measure->Measure(Wrapped,Font);
+        }
+        const float Fit=FMath::Min(1.f,FMath::Min(W/FMath::Max(1.,Extent.X),H/FMath::Max(1.,Extent.Y)));
+        FCanvasTextItem Item(FVector2D(X,Y),FText::FromString(Wrapped),Font,Color);
+        Item.Scale=FVector2D(Fit,Fit);Canvas->DrawItem(Item);
+    }
+
+    void BackstageLanguageSmoke(APlayerController* Controller)
+    {
+        const bool bToggle=FParse::Param(FCommandLine::Get(),TEXT("LanguageMenuSmoke"));
+        const bool bReload=FParse::Param(FCommandLine::Get(),TEXT("LanguageReloadSmoke"));
+        if(!bToggle && !bReload) return;
+        static int32 Tick=0; ++Tick;
+        auto Shot=[&](const TCHAR* Name){FScreenshotRequest::RequestScreenshot(FPaths::ProjectSavedDir()/TEXT("Screenshots/Localization")/Name,true,false);};
+        if(bReload)
+        {
+            if(Tick==60) {check(GameLocalization::IsEnglish());Shot(TEXT("Menu-Reload-en.png"));}
+            if(Tick==90) {UE_LOG(LogTemp,Display,TEXT("Language smoke PASS: persisted English after process restart"));Controller->ConsoleCommand(TEXT("quit"));}
+            return;
+        }
+        if(Tick==40) {check(!GameLocalization::IsEnglish());Shot(TEXT("Menu-zh.png"));}
+        if(Tick==50 || Tick==90 || Tick==130) Controller->InputKey(FInputKeyEventArgs::CreateSimulated(EKeys::L,IE_Pressed,1.f));
+        if(Tick==52 || Tick==92 || Tick==132) Controller->InputKey(FInputKeyEventArgs::CreateSimulated(EKeys::L,IE_Released,0.f));
+        if(Tick==70 || Tick==150) {check(GameLocalization::IsEnglish());Shot(TEXT("Menu-en.png"));}
+        if(Tick==110) {check(!GameLocalization::IsEnglish());Shot(TEXT("Menu-Restored-zh.png"));}
+        if(Tick==170)
+        {
+            int32 W=0,H=0;Controller->GetViewportSize(W,H);
+            const double S=FMath::Min(W/1280.,H/720.);
+            Controller->SetMouseLocation(FMath::RoundToInt((W-1280*S)*.5+1102*S),FMath::RoundToInt((H-720*S)*.5+100*S));
+        }
+        if(Tick==173) Controller->InputKey(FInputKeyEventArgs::CreateSimulated(EKeys::LeftMouseButton,IE_Pressed,1.f));
+        if(Tick==175) Controller->InputKey(FInputKeyEventArgs::CreateSimulated(EKeys::LeftMouseButton,IE_Released,0.f));
+        if(Tick==190) {check(!GameLocalization::IsEnglish());Shot(TEXT("Menu-Mouse-zh.png"));}
+        if(Tick==200) Controller->InputKey(FInputKeyEventArgs::CreateSimulated(EKeys::L,IE_Pressed,1.f));
+        if(Tick==202) Controller->InputKey(FInputKeyEventArgs::CreateSimulated(EKeys::L,IE_Released,0.f));
+        if(Tick==220) {check(GameLocalization::IsEnglish());UE_LOG(LogTemp,Display,TEXT("Language smoke PASS: real L input and scaled mouse click toggles"));Controller->ConsoleCommand(TEXT("quit"));}
+    }
+
+	void BackstageToggleLanguage(APlayerController* Controller) { GameLocalization::Toggle(); }
+	bool BackstageIsEnglish(const APlayerController* Controller) { return GameLocalization::IsEnglish(); }
 
 	bool BackstageHasCommandArg(const APlayerController* Controller, const FString& Arg)
 	{
@@ -2118,6 +2177,9 @@ static const FAngelscriptBind BindBackstageControls(
 		Controller.Method("void BackstageOpenMap(const FName& MapName)", &BackstageOpenMap);
 		Controller.Method("void BackstageSetLevel(int32 LevelIndex)", &BackstageSetLevel);
 		Controller.Method("int32 BackstageGetLevel() const", &BackstageGetLevel);
+		Controller.Method("void BackstageLanguageSmoke()", &BackstageLanguageSmoke);
+		Controller.Method("void BackstageToggleLanguage()", &BackstageToggleLanguage);
+		Controller.Method("bool BackstageIsEnglish() const", &BackstageIsEnglish);
 		Controller.Method("bool BackstageHasCommandArg(const FString& Arg) const", &BackstageHasCommandArg);
 		Controller.Method("void BackstageRequestScreenshot(const FString& FileName) const", &BackstageRequestScreenshot);
 		Controller.Method("void BackstageQuitGame()", &BackstageQuitGame);
@@ -2126,6 +2188,7 @@ static const FAngelscriptBind BindBackstageControls(
 		auto HUD = Binds.ExistingClassForTarget("AHUD");
 		HUD.Method("APlayerController BackstagePlayer() const", METHOD_TRIVIAL(AHUD, GetOwningPlayerController));
 		HUD.Method("void BackstageRect(FLinearColor Color, float32 X, float32 Y, float32 W, float32 H)", METHOD_TRIVIAL(AHUD, DrawRect));
+		HUD.Method("void BackstageParagraph(const FString& Text, FLinearColor Color, float32 X, float32 Y, float32 W, float32 H, float32 Scale)", &BackstageParagraph);
 		HUD.Method("void BackstageText(const FString& Text, FLinearColor Color, float32 X, float32 Y, UFont Font, float32 Scale, bool bScalePosition)", &BackstageDrawText);
 		HUD.Method("float32 BackstageMeasureTextWidth(const FString& Text, float32 Scale) const", &BackstageMeasureTextWidth);
 		HUD.Method("bool BackstageDrawPhoto(int32 PhotoIndex, float32 X, float32 Y, float32 W, float32 H, float32 OriginalPan, float32 OriginalZoom, float32 CropPan, float32 CropZoom)", &BackstageDrawPhoto);

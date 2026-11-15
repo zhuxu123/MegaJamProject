@@ -1,0 +1,1780 @@
+{
+  "version": 1,
+  "language": "en",
+  "entries": [
+    {
+      "source": "营销达人  /  {Round.Config.Title}",
+      "en": "Marketing Master / {0}",
+      "pattern": "^营销达人\\ \\ /\\ \\ (.*?)$",
+      "args": 1
+    },
+    {
+      "source": "品牌活动要开场了…",
+      "en": "The brand event is starting..."
+    },
+    {
+      "source": "♡ 林晚今天好美！",
+      "en": "Love your look, Lin Wan!"
+    },
+    {
+      "source": "☂ 下雨了！快撑伞！",
+      "en": "Rain! Open the umbrella!"
+    },
+    {
+      "source": "别淋湿我的造型！",
+      "en": "Don't ruin my hair!"
+    },
+    {
+      "source": "! 这伞太小，我自己撑！",
+      "en": "Too small! I'll take it!"
+    },
+    {
+      "source": "?! 林晚姐…",
+      "en": "Lin Wan...?!"
+    },
+    {
+      "source": "💧 浑身淋湿了好冷…",
+      "en": "I'm soaked... and freezing."
+    },
+    {
+      "source": "先走一步。",
+      "en": "I'll go on ahead."
+    },
+    {
+      "source": "♡ 林晚加油！雨天注意保暖！",
+      "en": "We love you, Lin Wan! Stay warm!"
+    },
+    {
+      "source": "……（目不斜视走过）",
+      "en": "... (walks past without a glance)"
+    },
+    {
+      "source": "💧 独自留在雨里",
+      "en": "Alone in the rain..."
+    },
+    {
+      "source": "……她好像没停下？",
+      "en": "... Did she even stop?"
+    },
+    {
+      "source": "! 小心点！",
+      "en": "Watch out!"
+    },
+    {
+      "source": "对、对不起！",
+      "en": "S-sorry!"
+    },
+    {
+      "source": "东西都掉地上了！",
+      "en": "Everything's on the floor!"
+    },
+    {
+      "source": "我马上捡起来！",
+      "en": "I'll pick it up!"
+    },
+    {
+      "source": "（弯腰收拾散落物资）",
+      "en": "(gathers the scattered supplies)"
+    },
+    {
+      "source": "快上台了，物资我来交接",
+      "en": "You're on soon. I'll take these."
+    },
+    {
+      "source": "谢谢，帮大忙了",
+      "en": "Thanks. That's a big help."
+    },
+    {
+      "source": "准备出场。",
+      "en": "Ready to go on."
+    },
+    {
+      "source": "营销达人  /  MARKETING MASTER",
+      "en": "MARKETING MASTER"
+    },
+    {
+      "source": "90年代手持摄像机  ×  新闻线性剪辑台",
+      "en": "A '90s camcorder meets a linear news editing desk"
+    },
+    {
+      "source": "选好机位、时刻与构图按下快门  ·  用取景器里的画面重写头条",
+      "en": "Choose the angle, timing and frame. Rewrite the headlines through your viewfinder."
+    },
+    {
+      "source": "▶  第一关：林晚雨中暖心新闻 (拍1张)",
+      "en": "Play 1: Lin Wan in the Rain (1 photo)"
+    },
+    {
+      "source": "▶  第二关：慈善活动后台纪实 (拍3张)",
+      "en": "Play 2: Charity Backstage (3 photos)"
+    },
+    {
+      "source": "■  退出游戏  (ESC)",
+      "en": "Quit Game (ESC)"
+    },
+    {
+      "source": "[ 3 ] 超级巨星 · 四关独立选关",
+      "en": "[ 3 ] Superstar - Select from Four Levels"
+    },
+    {
+      "source": "操作：WASD 移动/俯仰  |  按住左键拖拽场景  |  滚轮/Q/E 缩放  |  1-3 机位  |  空格 暂停  |  Enter 拍照并确认",
+      "en": "WASD Move/Tilt | Drag LMB Pan | Wheel/Q/E Zoom | 1-3 Camera | Space Pause | Enter Shoot/Confirm"
+    },
+    {
+      "source": "[ Enter / 1 ] 进入第一关   ·   [ 2 ] 进入第二关",
+      "en": "[ Enter / 1 ] Level 1   /   [ 2 ] Level 2"
+    },
+    {
+      "source": "{Round.Config.CodeName}  //  摄制任务单   (目标：{Round.Config.RequiredPhotos} 张成片 · 磁带 {int(Round.ActiveDuration())} 秒)",
+      "en": "{0} // SHOOT BRIEF (Photos required: {1} / Tape: {2}s)",
+      "pattern": "^(.*?)\\ \\ //\\ \\ 摄制任务单\\ \\ \\ \\(目标：(.*?)\\ 张成片\\ ·\\ 磁带\\ (.*?)\\ 秒\\)$",
+      "args": 3
+    },
+    {
+      "source": "公关目标：",
+      "en": "PR objective:"
+    },
+    {
+      "source": "内部情报：",
+      "en": "Inside information:"
+    },
+    {
+      "source": "操作：WASD 上下左右移动  ·  按住左键拖拽场景  ·  滚轮/Q/E 缩放  ·  空格 暂停  ·  Enter 拍摄确认",
+      "en": "WASD Move | Drag LMB Pan | Wheel/Q/E Zoom | Space Pause | Enter Shoot/Confirm"
+    },
+    {
+      "source": "▶ 进入拍摄现场  (Enter)",
+      "en": "Enter the Scene (Enter)"
+    },
+    {
+      "source": "返回主菜单  (M)",
+      "en": "Main Menu (M)"
+    },
+    {
+      "source": "已收入照片 / 可继续调整时机并按下 Enter",
+      "en": "Photo saved. Adjust your timing and press Enter for another shot."
+    },
+    {
+      "source": "已返回超梦时间轴，可继续调整视角并拍照",
+      "en": "Back on the timeline. Adjust the camera and keep shooting."
+    },
+    {
+      "source": "● 林晚",
+      "en": "Lin Wan"
+    },
+    {
+      "source": "● 小北",
+      "en": "Xiao Bei"
+    },
+    {
+      "source": "● 粉丝",
+      "en": "Fan"
+    },
+    {
+      "source": "● 艺人",
+      "en": "Star"
+    },
+    {
+      "source": "● 志愿者",
+      "en": "Volunteer"
+    },
+    {
+      "source": "● 场务",
+      "en": "Stagehand"
+    },
+    {
+      "source": "WASD 移动/俯仰   按住左键拖拽场景   滚轮/Q/E 缩放   1-3 机位   空格 暂停   ←/→(Z/C) 倒放/快进   Enter 拍照确认",
+      "en": "WASD Move/Tilt | Drag LMB Pan | Wheel/Q/E Zoom | 1-3 Camera | Space Pause | Left/Right (Z/C) Rewind/FF | Enter Shoot"
+    },
+    {
+      "source": "CONFIRM SHOT  //  是否选用这张成片？ (第 {Round.Photos.Num() + 1} / {Round.RequiredFrameCount()} 张)",
+      "en": "CONFIRM SHOT // Use this photo? ({0} / {1})",
+      "pattern": "^CONFIRM\\ SHOT\\ \\ //\\ \\ 是否选用这张成片？\\ \\(第\\ (.*?)\\ /\\ (.*?)\\ 张\\)$",
+      "args": 2
+    },
+    {
+      "source": "拍摄时刻：{WholeSec}.{Tenths} 秒   ·   节点：[ {BeatLabel} ]   ·   变焦 {int(Round.PendingPhoto.Zoom * 100)}%",
+      "en": "Shot at {0}.{1}s / Beat: {2} / Zoom {3}%",
+      "pattern": "^拍摄时刻：(.*?)\\.(.*?)\\ 秒\\ \\ \\ ·\\ \\ \\ 节点：\\[\\ (.*?)\\ \\]\\ \\ \\ ·\\ \\ \\ 变焦\\ (.*?)%$",
+      "args": 4
+    },
+    {
+      "source": "确认后将立即送审并刊登报纸；不满意可按 BackSpace / 点击重拍调整位置、缩放与时间。",
+      "en": "Confirm to submit for newspaper review. Backspace or Retake lets you change framing, zoom and timing."
+    },
+    {
+      "source": "确认后将收入素材带库，集齐 3 张后自动进入线性剪辑台。",
+      "en": "Confirm to save to the tape bin. The editing desk opens automatically once you have 3 photos."
+    },
+    {
+      "source": "✓  确认选用  (Enter)",
+      "en": "Keep Photo (Enter)"
+    },
+    {
+      "source": "↺  放弃重拍  (BackSpace)",
+      "en": "Retake (Backspace)"
+    },
+    {
+      "source": "后台暖心一幕",
+      "en": "A Kind Moment Backstage"
+    },
+    {
+      "source": "慈善活动后台起争执",
+      "en": "Conflict Behind the Charity Show"
+    },
+    {
+      "source": "慈善活动后台纪实",
+      "en": "Charity Backstage: A Report"
+    },
+    {
+      "source": "LINEAR EDITING DECK  //  A/B 卷线性剪辑台",
+      "en": "LINEAR EDITING DECK // A/B ROLLS"
+    },
+    {
+      "source": "编辑成片",
+      "en": "Edit Your Report"
+    },
+    {
+      "source": "素材带库（TAPE BIN）  /  点击缩略图或按 1–6 选入、移除",
+      "en": "TAPE BIN / Click a thumbnail or press 1-6 to select or remove"
+    },
+    {
+      "source": "轨道 {Slot + 1}",
+      "en": "Track {0}",
+      "pattern": "^轨道\\ (.*?)$",
+      "args": 1
+    },
+    {
+      "source": "#{Index + 1}  空带",
+      "en": "#{0} Empty Tape",
+      "pattern": "^\\#(.*?)\\ \\ 空带$",
+      "args": 1
+    },
+    {
+      "source": "Z / X 交换顺序    点击槽位或按 C 选槽    A / D 移动裁切    Q / E 调整变焦",
+      "en": "Z/X Reorder | Click slot or C Select slot | A/D Crop position | Q/E Crop zoom"
+    },
+    {
+      "source": "CUT {Index + 1} · 未选",
+      "en": "CUT {0} / Empty",
+      "pattern": "^CUT\\ (.*?)\\ ·\\ 未选$",
+      "args": 1
+    },
+    {
+      "source": "新闻标题  /  按 T 切换",
+      "en": "Headline / T to change"
+    },
+    {
+      "source": "P 预览带子    Enter 正式发布",
+      "en": "P Preview / Enter Publish"
+    },
+    {
+      "source": "选满 {Need} 张后可预览或发布。",
+      "en": "Select {0} photos to preview or publish.",
+      "pattern": "^选满\\ (.*?)\\ 张后可预览或发布。$",
+      "args": 1
+    },
+    {
+      "source": "R 返回时间轴继续倒带与补拍",
+      "en": "R Return to timeline to rewind and shoot more"
+    },
+    {
+      "source": "R 回看现场（保留素材和剩余快门）",
+      "en": "R Replay scene (keep photos and remaining shots)"
+    },
+    {
+      "source": "Backspace 返回任务单",
+      "en": "Backspace Back to brief"
+    },
+    {
+      "source": "▶ VCR PUBLISHING  //  发布中",
+      "en": "VCR PUBLISHING // ON AIR"
+    },
+    {
+      "source": "▶ VCR PLAYBACK  //  成片预览",
+      "en": "VCR PLAYBACK // REPORT PREVIEW"
+    },
+    {
+      "source": "Backspace 返回剪辑",
+      "en": "Backspace Back to editing"
+    },
+    {
+      "source": "娱乐快报  ·  ENTERTAINMENT DAILY",
+      "en": "ENTERTAINMENT DAILY"
+    },
+    {
+      "source": "今日头条特刊  //  PASS",
+      "en": "FRONT-PAGE SPECIAL // PASS"
+    },
+    {
+      "source": "编辑部退稿评审  //  RETRY",
+      "en": "EDITORIAL REVIEW // RETRY"
+    },
+    {
+      "source": "图：现场独家直击（玩家拍摄成片）",
+      "en": "Photo: Your exclusive shot from the scene"
+    },
+    {
+      "source": "图：三格连拍组图 · {HeadlineText(Round.Headline)}",
+      "en": "Three-photo report / {0}",
+      "pattern": "^图：三格连拍组图\\ ·\\ (.*?)$",
+      "args": 1
+    },
+    {
+      "source": "▶ 采编判定结果",
+      "en": "EDITORIAL VERDICT"
+    },
+    {
+      "source": "成片参数：CH-0{Shot0.Station + 1} · 时码 {int(Shot0.Time)}s · 变焦 {int(Shot0.Zoom * 100)}%",
+      "en": "Shot: CH-0{0} / Time {1}s / Zoom {2}%",
+      "pattern": "^成片参数：CH\\-0(.*?)\\ ·\\ 时码\\ (.*?)s\\ ·\\ 变焦\\ (.*?)%$",
+      "args": 3
+    },
+    {
+      "source": "关注度 {Signed(Result.Attention)}    公司信任 {Signed(Result.CompanyTrust)}    公众信任 {Signed(Result.PublicTrust)}",
+      "en": "Attention {0} / Company Trust {1} / Public Trust {2}",
+      "pattern": "^关注度\\ (.*?)\\ \\ \\ \\ 公司信任\\ (.*?)\\ \\ \\ \\ 公众信任\\ (.*?)$",
+      "args": 3
+    },
+    {
+      "source": "热搜评论：",
+      "en": "Trending comments: "
+    },
+    {
+      "source": "公关反馈：",
+      "en": "PR feedback: "
+    },
+    {
+      "source": "▶ 本关达成：舆论走势已按照公关预期发酵，头版报道顺利发出！",
+      "en": "Approved! Your report made the front page and shaped public opinion as requested."
+    },
+    {
+      "source": "▶ 未过审提示：请点击下方【重新拍摄本关】，调整时机、缩放或左右构图后再试。",
+      "en": "Not approved. Choose Retake Level below, then adjust the timing, zoom or framing."
+    },
+    {
+      "source": "已过审刊登",
+      "en": "Approved for Print"
+    },
+    {
+      "source": "退稿重拍",
+      "en": "Rejected - Retake"
+    },
+    {
+      "source": "▶ 重新拍摄本关 (Enter)",
+      "en": "Retake Level (Enter)"
+    },
+    {
+      "source": "▶ 下一关：慈善后台 (N)",
+      "en": "Next: Charity Backstage (N)"
+    },
+    {
+      "source": "雨夜品牌活动外场",
+      "en": "Brand Event on a Rainy Night"
+    },
+    {
+      "source": "拍摄林晚宠粉的温暖瞬间（需确认 1 张）",
+      "en": "Capture Lin Wan's kindness to a fan (confirm 1 photo)."
+    },
+    {
+      "source": "现场突降大雨，小北撑伞却被林晚嫌伞太小抢走。在林晚经过举牌粉丝旁时找准构图，拍出“把唯一的伞送给粉丝”的新闻图。",
+      "en": "Rain starts. Lin Wan snatches Xiao Bei's umbrella, calling it too small. Frame her beside the fan so it looks like she is giving away her only umbrella."
+    },
+    {
+      "source": "《雨中暖心举动！林晚把唯一的伞送给粉丝》",
+      "en": "Kindness in the Rain! Lin Wan Gives Her Only Umbrella to a Fan"
+    },
+    {
+      "source": "慈善活动后台",
+      "en": "Charity Backstage"
+    },
+    {
+      "source": "拍摄 3 张现场照片并剪辑发布（需确认 3 张）",
+      "en": "Shoot and edit a report from the scene (confirm 3 photos)."
+    },
+    {
+      "source": "“我赶着上场，后台如果有乱七八糟的事，麻烦别发出去。”",
+      "en": "\"I'm due on stage. If anything messy happens backstage, please keep it out of the news.\""
+    },
+    {
+      "source": "《慈善活动后台直击：真相还是人设？》",
+      "en": "Behind the Charity Show: Truth or Image?"
+    },
+    {
+      "source": "进场",
+      "en": "Arrival"
+    },
+    {
+      "source": "碰撞",
+      "en": "Collision"
+    },
+    {
+      "source": "争执",
+      "en": "Argument"
+    },
+    {
+      "source": "拾起",
+      "en": "Picking Up"
+    },
+    {
+      "source": "递交",
+      "en": "Handover"
+    },
+    {
+      "source": "同行",
+      "en": "Together"
+    },
+    {
+      "source": "活动开场",
+      "en": "Event Opens"
+    },
+    {
+      "source": "突降大雨",
+      "en": "Sudden Rain"
+    },
+    {
+      "source": "夺伞离去",
+      "en": "Taking the Umbrella"
+    },
+    {
+      "source": "经过粉丝",
+      "en": "Passing the Fan"
+    },
+    {
+      "source": "独自走远",
+      "en": "Walking Away"
+    },
+    {
+      "source": "《投稿无效：尚未提交照片》",
+      "en": "Invalid Submission: No Photo Received"
+    },
+    {
+      "source": "编辑部未收到有效成片，请先拍摄并确认 1 张照片。",
+      "en": "The desk has no usable photo. Take and confirm 1 shot first."
+    },
+    {
+      "source": "✓ 时间段吻合（{int(Photo.Time)}s · 处于林晚经过粉丝的黄金窗口）",
+      "en": "PASS: Timing ({0}s / Lin Wan is passing the fan)",
+      "pattern": "^✓\\ 时间段吻合（(.*?)s\\ ·\\ 处于林晚经过粉丝的黄金窗口）$",
+      "args": 1
+    },
+    {
+      "source": "✕ 时间段不符（当前 {int(Photo.Time)}s · 需在 21.5–30.5s 雨中经过粉丝时拍摄）",
+      "en": "FAIL: Timing ({0}s / Shoot as she passes the fan at 21.5-30.5s)",
+      "pattern": "^✕\\ 时间段不符（当前\\ (.*?)s\\ ·\\ 需在\\ 21\\.5–30\\.5s\\ 雨中经过粉丝时拍摄）$",
+      "args": 1
+    },
+    {
+      "source": "✓ 人物与道具构图到位（含林晚、雨伞、举牌粉丝，且已裁掉淋雨的助理小北）",
+      "en": "PASS: Lin Wan, the umbrella and the fan are visible; soaked assistant Xiao Bei is cropped out."
+    },
+    {
+      "source": "✕ 画面缺少林晚或雨伞主体",
+      "en": "FAIL: Lin Wan or the umbrella is missing."
+    },
+    {
+      "source": "✕ 画面未包含举着林晚应援牌的粉丝",
+      "en": "FAIL: The fan holding Lin Wan's sign is missing."
+    },
+    {
+      "source": "✕ 画面左方拍到了被留在雨里的小北（请放大或右移裁掉小北）",
+      "en": "FAIL: Xiao Bei is visible on the left. Zoom in or pan right to crop her out."
+    },
+    {
+      "source": "《雨中暖心举动!林晚把唯一的伞送给粉丝》",
+      "en": "Kindness in the Rain! Lin Wan Gives Her Only Umbrella to a Fan"
+    },
+    {
+      "source": "昨夜品牌户外活动突发急雨，当红女星林晚被镜头捕捉到撑着唯一的雨伞走向举牌守候的粉丝身旁，温情画面迅速登上热搜头版。",
+      "en": "Rain struck last night's outdoor brand event. Cameras caught star Lin Wan approaching a waiting fan with the only umbrella. The touching image quickly made the front page."
+    },
+    {
+      "source": "“姐姐雨这么大还优先照顾粉丝，路转粉了！”",
+      "en": "\"She puts her fans first, even in that rain. I'm a fan now!\""
+    },
+    {
+      "source": "团队：“完美的角度！公关危机直接变成年度暖心热搜！”",
+      "en": "Team: \"Perfect angle! A PR crisis just became the year's most heartwarming story!\""
+    },
+    {
+      "source": "小北（画外音）：“……没人看到我在后面淋透了吗？”",
+      "en": "Xiao Bei (off camera): \"... Did nobody see me getting soaked behind her?\""
+    },
+    {
+      "source": "《公关翻车：淋雨助理与抢伞同框曝光》",
+      "en": "PR Backfire: Soaked Assistant Exposes Umbrella Grab"
+    },
+    {
+      "source": "《废稿退回：新闻主题说服力不足》",
+      "en": "Rejected: The Photo Does Not Support the Story"
+    },
+    {
+      "source": "成片拍摄时机尚未形成“雨中靠近粉丝送伞”的错位视觉，报社无法按预设暖心稿件刊登。",
+      "en": "The timing fails to create the impression of Lin Wan giving her umbrella to the fan. The paper cannot run the planned feel-good story."
+    },
+    {
+      "source": "成片将淋雨发愣的助理小北一并拍进画框，评论区一眼看穿“唯一雨伞”另有隐情！",
+      "en": "The frame includes Xiao Bei, soaked and stunned. Readers immediately see there is more to the 'only umbrella' story!"
+    },
+    {
+      "source": "画面缺少关键人物或应援牌特征，读者无法认出林晚与粉丝互动。",
+      "en": "A key person or the fan sign is missing. Readers cannot identify an interaction between Lin Wan and her fan."
+    },
+    {
+      "source": "网友：“后面那个浑身湿透的小北是谁？”",
+      "en": "Comment: \"Who's that soaked Xiao Bei in the background?\""
+    },
+    {
+      "source": "网友：“这拍的是什么，完全看不懂。”",
+      "en": "Comment: \"What am I looking at? This makes no sense.\""
+    },
+    {
+      "source": "主编：“重拍！时间窗口要选林晚经过粉丝时，构图必须框住她、伞和粉丝且裁掉小北。”",
+      "en": "Editor: \"Retake it. Shoot as she passes the fan. Include her, the umbrella and the fan; crop out Xiao Bei.\""
+    },
+    {
+      "source": "提示：使用 ←/→ 拖到 22–30s，滚轮放大或按住左键向右拖拽构图，按 Enter 重拍。",
+      "en": "Tip: Seek to 22-30s with Left/Right. Zoom in or drag right to reframe, then press Enter to shoot."
+    },
+    {
+      "source": "✓ 已提交 {Sequence.Num()}/{Cfg.RequiredPhotos} 张连环组图",
+      "en": "PASS: {0}/{1} photos submitted",
+      "pattern": "^✓\\ 已提交\\ (.*?)/(.*?)\\ 张连环组图$",
+      "args": 2
+    },
+    {
+      "source": "✕ 照片张数不足",
+      "en": "FAIL: Not enough photos"
+    },
+    {
+      "source": "✓ 画面人物与证据链有效",
+      "en": "PASS: People and evidence form a coherent sequence"
+    },
+    {
+      "source": "✕ 顺序或构图遗漏关键人物证据",
+      "en": "FAIL: Order or framing omits key evidence"
+    },
+    {
+      "source": "《慈善后台暖心瞬间：顶流蹲身帮志愿者整理物资》",
+      "en": "A Kind Moment Backstage: Star Helps Volunteer Gather Supplies"
+    },
+    {
+      "source": "《慈善夜幕后黑脸？艺人疑与工作人员起争执》",
+      "en": "Trouble Behind Charity Night? Star Seen Arguing with Staff"
+    },
+    {
+      "source": "《慈善活动后台纪实：现场突发状况全记录》",
+      "en": "Charity Backstage: A Record of an Unexpected Incident"
+    },
+    {
+      "source": "第{Collision + 1}张交代碰撞，第{Argument + 1}张保留争执，第{Pickup + 1}张拍到补救。",
+      "en": "Photo {0} shows the collision, {1} the argument and {2} the effort to put things right.",
+      "pattern": "^第(.*?)张交代碰撞，第(.*?)张保留争执，第(.*?)张拍到补救。$",
+      "args": 3
+    },
+    {
+      "source": "她碰倒了东西，后来也蹲下来帮忙。这段至少交代清楚了。",
+      "en": "She knocked things over, then helped pick them up. At least this tells the whole story."
+    },
+    {
+      "source": "事实完整，但失态也跟着公开了。",
+      "en": "The facts are complete, but her loss of composure is public too."
+    },
+    {
+      "source": "艺人：我希望你发布前先和我说一声。",
+      "en": "Star: I wish you'd told me before publishing."
+    },
+    {
+      "source": "第{Pickup + 1}张捡起物品，第{Handoff + 1}张交还，第{Together + 1}张两人同框。",
+      "en": "Photo {0} shows the pickup, {1} the handover and {2} both people together.",
+      "pattern": "^第(.*?)张捡起物品，第(.*?)张交还，第(.*?)张两人同框。$",
+      "args": 3
+    },
+    {
+      "source": "她还蹲下来帮忙捡，看起来挺照顾工作人员。",
+      "en": "She even knelt down to help. She seems considerate of the staff."
+    },
+    {
+      "source": "亲和力很自然。我们会用这条做活动回顾。",
+      "en": "The warmth looks natural. We'll use this in the event recap."
+    },
+    {
+      "source": "志愿者：前面东西为什么掉地上，你也拍到了吧？",
+      "en": "Volunteer: You also filmed why everything fell, didn't you?"
+    },
+    {
+      "source": "第{Argument + 1}张出现争执，第{Scattered + 1}张接上散落物品，成片省略了补救。",
+      "en": "Photo {0} shows the argument, followed by scattered items in {1}. The report leaves out the help afterward.",
+      "pattern": "^第(.*?)张出现争执，第(.*?)张接上散落物品，成片省略了补救。$",
+      "args": 2
+    },
+    {
+      "source": "她刚指着人说话，下一秒就是东西散了一地，发生了什么？",
+      "en": "She's pointing at someone, then everything is on the floor. What happened?"
+    },
+    {
+      "source": "合作方暂停了转发，想先了解事情经过。",
+      "en": "Our partner has paused sharing the post until they know what happened."
+    },
+    {
+      "source": "艺人：我后来帮忙收拾了，你为什么没发那段？",
+      "en": "Star: I helped clean up afterward. Why didn't you show that?"
+    },
+    {
+      "source": "顺序或构图遗漏了把动作连起来的证据。",
+      "en": "The order or framing leaves out the evidence linking these actions."
+    },
+    {
+      "source": "看出了几个片段，可是它们之间发生了什么？",
+      "en": "I can see separate moments, but what happened between them?"
+    },
+    {
+      "source": "下次把人物、动作和相关物件交代清楚。",
+      "en": "Next time, show the people, actions and relevant objects clearly."
+    },
+    {
+      "source": "志愿者：如果有人问，我可以告诉他们现场发生了什么。",
+      "en": "Volunteer: If anyone asks, I can tell them what happened."
+    },
+    {
+      "source": "现场直击：三个时刻的记录",
+      "en": "On the Scene: A Record in Three Moments"
+    },
+    {
+      "source": "镜头里的善意与援手",
+      "en": "Kindness and Helping Hands in Focus"
+    },
+    {
+      "source": "聚光灯背后的冲突",
+      "en": "Conflict Behind the Spotlight"
+    },
+    {
+      "source": "请先选满3张照片。",
+      "en": "Select 3 photos first."
+    },
+    {
+      "source": "所选照片不属于本关，请重新选择。",
+      "en": "These photos belong to another level. Please select again."
+    },
+    {
+      "source": "请先返回现场发送全部证据（已发送 %d/%d），照片会保留。",
+      "en": "Return to the scene and send all evidence ({0}/{1} sent). Your photos will be kept.",
+      "pattern": "^请先返回现场发送全部证据（已发送\\ (.*?)/(.*?)），照片会保留。$",
+      "args": 2
+    },
+    {
+      "source": "超级巨星  /  选择摄制任务",
+      "en": "SUPERSTAR / SELECT AN ASSIGNMENT"
+    },
+    {
+      "source": "四个独立关卡 · 任务单 → 现场拍摄 → 本关报纸",
+      "en": "Four independent levels / Brief > Shoot > Your newspaper"
+    },
+    {
+      "source": "3 张成片  ·  %.1f 秒%s",
+      "en": "3 photos / {0}s{1}",
+      "pattern": "^3\\ 张成片\\ \\ ·\\ \\ (.*?)\\ 秒(.*?)$",
+      "args": 2
+    },
+    {
+      "source": "  ·  含间幕",
+      "en": " / Includes interlude"
+    },
+    {
+      "source": "返回主菜单  M / ESC",
+      "en": "Main Menu M / ESC"
+    },
+    {
+      "source": "按 1–4 或点击任务卡查看任务详情",
+      "en": "Press 1-4 or click a card to view the brief"
+    },
+    {
+      "source": "LEVEL %02d  //  摄制任务单（目标：3 张成片 · 磁带 %.1f 秒）",
+      "en": "LEVEL {0} // SHOOT BRIEF (Target: 3 photos / Tape: {1}s)",
+      "pattern": "^LEVEL\\ (.*?)\\ \\ //\\ \\ 摄制任务单（目标：3\\ 张成片\\ ·\\ 磁带\\ (.*?)\\ 秒）$",
+      "args": 2
+    },
+    {
+      "source": "WASD / 拖动构图 · Q/E/滚轮变焦 · 空格暂停 · Enter拍照 · Tab选图",
+      "en": "WASD/Drag Frame | Q/E/Wheel Zoom | Space Pause | Enter Shoot | Tab Photos"
+    },
+    {
+      "source": "▶ 进入拍摄现场  Enter",
+      "en": "Enter the Scene - Enter"
+    },
+    {
+      "source": "返回选关  M / ESC",
+      "en": "Level Select M / ESC"
+    },
+    {
+      "source": "聚 光 灯 日 报",
+      "en": "THE SPOTLIGHT DAILY"
+    },
+    {
+      "source": "第 %02d 期  /  %s  /  本关现场报道",
+      "en": "Issue {0} / {1} / On-the-scene report",
+      "pattern": "^第\\ (.*?)\\ 期\\ \\ /\\ \\ (.*?)\\ \\ /\\ \\ 本关现场报道$",
+      "args": 2
+    },
+    {
+      "source": "本关第 %d 段 · %.1f 秒 · 机位 %d",
+      "en": "Beat {0} / {1}s / Camera {2}",
+      "pattern": "^本关第\\ (.*?)\\ 段\\ ·\\ (.*?)\\ 秒\\ ·\\ 机位\\ (.*?)$",
+      "args": 3
+    },
+    {
+      "source": "照片、裁切与排序来自本关拍摄  ·  Backspace 返回编辑",
+      "en": "Photos, crops and order from this level / Backspace to edit"
+    },
+    {
+      "source": "返回选关  M",
+      "en": "Level Select M"
+    },
+    {
+      "source": "重新拍摄本关  R",
+      "en": "Retake Level R"
+    },
+    {
+      "source": "完成 · 返回选关  Enter",
+      "en": "Finish / Level Select - Enter"
+    },
+    {
+      "source": "继续下一关  Enter",
+      "en": "Next Level - Enter"
+    },
+    {
+      "source": "BGM 未载入",
+      "en": "BGM unavailable"
+    },
+    {
+      "source": "开启音乐",
+      "en": "Music On"
+    },
+    {
+      "source": "静音",
+      "en": "Mute"
+    },
+    {
+      "source": "照片写入失败，请检查 Saved 目录空间。",
+      "en": "Could not save the photo. Check free space for the Saved folder."
+    },
+    {
+      "source": "已保存 %d/6 张；Tab 打开选图与发布。",
+      "en": "Saved {0}/6 photos. Tab opens photo selection and publishing.",
+      "pattern": "^已保存\\ (.*?)/6\\ 张；Tab\\ 打开选图与发布。$",
+      "args": 1
+    },
+    {
+      "source": "选3张、决定顺序与裁切，再发布你的现场报道。",
+      "en": "Select 3 photos, arrange and crop them, then publish your report."
+    },
+    {
+      "source": "已选满3张；调整顺序与裁切后即可预览或发布。",
+      "en": "3 photos selected. Adjust order and crops to preview or publish."
+    },
+    {
+      "source": "已选 %d/3 张；点击上方照片继续选择。",
+      "en": "Selected {0}/3 photos. Click another photo above.",
+      "pattern": "^已选\\ (.*?)/3\\ 张；点击上方照片继续选择。$",
+      "args": 1
+    },
+    {
+      "source": "发布文件写入失败；原照片已保留。",
+      "en": "Could not save publication files. Original photos are safe."
+    },
+    {
+      "source": "发布记录写入失败。",
+      "en": "Could not save the publication record."
+    },
+    {
+      "source": "原图与发布序列已保存到 Saved/SuperstarPhotos。",
+      "en": "Originals and the published sequence are saved in Saved/SuperstarPhotos."
+    },
+    {
+      "source": "拍照超时，请重试。",
+      "en": "Photo capture timed out. Please try again."
+    },
+    {
+      "source": "确认这张现场照片",
+      "en": "Keep This Photo?"
+    },
+    {
+      "source": "第%d段 · %.1fs · 机位%d · 确认后占用一张名额",
+      "en": "Beat {0} / {1}s / Camera {2} / Keeping it uses one photo slot",
+      "pattern": "^第(.*?)段\\ ·\\ (.*?)s\\ ·\\ 机位(.*?)\\ ·\\ 确认后占用一张名额$",
+      "args": 3
+    },
+    {
+      "source": "Enter / Y   保留",
+      "en": "Enter / Y Keep"
+    },
+    {
+      "source": "Backspace / N   重拍",
+      "en": "Backspace / N Retake"
+    },
+    {
+      "source": "%d / 3 · %s · Backspace 取消",
+      "en": "{0} / 3 / {1} / Backspace Cancel",
+      "pattern": "^(.*?)\\ /\\ 3\\ ·\\ (.*?)\\ ·\\ Backspace\\ 取消$",
+      "args": 2
+    },
+    {
+      "source": "发布预览",
+      "en": "Publication Preview"
+    },
+    {
+      "source": "仅预览",
+      "en": "Preview Only"
+    },
+    {
+      "source": "现场报道已发布",
+      "en": "Report Published"
+    },
+    {
+      "source": "选图与剪辑 · 保留3个时刻",
+      "en": "SELECT & EDIT / KEEP 3 MOMENTS"
+    },
+    {
+      "source": "%d  第%d段 / %.1fs",
+      "en": "{0} Beat {1} / {2}s",
+      "pattern": "^(.*?)\\ \\ 第(.*?)段\\ /\\ (.*?)s$",
+      "args": 3
+    },
+    {
+      "source": "发布顺序（点击槽位选择裁切目标）",
+      "en": "Publication order (click a slot to select its crop)"
+    },
+    {
+      "source": "槽%d · 原片%d",
+      "en": "Slot {0} / Photo {1}",
+      "pattern": "^槽(.*?)\\ ·\\ 原片(.*?)$",
+      "args": 2
+    },
+    {
+      "source": "3张现场图 · %d个剧情段落 · Enter 返回剪辑 / Tab 继续拍摄",
+      "en": "3 photos / {0} story beats / Enter Edit / Tab Shoot more",
+      "pattern": "^3张现场图\\ ·\\ (.*?)个剧情段落\\ ·\\ Enter\\ 返回剪辑\\ /\\ Tab\\ 继续拍摄$",
+      "args": 1
+    },
+    {
+      "source": "选图顺序、裁切和标题，会让同一现场呈现不同的含义。",
+      "en": "Order, cropping and headlines change how the same event is understood."
+    },
+    {
+      "source": "1—6 选片 · C 选槽 · Z/X 调序 · WASD 裁切位置 · Q/E 裁切缩放 · T 标题",
+      "en": "1-6 Select | C Slot | Z/X Reorder | WASD Crop position | Q/E Crop zoom | T Headline"
+    },
+    {
+      "source": "P 预览",
+      "en": "P Preview"
+    },
+    {
+      "source": "Enter 发布",
+      "en": "Enter Publish"
+    },
+    {
+      "source": "Tab 继续拍摄",
+      "en": "Tab Shoot More"
+    },
+    {
+      "source": "剧情数据缺失：请检查 Content/SuperstarStory。按 ESC 返回。",
+      "en": "Story data missing. Check Content/SuperstarStory. ESC to return."
+    },
+    {
+      "source": "四关任务配置无效，请检查 levels.json。",
+      "en": "Invalid four-level configuration. Check levels.json."
+    },
+    {
+      "source": "3D 布景初版  ·  B 对照参考图",
+      "en": "3D Set Preview / B Reference Image"
+    },
+    {
+      "source": "拍摄现场  ·  B 对照参考图",
+      "en": "On Location / B Reference Image"
+    },
+    {
+      "source": "杂物间：李谋 · 苏瑶 / 提及小北",
+      "en": "Storeroom: Li Mou & Su Yao / Discussing Xiao Bei"
+    },
+    {
+      "source": "扶 摇 直 上",
+      "en": "R I S E   T O   S T A R D O M"
+    },
+    {
+      "source": "选手照片墙",
+      "en": "CONTESTANT PHOTO WALL"
+    },
+    {
+      "source": "杂物间",
+      "en": "STOREROOM"
+    },
+    {
+      "source": "李谋 · 苏瑶",
+      "en": "Li Mou / Su Yao"
+    },
+    {
+      "source": "提及小北",
+      "en": "Discussing Xiao Bei"
+    },
+    {
+      "source": "李谋",
+      "en": "Li Mou"
+    },
+    {
+      "source": "被警方带走",
+      "en": "Taken Away by Police"
+    },
+    {
+      "source": "苏瑶",
+      "en": "Su Yao"
+    },
+    {
+      "source": "被行业封杀",
+      "en": "Blacklisted by the Industry"
+    },
+    {
+      "source": "《扶摇直上》",
+      "en": "Rise to Stardom"
+    },
+    {
+      "source": "换导重拍",
+      "en": "Reshooting with a New Director"
+    },
+    {
+      "source": "超级巨星  /  剧情预演",
+      "en": "SUPERSTAR / STORY PREVIEW"
+    },
+    {
+      "source": "超级巨星  /  %s",
+      "en": "SUPERSTAR / {0}",
+      "pattern": "^超级巨星\\ \\ /\\ \\ (.*?)$",
+      "args": 1
+    },
+    {
+      "source": "第 %d 关   %02d / %02d   ·   5 FPS",
+      "en": "LEVEL {0} / {1} OF {2} / 5 FPS",
+      "pattern": "^第\\ (.*?)\\ 关\\ \\ \\ (.*?)\\ /\\ (.*?)\\ \\ \\ ·\\ \\ \\ 5\\ FPS$",
+      "args": 3
+    },
+    {
+      "source": "任务：",
+      "en": "Objective: "
+    },
+    {
+      "source": "剧情证据图",
+      "en": "Story Evidence"
+    },
+    {
+      "source": "证据卡（原图待补）",
+      "en": "Evidence Card (Image Pending)"
+    },
+    {
+      "source": "已发送到直播",
+      "en": "Sent to Livestream"
+    },
+    {
+      "source": "拖入或点击左侧证据卡",
+      "en": "Drag or click the evidence card on the left"
+    },
+    {
+      "source": "已发送",
+      "en": "Sent"
+    },
+    {
+      "source": "发送 / V",
+      "en": "Send / V"
+    },
+    {
+      "source": "上一段 PgUp",
+      "en": "Previous PgUp"
+    },
+    {
+      "source": "暂停 空格",
+      "en": "Pause Space"
+    },
+    {
+      "source": "播放 空格",
+      "en": "Play Space"
+    },
+    {
+      "source": "下一段 PgDn",
+      "en": "Next PgDn"
+    },
+    {
+      "source": "本段重播",
+      "en": "Replay Beat"
+    },
+    {
+      "source": "F1—F4 任务单 · Tab 相册",
+      "en": "F1-F4 Brief / Tab Photos"
+    },
+    {
+      "source": "机位 %d · WASD 构图 · Q/E/滚轮变焦 · Enter 拍照 · 已存 %d/6",
+      "en": "Camera {0} / WASD Frame / Q/E/Wheel Zoom / Enter Shoot / Saved {1}/6",
+      "pattern": "^机位\\ (.*?)\\ ·\\ WASD\\ 构图\\ ·\\ Q/E/滚轮变焦\\ ·\\ Enter\\ 拍照\\ ·\\ 已存\\ (.*?)/6$",
+      "args": 2
+    },
+    {
+      "source": "B 切换 3D 布景",
+      "en": "B Show 3D Set"
+    },
+    {
+      "source": "B 查看参考图片",
+      "en": "B Show Reference"
+    },
+    {
+      "source": "返回主菜单 ESC",
+      "en": "Main Menu ESC"
+    },
+    {
+      "source": "返回选关 ESC",
+      "en": "Level Select ESC"
+    },
+    {
+      "source": "本关现场结束：选择3张照片发布；Tab可返回本关回看补拍。",
+      "en": "Scene finished. Select 3 photos to publish; Tab returns to replay and shoot more."
+    },
+    {
+      "source": "拖动本关时间线 · ←/Z 倒放  →/C 快进 · 空格/R 暂停",
+      "en": "Drag timeline | Left/Z Rewind | Right/C Fast-forward | Space/R Pause"
+    },
+    {
+      "source": "定位",
+      "en": "Seek"
+    },
+    {
+      "source": "倒放",
+      "en": "Rewind"
+    },
+    {
+      "source": "快进",
+      "en": "Fast-forward"
+    },
+    {
+      "source": "播放",
+      "en": "Play"
+    },
+    {
+      "source": "暂停/等待",
+      "en": "Paused/Waiting"
+    },
+    {
+      "source": "%s %.0fx · %.1f / %.1f 秒 · 本段 %.1f 秒",
+      "en": "{0} {1}x / {2} of {3}s / Beat {4}s",
+      "pattern": "^(.*?)\\ (.*?)x\\ ·\\ (.*?)\\ /\\ (.*?)\\ 秒\\ ·\\ 本段\\ (.*?)\\ 秒$",
+      "args": 5
+    },
+    {
+      "source": "超级巨星",
+      "en": "Superstar"
+    },
+    {
+      "source": "片场 · 黄昏",
+      "en": "Film Set / Dusk"
+    },
+    {
+      "source": "林晚从左侧入画，走到办公桌前停住。",
+      "en": "Lin Wan enters from the left and stops at the desk."
+    },
+    {
+      "source": "林晚",
+      "en": "Lin Wan"
+    },
+    {
+      "source": "女主演员",
+      "en": "Lead Actress"
+    },
+    {
+      "source": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
+      "en": "Round 2 animations are active: 5 FPS sampling with props attached to grip points."
+    },
+    {
+      "source": "一场戏里的压迫",
+      "en": "Intimidation in a Scene"
+    },
+    {
+      "source": "林晚用力敲桌。女主演员后退撞到桌沿，身体后仰、手撑桌面。",
+      "en": "Lin Wan slams the desk. The lead actress backs into it, leans back and braces herself on its surface."
+    },
+    {
+      "source": "愤怒",
+      "en": "Angry"
+    },
+    {
+      "source": "惊恐",
+      "en": "Terrified"
+    },
+    {
+      "source": "掌声之后",
+      "en": "After the Applause"
+    },
+    {
+      "source": "林晚逼近一步。导演鼓掌；女主演员低头经过林晚，向左离开。",
+      "en": "Lin Wan steps closer. The director applauds; the actress lowers her head and exits left past Lin Wan."
+    },
+    {
+      "source": "逼近",
+      "en": "Closing In"
+    },
+    {
+      "source": "示弱",
+      "en": "Submissive"
+    },
+    {
+      "source": "赞许",
+      "en": "Approval"
+    },
+    {
+      "source": "抢过雨伞",
+      "en": "Snatching the Umbrella"
+    },
+    {
+      "source": "林晚回头微笑。助理小周跑近；林晚扫一眼，抢过雨伞，小周愣住。",
+      "en": "Lin Wan turns and smiles. Assistant Xiao Zhou runs up; she glances over and snatches the umbrella, leaving Xiao Zhou stunned."
+    },
+    {
+      "source": "冷笑",
+      "en": "Smirk"
+    },
+    {
+      "source": "小周",
+      "en": "Xiao Zhou"
+    },
+    {
+      "source": "愣住",
+      "en": "Stunned"
+    },
+    {
+      "source": "走进雨中",
+      "en": "Into the Rain"
+    },
+    {
+      "source": "林晚向右走到户外，撑伞离开。",
+      "en": "Lin Wan walks right, opens the umbrella and leaves in the rain."
+    },
+    {
+      "source": "间幕 · 路灯下的照片",
+      "en": "Interlude / A Photo Under the Streetlight"
+    },
+    {
+      "source": "小夏与男人站在路灯下；林晚从后方拿手机拍照。",
+      "en": "Xiao Xia and a man stand under a streetlight. Lin Wan takes a phone photo from behind them."
+    },
+    {
+      "source": "小夏",
+      "en": "Xiao Xia"
+    },
+    {
+      "source": "男人",
+      "en": "Man"
+    },
+    {
+      "source": "直播真人秀 · 名单",
+      "en": "Reality Show / The Roster"
+    },
+    {
+      "source": "《扶摇直上》后台走廊，左侧是选手照片墙。",
+      "en": "The backstage corridor of Rise to Stardom. A contestant photo wall stands on the left."
+    },
+    {
+      "source": "工作人员",
+      "en": "Crew Member"
+    },
+    {
+      "source": "照片墙前",
+      "en": "At the Photo Wall"
+    },
+    {
+      "source": "林晚视线移到照片墙某处，伸手至眼前，用力扯下照片边缘的贴纸或旧标签。",
+      "en": "Lin Wan looks at one spot on the wall, raises her hand and tears a sticker or old label from a photo's edge."
+    },
+    {
+      "source": "不满",
+      "en": "Displeased"
+    },
+    {
+      "source": "抱着资料跑来",
+      "en": "Running with Papers"
+    },
+    {
+      "source": "小北从右侧小跑进入；林晚向前迈步。",
+      "en": "Xiao Bei jogs in from the right. Lin Wan steps forward."
+    },
+    {
+      "source": "小北",
+      "en": "Xiao Bei"
+    },
+    {
+      "source": "紧张",
+      "en": "Nervous"
+    },
+    {
+      "source": "阻拦，还是想扶",
+      "en": "Blocking or Helping?"
+    },
+    {
+      "source": "林晚伸掌向前推。小北摔倒，资料散落。",
+      "en": "Lin Wan thrusts her palm forward. Xiao Bei falls and papers scatter."
+    },
+    {
+      "source": "阻拦 / 想扶",
+      "en": "Blocking / Helping?"
+    },
+    {
+      "source": "惊慌",
+      "en": "Panicked"
+    },
+    {
+      "source": "无人搀扶",
+      "en": "No Helping Hand"
+    },
+    {
+      "source": "小北没有抬头，撑着膝盖站起，再迅速蹲下。",
+      "en": "Without looking up, Xiao Bei pushes off her knees, stands and quickly crouches again."
+    },
+    {
+      "source": "慌乱",
+      "en": "Flustered"
+    },
+    {
+      "source": "收拾散落的材料",
+      "en": "Gathering the Papers"
+    },
+    {
+      "source": "小北迅速蹲下，收拾散落的材料。",
+      "en": "Xiao Bei crouches quickly to gather the scattered papers."
+    },
+    {
+      "source": "抱起资料",
+      "en": "Papers in His Arms"
+    },
+    {
+      "source": "小北抱起资料站起，准备离开。",
+      "en": "Xiao Bei stands with the papers in her arms, ready to leave."
+    },
+    {
+      "source": "逃离",
+      "en": "Getting Away"
+    },
+    {
+      "source": "小北抱着资料短暂停留，情绪紧张。",
+      "en": "Xiao Bei pauses briefly with the papers, visibly tense."
+    },
+    {
+      "source": "不安",
+      "en": "Uneasy"
+    },
+    {
+      "source": "走廊里的冷笑",
+      "en": "A Smirk in the Corridor"
+    },
+    {
+      "source": "小北向左快步离开。林晚向右走，唇边浮起冷笑。",
+      "en": "Xiao Bei hurries left. Lin Wan walks right, a cold smile forming on her lips."
+    },
+    {
+      "source": "苏瑶靠近",
+      "en": "Su Yao Approaches"
+    },
+    {
+      "source": "苏瑶从右侧轻快走来，带着笑，停在林晚身边。",
+      "en": "Su Yao walks briskly in from the right, smiling, and stops beside Lin Wan."
+    },
+    {
+      "source": "甜笑",
+      "en": "Sweet Smile"
+    },
+    {
+      "source": "蹬地与失衡",
+      "en": "A Stamp and a Fall"
+    },
+    {
+      "source": "林晚侧身迈步、蹬地。苏瑶失衡后倒，双膝跪坐，双手撑地。",
+      "en": "Lin Wan steps sideways and stamps her foot. Su Yao loses balance and falls back onto her knees, hands braced on the floor."
+    },
+    {
+      "source": "冷淡",
+      "en": "Aloof"
+    },
+    {
+      "source": "错愕",
+      "en": "Taken Aback"
+    },
+    {
+      "source": "没有立刻伸手",
+      "en": "No Immediate Help"
+    },
+    {
+      "source": "林晚低头看了一眼，没有立刻扶她；苏瑶跪坐在地。",
+      "en": "Lin Wan looks down without offering her hand. Su Yao remains kneeling on the floor."
+    },
+    {
+      "source": "冷眼",
+      "en": "Cold Stare"
+    },
+    {
+      "source": "羞愤",
+      "en": "Humiliated"
+    },
+    {
+      "source": "重新挂上甜笑",
+      "en": "The Sweet Smile Returns"
+    },
+    {
+      "source": "苏瑶慢慢站起，整理裙摆，重新挂起甜笑。",
+      "en": "Su Yao slowly stands, straightens her skirt and puts her sweet smile back on."
+    },
+    {
+      "source": "重新甜笑",
+      "en": "Smiling Again"
+    },
+    {
+      "source": "灯光之下",
+      "en": "Under the Lights"
+    },
+    {
+      "source": "林晚进入舞台，沉默、抬头，露出真假难辨的笑。画外掌声与尖叫。",
+      "en": "Lin Wan enters the stage in silence, lifts her head and smiles. Is it real? Applause and cheers sound off screen."
+    },
+    {
+      "source": "难辨的笑",
+      "en": "Unreadable Smile"
+    },
+    {
+      "source": "杂物间门后",
+      "en": "At the Storeroom Door"
+    },
+    {
+      "source": "林晚下台经过安全通道，停在杂物间门旁，贴近门缝侧耳倾听。",
+      "en": "After leaving the stage, Lin Wan stops by a storeroom off the emergency exit corridor and listens at the door."
+    },
+    {
+      "source": "警觉",
+      "en": "Alert"
+    },
+    {
+      "source": "被听见的密谋",
+      "en": "An Overheard Plot"
+    },
+    {
+      "source": "门后：李谋低声安抚苏瑶；苏瑶愤怒提及小北；李谋再次提到小北。",
+      "en": "Behind the door, Li Mou quietly soothes Su Yao. She angrily mentions Xiao Bei; Li Mou brings her up again."
+    },
+    {
+      "source": "震惊",
+      "en": "Shocked"
+    },
+    {
+      "source": "背靠墙",
+      "en": "Back Against the Wall"
+    },
+    {
+      "source": "林晚僵在门后，背靠墙，缓缓攥紧拳头。",
+      "en": "Lin Wan freezes by the door, leans against the wall and slowly clenches her fists."
+    },
+    {
+      "source": "攥紧拳头",
+      "en": "Clenched Fists"
+    },
+    {
+      "source": "决赛前 · 化妆镜",
+      "en": "Before the Final / The Dressing Mirror"
+    },
+    {
+      "source": "林晚背对门坐在镜前，陈默轻敲两下门，从左侧进入。",
+      "en": "Lin Wan sits at the mirror with her back to the door. Chen Mo knocks twice and enters from the left."
+    },
+    {
+      "source": "疑虑",
+      "en": "Doubtful"
+    },
+    {
+      "source": "陈默",
+      "en": "Chen Mo"
+    },
+    {
+      "source": "温和",
+      "en": "Gentle"
+    },
+    {
+      "source": "镜中的来客",
+      "en": "A Visitor in the Mirror"
+    },
+    {
+      "source": "陈默停在两步之外，示意赞许。林晚回头，怀疑、动摇。",
+      "en": "Chen Mo stops two steps away and gestures his approval. Lin Wan turns, suspicious and wavering."
+    },
+    {
+      "source": "怀疑 / 动摇",
+      "en": "Suspicious / Wavering"
+    },
+    {
+      "source": "离开时的停顿",
+      "en": "A Pause at the Door"
+    },
+    {
+      "source": "陈默后退一步，转身离开，在门口稍作停顿。",
+      "en": "Chen Mo steps back, turns to leave and pauses at the doorway."
+    },
+    {
+      "source": "欲言又止",
+      "en": "Holding Back Words"
+    },
+    {
+      "source": "甜笑之下",
+      "en": "Behind the Sweet Smile"
+    },
+    {
+      "source": "苏瑶推门进入，靠近林晚，笑容收敛，前倾压低声音。",
+      "en": "Su Yao enters, approaches Lin Wan and drops her smile. She leans forward and lowers her voice."
+    },
+    {
+      "source": "威胁",
+      "en": "Threatening"
+    },
+    {
+      "source": "白玫瑰与道具刀",
+      "en": "A White Rose and a Prop Knife"
+    },
+    {
+      "source": "林晚站起直视苏瑶；工作人员递上白玫瑰和道具刀。",
+      "en": "Lin Wan stands and meets Su Yao's eyes. A crew member hands over a white rose and a prop knife."
+    },
+    {
+      "source": "不退让",
+      "en": "Defiant"
+    },
+    {
+      "source": "阴狠",
+      "en": "Malicious"
+    },
+    {
+      "source": "相对而立",
+      "en": "Face to Face"
+    },
+    {
+      "source": "舞台强光。林晚握紧道具刀，压低重心，向前半步。",
+      "en": "Under the harsh stage lights, Lin Wan grips the prop knife, lowers her stance and steps half a pace forward."
+    },
+    {
+      "source": "突如其来的尖叫",
+      "en": "A Sudden Scream"
+    },
+    {
+      "source": "苏瑶抢先尖叫，后倒、捂肩跪地，抬头指向林晚。",
+      "en": "Su Yao screams first, falls back and kneels, clutching her shoulder. She looks up and points at Lin Wan."
+    },
+    {
+      "source": "伪装恐惧",
+      "en": "Feigning Fear"
+    },
+    {
+      "source": "切广告 · 取消资格",
+      "en": "Cut to Commercial / Disqualified"
+    },
+    {
+      "source": "导播要求切广告，主持人宣布取消林晚资格；工作人员冲上台拖走林晚。",
+      "en": "The director calls for a commercial break. The host disqualifies Lin Wan, and crew rush onstage to drag her away."
+    },
+    {
+      "source": "伪装委屈",
+      "en": "Feigning Hurt"
+    },
+    {
+      "source": "间幕 · 同一盏路灯",
+      "en": "Interlude / The Same Streetlight"
+    },
+    {
+      "source": "林晚站在路灯下，陈默从左侧走来，将文件递给她。",
+      "en": "Lin Wan waits under the streetlight. Chen Mo approaches from the left and hands her a file."
+    },
+    {
+      "source": "沉静",
+      "en": "Composed"
+    },
+    {
+      "source": "支持",
+      "en": "Support"
+    },
+    {
+      "source": "片场 · 真相直播",
+      "en": "Film Set / Truth on Livestream"
+    },
+    {
+      "source": "林晚面对手机镜头，深呼吸，说出五年前的真相。",
+      "en": "Facing her phone camera, Lin Wan takes a deep breath and reveals the truth about five years ago."
+    },
+    {
+      "source": "决绝 / 坦诚",
+      "en": "Resolute / Candid"
+    },
+    {
+      "source": "第一份证据",
+      "en": "The First Piece of Evidence"
+    },
+    {
+      "source": "陈默进入画面。将证据卡拖入直播窗口，再按发送。",
+      "en": "Chen Mo enters the frame. Drag the evidence card into the livestream window, then press Send."
+    },
+    {
+      "source": "坚定",
+      "en": "Determined"
+    },
+    {
+      "source": "第二份证据",
+      "en": "The Second Piece of Evidence"
+    },
+    {
+      "source": "小北从右侧走来，选择勇敢站出来。继续发送证据。",
+      "en": "Xiao Bei enters from the right and finds the courage to speak up. Keep sending the evidence."
+    },
+    {
+      "source": "坦诚",
+      "en": "Candid"
+    },
+    {
+      "source": "勇敢 / 欲哭",
+      "en": "Brave / Tearful"
+    },
+    {
+      "source": "第三份证据",
+      "en": "The Third Piece of Evidence"
+    },
+    {
+      "source": "剧组龙套从右侧走入画面。发送最后一份证据。",
+      "en": "A background actor enters from the right. Send the final piece of evidence."
+    },
+    {
+      "source": "如释重负",
+      "en": "Relieved"
+    },
+    {
+      "source": "勇敢",
+      "en": "Brave"
+    },
+    {
+      "source": "剧组龙套",
+      "en": "Background Actor"
+    },
+    {
+      "source": "真相落地",
+      "en": "The Truth Comes Out"
+    },
+    {
+      "source": "李谋被警方带走；苏瑶被行业封杀；《扶摇直上》换导重拍。",
+      "en": "Police take Li Mou away. Su Yao is blacklisted, and Rise to Stardom is reshot with a new director."
+    },
+    {
+      "source": "数周后 · 新片场",
+      "en": "Weeks Later / A New Set"
+    },
+    {
+      "source": "明亮的新片场。林晚站在门口，小北从左侧拿着雨伞走来。",
+      "en": "At a bright new film set, Lin Wan waits by the entrance. Xiao Bei approaches from the left with an umbrella."
+    },
+    {
+      "source": "平静",
+      "en": "Calm"
+    },
+    {
+      "source": "靠近",
+      "en": "Approaching"
+    },
+    {
+      "source": "又一次拿走雨伞",
+      "en": "Taking the Umbrella Again"
+    },
+    {
+      "source": "林晚抢过雨伞，走出画面。",
+      "en": "Lin Wan snatches the umbrella and walks out of frame."
+    },
+    {
+      "source": "片场与雨夜",
+      "en": "The Set and the Rain"
+    },
+    {
+      "source": "记录片场冲突、雨伞交接与路灯下的相遇，选择3张照片完成报道。",
+      "en": "Record the on-set conflict, umbrella handover and streetlight encounter. Choose 3 photos for your report."
+    },
+    {
+      "source": "镜头里的强势可能是一场戏。记下导演的反应，也留意离开片场后的林晚。",
+      "en": "What looks like bullying may be acting. Watch the director's reaction, and Lin Wan's behavior after she leaves the set."
+    },
+    {
+      "source": "一场戏、一次抢伞，还有路灯下的一张照片。",
+      "en": "A scene, a snatched umbrella and a photo under a streetlight."
+    },
+    {
+      "source": "片场内外：林晚的一天被镜头记录",
+      "en": "On Set and Off: A Day in Lin Wan's Life"
+    },
+    {
+      "source": "掌声之后，聚光灯外还有另一面",
+      "en": "After the Applause: Beyond the Spotlight"
+    },
+    {
+      "source": "强势姿态走出片场，雨夜举动引关注",
+      "en": "From On-Set Pressure to Rainy-Night Controversy"
+    },
+    {
+      "source": "从片场的对峙到雨中的离去，三个时刻组成了这一期报道。",
+      "en": "From the confrontation on set to the departure in the rain, three moments make up this edition."
+    },
+    {
+      "source": "照片能够记录动作，前后顺序与构图则决定读者看见怎样的故事。",
+      "en": "Photos record actions. Their order and framing shape the story readers see."
+    },
+    {
+      "source": "真人秀后台",
+      "en": "Reality Show Backstage"
+    },
+    {
+      "source": "记录资料散落、走廊冲突与门后交谈，选择3张照片发布后台报道。",
+      "en": "Record the scattered papers, corridor conflict and conversation behind the door. Publish a report using 3 photos."
+    },
+    {
+      "source": "舞台上的笑容并不等于后台的关系。请同时留意动作发生前与发生后。",
+      "en": "Smiles on stage tell little about relationships backstage. Watch what happens before each action and afterward."
+    },
+    {
+      "source": "照片墙、散落的资料、重新挂起的甜笑。",
+      "en": "A photo wall, scattered papers and a sweet smile restored."
+    },
+    {
+      "source": "真人秀后台：三张照片还原现场片段",
+      "en": "Reality Show Backstage: Three Photos from the Scene"
+    },
+    {
+      "source": "冲突之外，谁的处境值得被看见",
+      "en": "Beyond the Conflict: Who Deserves to Be Seen?"
+    },
+    {
+      "source": "甜笑背后，后台风波引发质疑",
+      "en": "Behind the Sweet Smile: Backstage Trouble Raises Questions"
+    },
+    {
+      "source": "照片墙前的动作、走廊中的失衡与紧闭的门，构成了本关的现场。",
+      "en": "An action at the photo wall, a fall in the corridor and a closed door define this level's events."
+    },
+    {
+      "source": "本报刊登玩家选择的三个时刻；未进入取景框的细节并未因此消失。",
+      "en": "We print the three moments you choose. Details outside the frame have not ceased to exist."
+    },
+    {
+      "source": "决赛风波",
+      "en": "Finals Controversy"
+    },
+    {
+      "source": "记录决赛前后的关键时刻及路灯下的文件交接，选择3张照片完成报道。",
+      "en": "Record key moments around the final and the file handover under the streetlight. Choose 3 photos for your report."
+    },
+    {
+      "source": "苏瑶的反应发生在何时？注意道具刀与身体的距离，不要只凭一个姿势下结论。",
+      "en": "When does Su Yao react? Watch the gap between the prop knife and her body. One pose alone cannot tell the story."
+    },
+    {
+      "source": "化妆间的交锋，舞台上的尖叫与一份文件。",
+      "en": "A dressing-room confrontation, a scream on stage and a file."
+    },
+    {
+      "source": "决赛风波：镜头记录舞台内外",
+      "en": "Finals Controversy: On Stage and Off"
+    },
+    {
+      "source": "带离舞台之后，事件仍有待追问",
+      "en": "Removed from the Stage, but Questions Remain"
+    },
+    {
+      "source": "尖叫与取消资格，决赛现场陷入争议",
+      "en": "Scream and Disqualification Plunge the Final into Controversy"
+    },
+    {
+      "source": "道具交接、舞台上的骤变以及离场后的会面，被整理为本期图文。",
+      "en": "The prop handover, the sudden turn on stage and the later meeting form this edition's photo report."
+    },
+    {
+      "source": "单张照片无法呈现全部经过。拍摄时刻、裁切和排序共同影响阅读。",
+      "en": "No single photo shows the entire event. Timing, cropping and order all influence how it is read."
+    },
+    {
+      "source": "真相直播",
+      "en": "Truth on Livestream"
+    },
+    {
+      "source": "在直播中发送全部3份证据，再选择3张现场照片发布本关报道。",
+      "en": "Send all 3 pieces of evidence during the livestream, then publish this level's report with 3 photos."
+    },
+    {
+      "source": "证据需要由你逐份送入直播窗口。事件结束后，也别错过新片场的雨伞。",
+      "en": "Send each piece of evidence into the livestream yourself. When it ends, watch the umbrella at the new film set."
+    },
+    {
+      "source": "三份证据进入直播，事件之后仍有新的镜头。",
+      "en": "Three pieces of evidence go live. Afterward, the camera keeps watching."
+    },
+    {
+      "source": "真相直播：三份证据与三个现场时刻",
+      "en": "Truth on Livestream: Three Pieces of Evidence, Three Moments"
+    },
+    {
+      "source": "勇敢开口之后，镜头继续记录",
+      "en": "After Speaking Out, the Camera Keeps Rolling"
+    },
+    {
+      "source": "风波落幕，新的片场又现熟悉一幕",
+      "en": "The Scandal Ends. A Familiar Moment at a New Set."
+    },
+    {
+      "source": "三份证据已经送入直播；李谋、苏瑶和剧组的后续也进入了公众视野。",
+      "en": "All three pieces of evidence are live. The aftermath for Li Mou, Su Yao and the crew is now public."
+    },
+    {
+      "source": "报道由本关实拍照片组成。最后一次雨伞交接，为故事留下新的观察角度。",
+      "en": "This report uses photos taken in this level. The final umbrella handover offers another angle on the story."
+    },
+    {
+      "source": "镜头背后",
+      "en": "Behind the Lens"
+    },
+    {
+      "source": "路灯下的雨",
+      "en": "Rain Under the Streetlight"
+    },
+    {
+      "source": "甜笑与暗流",
+      "en": "Sweet Smiles, Hidden Currents"
+    },
+    {
+      "source": "灯光下的裂缝",
+      "en": "Cracks in the Spotlight"
+    },
+    {
+      "source": "镜中疑云",
+      "en": "Doubts in the Mirror"
+    },
+    {
+      "source": "让证据说话",
+      "en": "Let the Evidence Speak"
+    },
+    {
+      "source": "落幕之后",
+      "en": "After the Curtain Falls"
+    },
+    {
+      "source": "语言：中文 / English (L)",
+      "en": "Language: English / Chinese (L)"
+    },
+    {
+      "source": "导演抱小北",
+      "en": "The director embracing Xiao Bei"
+    },
+    {
+      "source": "导演和苏瑶喝酒",
+      "en": "The director drinking with Su Yao"
+    },
+    {
+      "source": "名单上除了苏瑶都被打 X",
+      "en": "Every contestant except Su Yao is crossed out"
+    }
+  ]
+}
