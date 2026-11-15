@@ -203,7 +203,7 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 
 - 首页沿用摄像机样式直接纵向显示四关按钮，移除“超级巨星 · 四关独立选关”入口；鼠标、`1–4` 或 `F1–F4` 直接打开对应摄制任务单，Enter/空格开始第一关。原两关保留，首页快捷入口改为 `F5/F6`，避免与四关按键冲突。
 - 新模式位于 `Source/MegaJamProject/SuperstarStory.*` 、`SuperstarLevels.cpp` 与 `SuperstarStage.*`，关卡配置在 `Content/SuperstarStory/levels.json`，数据/图片在 `Content/SuperstarStory/`。以 MainMenu 地图的 URL GameMode override 承载，不覆盖任何旧 `.umap`。
-- 当前为四幕 39 段的 3D 布景初版 + 5 FPS 人物精灵；B 切换原始参考图。不是骨骼动画或新拍照评分关卡。缺失动画、专属角色和证据图有明确占位。
+- 当前为四幕 39 段的 3D 布景初版 + 5 FPS 人物精灵；参考图仅通过显式调试参数 `-SuperstarReferences` 查看。不是骨骼动画或新拍照评分关卡。缺失动画、专属角色和证据图有明确占位。
 - 用户确认片场导演=李谋。新预演临时复用原有四种2D情绪符号，通过 `BackstageArt.h` 只读桥接和 `story.json` 的 `emotion_placeholder/emotions` 控制；不更改旧关卡符号行为，真实表情生成任务仍保留。
 - 预演专属BGM在 `Content/SuperstarStory/Audio/`：七首原创合成器乐、39段映射，`SuperstarMusic.*` 管理循环/1.4秒换曲淡化/暂停/退出清理；M静音。新增 `AudioExtensions` 和 `AudioMixer` 原生模块依赖。音乐与真实引擎输出检查见 [BGM说明](Docs/SuperstarStory/BGM.md)，不要用无声 `NullRHI` 测试代替音频验收。
 - 新预演摄影位于 `SuperstarPhotography.cpp`：1–3机位、WASD/左拖构图、Q/E/滚轮变焦、Enter拍照确认、Tab相册，最多保留6张/选3张裁切排序发布；F1–F4打开对应关卡任务单并重置本轮，剧情证据快捷键为V。照片为当时取景框像素，保存在Saved，按不同路径保存每次发布；不套用原两关评分。表情改用 `head_anchors.json` 逐帧锚点，结合精灵镜像和相机投影。生成新素材后须重建/复核锚点。
@@ -232,7 +232,7 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 
 - 舞台“扶摇直上 / RISE TO STARDOM”使用 `SuperstarStage` 的世界空间 `UWidgetComponent` 固定在中央背景板，随镜头透视、平移和变焦投影，不再由 HUD 固定坐标绘制。新增 `UMG` 原生模块依赖，其余 HUD 仍用 Canvas；参考图模式隐藏该组件。`-SuperstarRound2Smoke` 的舞台取样包含左右机位及平移/变焦。
 
-- 四关结算报头统一为“骏风娱乐 / JUNFENG ENTERTAINMENT”。F1–F5 的玩家界面提示隐藏，现有快捷键仍可用，DefaultInput.ini移除了F1–F5的引擎调试渲染绑定，避免选关时切到线框等模式。“查看参考图片”按钮及点击区域已移除，B 键仍可切换参考图。角色名使用逐帧头部锚点，在表情区域上方显示，接近画幅顶端时侧移避让。决赛第24–27段凳子统一位于人物平面后方；走廊统一展示正式名单图片，旧六人照片墙占位几何已移除。
+- 四关结算报头统一为“骏风娱乐 / JUNFENG ENTERTAINMENT”。F1–F5 的玩家界面提示隐藏，现有快捷键仍可用，DefaultInput.ini移除了F1–F5的引擎调试渲染绑定，避免选关时切到线框等模式。“查看参考图片”按钮、点击区域、B 键切换及现场左上角参考图提示均已移除；参考图仅保留显式调试入口 `-SuperstarReferences`。角色名使用逐帧头部锚点，在表情区域上方显示，接近画幅顶端时侧移避让。决赛第24–27段凳子统一位于人物平面后方；走廊统一展示正式名单图片，旧六人照片墙占位几何已移除。
 
 - 首页右上角按钮 / `L` 切换中英文，写入用户 `GameUserSettings.ini`，跨地图和重启保留。首次默认中文。`-GameLanguage=en/zh` 可临时覆盖。
 - 原有两关与超级巨星四关统一使用 `GameLocalization` 显示层；`Content/Localization/en.json` 保存翻译和格式模板。保持原始中文剧情数据、评分及 ID，不用翻译后的文本参与逻辑判断。

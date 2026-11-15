@@ -329,7 +329,6 @@ void ASuperstarStoryHUD::Tick(float Delta)
     }
     if (PC->WasInputKeyJustPressed(EKeys::SpaceBar) || PC->WasInputKeyJustPressed(EKeys::R) || PC->WasInputKeyJustPressed(EKeys::RightMouseButton)) { bPlaying=!bPlaying;PlaybackRate=bPlaying?1.f:0.f; }
     if (PC->WasInputKeyJustPressed(EKeys::M) && Music) Music->ToggleMute();
-    if (PC->WasInputKeyJustPressed(EKeys::B)) bReferenceView = !bReferenceView;
     auto Jump=[this](int32 Index,FName Cue)
     {
         if(Beats.IsValidIndex(Index) && Index>=FirstBeat && Index<LastBeat) { if(Sfx) Sfx->PlayCue(Cue); SelectBeat(Index); }
@@ -499,8 +498,6 @@ void ASuperstarStoryHUD::Background(const FString& Scene)
     if (!bReferenceView && Scene != TEXT("newspaper"))
     {
         if (PhotoPhase == ESuperstarPhotoPhase::Capturing) return;
-        Rect(45, 115, 310, 30, Ink);
-        FitLabel(bFullStoryDebug?TEXT("3D 布景初版  ·  B 对照参考图"):TEXT("拍摄现场  ·  B 对照参考图"), 55, 118, 290, 24, 16, Mint);
         if (Scene == TEXT("storage")) Label(TEXT("杂物间：李谋 · 苏瑶 / 提及小北"), 820, 180, 17);
         return;
     }
