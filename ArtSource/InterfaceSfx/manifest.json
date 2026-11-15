@@ -1,0 +1,81 @@
+{
+  "generator": "Tools/Generate-InterfaceSfx.py",
+  "source": "Original oscillator/noise synthesis; no third-party samples or models",
+  "sample_rate": 48000,
+  "channels": 2,
+  "format": "PCM16",
+  "cues": [
+    {
+      "id": "chapter",
+      "file": "chapter.wav",
+      "asset": "/Game/Audio/Interface/SFX_chapter",
+      "seconds": 0.23,
+      "peak_dbfs": -6.020599913279624,
+      "rms_dbfs": -16.38868017700371,
+      "sha256": "3b29e48cd3e3df6466036ae0773e7ed43934ca628bc888af89b80d31098bdf3b"
+    },
+    {
+      "id": "forward",
+      "file": "forward.wav",
+      "asset": "/Game/Audio/Interface/SFX_forward",
+      "seconds": 0.42,
+      "peak_dbfs": -6.020599913279624,
+      "rms_dbfs": -19.998402267290636,
+      "sha256": "a2e150afc724efb33f49d2817783700123b2d6cdabc9432accb22c20f186ce7f"
+    },
+    {
+      "id": "rewind",
+      "file": "rewind.wav",
+      "asset": "/Game/Audio/Interface/SFX_rewind",
+      "seconds": 0.42,
+      "peak_dbfs": -6.020599913279624,
+      "rms_dbfs": -21.8079838960244,
+      "sha256": "f5e1e6577a2bedd30ff57e39fd7f401e80b617f94740699d7f9fdf0fe62dcb57"
+    },
+    {
+      "id": "shutter",
+      "file": "shutter.wav",
+      "asset": "/Game/Audio/Interface/SFX_shutter",
+      "seconds": 0.24,
+      "peak_dbfs": -6.020599913279624,
+      "rms_dbfs": -28.157526053787176,
+      "sha256": "59b16eb3c2a23dafd3f6a059d7270c4f97fd9be3a6f18c44e8d69e8219712917"
+    },
+    {
+      "id": "pan",
+      "file": "pan.wav",
+      "asset": "/Game/Audio/Interface/SFX_pan",
+      "seconds": 0.2,
+      "peak_dbfs": -6.021130074090242,
+      "rms_dbfs": -16.76572504644773,
+      "sha256": "a97e0a45a60613f290203a0eff058a8f48dad5a987fc464ab6abe6653f04de2e"
+    },
+    {
+      "id": "zoom_in",
+      "file": "zoom_in.wav",
+      "asset": "/Game/Audio/Interface/SFX_zoom_in",
+      "seconds": 0.26,
+      "peak_dbfs": -6.021130074090242,
+      "rms_dbfs": -10.341164076520514,
+      "sha256": "6cd7ecc8d410416f7e1b401779138bd7f1280e3e89c70e84d71ffd0c6bf7eec5"
+    },
+    {
+      "id": "zoom_out",
+      "file": "zoom_out.wav",
+      "asset": "/Game/Audio/Interface/SFX_zoom_out",
+      "seconds": 0.26,
+      "peak_dbfs": -6.020599913279624,
+      "rms_dbfs": -10.3409840374226,
+      "sha256": "cb987fdd2000c5dfb8731b24db388c7e0499aa1df13a283d5d77db597203bdbd"
+    },
+    {
+      "id": "result",
+      "file": "result.wav",
+      "asset": "/Game/Audio/Interface/SFX_result",
+      "seconds": 1.85,
+      "peak_dbfs": -6.021130074090242,
+      "rms_dbfs": -20.68138873327481,
+      "sha256": "02c054e721286ef0d50133ab29f95bf16c17b7b0a116e8fcbaddec57770fd1f6"
+    }
+  ]
+}

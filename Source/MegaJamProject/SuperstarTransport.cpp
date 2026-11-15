@@ -1,6 +1,7 @@
 #include "SuperstarStory.h"
 #include "SuperstarStage.h"
 #include "SuperstarMusic.h"
+#include "BackstageSfx.h"
 #include "Dom/JsonObject.h"
 #include "InputKeyEventArgs.h"
 #include "Misc/Paths.h"
@@ -26,6 +27,8 @@ void ASuperstarStoryHUD::SeekSequence(float Time)
 void ASuperstarStoryHUD::AdvanceSequence(float Delta,float ScrubAxis)
 {
     const bool bShuttle=!FMath::IsNearlyZero(ScrubAxis);
+    const bool bCanShuttle=ScrubAxis<0?SequenceTime()>0:SequenceTime()<SequenceDuration;
+    if(Sfx) Sfx->TransportMotion(bShuttle && bCanShuttle ? (ScrubAxis>0?1:-1) : 0);
     PlaybackRate=bShuttle?FMath::Clamp(ScrubAxis,-1.f,1.f)*3.f:(bPlaying?1.f:0.f);
     if(bShuttle)
     {
@@ -50,7 +53,7 @@ void ASuperstarStoryHUD::AdvanceSequence(float Delta,float ScrubAxis)
         {
             PlaybackRate=0.f;break; // automatic playback still waits for explicit evidence submission
         }
-        if(Beat+1>=Beats.Num()) {bPlaying=false;PlaybackRate=0.f;break;}
+        if(Beat+1>=Beats.Num()) {if(Sfx) Sfx->PlayCue(TEXT("result"));bPlaying=false;PlaybackRate=0.f;break;}
         SelectBeat(Beat+1); // retain overshoot, including when a long frame crosses multiple beats
     }
 }
@@ -63,8 +66,12 @@ bool ASuperstarStoryHUD::HandleTimelinePointer(FVector2D Position,bool bPressed,
     }
     if(!bTimelineDragging) return false;
     if(bDown || bPressed || bReleased)
+    {
+        const float Before=SequenceTime();
         SeekSequence(FMath::Clamp((Position.X-35)/1210.,0.,1.)*SequenceDuration);
-    if(bReleased || !bDown) bTimelineDragging=false;
+        if(Sfx) Sfx->TransportMotion(FMath::IsNearlyEqual(Before,SequenceTime())?0:(SequenceTime()>Before?1:-1));
+    }
+    if(bReleased || !bDown) { bTimelineDragging=false; if(Sfx) Sfx->TransportMotion(0); }
     // Consume the release frame as well; the scene must not take ownership of this drag.
     return true;
 }
@@ -154,9 +161,17 @@ void ASuperstarStoryHUD::RunTransportSmoke()
     if(TransportSmokeTicks==136) Key(EKeys::R,IE_Released);
     if(TransportSmokeTicks==138) {check(!bPlaying);TransportInputTime=Clock;}
     if(TransportSmokeTicks==140) check(FMath::IsNearlyEqual(Clock,TransportInputTime,.001f));
-    if(TransportSmokeTicks==145)
+    if(TransportSmokeTicks==145) Key(EKeys::F2,IE_Pressed);
+    if(TransportSmokeTicks==146) Key(EKeys::F2,IE_Released);
+    if(TransportSmokeTicks==149) {check(Beats[Beat]->GetIntegerField(TEXT("chapter"))==2);TransportInputTime=TargetPan;Key(EKeys::D,IE_Pressed);}
+    if(TransportSmokeTicks==160) {check(TargetPan>TransportInputTime);Key(EKeys::D,IE_Released);TransportInputTime=TargetZoom;}
+    if(TransportSmokeTicks==163) Key(EKeys::E,IE_Pressed);
+    if(TransportSmokeTicks==175) {check(TargetZoom>TransportInputTime);Key(EKeys::E,IE_Released);TransportInputTime=TargetZoom;}
+    if(TransportSmokeTicks==180) Key(EKeys::Q,IE_Pressed);
+    if(TransportSmokeTicks==193) {check(TargetZoom<TransportInputTime);Key(EKeys::Q,IE_Released);}
+    if(TransportSmokeTicks==205)
     {
-        UE_LOG(LogTemp,Display,TEXT("SuperstarTransport smoke PASS: timeline checks and injected Left/Right/Z/C/Space/R through live input"));
+        UE_LOG(LogTemp,Display,TEXT("SuperstarTransport smoke PASS: timeline checks and injected Left/Right/Z/C/Space/R/F2/D/E/Q through live input"));
         GetOwningPlayerController()->ConsoleCommand(TEXT("quit"));
     }
 }

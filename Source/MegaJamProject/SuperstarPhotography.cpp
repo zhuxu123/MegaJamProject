@@ -1,6 +1,7 @@
 #include "SuperstarStory.h"
 #include "SuperstarStage.h"
 #include "SuperstarMusic.h"
+#include "BackstageSfx.h"
 #include "Camera/PlayerCameraManager.h"
 #include "Dom/JsonObject.h"
 #include "Engine/GameViewportClient.h"
@@ -42,6 +43,7 @@ void ASuperstarStoryHUD::UpdateCamera(float Delta)
 {
     auto* PC=GetOwningPlayerController();
     if (!PC || !Stage || bReferenceView) return;
+    const float PreviousPan=TargetPan,PreviousTilt=TargetTilt,PreviousZoom=TargetZoom,PreviousStation=TargetStation;
     if (PC->WasInputKeyJustPressed(EKeys::One)) { CameraStation=0; TargetStation=0; }
     if (PC->WasInputKeyJustPressed(EKeys::Two)) { CameraStation=1; TargetStation=-1; }
     if (PC->WasInputKeyJustPressed(EKeys::Three)) { CameraStation=2; TargetStation=1; }
@@ -74,6 +76,8 @@ void ASuperstarStoryHUD::UpdateCamera(float Delta)
     TargetPan=FMath::Clamp(TargetPan,-1.5f,1.5f);
     TargetTilt=FMath::Clamp(TargetTilt,-1.f,1.f);
     TargetZoom=FMath::Clamp(TargetZoom,1.f,2.6f);
+    if(Sfx) Sfx->CameraMotion(!FMath::IsNearlyEqual(PreviousPan,TargetPan) || !FMath::IsNearlyEqual(PreviousTilt,TargetTilt) || PreviousStation!=TargetStation,
+        FMath::IsNearlyEqual(PreviousZoom,TargetZoom)?0:(TargetZoom>PreviousZoom?1:-1));
     ViewPan=FMath::FInterpTo(ViewPan,TargetPan,Delta,9.f);
     ViewTilt=FMath::FInterpTo(ViewTilt,TargetTilt,Delta,9.f);
     ViewZoom=FMath::FInterpTo(ViewZoom,TargetZoom,Delta,9.f);
@@ -86,6 +90,7 @@ void ASuperstarStoryHUD::TakePhoto()
 {
     if (PhotoPhase!=ESuperstarPhotoPhase::Live || Photos.Num()>=6 || bReferenceView
         || Beats[Beat]->GetStringField(TEXT("scene"))==TEXT("newspaper")) return;
+    if(Sfx) {Sfx->TransportMotion(0);Sfx->PlayCue(TEXT("shutter"));}
     PendingPhoto=FSuperstarPhoto();
     PendingPhoto.Beat=Beat+1; PendingPhoto.Time=Clock; PendingPhoto.Station=CameraStation;
     PendingPhoto.Pan=ViewPan; PendingPhoto.Tilt=ViewTilt; PendingPhoto.Zoom=ViewZoom;
@@ -210,6 +215,7 @@ void ASuperstarStoryHUD::SavePublication()
     FString Json;FJsonSerializer::Serialize(Manifest,TJsonWriterFactory<>::Create(&Json));
     if (!FFileHelper::SaveStringToFile(Json,*(Directory/TEXT("publication.json")),FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM)) { PhotoNotice=TEXT("发布记录写入失败。");PhotoPhase=ESuperstarPhotoPhase::Edit;return; }
     PhotoNotice=TEXT("原图与发布序列已保存到 Saved/SuperstarPhotos。");
+    if(Sfx) Sfx->PlayCue(TEXT("result"));
     UE_LOG(LogTemp,Display,TEXT("SuperstarPhoto: publication saved %s"),*Directory);
 }
 

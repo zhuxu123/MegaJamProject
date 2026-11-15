@@ -60,17 +60,20 @@ class ABackstageController : APlayerController
         if (Pressed(n"Three") || (BackstageHasCommandArg("SuperstarMenuSmoke") && MenuClock > 1.0)
             || (Pressed(n"LeftMouseButton") && Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608))
         {
+            BackstagePlayCue(n"chapter");
             OpenSuperstarStory();
             return;
         }
         if (Pressed(n"Enter") || Pressed(n"SpaceBar") || Pressed(n"One"))
         {
+            BackstagePlayCue(n"chapter");
             BackstageSetLevel(0);
             BackstageOpenMap(n"/Game/levels/Backstage");
             return;
         }
         if (Pressed(n"Two"))
         {
+            BackstagePlayCue(n"chapter");
             BackstageSetLevel(1);
             BackstageOpenMap(n"/Game/levels/Backstage");
             return;
@@ -84,12 +87,14 @@ class ABackstageController : APlayerController
         {
             if (Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 312 && Pointer.Y <= 382)
             {
+                BackstagePlayCue(n"chapter");
                 BackstageSetLevel(0);
                 BackstageOpenMap(n"/Game/levels/Backstage");
                 return;
             }
             if (Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 402 && Pointer.Y <= 472)
             {
+                BackstagePlayCue(n"chapter");
                 BackstageSetLevel(1);
                 BackstageOpenMap(n"/Game/levels/Backstage");
                 return;
@@ -104,6 +109,7 @@ class ABackstageController : APlayerController
 
     void StartStageRound()
     {
+        BackstagePlayCue(n"chapter");
         Round.StartLevel(Round.LevelIndex);
         Round.EnableBraindance();
         BackstageClearPhotos();
@@ -249,6 +255,7 @@ class ABackstageController : APlayerController
         }
 
         const auto PreviousPhase = Round.Phase;
+        if (Round.Phase != EBackstagePhase::Live) BackstageAudioMotion(0, false, 0);
         switch (Round.Phase)
         {
             case EBackstagePhase::Briefing:
@@ -285,6 +292,7 @@ class ABackstageController : APlayerController
                 }
                 if (Pressed(n"N") && Round.LevelIndex == 0)
                 {
+                    BackstagePlayCue(n"chapter");
                     BackstageSetLevel(1);
                     Round.PrepareBriefing(1);
                     break;
@@ -301,6 +309,7 @@ class ABackstageController : APlayerController
                         StartStageRound();
                     else if (Round.LevelIndex == 0 && Pointer.X >= 324 && Pointer.X <= 592 && Pointer.Y >= 644 && Pointer.Y <= 692)
                     {
+                        BackstagePlayCue(n"chapter");
                         BackstageSetLevel(1);
                         Round.PrepareBriefing(1);
                         break;
@@ -331,6 +340,8 @@ class ABackstageController : APlayerController
         if (Round.Phase != PreviousPhase)
         {
             SetBackstagePointer(ShouldShowPointer());
+            BackstageAudioMotion(0, false, 0);
+            if (Round.Phase == EBackstagePhase::Results) BackstagePlayCue(n"result");
             if (Round.Phase == EBackstagePhase::Live)
                 LiveArmTimer = 0.18;
         }
@@ -359,6 +370,7 @@ class ABackstageController : APlayerController
     void HandleCamera(float Delta)
     {
         LiveArmTimer = Math::Max(0.0, LiveArmTimer - Delta);
+        const FBackstagePhoto PreviousCamera = Round.TargetCamera;
         if (Pressed(n"One")) Round.SetTargetStation(0);
         if (Pressed(n"Two")) Round.SetTargetStation(1);
         if (Pressed(n"Three")) Round.SetTargetStation(2);
@@ -382,12 +394,19 @@ class ABackstageController : APlayerController
         const bool bRewind = BackstageHeld(n"Left") || BackstageHeld(n"Z");
         const bool bForward = BackstageHeld(n"Right") || BackstageHeld(n"C");
         Round.SetScrubInput((bForward ? 1.0 : 0.0) - (bRewind ? 1.0 : 0.0));
+        const bool bCameraMoved = Math::Abs(PreviousCamera.Pan - Round.TargetCamera.Pan) > 0.00001
+            || Math::Abs(PreviousCamera.Tilt - Round.TargetCamera.Tilt) > 0.00001
+            || PreviousCamera.Station != Round.TargetCamera.Station;
+        const int ZoomDirection = Math::Abs(PreviousCamera.Zoom - Round.TargetCamera.Zoom) < 0.00001 ? 0 : (Round.TargetCamera.Zoom > PreviousCamera.Zoom ? 1 : -1);
+        const int TransportDirection = bForward == bRewind ? 0 : ((bForward && Round.Camera.Time < Round.ActiveDuration() ? 1 : 0) - (bRewind && Round.Camera.Time > 0 ? 1 : 0));
+        BackstageAudioMotion(TransportDirection, bCameraMoved, ZoomDirection);
 
         if (Pressed(n"SpaceBar") || Pressed(n"R") || Pressed(n"RightMouseButton"))
             Round.TogglePause();
 
         if (Pressed(n"BackSpace") || Pressed(n"Home"))
         {
+            BackstagePlayCue(n"rewind");
             Round.Camera.Time = 0.0;
             Round.TargetCamera.Time = 0.0;
             Round.PlaybackSpeed = 0.0;
@@ -396,6 +415,7 @@ class ABackstageController : APlayerController
         if (Pressed(n"Enter") && LiveArmTimer <= 0.0 && Round.Shutters > 0)
         {
             Round.CapturePending();
+            if (Round.bHasPending) BackstagePlayCue(n"shutter");
             ShutterFlash = 1.0;
             if (Round.bHasPending && StageActor != nullptr)
             {

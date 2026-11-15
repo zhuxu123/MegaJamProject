@@ -1,6 +1,7 @@
 #include "SuperstarStory.h"
 #include "SuperstarStage.h"
 #include "SuperstarMusic.h"
+#include "BackstageSfx.h"
 #include "BackstageArt.h"
 #include "AudioMixerBlueprintLibrary.h"
 #include "Engine/World.h"
@@ -104,6 +105,8 @@ void ASuperstarStoryHUD::BeginPlay()
     Stage = GetWorld()->SpawnActor<ASuperstarStage>();
     if (Stage) GetOwningPlayerController()->SetViewTarget(Stage);
     SelectBeat(0);
+    Sfx=UBackstageSfx::For(GetOwningPlayerController());
+    if(FParse::Param(FCommandLine::Get(),TEXT("InterfaceSfxSmoke")) && Music) Music->ToggleMute();
     bMusicSmoke = FParse::Param(FCommandLine::Get(), TEXT("SuperstarMusicSmoke"));
     if (bMusicSmoke)
     {
@@ -215,7 +218,7 @@ void ASuperstarStoryHUD::Tick(float Delta)
         return;
     }
     if (!Error.IsEmpty() || !Beats.IsValidIndex(Beat)) return;
-    if (bTransportSmoke) { RunTransportSmoke(); if(TransportSmokeTicks<73 || TransportSmokeTicks>=145) return; }
+    if (bTransportSmoke) { RunTransportSmoke(); if(TransportSmokeTicks<73 || TransportSmokeTicks>=205) return; }
     if (bMotionSmoke) { RunMotionSmoke(); return; }
     if (bPhotoSmoke) { RunPhotoSmoke(); UpdateActors(); return; }
     if(PhotoPhase==ESuperstarPhotoPhase::Live && HandleTimelinePointer(Pointer(),PC->WasInputKeyJustPressed(EKeys::LeftMouseButton),PC->IsInputKeyDown(EKeys::LeftMouseButton),PC->WasInputKeyJustReleased(EKeys::LeftMouseButton)))
@@ -223,7 +226,7 @@ void ASuperstarStoryHUD::Tick(float Delta)
         if(Music) Music->SetStoryPaused(true);
         UpdateActors();return;
     }
-    if (TickPhotography(Delta)) return;
+    if (TickPhotography(Delta)) { if(Sfx) Sfx->TransportMotion(0); return; }
     if (bMusicSmoke)
     {
         const double Elapsed = FPlatformTime::Seconds() - MusicSmokeStart;
@@ -296,23 +299,27 @@ void ASuperstarStoryHUD::Tick(float Delta)
     if (PC->WasInputKeyJustPressed(EKeys::SpaceBar) || PC->WasInputKeyJustPressed(EKeys::R) || PC->WasInputKeyJustPressed(EKeys::RightMouseButton)) { bPlaying=!bPlaying;PlaybackRate=bPlaying?1.f:0.f; }
     if (PC->WasInputKeyJustPressed(EKeys::M) && Music) Music->ToggleMute();
     if (PC->WasInputKeyJustPressed(EKeys::B)) bReferenceView = !bReferenceView;
-    if (PC->WasInputKeyJustPressed(EKeys::PageUp)) SelectBeat(Beat - 1);
-    if (PC->WasInputKeyJustPressed(EKeys::PageDown)) SelectBeat(Beat + 1);
-    if (PC->WasInputKeyJustPressed(EKeys::Home)) { SeekSequence(0);PlaybackRate=0; }
-    if (PC->WasInputKeyJustPressed(EKeys::End)) { SeekSequence(SequenceDuration);bPlaying=false;PlaybackRate=0; }
+    auto Jump=[this](int32 Index,FName Cue)
+    {
+        if(Beats.IsValidIndex(Index)) { if(Sfx) Sfx->PlayCue(Cue); SelectBeat(Index); }
+    };
+    if (PC->WasInputKeyJustPressed(EKeys::PageUp)) Jump(Beat - 1,TEXT("rewind"));
+    if (PC->WasInputKeyJustPressed(EKeys::PageDown)) Jump(Beat + 1,TEXT("forward"));
+    if (PC->WasInputKeyJustPressed(EKeys::Home)) { if(Sfx) Sfx->PlayCue(TEXT("rewind")); SeekSequence(0);PlaybackRate=0; }
+    if (PC->WasInputKeyJustPressed(EKeys::End)) { if(Sfx) Sfx->PlayCue(TEXT("forward")); SeekSequence(SequenceDuration);bPlaying=false;PlaybackRate=0; }
     const FKey Chapters[] = {EKeys::F1, EKeys::F2, EKeys::F3, EKeys::F4};
     for (int32 C = 0; C < 4; ++C)
         if (PC->WasInputKeyJustPressed(Chapters[C]))
             for (int32 I = 0; I < Beats.Num(); ++I)
-                if (Beats[I]->GetIntegerField(TEXT("chapter")) == C + 1) { SelectBeat(I); break; }
+                if (Beats[I]->GetIntegerField(TEXT("chapter")) == C + 1) { Jump(I,TEXT("chapter")); break; }
     const bool bGate = !Beats[Beat]->GetStringField(TEXT("evidence")).IsEmpty() && !bPublished;
     const auto P = Pointer();
     if (PC->WasInputKeyJustPressed(EKeys::LeftMouseButton))
     {
-        if (Inside(P, 35, 655, 110, 40)) SelectBeat(Beat - 1);
+        if (Inside(P, 35, 655, 110, 40)) Jump(Beat - 1,TEXT("rewind"));
         else if (Inside(P, 155, 655, 110, 40)) bPlaying = !bPlaying;
-        else if (Inside(P, 275, 655, 110, 40)) SelectBeat(Beat + 1);
-        else if (Inside(P, 405, 655, 110, 40)) SelectBeat(Beat);
+        else if (Inside(P, 275, 655, 110, 40)) Jump(Beat + 1,TEXT("forward"));
+        else if (Inside(P, 405, 655, 110, 40)) Jump(Beat,TEXT("rewind"));
         else if (Inside(P, 875, 655, 185, 40)) bReferenceView = !bReferenceView;
         else if (Inside(P, 1080, 655, 160, 40)) { UGameplayStatics::OpenLevel(this, TEXT("/Game/levels/MainMenu"), true); return; }
         else if (bGate && Inside(P, 52, 423, 330, 75)) { bEvidencePlaced = true; bDragging = true; }

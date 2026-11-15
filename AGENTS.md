@@ -216,3 +216,5 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 
 - 超级巨星 Canvas UI 的按钮统一用 `Button` / `FitLabel`，通过实际复合字体测量文字宽高，再缩小字号并居中；保留原设计坐标、点击区域与Pointer逆变换。新增按钮不要再次写固定偏移的无边界Label。`-SuperstarPhotoSmoke`另输出Confirm/Edit截图，使用 `-ForceRes -ResX=1024 -ResY=768` 验证4:3留边；验证记录见 [UI适配](Docs/SuperstarStory/UI-20261115.md)。
 - 最新补动画交接为 `Deliverables/Superstar-Animation-Round2-20261115.zip`，78项必做（含21项表情）、8项已回传复用和10组同步验收。构建入口 `Tools/Build-SuperstarAnimationRound2.py`，只依赖仓库内输入；生成机从包内START_HERE.md开始。不要将当前W_/H_原型视为对应正式动作任务已完成。
+
+- 共享操作音效由 `BackstageSfx.*` 提供，旧两关通过 `BackstagePlayCue/BackstageAudioMotion` 调用，超级巨星直接调用组件；8个原创SoundWave在 `Content/Audio/Interface/`，源WAV与生成脚本可复现。保留该目录的 `DirectoriesToAlwaysCook`。镜头/变焦按实际目标变化并限频，快进倒放在方向变化时提示，结算只在成功进入/保存结果时触发，不能放进DrawHUD或绝对时间姿态求值。真实录音与输入验证见 [操作音效](Docs/Audio/InterfaceSfx-20261115.md)；`-InterfaceSfxSmoke`会临时静音BGM并导出8项音效录音，不用于正常游玩。

@@ -11,6 +11,7 @@ class UTexture2D;
 class UFont;
 class ASuperstarStage;
 class USuperstarMusic;
+class UBackstageSfx;
 
 USTRUCT()
 struct FSuperstarPhoto
@@ -62,6 +63,7 @@ private:
     UPROPERTY(Transient) TObjectPtr<UFont> StoryFont;
     UPROPERTY(Transient) TObjectPtr<ASuperstarStage> Stage;
     UPROPERTY(VisibleAnywhere) TObjectPtr<USuperstarMusic> Music;
+    UPROPERTY(Transient) TObjectPtr<UBackstageSfx> Sfx;
     bool bReferenceView = false;
     int32 Beat = 0;
     float Clock = 0.f;
