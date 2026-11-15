@@ -230,6 +230,8 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 
 ## 9. 2026-11-15 新增：中英文显示
 
+- 舞台“扶摇直上 / RISE TO STARDOM”使用 `SuperstarStage` 的世界空间 `UWidgetComponent` 固定在中央背景板，随镜头透视、平移和变焦投影，不再由 HUD 固定坐标绘制。新增 `UMG` 原生模块依赖，其余 HUD 仍用 Canvas；参考图模式隐藏该组件。`-SuperstarRound2Smoke` 的舞台取样包含左右机位及平移/变焦。
+
 - 四关结算报头统一为“骏风娱乐 / JUNFENG ENTERTAINMENT”。F1–F5 的玩家界面提示隐藏，现有快捷键仍可用，DefaultInput.ini移除了F1–F5的引擎调试渲染绑定，避免选关时切到线框等模式。“查看参考图片”按钮及点击区域已移除，B 键仍可切换参考图。角色名使用逐帧头部锚点，在表情区域上方显示，接近画幅顶端时侧移避让。决赛第24–27段凳子统一位于人物平面后方；走廊统一展示正式名单图片，旧六人照片墙占位几何已移除。
 
 - 首页右上角按钮 / `L` 切换中英文，写入用户 `GameUserSettings.ini`，跨地图和重启保留。首次默认中文。`-GameLanguage=en/zh` 可临时覆盖。

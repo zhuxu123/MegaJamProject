@@ -127,7 +127,8 @@ void ASuperstarStoryHUD::RunRound2Smoke()
         if(Beats[Beat]->TryGetArrayField(TEXT("props"),Props)) for(const auto& V:*Props)
         {double T=0;if(V->AsObject()->TryGetNumberField(TEXT("transfer_at"),T)) {Clock=T;break;}}
     }
-    Stage->SetView(Sample==1?-1.f:(Sample==3?1.f:0.f),0,0,1);
+    const bool bStageCloseup=Beats[Beat]->GetStringField(TEXT("scene"))==TEXT("stage") && Sample==2;
+    Stage->SetView(Sample==1?-1.f:(Sample==3?1.f:0.f),bStageCloseup?.35f:0.f,bStageCloseup?.2f:0.f,bStageCloseup?1.5f:1.f);
     UpdateActors();
     FScreenshotRequest::RequestScreenshot(FPaths::ProjectSavedDir()/TEXT("Screenshots/SuperstarRound2")/FString::Printf(TEXT("B%02d-%d.png"),Beat+1,Sample),true,false);
     ++Round2SmokeStep;

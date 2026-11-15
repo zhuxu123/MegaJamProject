@@ -1,11 +1,16 @@
 #include "SuperstarStage.h"
+#include "GameLocalization.h"
 #include "Camera/CameraComponent.h"
 #include "Components/DirectionalLightComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/WidgetComponent.h"
+#include "Engine/Font.h"
 #include "Engine/Texture2D.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "PaperSpriteComponent.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Widgets/Layout/SBox.h"
+#include "Widgets/Text/STextBlock.h"
 
 void USuperstarRuntimeSprite::Initialize(UTexture2D* Texture, UMaterialInterface* Material)
 {
@@ -39,6 +44,18 @@ ASuperstarStage::ASuperstarStage()
     BaseMaterial = FlatAsset.Object;
     SpriteMaterial = SpriteAsset.Object;
     RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("StoryRoot"));
+    StageSign = CreateDefaultSubobject<UWidgetComponent>(TEXT("StageSign"));
+    StageSign->SetupAttachment(RootComponent);
+    StageSign->SetWidgetSpace(EWidgetSpace::World);
+    StageSign->SetDrawSize(FVector2D(1024,160));
+    StageSign->SetPivot(FVector2D(.5,.5));
+    StageSign->SetBlendMode(EWidgetBlendMode::Transparent);
+    StageSign->SetBackgroundColor(FLinearColor::Transparent);
+    StageSign->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+    StageSign->SetRelativeLocation(FVector(0,275,325));
+    StageSign->SetRelativeRotation(FRotator(0,-90,0));
+    StageSign->SetRelativeScale3D(FVector(.28));
+    StageSign->SetVisibility(false);
     Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("StoryCamera"));
     Camera->SetupAttachment(RootComponent);
     Camera->SetRelativeLocation(FVector(0, -1400, 470));
@@ -122,6 +139,16 @@ void ASuperstarStage::SetScene(const FString& Scene)
     const bool bOutdoor = Scene == TEXT("outdoor") || Scene == TEXT("newstudio");
     const bool bDayExterior = Scene == TEXT("newstudio");
     const bool bStage = Scene == TEXT("stage");
+    StageSign->SetVisibility(bStage);
+    if (bStage)
+    {
+        auto* Font=LoadObject<UFont>(nullptr,TEXT("/Engine/EngineFonts/Roboto.Roboto"));
+        StageSign->SetSlateWidget(SNew(SBox).HAlign(HAlign_Center).VAlign(VAlign_Center)
+            [SNew(STextBlock)
+                .Text(FText::FromString(GameLocalization::Translate(TEXT("扶 摇 直 上"))))
+                .Font(FSlateFontInfo(Font,64))
+                .ColorAndOpacity(FSlateColor(FLinearColor(.30f,.85f,.73f))) ]);
+    }
     const FLinearColor Wall = bDayExterior ? FLinearColor(.38f,.57f,.70f) : (bOutdoor ? FLinearColor(.09f,.15f,.25f) : FLinearColor(.28f,.36f,.44f));
     const FLinearColor Trim(.07f,.12f,.18f), Light(.5f,.78f,.83f);
     Box({0,70,-16}, {1500,850,30}, bOutdoor ? FLinearColor(.13f,.19f,.26f) : FLinearColor(.32f,.38f,.43f));
@@ -254,6 +281,7 @@ void ASuperstarStage::SetCharacter(int32 Index, UTexture2D* Texture, float Scree
 
 void ASuperstarStage::SetReferenceView(bool bReference)
 {
+    StageSign->SetVisibility(!bReference && CurrentScene==TEXT("stage"));
     for(UStaticMeshComponent* Mesh:StoryFurniture) Mesh->SetVisibility(!bReference);
     for(UPaperSpriteComponent* Character : Characters) Character->SetVisibility(!bReference);
     for(UPaperSpriteComponent* Prop : Props) Prop->SetVisibility(!bReference);

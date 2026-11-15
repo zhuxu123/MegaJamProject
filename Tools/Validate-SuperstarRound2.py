@@ -52,6 +52,15 @@ assert [sum(b['duration'] for b in s['beats'] if b['chapter']==i) for i in range
 for n in [4,5]:
  assert sum(a['name']=='粉丝' and a['depth']>0 for a in s['beats'][n-1]['actors'])==3
 for n in [5,39]:assert s['beats'][n-1]['actors'][0]['clip']=='A12_linwan_walk_umbrella'
+# The 16:9 roster must fit between the left wall and the first door frame.
+# Coordinates match the authored layout in SuperstarStage::SetScene.
+for beat in s['beats']:
+ if beat['scene']=='corridor':
+  roster=[p for p in beat.get('props',[]) if p['image'].endswith('EV03_roster.png')]
+  assert len(roster)==1
+  center=(roster[0]['x']-640)*1400/1280
+  half_width=roster[0]['size']*16/9/2
+  assert center-half_width>=-720 and center+half_width<=-335, 'Roster overlaps the wall edge or door clearance'
 # The studio table persists across entrance, confrontation and exit. All moving
 # sprites stay in front of its nearest surface throughout their absolute-time paths.
 for beat in s['beats'][:3]:

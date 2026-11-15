@@ -502,7 +502,6 @@ void ASuperstarStoryHUD::Background(const FString& Scene)
         Rect(45, 115, 310, 30, Ink);
         FitLabel(bFullStoryDebug?TEXT("3D 布景初版  ·  B 对照参考图"):TEXT("拍摄现场  ·  B 对照参考图"), 55, 118, 290, 24, 16, Mint);
         if (Scene == TEXT("storage")) Label(TEXT("杂物间：李谋 · 苏瑶 / 提及小北"), 820, 180, 17);
-        if (Scene == TEXT("stage")) Label(TEXT("扶 摇 直 上"), 550, 180, 25, Mint);
         return;
     }
     FString Ref = Scene;

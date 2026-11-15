@@ -10,6 +10,7 @@ class UPaperSpriteComponent;
 class UMaterialInterface;
 class UTexture2D;
 class UStaticMesh;
+class UWidgetComponent;
 
 UCLASS()
 class USuperstarRuntimeSprite : public UPaperSprite
@@ -39,6 +40,7 @@ public:
     FVector PropPixelWorld(int32 Index, FVector2D UV) const;
 private:
     UPROPERTY() TObjectPtr<UCameraComponent> Camera;
+    UPROPERTY() TObjectPtr<UWidgetComponent> StageSign;
     UPROPERTY() TArray<TObjectPtr<UStaticMeshComponent>> Pieces;
     UPROPERTY() TArray<TObjectPtr<UStaticMeshComponent>> StoryFurniture;
     UPROPERTY() TArray<TObjectPtr<UPaperSpriteComponent>> Characters;
