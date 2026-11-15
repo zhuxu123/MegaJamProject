@@ -97,6 +97,9 @@ void ASuperstarStoryHUD::BeginPlay()
     ReadStoryJson(TEXT("head_anchors.json"), HeadAnchors);
     for (const auto& Value : Data->GetArrayField(TEXT("beats"))) Beats.Add(Value->AsObject());
     for (const auto& StoryBeat : Beats) { BeatStarts.Add(SequenceDuration); SequenceDuration+=StoryBeat->GetNumberField(TEXT("duration")); }
+    FullDuration=SequenceDuration;LastBeat=Beats.Num();
+    if(!LoadLevels()) {Error=TEXT("四关任务配置无效，请检查 levels.json。");return;}
+    bLevelsSmoke=FParse::Param(FCommandLine::Get(),TEXT("SuperstarLevelsSmoke"));
     bTransportSmoke=FParse::Param(FCommandLine::Get(),TEXT("SuperstarTransportSmoke"));
     bSmoke = FParse::Param(FCommandLine::Get(), TEXT("SuperstarSmoke")) || FParse::Param(FCommandLine::Get(), TEXT("SuperstarMenuSmoke"));
     bReferenceView = FParse::Param(FCommandLine::Get(), TEXT("SuperstarReferences"));
@@ -113,6 +116,13 @@ void ASuperstarStoryHUD::BeginPlay()
         MusicSmokeStart = FPlatformTime::Seconds();
         UAudioMixerBlueprintLibrary::StartRecordingOutput(this, 90.f);
         UE_LOG(LogTemp, Display, TEXT("SuperstarMusic smoke: recording master output; first cue loops after 48 seconds"));
+    }
+    bFullStoryDebug=bSmoke || bPhotoSmoke || bMotionSmoke || bTransportSmoke || bMusicSmoke || FParse::Param(FCommandLine::Get(),TEXT("InterfaceSfxSmoke"));
+    if(bFullStoryDebug) LevelPhase=ESuperstarLevelPhase::Playing;
+    else
+    {
+        const int32 Requested=FCString::Atoi(GetWorld()->URL.GetOption(TEXT("chapter="),TEXT("0")));
+        if(Requested>=1 && Requested<=4) ChooseLevel(Requested-1);else ShowLevelSelect();
     }
     UE_LOG(LogTemp, Display, TEXT("SuperstarStory: loaded %d beats, %d clips at 5 fps"), Beats.Num(), Clips->Values.Num());
 }
@@ -147,7 +157,7 @@ UTexture2D* ASuperstarStoryHUD::LoadFrame(const FString& Path)
 
 void ASuperstarStoryHUD::SelectBeat(int32 Index)
 {
-    if (!Beats.IsValidIndex(Index)) return;
+    if (!Beats.IsValidIndex(Index) || Index<FirstBeat || Index>=LastBeat) return;
     Beat = Index;
     Clock = 0;
     bPublished=PublishedBeats.Contains(Beat);
@@ -212,12 +222,15 @@ void ASuperstarStoryHUD::Tick(float Delta)
     auto* PC = GetOwningPlayerController();
     if (!PC) return;
     if (Stage && PC->GetViewTarget() != Stage) PC->SetViewTarget(Stage);
+    if (!Error.IsEmpty() || !Beats.IsValidIndex(Beat)) return;
+    if(bLevelsSmoke) RunLevelsSmoke();
+    if(TickLevelFlow()) return;
     if (PC->WasInputKeyJustPressed(EKeys::Escape) && PhotoPhase == ESuperstarPhotoPhase::Live)
     {
-        UGameplayStatics::OpenLevel(this, TEXT("/Game/levels/MainMenu"), true);
+        if(bFullStoryDebug) UGameplayStatics::OpenLevel(this,TEXT("/Game/levels/MainMenu"),true);
+        else ShowLevelSelect();
         return;
     }
-    if (!Error.IsEmpty() || !Beats.IsValidIndex(Beat)) return;
     if (bTransportSmoke) { RunTransportSmoke(); if(TransportSmokeTicks<73 || TransportSmokeTicks>=205) return; }
     if (bMotionSmoke) { RunMotionSmoke(); return; }
     if (bPhotoSmoke) { RunPhotoSmoke(); UpdateActors(); return; }
@@ -301,7 +314,7 @@ void ASuperstarStoryHUD::Tick(float Delta)
     if (PC->WasInputKeyJustPressed(EKeys::B)) bReferenceView = !bReferenceView;
     auto Jump=[this](int32 Index,FName Cue)
     {
-        if(Beats.IsValidIndex(Index)) { if(Sfx) Sfx->PlayCue(Cue); SelectBeat(Index); }
+        if(Beats.IsValidIndex(Index) && Index>=FirstBeat && Index<LastBeat) { if(Sfx) Sfx->PlayCue(Cue); SelectBeat(Index); }
     };
     if (PC->WasInputKeyJustPressed(EKeys::PageUp)) Jump(Beat - 1,TEXT("rewind"));
     if (PC->WasInputKeyJustPressed(EKeys::PageDown)) Jump(Beat + 1,TEXT("forward"));
@@ -310,8 +323,11 @@ void ASuperstarStoryHUD::Tick(float Delta)
     const FKey Chapters[] = {EKeys::F1, EKeys::F2, EKeys::F3, EKeys::F4};
     for (int32 C = 0; C < 4; ++C)
         if (PC->WasInputKeyJustPressed(Chapters[C]))
+        {
+            if(!bFullStoryDebug) {ChooseLevel(C);return;}
             for (int32 I = 0; I < Beats.Num(); ++I)
                 if (Beats[I]->GetIntegerField(TEXT("chapter")) == C + 1) { Jump(I,TEXT("chapter")); break; }
+        }
     const bool bGate = !Beats[Beat]->GetStringField(TEXT("evidence")).IsEmpty() && !bPublished;
     const auto P = Pointer();
     if (PC->WasInputKeyJustPressed(EKeys::LeftMouseButton))
@@ -321,7 +337,7 @@ void ASuperstarStoryHUD::Tick(float Delta)
         else if (Inside(P, 275, 655, 110, 40)) Jump(Beat + 1,TEXT("forward"));
         else if (Inside(P, 405, 655, 110, 40)) Jump(Beat,TEXT("rewind"));
         else if (Inside(P, 875, 655, 185, 40)) bReferenceView = !bReferenceView;
-        else if (Inside(P, 1080, 655, 160, 40)) { UGameplayStatics::OpenLevel(this, TEXT("/Game/levels/MainMenu"), true); return; }
+        else if (Inside(P, 1080, 655, 160, 40)) { if(bFullStoryDebug) UGameplayStatics::OpenLevel(this,TEXT("/Game/levels/MainMenu"),true);else ShowLevelSelect();return; }
         else if (bGate && Inside(P, 52, 423, 330, 75)) { bEvidencePlaced = true; bDragging = true; }
         else if (bGate && Inside(P, 995, 445, 185, 48)) Publish();
     }
@@ -437,7 +453,7 @@ void ASuperstarStoryHUD::Background(const FString& Scene)
     {
         if (PhotoPhase == ESuperstarPhotoPhase::Capturing) return;
         Rect(45, 115, 310, 30, Ink);
-        FitLabel(TEXT("3D 布景初版  ·  B 对照参考图"), 55, 118, 290, 24, 16, Mint);
+        FitLabel(bFullStoryDebug?TEXT("3D 布景初版  ·  B 对照参考图"):TEXT("拍摄现场  ·  B 对照参考图"), 55, 118, 290, 24, 16, Mint);
         if (Scene == TEXT("storage")) Label(TEXT("杂物间：李谋 · 苏瑶 / 提及小北"), 820, 180, 17);
         if (Scene == TEXT("stage")) Label(TEXT("扶 摇 直 上"), 550, 180, 25, Mint);
         return;
@@ -696,21 +712,22 @@ void ASuperstarStoryHUD::DrawHUD()
     }
     if (!Error.IsEmpty()) { Label(Error, 60, 200, 24); return; }
     if (!Beats.IsValidIndex(Beat)) return;
+    if(LevelPhase!=ESuperstarLevelPhase::Playing) {DrawLevelFlow();return;}
     if (PhotoPhase != ESuperstarPhotoPhase::Live && PhotoPhase != ESuperstarPhotoPhase::Capturing)
     {
         DrawPhotography();
         return;
     }
     const auto Current = Beats[Beat];
-    Label(TEXT("超级巨星  /  剧情预演"), 35, 26, 28, Mint);
-    Label(FString::Printf(TEXT("第 %d 幕   %02d / %02d   ·   5 FPS"), Current->GetIntegerField(TEXT("chapter")), Beat + 1, Beats.Num()), 850, 35, 20);
+    FitLabel(bFullStoryDebug?TEXT("超级巨星  /  剧情预演"):FString::Printf(TEXT("超级巨星  /  %s"),*Levels[LevelIndex]->GetStringField(TEXT("title"))),35,26,780,44,28,Mint);
+    Label(FString::Printf(TEXT("第 %d 关   %02d / %02d   ·   5 FPS"), Current->GetIntegerField(TEXT("chapter")), Beat - FirstBeat + 1, LastBeat-FirstBeat), 850, 35, 20);
     Label(Current->GetStringField(TEXT("title")), 35, 73, 21);
     if (Music) Label(Music->Status(), 850, 77, 14, Mint);
     Background(Current->GetStringField(TEXT("scene")));
     DrawActors();
     if (PhotoPhase == ESuperstarPhotoPhase::Capturing) return;
     FitLabel(Current->GetStringField(TEXT("description")), 35, 530, 1210, 34, 18);
-    FitLabel(Current->GetStringField(TEXT("note")), 35, 568, 1210, 26, 15, FLinearColor(.9f,.72f,.42f));
+    FitLabel(bFullStoryDebug?Current->GetStringField(TEXT("note")):TEXT("任务：")+Levels[LevelIndex]->GetStringField(TEXT("objective")), 35, 568, 1210, 26, 15, FLinearColor(.9f,.72f,.42f));
     const FString Evidence = Current->GetStringField(TEXT("evidence"));
     if (!Evidence.IsEmpty())
     {
@@ -735,8 +752,8 @@ void ASuperstarStoryHUD::DrawHUD()
     DrawTransport();
     const FString Buttons[] = {TEXT("上一段 PgUp"), bPlaying ? TEXT("暂停 空格") : TEXT("播放 空格"), TEXT("下一段 PgDn"), TEXT("本段重播")};
     for (int32 I = 0; I < 4; ++I) { const int32 X = I == 3 ? 405 : 35 + I * 120; Button(Buttons[I], X, 655, 110, 40, 16, FLinearColor(.10f,.17f,.21f)); }
-    FitLabel(TEXT("F1—F4 跳幕 · Tab 相册"), 535, 655, 320, 40, 16, Mint, true);
+    FitLabel(TEXT("F1—F4 任务单 · Tab 相册"), 535, 655, 320, 40, 16, Mint, true);
     FitLabel(FString::Printf(TEXT("机位 %d · WASD 构图 · Q/E/滚轮变焦 · Enter 拍照 · 已存 %d/6"),CameraStation+1,Photos.Num()),35,595,1210,20,13,Mint);
     Button(bReferenceView ? TEXT("B 切换 3D 布景") : TEXT("B 查看参考图片"), 875, 655, 185, 40, 16, FLinearColor(.10f,.17f,.21f));
-    Button(TEXT("返回主菜单 ESC"), 1080, 655, 160, 40, 16, FLinearColor(.10f,.17f,.21f));
+    Button(bFullStoryDebug?TEXT("返回主菜单 ESC"):TEXT("返回选关 ESC"), 1080, 655, 160, 40, 16, FLinearColor(.10f,.17f,.21f));
 }

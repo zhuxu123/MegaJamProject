@@ -765,7 +765,7 @@ class ABackstageHUD : AHUD
 
         const bool bHoverStory = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608;
         Box(bHoverStory ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 420, 566, 440, 42);
-        CenteredShadowText("[ 3 ] 超级巨星 · 完整剧情预演", 640, 578, bHoverStory ? Mint : Paper, 1.14);
+        CenteredShadowText("[ 3 ] 超级巨星 · 四关独立选关", 640, 578, bHoverStory ? Mint : Paper, 1.14);
 
         CenteredShadowText("操作：WASD 移动/俯仰  |  按住左键拖拽场景  |  滚轮/Q/E 缩放  |  1-3 机位  |  空格 暂停  |  Enter 拍照并确认",
             640, 622, Muted, 1.00);

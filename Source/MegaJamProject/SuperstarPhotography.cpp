@@ -19,11 +19,6 @@ namespace
 {
     const FLinearColor PhotoInk(.025f,.033f,.055f,1.f), PhotoMint(.30f,.85f,.73f,1.f);
     bool Hit(FVector2D P,float X,float Y,float W,float H) { return P.X>=X && P.X<X+W && P.Y>=Y && P.Y<Y+H; }
-    FString HeadlineText(int32 Index)
-    {
-        const TCHAR* Titles[] = {TEXT("现场直击：三个时刻的记录"),TEXT("镜头里的善意与援手"),TEXT("聚光灯背后的冲突")};
-        return Titles[FMath::Clamp(Index,0,2)];
-    }
     void CropBounds(FSuperstarPhoto& P)
     {
         P.CropZoom=FMath::Clamp(P.CropZoom,1.f,3.f);
@@ -88,7 +83,7 @@ void ASuperstarStoryHUD::UpdateCamera(float Delta)
 
 void ASuperstarStoryHUD::TakePhoto()
 {
-    if (PhotoPhase!=ESuperstarPhotoPhase::Live || Photos.Num()>=6 || bReferenceView
+    if (LevelPhase!=ESuperstarLevelPhase::Playing || PhotoPhase!=ESuperstarPhotoPhase::Live || Photos.Num()>=6 || bReferenceView
         || Beats[Beat]->GetStringField(TEXT("scene"))==TEXT("newspaper")) return;
     if(Sfx) {Sfx->TransportMotion(0);Sfx->PlayCue(TEXT("shutter"));}
     PendingPhoto=FSuperstarPhoto();
@@ -179,6 +174,7 @@ void ASuperstarStoryHUD::TogglePhoto(int32 Index)
 void ASuperstarStoryHUD::StartPhotoPreview(bool bPublish)
 {
     if (PhotoSlots.Num()!=3) { PhotoNotice=TEXT("请先选满3张照片。"); return; }
+    if(bPublish && !CanPublishLevel()) return;
     PreviewClock=0;
     bPublishPhotos=bPublish;
     PhotoPhase=ESuperstarPhotoPhase::Preview;
@@ -187,7 +183,11 @@ void ASuperstarStoryHUD::StartPhotoPreview(bool bPublish)
 void ASuperstarStoryHUD::SavePublication()
 {
     auto Manifest=MakeShared<FJsonObject>();
-    Manifest->SetStringField(TEXT("headline"),HeadlineText(Headline));
+    Manifest->SetStringField(TEXT("headline"),PublicationHeadline());
+    Manifest->SetNumberField(TEXT("level"),LevelIndex+1);
+    Manifest->SetNumberField(TEXT("first_beat"),FirstBeat+1);
+    Manifest->SetNumberField(TEXT("last_beat"),LastBeat);
+    if(Levels.IsValidIndex(LevelIndex)) Manifest->SetStringField(TEXT("level_title"),Levels[LevelIndex]->GetStringField(TEXT("title")));
     Manifest->SetStringField(TEXT("scope"),TEXT("SuperstarStory player photo sequence; no legacy level score is inferred."));
     TArray<TSharedPtr<FJsonValue>> Shots;
     const FString Edition=TEXT("Publication-")+FGuid::NewGuid().ToString(EGuidFormats::Digits);
@@ -212,10 +212,14 @@ void ASuperstarStoryHUD::SavePublication()
         Shots.Add(MakeShared<FJsonValueObject>(J));
     }
     Manifest->SetArrayField(TEXT("shots"),Shots);
+    TArray<TSharedPtr<FJsonValue>> Evidence;
+    for(int32 I=FirstBeat;I<LastBeat;++I) if(PublishedBeats.Contains(I)) Evidence.Add(MakeShared<FJsonValueNumber>(I+1));
+    Manifest->SetArrayField(TEXT("published_evidence_beats"),Evidence);
     FString Json;FJsonSerializer::Serialize(Manifest,TJsonWriterFactory<>::Create(&Json));
     if (!FFileHelper::SaveStringToFile(Json,*(Directory/TEXT("publication.json")),FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM)) { PhotoNotice=TEXT("发布记录写入失败。");PhotoPhase=ESuperstarPhotoPhase::Edit;return; }
     PhotoNotice=TEXT("原图与发布序列已保存到 Saved/SuperstarPhotos。");
     if(Sfx) Sfx->PlayCue(TEXT("result"));
+    if(!bFullStoryDebug) {LevelPhase=ESuperstarLevelPhase::Newspaper;bPlaying=false;if(Music) Music->SetStoryPaused(true);}
     UE_LOG(LogTemp,Display,TEXT("SuperstarPhoto: publication saved %s"),*Directory);
 }
 
@@ -307,14 +311,14 @@ void ASuperstarStoryHUD::DrawPhotography()
     if(PhotoPhase==ESuperstarPhotoPhase::Preview)
     {
         const int32 I=FMath::Clamp(FMath::FloorToInt(PreviewClock/2),0,2);
-        Label(HeadlineText(Headline),35,35,28,PhotoMint);
+        Label(PublicationHeadline(),35,35,28,PhotoMint);
         DrawPhoto(Photos[PhotoSlots[I]],35,150,1210,true);
         Label(FString::Printf(TEXT("%d / 3 · %s · Backspace 取消"),I+1,bPublishPhotos?TEXT("发布预览"):TEXT("仅预览")),35,610,20);
         return;
     }
     const bool bResults=PhotoPhase==ESuperstarPhotoPhase::Results;
     Label(bResults?TEXT("现场报道已发布"):TEXT("选图与剪辑 · 保留3个时刻"),35,30,28,PhotoMint);
-    Label(HeadlineText(Headline),35,83,21);
+    Label(PublicationHeadline(),35,83,21);
     for(int32 I=0;I<6;++I)
     {
         const float X=35+I*203;

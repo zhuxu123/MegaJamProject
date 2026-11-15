@@ -199,22 +199,25 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 - **照片灰色、错帧或裁切评分异常：** 检查材质路径及 `Color` 参数、着色器就绪、缓存槽/键、确定性姿态、相机投影与 Evidence 是否一致。
 - **场景或 GameMode 不对：** 核对默认地图、地图上的 GameMode override 和脚本编译日志；不要直接替换整个关卡来绕过配置问题。
 
-## 8. 2026-11-15 新增：超级巨星独立预演
+## 8. 2026-11-15 新增：超级巨星四关流程
 
-- 主菜单增加 `3` / “超级巨星 · 完整剧情预演”入口；原有两个入口和玩法保持不变。
-- 新模式位于 `Source/MegaJamProject/SuperstarStory.*` 与 `SuperstarStage.*`，数据/图片在 `Content/SuperstarStory/`。以 MainMenu 地图的 URL GameMode override 承载，不覆盖任何旧 `.umap`。
+- 主菜单增加 `3` / “超级巨星 · 四关独立选关”入口；原有两个入口和玩法保持不变。
+- 新模式位于 `Source/MegaJamProject/SuperstarStory.*` 、`SuperstarLevels.cpp` 与 `SuperstarStage.*`，关卡配置在 `Content/SuperstarStory/levels.json`，数据/图片在 `Content/SuperstarStory/`。以 MainMenu 地图的 URL GameMode override 承载，不覆盖任何旧 `.umap`。
 - 当前为四幕 39 段的 3D 布景初版 + 5 FPS 人物精灵；B 切换原始参考图。不是骨骼动画或新拍照评分关卡。缺失动画、专属角色和证据图有明确占位。
 - 用户确认片场导演=李谋。新预演临时复用原有四种2D情绪符号，通过 `BackstageArt.h` 只读桥接和 `story.json` 的 `emotion_placeholder/emotions` 控制；不更改旧关卡符号行为，真实表情生成任务仍保留。
 - 预演专属BGM在 `Content/SuperstarStory/Audio/`：七首原创合成器乐、39段映射，`SuperstarMusic.*` 管理循环/1.4秒换曲淡化/暂停/退出清理；M静音。新增 `AudioExtensions` 和 `AudioMixer` 原生模块依赖。音乐与真实引擎输出检查见 [BGM说明](Docs/SuperstarStory/BGM.md)，不要用无声 `NullRHI` 测试代替音频验收。
-- 新预演摄影位于 `SuperstarPhotography.cpp`：1–3机位、WASD/左拖构图、Q/E/滚轮变焦、Enter拍照确认、Tab相册，最多保留6张/选3张裁切排序发布；跳幕改F1–F4，剧情证据快捷键改V。照片为当时取景框像素，保存在Saved，按不同路径保存每次发布；不套用原两关评分。表情改用 `head_anchors.json` 逐帧锚点，结合精灵镜像和相机投影。生成新素材后须重建/复核锚点。
+- 新预演摄影位于 `SuperstarPhotography.cpp`：1–3机位、WASD/左拖构图、Q/E/滚轮变焦、Enter拍照确认、Tab相册，最多保留6张/选3张裁切排序发布；F1–F4打开对应关卡任务单并重置本轮，剧情证据快捷键为V。照片为当时取景框像素，保存在Saved，按不同路径保存每次发布；不套用原两关评分。表情改用 `head_anchors.json` 逐帧锚点，结合精灵镜像和相机投影。生成新素材后须重建/复核锚点。
 - 保留新 `Json` 模块依赖与 `DirectoriesToAlwaysStageAsUFS=(Path="SuperstarStory")`。当前增量素材使用 `clips.json.path` 指向版本目录，本批入口为 `Tools/Import-SuperstarPartial.py`；旧18项导入器不能覆盖扩展后的注册表。人物 `sequence/delay/hold_frame` 统一按绝对时间求值，母版与图片道具不代表互动动画完成。详见 [首批补件记录](Docs/SuperstarStory/Partial-20261115.md)。验证运行 `Tools/Validate-SuperstarStory.py`。
 - 操作、文件职责、已知缺口和带渲染 smoke 命令详见 [独立预演说明](Docs/SuperstarStory/README.md)。不得用本模式的透视参数更改原有照片投影契约。
 
 - 2026-11-15 演出修复：移动人物必须配置 `walk_clip/move_start/move_end`，朝向以移动方向与clip.screen_facing共同求值；道具使用逐帧hand_anchors及归一化grip附着，不再用固定offset伪装持物。原图、提示词在ArtSource，详见 [走路与持物修复](Docs/SuperstarStory/Motion-20261115.md)。`-SuperstarMotionSmoke`验证324个取样的方向、握点和时间回跳；不能替代最终艺术验收。
 
-- 超级巨星时间控制位于 `SuperstarTransport.cpp`：←/Z与→/C按住3倍倒放/快进，空格/R/右键暂停，PageUp/PageDown切段，Home/End跳全剧首尾。进度条连续拖动全剧时间并优先占用指针，松手暂停；已拍照片和已发证据保留。正常播放保留证据门槛，手动定位不自动发送。`-SuperstarTransportSmoke`含引擎键盘输入注入、拖动处理和跨sequence边界验证，详见 [时间线修复](Docs/SuperstarStory/Transport-20261115.md)。
+- 超级巨星时间控制位于 `SuperstarTransport.cpp`：←/Z与→/C按住3倍倒放/快进，空格/R/右键暂停，PageUp/PageDown切段，Home/End跳本关首尾。进度条连续拖动本关时间并优先占用指针，松手暂停；已拍照片和已发证据保留。正常播放保留证据门槛，手动定位不自动发送。`-SuperstarTransportSmoke`含引擎键盘输入注入、拖动处理和跨sequence边界验证，详见 [时间线修复](Docs/SuperstarStory/Transport-20261115.md)。
 
 - 超级巨星 Canvas UI 的按钮统一用 `Button` / `FitLabel`，通过实际复合字体测量文字宽高，再缩小字号并居中；保留原设计坐标、点击区域与Pointer逆变换。新增按钮不要再次写固定偏移的无边界Label。`-SuperstarPhotoSmoke`另输出Confirm/Edit截图，使用 `-ForceRes -ResX=1024 -ResY=768` 验证4:3留边；验证记录见 [UI适配](Docs/SuperstarStory/UI-20261115.md)。
 - 最新补动画交接为 `Deliverables/Superstar-Animation-Round2-20261115.zip`，78项必做（含21项表情）、8项已回传复用和10组同步验收。构建入口 `Tools/Build-SuperstarAnimationRound2.py`，只依赖仓库内输入；生成机从包内START_HERE.md开始。不要将当前W_/H_原型视为对应正式动作任务已完成。
 
 - 共享操作音效由 `BackstageSfx.*` 提供，旧两关通过 `BackstagePlayCue/BackstageAudioMotion` 调用，超级巨星直接调用组件；8个原创SoundWave在 `Content/Audio/Interface/`，源WAV与生成脚本可复现。保留该目录的 `DirectoriesToAlwaysCook`。镜头/变焦按实际目标变化并限频，快进倒放在方向变化时提示，结算只在成功进入/保存结果时触发，不能放进DrawHUD或绝对时间姿态求值。真实录音与输入验证见 [操作音效](Docs/Audio/InterfaceSfx-20261115.md)；`-InterfaceSfxSmoke`会临时静音BGM并导出8项音效录音，不用于正常游玩。
+
+- 四关流程：选关 → 摄制任务单 → 现场 → 三图编辑/发布 → 本关报纸；关尾停止并打开相册，不自动跨关。第一关1–6段（30秒，含间幕6）、第二关7–23段（75秒）、第三关24–32段（44秒，含间幕32）、第四关33–39段（39秒）。每关独立清空本轮照片、证据、镜头和时间，保留磁盘历史；第四关发布前必须发送3份证据。报纸可继续下一关任务单、重拍或返回选关。实现与验证见 [四关流程](Docs/SuperstarStory/Levels-20261115.md)。
+- `-SuperstarLevelsSmoke` 验证真实四关流程；既有 `SuperstarSmoke/PhotoSmoke/MotionSmoke/TransportSmoke/MusicSmoke`（均带Superstar前缀）及 `InterfaceSfxSmoke` 仅在显式测试时保留全剧连续范围，不能用这些模式验证正常选关。`Tools/Validate-SuperstarLevels.py --log <本次日志>` 检查四份独立发布及逐像素裁切。

@@ -9,14 +9,14 @@
 
 float ASuperstarStoryHUD::SequenceTime() const
 {
-    return BeatStarts.IsValidIndex(Beat)?BeatStarts[Beat]+Clock:0.f;
+    return BeatStarts.IsValidIndex(Beat)?BeatStarts[Beat]+Clock-TimelineOffset:0.f;
 }
 
 void ASuperstarStoryHUD::SeekSequence(float Time)
 {
-    Time=FMath::Clamp(Time,0.f,SequenceDuration);
-    int32 Target=Beats.Num()-1;
-    for(int32 I=0;I<Beats.Num()-1;++I)
+    Time=FMath::Clamp(Time,0.f,SequenceDuration)+TimelineOffset;
+    int32 Target=LastBeat-1;
+    for(int32 I=FirstBeat;I<LastBeat-1;++I)
         if(Time<BeatStarts[I+1]) {Target=I;break;}
     if(Target!=Beat) SelectBeat(Target);
     Clock=FMath::Clamp(Time-BeatStarts[Target],0.f,static_cast<float>(Beats[Target]->GetNumberField(TEXT("duration"))));
@@ -53,7 +53,13 @@ void ASuperstarStoryHUD::AdvanceSequence(float Delta,float ScrubAxis)
         {
             PlaybackRate=0.f;break; // automatic playback still waits for explicit evidence submission
         }
-        if(Beat+1>=Beats.Num()) {if(Sfx) Sfx->PlayCue(TEXT("result"));bPlaying=false;PlaybackRate=0.f;break;}
+        if(Beat+1>=LastBeat)
+        {
+            bPlaying=false;PlaybackRate=0.f;
+            if(bFullStoryDebug) {if(Sfx) Sfx->PlayCue(TEXT("result"));}
+            else {OpenAlbum();PhotoNotice=TEXT("本关现场结束：选择3张照片发布；Tab可返回本关回看补拍。");}
+            break;
+        }
         SelectBeat(Beat+1); // retain overshoot, including when a long frame crosses multiple beats
     }
 }
@@ -81,14 +87,14 @@ void ASuperstarStoryHUD::DrawTransport()
     const float Fraction=SequenceTime()/FMath::Max(.001f,SequenceDuration);
     Rect(35,618,1210,10,FLinearColor(.14f,.19f,.24f));
     Rect(35,618,1210*Fraction,10,FLinearColor(.30f,.85f,.73f));
-    for(int32 I=1;I<Beats.Num();++I)
+    for(int32 I=FirstBeat+1;I<LastBeat;++I)
     {
         const bool Chapter=Beats[I]->GetIntegerField(TEXT("chapter"))!=Beats[I-1]->GetIntegerField(TEXT("chapter"));
-        Rect(35+1210*BeatStarts[I]/SequenceDuration,Chapter?614:618,Chapter?2:1,Chapter?18:10,
+        Rect(35+1210*(BeatStarts[I]-TimelineOffset)/SequenceDuration,Chapter?614:618,Chapter?2:1,Chapter?18:10,
             Chapter?FLinearColor(.85f,.9f,1):FLinearColor(.32f,.42f,.48f));
     }
     Rect(32+1210*Fraction,613,6,20,FLinearColor::White);
-    FitLabel(TEXT("拖动整段时间线 · ←/Z 倒放  →/C 快进 · 空格/R 暂停"),35,633,770,20,13);
+    FitLabel(TEXT("拖动本关时间线 · ←/Z 倒放  →/C 快进 · 空格/R 暂停"),35,633,770,20,13);
     const FString State=bTimelineDragging?TEXT("定位"):(PlaybackRate<0?TEXT("倒放"):(PlaybackRate>1?TEXT("快进"):(PlaybackRate>0?TEXT("播放"):TEXT("暂停/等待"))));
     FitLabel(FString::Printf(TEXT("%s %.0fx · %.1f / %.1f 秒 · 本段 %.1f 秒"),*State,FMath::Abs(PlaybackRate),SequenceTime(),SequenceDuration,Clock),825,633,420,20,12);
 }

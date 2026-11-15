@@ -26,6 +26,8 @@ struct FSuperstarPhoto
     FString File;
 };
 
+enum class ESuperstarLevelPhase : uint8 { Select, Briefing, Playing, Newspaper };
+
 enum class ESuperstarPhotoPhase : uint8 { Live, Capturing, Confirm, Edit, Preview, Results };
 
 UCLASS()
@@ -59,6 +61,13 @@ private:
     TSharedPtr<FJsonObject> Data;
     TSharedPtr<FJsonObject> HeadAnchors;
     TArray<TSharedPtr<FJsonObject>> Beats;
+    TArray<TSharedPtr<FJsonObject>> Levels;
+    ESuperstarLevelPhase LevelPhase = ESuperstarLevelPhase::Select;
+    int32 LevelIndex = -1, FirstBeat = 0, LastBeat = 0;
+    float TimelineOffset = 0.f, FullDuration = 0.f;
+    bool bFullStoryDebug = false;
+    bool bLevelsSmoke = false;
+    int32 LevelsSmokeTicks = 0, LevelsSmokeStep = 0, LevelsSmokeIndex = 0;
     UPROPERTY(Transient) TMap<FString, TObjectPtr<UTexture2D>> Frames;
     UPROPERTY(Transient) TObjectPtr<UFont> StoryFont;
     UPROPERTY(Transient) TObjectPtr<ASuperstarStage> Stage;
@@ -110,6 +119,17 @@ private:
     int32 MotionSmokeStep = 0, MotionSmokeTicks = 0;
     int32 PhotoSmokeTicks = 0, PhotoSmokeStep = 0;
 
+    bool LoadLevels();
+    void ChooseLevel(int32 Index);
+    void StartLevel();
+    void ShowLevelSelect();
+    void ContinueLevel();
+    bool TickLevelFlow();
+    void DrawLevelFlow();
+    void DrawNewspaper();
+    void RunLevelsSmoke();
+    FString PublicationHeadline() const;
+    bool CanPublishLevel();
     void SelectBeat(int32 Index);
     void Publish();
     void Rect(float X, float Y, float W, float H, FLinearColor Color);
