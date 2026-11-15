@@ -1,0 +1,316 @@
+{
+  "id": "A11_linwan_open_umbrella",
+  "screen_facing": "right",
+  "prop_mode": "baked",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        391,
+        253
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 2,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        391,
+        253
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 3,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        391,
+        251
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 4,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        392,
+        246
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 5,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        393,
+        237
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 6,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        394,
+        226
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 7,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        395,
+        217
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 8,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 9,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 10,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 11,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 12,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 13,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 14,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 15,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 16,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 17,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 18,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 19,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 20,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 21,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    },
+    {
+      "frame": 22,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        396,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Head remains fixed from exact approved A09 drawing while the hand raises the baked matching umbrella."
+    }
+  ]
+}

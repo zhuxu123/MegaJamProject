@@ -1,0 +1,330 @@
+{
+  "id": "A55_staff_m_take_knife",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        333,
+        364
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 2,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        366,
+        358
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 3,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        398,
+        328
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 4,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        403,
+        321
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 5,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        412,
+        318
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 6,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        412,
+        319
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 7,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        408,
+        323
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 8,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        406,
+        322
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 9,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        404,
+        322
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 10,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        403,
+        324
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 11,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        404,
+        324
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 12,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        405,
+        324
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 13,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        405,
+        328
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 14,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        393,
+        341
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 15,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        377,
+        355
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 16,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        347,
+        370
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 17,
+      "head": [
+        331,
+        90
+      ],
+      "hand": [
+        333,
+        377
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 18,
+      "head": [
+        330,
+        90
+      ],
+      "hand": [
+        328,
+        385
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 19,
+      "head": [
+        330,
+        90
+      ],
+      "hand": [
+        328,
+        386
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 20,
+      "head": [
+        330,
+        90
+      ],
+      "hand": [
+        328,
+        386
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 21,
+      "head": [
+        330,
+        90
+      ],
+      "hand": [
+        328,
+        386
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 22,
+      "head": [
+        330,
+        90
+      ],
+      "hand": [
+        328,
+        386
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    },
+    {
+      "frame": 23,
+      "head": [
+        330,
+        90
+      ],
+      "hand": [
+        328,
+        386
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Original H3 approach with open fingers, single close point and visible lowering. Grip per selected source frame."
+    }
+  ]
+}

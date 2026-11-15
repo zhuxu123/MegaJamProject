@@ -1,0 +1,265 @@
+{
+  "id": "R01_linwan_peel_label",
+  "fps": 5,
+  "frame_count": 14,
+  "playback_seconds": 2.8,
+  "loop": false,
+  "source": "runs/R01_linwan_peel_label/attempt_04/source.mp4",
+  "source_sha256": "2a376d12746d235ae6813619037811e87b8c8bb97e59a52cf2237d47610f10d1",
+  "cut": {
+    "video": "runs/R01_linwan_peel_label/attempt_04/source.mp4",
+    "reviewed": true,
+    "start_seconds": 2.3333333333333335,
+    "end_seconds_exclusive": 5.083333333333333,
+    "loop": false,
+    "event_times": {
+      "pinch_label": 2.4166666666666665,
+      "label_removed": 3.875,
+      "photo_intact_end": 4.666666666666667
+    }
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 2.7499999999999996,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "pinch_label": {
+      "source_seconds": 2.4166666666666665,
+      "output_frame": 1,
+      "sample_offset_seconds": -0.08333333333333304
+    },
+    "label_removed": {
+      "source_seconds": 3.875,
+      "output_frame": 9,
+      "sample_offset_seconds": 0.04166666666666652
+    },
+    "photo_intact_end": {
+      "source_seconds": 4.666666666666667,
+      "output_frame": 13,
+      "sample_offset_seconds": 0.08333333333333304
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/R01_linwan_peel_label_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 2.3333333333333335,
+      "source_frame": 57,
+      "actual_source_seconds": 2.3333333333333335,
+      "alpha_bbox": [
+        244,
+        90,
+        428,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 2.5333333333333337,
+      "source_frame": 62,
+      "actual_source_seconds": 2.5416666666666665,
+      "alpha_bbox": [
+        244,
+        90,
+        428,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 2.7333333333333334,
+      "source_frame": 67,
+      "actual_source_seconds": 2.75,
+      "alpha_bbox": [
+        244,
+        90,
+        427,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 2.9333333333333336,
+      "source_frame": 71,
+      "actual_source_seconds": 2.9166666666666665,
+      "alpha_bbox": [
+        244,
+        90,
+        426,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 3.1333333333333337,
+      "source_frame": 76,
+      "actual_source_seconds": 3.125,
+      "alpha_bbox": [
+        244,
+        90,
+        424,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 3.3333333333333335,
+      "source_frame": 81,
+      "actual_source_seconds": 3.3333333333333335,
+      "alpha_bbox": [
+        244,
+        90,
+        422,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 3.533333333333333,
+      "source_frame": 86,
+      "actual_source_seconds": 3.5416666666666665,
+      "alpha_bbox": [
+        244,
+        90,
+        422,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 3.7333333333333334,
+      "source_frame": 91,
+      "actual_source_seconds": 3.75,
+      "alpha_bbox": [
+        244,
+        90,
+        436,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 3.9333333333333336,
+      "source_frame": 95,
+      "actual_source_seconds": 3.9166666666666665,
+      "alpha_bbox": [
+        244,
+        90,
+        450,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 4.133333333333334,
+      "source_frame": 100,
+      "actual_source_seconds": 4.125,
+      "alpha_bbox": [
+        244,
+        90,
+        450,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 4.333333333333334,
+      "source_frame": 105,
+      "actual_source_seconds": 4.333333333333333,
+      "alpha_bbox": [
+        244,
+        90,
+        450,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 4.533333333333333,
+      "source_frame": 110,
+      "actual_source_seconds": 4.541666666666667,
+      "alpha_bbox": [
+        244,
+        90,
+        450,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 4.733333333333333,
+      "source_frame": 115,
+      "actual_source_seconds": 4.75,
+      "alpha_bbox": [
+        244,
+        90,
+        450,
+        574
+      ]
+    },
+    {
+      "file": "frames/R01_linwan_peel_label_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 4.933333333333334,
+      "source_frame": 119,
+      "actual_source_seconds": 4.916666666666667,
+      "alpha_bbox": [
+        244,
+        90,
+        450,
+        574
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

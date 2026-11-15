@@ -1,0 +1,210 @@
+{
+  "id": "A44_linwan_escorted",
+  "fps": 5,
+  "frame_count": 10,
+  "playback_seconds": 2.0,
+  "loop": true,
+  "source": "runs/A44_linwan_escorted/attempt_01/source.mp4",
+  "source_sha256": "7f61b8f24e2479a9cf00324235dbd6b9c5ede70946a15f9863088525d6f16bc9",
+  "cut": {
+    "video": "runs/A44_linwan_escorted/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.3333333333333333,
+    "end_seconds_exclusive": 3.3333333333333335,
+    "loop": true,
+    "event_times": {
+      "cycle_start": 1.3333333333333333,
+      "opposite_phase": 1.9166666666666667,
+      "cycle_return": 3.125
+    },
+    "loop_end_seconds": 3.3333333333333335
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 2.0,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "cycle_start": {
+      "source_seconds": 1.3333333333333333,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "opposite_phase": {
+      "source_seconds": 1.9166666666666667,
+      "output_frame": 4,
+      "sample_offset_seconds": 0.0
+    },
+    "cycle_return": {
+      "source_seconds": 3.125,
+      "output_frame": 10,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A44_linwan_escorted_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.3333333333333333,
+      "source_frame": 33,
+      "actual_source_seconds": 1.3333333333333333,
+      "alpha_bbox": [
+        262,
+        86,
+        432,
+        570
+      ]
+    },
+    {
+      "file": "frames/A44_linwan_escorted_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 1.5333333333333332,
+      "source_frame": 38,
+      "actual_source_seconds": 1.5416666666666667,
+      "alpha_bbox": [
+        264,
+        94,
+        454,
+        576
+      ]
+    },
+    {
+      "file": "frames/A44_linwan_escorted_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 1.7333333333333334,
+      "source_frame": 43,
+      "actual_source_seconds": 1.75,
+      "alpha_bbox": [
+        260,
+        82,
+        434,
+        574
+      ]
+    },
+    {
+      "file": "frames/A44_linwan_escorted_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 1.9333333333333331,
+      "source_frame": 47,
+      "actual_source_seconds": 1.9166666666666667,
+      "alpha_bbox": [
+        258,
+        86,
+        478,
+        572
+      ]
+    },
+    {
+      "file": "frames/A44_linwan_escorted_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 2.1333333333333333,
+      "source_frame": 52,
+      "actual_source_seconds": 2.125,
+      "alpha_bbox": [
+        252,
+        94,
+        416,
+        574
+      ]
+    },
+    {
+      "file": "frames/A44_linwan_escorted_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 2.333333333333333,
+      "source_frame": 57,
+      "actual_source_seconds": 2.3333333333333335,
+      "alpha_bbox": [
+        262,
+        84,
+        434,
+        570
+      ]
+    },
+    {
+      "file": "frames/A44_linwan_escorted_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 2.533333333333333,
+      "source_frame": 62,
+      "actual_source_seconds": 2.5416666666666665,
+      "alpha_bbox": [
+        264,
+        96,
+        454,
+        576
+      ]
+    },
+    {
+      "file": "frames/A44_linwan_escorted_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 2.7333333333333334,
+      "source_frame": 67,
+      "actual_source_seconds": 2.75,
+      "alpha_bbox": [
+        260,
+        84,
+        434,
+        576
+      ]
+    },
+    {
+      "file": "frames/A44_linwan_escorted_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 2.9333333333333336,
+      "source_frame": 71,
+      "actual_source_seconds": 2.9166666666666665,
+      "alpha_bbox": [
+        258,
+        86,
+        476,
+        572
+      ]
+    },
+    {
+      "file": "frames/A44_linwan_escorted_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 3.1333333333333333,
+      "source_frame": 76,
+      "actual_source_seconds": 3.125,
+      "alpha_bbox": [
+        252,
+        94,
+        416,
+        576
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

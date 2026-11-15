@@ -219,5 +219,9 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 
 - 共享操作音效由 `BackstageSfx.*` 提供，旧两关通过 `BackstagePlayCue/BackstageAudioMotion` 调用，超级巨星直接调用组件；8个原创SoundWave在 `Content/Audio/Interface/`，源WAV与生成脚本可复现。保留该目录的 `DirectoriesToAlwaysCook`。镜头/变焦按实际目标变化并限频，快进倒放在方向变化时提示，结算只在成功进入/保存结果时触发，不能放进DrawHUD或绝对时间姿态求值。真实录音与输入验证见 [操作音效](Docs/Audio/InterfaceSfx-20261115.md)；`-InterfaceSfxSmoke`会临时静音BGM并导出8项音效录音，不用于正常游玩。
 
-- 四关流程：选关 → 摄制任务单 → 现场 → 三图编辑/发布 → 本关报纸；关尾停止并打开相册，不自动跨关。第一关1–6段（30秒，含间幕6）、第二关7–23段（75秒）、第三关24–32段（44秒，含间幕32）、第四关33–39段（39秒）。每关独立清空本轮照片、证据、镜头和时间，保留磁盘历史；第四关发布前必须发送3份证据。报纸可继续下一关任务单、重拍或返回选关。实现与验证见 [四关流程](Docs/SuperstarStory/Levels-20261115.md)。
+- 四关流程：选关 → 摄制任务单 → 现场 → 三图编辑/发布 → 本关报纸；关尾停止并打开相册，不自动跨关。第一关1–6段（40.6秒，含间幕6）、第二关7–23段（93.6秒）、第三关24–32段（71秒，含间幕32）、第四关33–39段（55.2秒）。每关独立清空本轮照片、证据、镜头和时间，保留磁盘历史；第四关发布前必须发送3份证据。报纸可继续下一关任务单、重拍或返回选关。实现与验证见 [四关流程](Docs/SuperstarStory/Levels-20261115.md)。
 - `-SuperstarLevelsSmoke` 验证真实四关流程；既有 `SuperstarSmoke/PhotoSmoke/MotionSmoke/TransportSmoke/MusicSmoke`（均带Superstar前缀）及 `InterfaceSfxSmoke` 仅在显式测试时保留全剧连续范围，不能用这些模式验证正常选关。`Tools/Validate-SuperstarLevels.py --log <本次日志>` 检查四份独立发布及逐像素裁切。
+
+- 2026-11-15 第二轮动画回传已接入：78条/1168帧，版本目录 `Animations/Round2Actual20261115`；旧帧保留，三项同ID更新使用版本路径，`ImportHistory/Round2Actual20261115`保存原注册表、剧情及源同步记录。当前112条/1471帧（91活跃、21退役），不得用旧18项/首批导入器覆盖。`Tools/Import-SuperstarRound2.py --zip <回传包>`是本批专用重建脚本，从保留基线重建，后续已有新剧情修改时不可直接重跑。验收见 [第二轮接入](Docs/SuperstarStory/Round2-Integration-20261115.md)。
+- 动画时序仍按绝对时间取5 FPS帧；非循环前进动作也允许作为walk_clip，不能强制所有位移都套循环走路。`facing`用于停留/交互朝向，移动期间依移动方向求值。actor.presentation按clip指定scale及逐帧offsets，用于同步接触；3D和参考图共用。道具支持visible_clips、transfer_grip、mirror_with_holder，烘入道具的帧不重复叠加。少量support_boxes只在匹配段落生成临时桌椅，不保存/覆盖地图。
+- 本模式21种人物表情已替换2D占位；旧两关的2D符号逻辑不改。头部锚点构建脚本优先读取交付anchors.json，避免将烘入雨伞的伞顶当成头顶。`Tools/Validate-SuperstarRound2.py`核对78条的每帧可达、动作播完、握点和剧情隔离；`-SuperstarRound2Smoke`验证39段实际渲染、反向求值与道具握点。四关与原有测试仍须通过。

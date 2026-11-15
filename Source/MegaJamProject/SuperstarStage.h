@@ -27,17 +27,20 @@ class MEGAJAMPROJECT_API ASuperstarStage : public AActor
 public:
     ASuperstarStage();
     void SetScene(const FString& Scene);
-    void SetCharacter(int32 Index, UTexture2D* Texture, float ScreenX, bool bFlip);
+    void SetCharacter(int32 Index, UTexture2D* Texture, float ScreenX, bool bFlip, float RenderScale = 1.f, float HeightOffset = 0.f);
     void ResetCharacters();
+    void AddStoryBox(FVector Position, FVector Size, FLinearColor Color);
     void SetReferenceView(bool bReference);
     void SetView(float Station, float Pan, float Tilt, float Zoom);
     FVector CharacterPixelWorld(int32 Index, FVector2D Pixel) const;
     void SetProp(int32 Index, UTexture2D* Texture, FVector Center, float Height, bool bFlip = false);
-    void SetAttachedProp(int32 Index, UTexture2D* Texture, int32 ActorIndex, FVector2D Hand, FVector2D GripUV, float Height, float Angle = 0.f);
+    void SetAttachedProp(int32 Index, UTexture2D* Texture, int32 ActorIndex, FVector2D Hand, FVector2D GripUV, float Height, float Angle = 0.f, bool bMirrorWithHolder = true);
+    void SetPropVisible(int32 Index, bool bVisible);
     FVector PropPixelWorld(int32 Index, FVector2D UV) const;
 private:
     UPROPERTY() TObjectPtr<UCameraComponent> Camera;
     UPROPERTY() TArray<TObjectPtr<UStaticMeshComponent>> Pieces;
+    UPROPERTY() TArray<TObjectPtr<UStaticMeshComponent>> StoryFurniture;
     UPROPERTY() TArray<TObjectPtr<UPaperSpriteComponent>> Characters;
     UPROPERTY() TArray<TObjectPtr<UTexture2D>> CharacterTextures;
     UPROPERTY() TArray<TObjectPtr<UPaperSpriteComponent>> Props;

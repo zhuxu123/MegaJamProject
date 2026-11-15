@@ -195,6 +195,8 @@ void ASuperstarStage::SetScene(const FString& Scene)
 
 void ASuperstarStage::ResetCharacters()
 {
+    for(UStaticMeshComponent* Mesh:StoryFurniture) if(Mesh) Mesh->DestroyComponent();
+    StoryFurniture.Reset();
     for(UPaperSpriteComponent* Character : Characters) if(Character) Character->DestroyComponent();
     Characters.Reset();
     CharacterTextures.Reset();
@@ -203,7 +205,7 @@ void ASuperstarStage::ResetCharacters()
     PropTextures.Reset();
 }
 
-void ASuperstarStage::SetCharacter(int32 Index, UTexture2D* Texture, float ScreenX, bool bFlip)
+void ASuperstarStage::SetCharacter(int32 Index, UTexture2D* Texture, float ScreenX, bool bFlip, float RenderScale, float HeightOffset)
 {
     if (!Texture) return;
     while (Characters.Num() <= Index)
@@ -226,12 +228,13 @@ void ASuperstarStage::SetCharacter(int32 Index, UTexture2D* Texture, float Scree
         Component->SetSprite(Sprite);
         CharacterTextures[Index] = Texture;
     }
-    Component->SetRelativeLocation(FVector((640.f-ScreenX)*1400.f/1280.f, -45.f - Index*.5f, 3.f));
-    Component->SetRelativeScale3D(FVector(bFlip ? 1.f : -1.f, 1.f, 1.f));
+    Component->SetRelativeLocation(FVector((640.f-ScreenX)*1400.f/1280.f, -45.f - Index*.5f, 3.f + HeightOffset));
+    Component->SetRelativeScale3D(FVector((bFlip ? 1.f : -1.f)*RenderScale, 1.f, RenderScale));
 }
 
 void ASuperstarStage::SetReferenceView(bool bReference)
 {
+    for(UStaticMeshComponent* Mesh:StoryFurniture) Mesh->SetVisibility(!bReference);
     for(UPaperSpriteComponent* Character : Characters) Character->SetVisibility(!bReference);
     for(UPaperSpriteComponent* Prop : Props) Prop->SetVisibility(!bReference);
 }
@@ -261,10 +264,10 @@ void ASuperstarStage::SetProp(int32 Index, UTexture2D* Texture, FVector Center, 
     Component->SetRelativeRotation(FRotator::ZeroRotator);
 }
 
-void ASuperstarStage::SetAttachedProp(int32 Index,UTexture2D* Texture,int32 ActorIndex,FVector2D Hand,FVector2D GripUV,float Height,float Angle)
+void ASuperstarStage::SetAttachedProp(int32 Index,UTexture2D* Texture,int32 ActorIndex,FVector2D Hand,FVector2D GripUV,float Height,float Angle,bool bMirrorWithHolder)
 {
     if(!Texture || !Characters.IsValidIndex(ActorIndex)) return;
-    const bool bFlip=Characters[ActorIndex]->GetRelativeScale3D().X>0;
+    const bool bFlip=bMirrorWithHolder && Characters[ActorIndex]->GetRelativeScale3D().X>0;
     // Behind the character by a tenth of a unit: the drawn fingers cover the shaft/handle.
     const FVector HandWorld=CharacterPixelWorld(ActorIndex,Hand);
     SetProp(Index,Texture,HandWorld,Height,bFlip);
@@ -293,4 +296,15 @@ FVector ASuperstarStage::CharacterPixelWorld(int32 Index, FVector2D Pixel) const
     if (!Characters.IsValidIndex(Index)) return FVector::ZeroVector;
     const FVector Local((Pixel.X-320.)*395./640., 0., (570.-Pixel.Y)*395./640.);
     return Characters[Index]->GetComponentTransform().TransformPosition(Local);
+}
+
+void ASuperstarStage::SetPropVisible(int32 Index,bool bVisible)
+{
+    if(Props.IsValidIndex(Index)) Props[Index]->SetVisibility(bVisible);
+}
+
+void ASuperstarStage::AddStoryBox(FVector Position,FVector Size,FLinearColor Color)
+{
+    Box(Position,Size,Color);
+    StoryFurniture.Add(Pieces.Pop());
 }

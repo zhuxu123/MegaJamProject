@@ -1,0 +1,204 @@
+{
+  "id": "R01_linwan_peel_label",
+  "screen_facing": "right",
+  "prop_mode": "baked",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        382,
+        174
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 2,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        382,
+        175
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 3,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        382,
+        176
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 4,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        382,
+        177
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 5,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        381,
+        178
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 6,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        377,
+        178
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 7,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        374,
+        181
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 8,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        371,
+        184
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 9,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        369,
+        187
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 10,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        370,
+        189
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 11,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        370,
+        189
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 12,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        370,
+        189
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 13,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        370,
+        189
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    },
+    {
+      "frame": 14,
+      "head": [
+        287,
+        92
+      ],
+      "hand": [
+        370,
+        189
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracked the pinching hand at the corner of the small label before and after separation."
+    }
+  ]
+}

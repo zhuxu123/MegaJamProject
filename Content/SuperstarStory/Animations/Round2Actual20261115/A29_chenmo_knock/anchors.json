@@ -1,0 +1,250 @@
+{
+  "id": "A29_chenmo_knock",
+  "screen_facing": "right",
+  "prop_mode": "none",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 2,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 3,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 4,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 5,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 6,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 7,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 8,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 9,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 10,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 11,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 12,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 13,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 14,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 15,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 16,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 17,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 18,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 19,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 20,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 21,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 22,
+      "head": [
+        333,
+        92
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    }
+  ]
+}

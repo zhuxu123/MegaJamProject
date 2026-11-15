@@ -1,0 +1,433 @@
+{
+  "id": "A42_suyao_fake_fall",
+  "fps": 5,
+  "frame_count": 26,
+  "playback_seconds": 5.2,
+  "loop": false,
+  "source": "runs/A42_suyao_fake_fall/attempt_01/source.mp4",
+  "source_sha256": "bad7044f85a13b6742440078f53f568ed6f2524f3d28b897c1c2ce3fc82f3c24",
+  "cut": {
+    "video": "runs/A42_suyao_fake_fall/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.0,
+    "end_seconds_exclusive": 5.083333333333333,
+    "loop": false,
+    "event_times": {
+      "action_onset": 1.0,
+      "main_event": 3.2916666666666665,
+      "settled_end": 4.625
+    }
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 5.083333333333333,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "action_onset": {
+      "source_seconds": 1.0,
+      "output_frame": 6,
+      "sample_offset_seconds": 0.0
+    },
+    "main_event": {
+      "source_seconds": 3.2916666666666665,
+      "output_frame": 17,
+      "sample_offset_seconds": -0.08333333333333304
+    },
+    "settled_end": {
+      "source_seconds": 4.625,
+      "output_frame": 24,
+      "sample_offset_seconds": -0.04166666666666696
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A42_suyao_fake_fall_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.0,
+      "source_frame": 1,
+      "actual_source_seconds": 0.0,
+      "alpha_bbox": [
+        222,
+        90,
+        372,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.2,
+      "source_frame": 6,
+      "actual_source_seconds": 0.20833333333333334,
+      "alpha_bbox": [
+        224,
+        90,
+        372,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.4,
+      "source_frame": 11,
+      "actual_source_seconds": 0.4166666666666667,
+      "alpha_bbox": [
+        224,
+        90,
+        372,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.6,
+      "source_frame": 15,
+      "actual_source_seconds": 0.5833333333333334,
+      "alpha_bbox": [
+        224,
+        90,
+        372,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 0.8,
+      "source_frame": 20,
+      "actual_source_seconds": 0.7916666666666666,
+      "alpha_bbox": [
+        222,
+        90,
+        372,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.0,
+      "source_frame": 25,
+      "actual_source_seconds": 1.0,
+      "alpha_bbox": [
+        256,
+        92,
+        388,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.2,
+      "source_frame": 30,
+      "actual_source_seconds": 1.2083333333333333,
+      "alpha_bbox": [
+        256,
+        96,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.4,
+      "source_frame": 35,
+      "actual_source_seconds": 1.4166666666666667,
+      "alpha_bbox": [
+        256,
+        96,
+        406,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.6,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        256,
+        96,
+        406,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 1.8,
+      "source_frame": 44,
+      "actual_source_seconds": 1.7916666666666667,
+      "alpha_bbox": [
+        256,
+        96,
+        406,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.0,
+      "source_frame": 49,
+      "actual_source_seconds": 2.0,
+      "alpha_bbox": [
+        256,
+        96,
+        406,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.2,
+      "source_frame": 54,
+      "actual_source_seconds": 2.2083333333333335,
+      "alpha_bbox": [
+        256,
+        96,
+        406,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.4,
+      "source_frame": 59,
+      "actual_source_seconds": 2.4166666666666665,
+      "alpha_bbox": [
+        254,
+        122,
+        406,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 2.6,
+      "source_frame": 63,
+      "actual_source_seconds": 2.5833333333333335,
+      "alpha_bbox": [
+        252,
+        144,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 2.8,
+      "source_frame": 68,
+      "actual_source_seconds": 2.7916666666666665,
+      "alpha_bbox": [
+        248,
+        168,
+        402,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.0,
+      "source_frame": 73,
+      "actual_source_seconds": 3.0,
+      "alpha_bbox": [
+        242,
+        192,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000017.png",
+      "output_frame": 17,
+      "output_seconds": 3.2,
+      "requested_source_seconds": 3.2,
+      "source_frame": 78,
+      "actual_source_seconds": 3.2083333333333335,
+      "alpha_bbox": [
+        234,
+        220,
+        398,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000018.png",
+      "output_frame": 18,
+      "output_seconds": 3.4,
+      "requested_source_seconds": 3.4,
+      "source_frame": 83,
+      "actual_source_seconds": 3.4166666666666665,
+      "alpha_bbox": [
+        230,
+        240,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000019.png",
+      "output_frame": 19,
+      "output_seconds": 3.6,
+      "requested_source_seconds": 3.6,
+      "source_frame": 87,
+      "actual_source_seconds": 3.5833333333333335,
+      "alpha_bbox": [
+        228,
+        256,
+        392,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000020.png",
+      "output_frame": 20,
+      "output_seconds": 3.8,
+      "requested_source_seconds": 3.8,
+      "source_frame": 92,
+      "actual_source_seconds": 3.7916666666666665,
+      "alpha_bbox": [
+        228,
+        256,
+        392,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000021.png",
+      "output_frame": 21,
+      "output_seconds": 4.0,
+      "requested_source_seconds": 4.0,
+      "source_frame": 97,
+      "actual_source_seconds": 4.0,
+      "alpha_bbox": [
+        228,
+        256,
+        392,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000022.png",
+      "output_frame": 22,
+      "output_seconds": 4.2,
+      "requested_source_seconds": 4.2,
+      "source_frame": 102,
+      "actual_source_seconds": 4.208333333333333,
+      "alpha_bbox": [
+        228,
+        256,
+        392,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000023.png",
+      "output_frame": 23,
+      "output_seconds": 4.4,
+      "requested_source_seconds": 4.4,
+      "source_frame": 107,
+      "actual_source_seconds": 4.416666666666667,
+      "alpha_bbox": [
+        228,
+        256,
+        392,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000024.png",
+      "output_frame": 24,
+      "output_seconds": 4.6,
+      "requested_source_seconds": 4.6,
+      "source_frame": 111,
+      "actual_source_seconds": 4.583333333333333,
+      "alpha_bbox": [
+        228,
+        256,
+        392,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000025.png",
+      "output_frame": 25,
+      "output_seconds": 4.8,
+      "requested_source_seconds": 4.8,
+      "source_frame": 116,
+      "actual_source_seconds": 4.791666666666667,
+      "alpha_bbox": [
+        228,
+        256,
+        392,
+        572
+      ]
+    },
+    {
+      "file": "frames/A42_suyao_fake_fall_000026.png",
+      "output_frame": 26,
+      "output_seconds": 5.0,
+      "requested_source_seconds": 5.0,
+      "source_frame": 121,
+      "actual_source_seconds": 5.0,
+      "alpha_bbox": [
+        228,
+        256,
+        392,
+        572
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "left"
+}

@@ -1,0 +1,294 @@
+{
+  "id": "A50_linwan_speak",
+  "fps": 5,
+  "frame_count": 16,
+  "playback_seconds": 3.2,
+  "loop": true,
+  "source": "runs/A50_linwan_speak/attempt_01/source.mp4",
+  "source_sha256": "fa4c4c3c0959c0395b49f0df51d50423c797ac0025bcd78fb3b7783625535804",
+  "cut": {
+    "video": "runs/A50_linwan_speak/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.5,
+    "end_seconds_exclusive": 3.75,
+    "loop": true,
+    "event_times": {
+      "cycle_start": 0.5,
+      "opposite_phase": 1.5,
+      "cycle_return": 3.5416666666666665
+    },
+    "loop_end_seconds": 3.75
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 3.25,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "cycle_start": {
+      "source_seconds": 0.5,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "opposite_phase": {
+      "source_seconds": 1.5,
+      "output_frame": 6,
+      "sample_offset_seconds": 0.0
+    },
+    "cycle_return": {
+      "source_seconds": 3.5416666666666665,
+      "output_frame": 16,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A50_linwan_speak_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.5,
+      "source_frame": 13,
+      "actual_source_seconds": 0.5,
+      "alpha_bbox": [
+        224,
+        80,
+        384,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.703125,
+      "source_frame": 18,
+      "actual_source_seconds": 0.7083333333333334,
+      "alpha_bbox": [
+        224,
+        80,
+        384,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.90625,
+      "source_frame": 23,
+      "actual_source_seconds": 0.9166666666666666,
+      "alpha_bbox": [
+        222,
+        82,
+        422,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 1.109375,
+      "source_frame": 28,
+      "actual_source_seconds": 1.125,
+      "alpha_bbox": [
+        214,
+        86,
+        446,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 1.3125,
+      "source_frame": 32,
+      "actual_source_seconds": 1.2916666666666667,
+      "alpha_bbox": [
+        208,
+        88,
+        428,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.515625,
+      "source_frame": 37,
+      "actual_source_seconds": 1.5,
+      "alpha_bbox": [
+        208,
+        88,
+        428,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.71875,
+      "source_frame": 42,
+      "actual_source_seconds": 1.7083333333333333,
+      "alpha_bbox": [
+        208,
+        88,
+        428,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.921875,
+      "source_frame": 47,
+      "actual_source_seconds": 1.9166666666666667,
+      "alpha_bbox": [
+        208,
+        88,
+        428,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 2.125,
+      "source_frame": 52,
+      "actual_source_seconds": 2.125,
+      "alpha_bbox": [
+        208,
+        88,
+        428,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 2.328125,
+      "source_frame": 57,
+      "actual_source_seconds": 2.3333333333333335,
+      "alpha_bbox": [
+        208,
+        88,
+        428,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.53125,
+      "source_frame": 62,
+      "actual_source_seconds": 2.5416666666666665,
+      "alpha_bbox": [
+        208,
+        88,
+        428,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.734375,
+      "source_frame": 67,
+      "actual_source_seconds": 2.75,
+      "alpha_bbox": [
+        208,
+        88,
+        428,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.9375,
+      "source_frame": 71,
+      "actual_source_seconds": 2.9166666666666665,
+      "alpha_bbox": [
+        208,
+        88,
+        428,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 3.140625,
+      "source_frame": 76,
+      "actual_source_seconds": 3.125,
+      "alpha_bbox": [
+        208,
+        86,
+        434,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 3.34375,
+      "source_frame": 81,
+      "actual_source_seconds": 3.3333333333333335,
+      "alpha_bbox": [
+        214,
+        82,
+        432,
+        572
+      ]
+    },
+    {
+      "file": "frames/A50_linwan_speak_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.546875,
+      "source_frame": 86,
+      "actual_source_seconds": 3.5416666666666665,
+      "alpha_bbox": [
+        216,
+        80,
+        394,
+        572
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

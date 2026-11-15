@@ -1,0 +1,196 @@
+{
+  "id": "F01_linwan_angry",
+  "fps": 5,
+  "frame_count": 9,
+  "playback_seconds": 1.8,
+  "loop": true,
+  "source": "runs/F01_linwan_angry/attempt_01/source.mp4",
+  "source_sha256": "4e062d9a372f8ee7f44c6f6b857f79c3f6adfad6602339c68690bc25396e70de",
+  "cut": {
+    "video": "runs/F01_linwan_angry/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 3.25,
+    "end_seconds_exclusive": 5.083333333333333,
+    "loop": true,
+    "event_times": {
+      "cycle_start": 3.25,
+      "opposite_phase": 4.208333333333333,
+      "cycle_return": 4.875
+    },
+    "loop_end_seconds": 5.083333333333333
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 1.833333333333333,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "cycle_start": {
+      "source_seconds": 3.25,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "opposite_phase": {
+      "source_seconds": 4.208333333333333,
+      "output_frame": 6,
+      "sample_offset_seconds": 0.04166666666666696
+    },
+    "cycle_return": {
+      "source_seconds": 4.875,
+      "output_frame": 9,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/F01_linwan_angry_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 3.25,
+      "source_frame": 79,
+      "actual_source_seconds": 3.25,
+      "alpha_bbox": [
+        246,
+        90,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/F01_linwan_angry_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 3.4537037037037037,
+      "source_frame": 84,
+      "actual_source_seconds": 3.4583333333333335,
+      "alpha_bbox": [
+        246,
+        90,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/F01_linwan_angry_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 3.6574074074074074,
+      "source_frame": 89,
+      "actual_source_seconds": 3.6666666666666665,
+      "alpha_bbox": [
+        246,
+        90,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/F01_linwan_angry_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 3.861111111111111,
+      "source_frame": 94,
+      "actual_source_seconds": 3.875,
+      "alpha_bbox": [
+        246,
+        90,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/F01_linwan_angry_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 4.064814814814815,
+      "source_frame": 99,
+      "actual_source_seconds": 4.083333333333333,
+      "alpha_bbox": [
+        246,
+        90,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/F01_linwan_angry_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 4.268518518518518,
+      "source_frame": 103,
+      "actual_source_seconds": 4.25,
+      "alpha_bbox": [
+        246,
+        90,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/F01_linwan_angry_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 4.472222222222222,
+      "source_frame": 108,
+      "actual_source_seconds": 4.458333333333333,
+      "alpha_bbox": [
+        246,
+        90,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/F01_linwan_angry_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 4.675925925925926,
+      "source_frame": 113,
+      "actual_source_seconds": 4.666666666666667,
+      "alpha_bbox": [
+        246,
+        90,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/F01_linwan_angry_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 4.87962962962963,
+      "source_frame": 118,
+      "actual_source_seconds": 4.875,
+      "alpha_bbox": [
+        246,
+        90,
+        394,
+        572
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

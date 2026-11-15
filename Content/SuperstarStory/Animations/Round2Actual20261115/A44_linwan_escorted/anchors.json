@@ -1,0 +1,118 @@
+{
+  "id": "A44_linwan_escorted",
+  "screen_facing": "right",
+  "prop_mode": "none",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        316,
+        86
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Raw walk geometry near and far upper-arm areas manually checked across five phases repeated twice."
+    },
+    {
+      "frame": 2,
+      "head": [
+        314,
+        96
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Raw walk geometry near and far upper-arm areas manually checked across five phases repeated twice."
+    },
+    {
+      "frame": 3,
+      "head": [
+        314,
+        84
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Raw walk geometry near and far upper-arm areas manually checked across five phases repeated twice."
+    },
+    {
+      "frame": 4,
+      "head": [
+        319,
+        88
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Raw walk geometry near and far upper-arm areas manually checked across five phases repeated twice."
+    },
+    {
+      "frame": 5,
+      "head": [
+        308,
+        96
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Raw walk geometry near and far upper-arm areas manually checked across five phases repeated twice."
+    },
+    {
+      "frame": 6,
+      "head": [
+        317,
+        86
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Raw walk geometry near and far upper-arm areas manually checked across five phases repeated twice."
+    },
+    {
+      "frame": 7,
+      "head": [
+        314,
+        96
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Raw walk geometry near and far upper-arm areas manually checked across five phases repeated twice."
+    },
+    {
+      "frame": 8,
+      "head": [
+        315,
+        84
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Raw walk geometry near and far upper-arm areas manually checked across five phases repeated twice."
+    },
+    {
+      "frame": 9,
+      "head": [
+        319,
+        88
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Raw walk geometry near and far upper-arm areas manually checked across five phases repeated twice."
+    },
+    {
+      "frame": 10,
+      "head": [
+        309,
+        96
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Raw walk geometry near and far upper-arm areas manually checked across five phases repeated twice."
+    }
+  ]
+}

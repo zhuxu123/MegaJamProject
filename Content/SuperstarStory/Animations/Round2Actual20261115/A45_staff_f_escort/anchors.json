@@ -1,0 +1,148 @@
+{
+  "id": "A45_staff_f_escort",
+  "screen_facing": "right",
+  "prop_mode": "none",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        286,
+        104
+      ],
+      "hand": [
+        431,
+        214
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the unoccupied guiding grip during the actual repeated step sequence for later G07."
+    },
+    {
+      "frame": 2,
+      "head": [
+        286,
+        112
+      ],
+      "hand": [
+        432,
+        217
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the unoccupied guiding grip during the actual repeated step sequence for later G07."
+    },
+    {
+      "frame": 3,
+      "head": [
+        285,
+        110
+      ],
+      "hand": [
+        432,
+        216
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the unoccupied guiding grip during the actual repeated step sequence for later G07."
+    },
+    {
+      "frame": 4,
+      "head": [
+        286,
+        102
+      ],
+      "hand": [
+        430,
+        212
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the unoccupied guiding grip during the actual repeated step sequence for later G07."
+    },
+    {
+      "frame": 5,
+      "head": [
+        286,
+        98
+      ],
+      "hand": [
+        430,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the unoccupied guiding grip during the actual repeated step sequence for later G07."
+    },
+    {
+      "frame": 6,
+      "head": [
+        285,
+        106
+      ],
+      "hand": [
+        431,
+        215
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the unoccupied guiding grip during the actual repeated step sequence for later G07."
+    },
+    {
+      "frame": 7,
+      "head": [
+        285,
+        112
+      ],
+      "hand": [
+        432,
+        217
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the unoccupied guiding grip during the actual repeated step sequence for later G07."
+    },
+    {
+      "frame": 8,
+      "head": [
+        285,
+        110
+      ],
+      "hand": [
+        432,
+        216
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the unoccupied guiding grip during the actual repeated step sequence for later G07."
+    },
+    {
+      "frame": 9,
+      "head": [
+        285,
+        104
+      ],
+      "hand": [
+        430,
+        212
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the unoccupied guiding grip during the actual repeated step sequence for later G07."
+    },
+    {
+      "frame": 10,
+      "head": [
+        285,
+        98
+      ],
+      "hand": [
+        430,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the unoccupied guiding grip during the actual repeated step sequence for later G07."
+    }
+  ]
+}

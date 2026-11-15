@@ -1,0 +1,210 @@
+{
+  "id": "A45_staff_f_escort",
+  "fps": 5,
+  "frame_count": 10,
+  "playback_seconds": 2.0,
+  "loop": true,
+  "source": "runs/A45_staff_f_escort/attempt_02/source.mp4",
+  "source_sha256": "f310e202ccd11d4f5b33ae5eac1465dfbc503fcd0120e08ece485c9899bd8c3e",
+  "cut": {
+    "video": "runs/A45_staff_f_escort/attempt_02/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.4166666666666667,
+    "end_seconds_exclusive": 3.375,
+    "loop": true,
+    "event_times": {
+      "cycle_start": 1.4166666666666667,
+      "opposite_phase": 2.5833333333333335,
+      "cycle_return": 3.1666666666666665
+    },
+    "loop_end_seconds": 3.375
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 1.9583333333333333,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "cycle_start": {
+      "source_seconds": 1.4166666666666667,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "opposite_phase": {
+      "source_seconds": 2.5833333333333335,
+      "output_frame": 7,
+      "sample_offset_seconds": 0.0
+    },
+    "cycle_return": {
+      "source_seconds": 3.1666666666666665,
+      "output_frame": 10,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A45_staff_f_escort_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.4166666666666667,
+      "source_frame": 35,
+      "actual_source_seconds": 1.4166666666666667,
+      "alpha_bbox": [
+        248,
+        104,
+        454,
+        566
+      ]
+    },
+    {
+      "file": "frames/A45_staff_f_escort_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 1.6125,
+      "source_frame": 40,
+      "actual_source_seconds": 1.625,
+      "alpha_bbox": [
+        234,
+        112,
+        454,
+        570
+      ]
+    },
+    {
+      "file": "frames/A45_staff_f_escort_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 1.8083333333333333,
+      "source_frame": 44,
+      "actual_source_seconds": 1.7916666666666667,
+      "alpha_bbox": [
+        246,
+        108,
+        454,
+        572
+      ]
+    },
+    {
+      "file": "frames/A45_staff_f_escort_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 2.004166666666667,
+      "source_frame": 49,
+      "actual_source_seconds": 2.0,
+      "alpha_bbox": [
+        248,
+        100,
+        454,
+        572
+      ]
+    },
+    {
+      "file": "frames/A45_staff_f_escort_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 2.2,
+      "source_frame": 54,
+      "actual_source_seconds": 2.2083333333333335,
+      "alpha_bbox": [
+        248,
+        98,
+        454,
+        570
+      ]
+    },
+    {
+      "file": "frames/A45_staff_f_escort_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 2.3958333333333335,
+      "source_frame": 59,
+      "actual_source_seconds": 2.4166666666666665,
+      "alpha_bbox": [
+        246,
+        104,
+        454,
+        568
+      ]
+    },
+    {
+      "file": "frames/A45_staff_f_escort_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 2.591666666666667,
+      "source_frame": 63,
+      "actual_source_seconds": 2.5833333333333335,
+      "alpha_bbox": [
+        224,
+        110,
+        454,
+        568
+      ]
+    },
+    {
+      "file": "frames/A45_staff_f_escort_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 2.7874999999999996,
+      "source_frame": 68,
+      "actual_source_seconds": 2.7916666666666665,
+      "alpha_bbox": [
+        230,
+        110,
+        454,
+        570
+      ]
+    },
+    {
+      "file": "frames/A45_staff_f_escort_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 2.9833333333333334,
+      "source_frame": 73,
+      "actual_source_seconds": 3.0,
+      "alpha_bbox": [
+        248,
+        102,
+        454,
+        570
+      ]
+    },
+    {
+      "file": "frames/A45_staff_f_escort_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 3.1791666666666667,
+      "source_frame": 77,
+      "actual_source_seconds": 3.1666666666666665,
+      "alpha_bbox": [
+        248,
+        96,
+        454,
+        568
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

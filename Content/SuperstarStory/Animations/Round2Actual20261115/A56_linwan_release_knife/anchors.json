@@ -1,0 +1,344 @@
+{
+  "id": "A56_linwan_release_knife",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        384,
+        245
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 2,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        384,
+        245
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 3,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        384,
+        246
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 4,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        385,
+        252
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 5,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        391,
+        263
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 6,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        389,
+        275
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 7,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        385,
+        287
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 8,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        383,
+        299
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 9,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        381,
+        310
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 10,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        379,
+        320
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 11,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        376,
+        326
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 12,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        371,
+        339
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 13,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        361,
+        352
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 14,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        350,
+        359
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 15,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        343,
+        365
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 16,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        338,
+        367
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 17,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        336,
+        372
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 18,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        333,
+        373
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 19,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        333,
+        373
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 20,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        333,
+        374
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 21,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        333,
+        374
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 22,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        333,
+        374
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 23,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        333,
+        374
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    },
+    {
+      "frame": 24,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        333,
+        374
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured right-hand lowering and open retraction from exact selected H3 frames. Prop removed after the interaction sample."
+    }
+  ]
+}

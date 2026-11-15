@@ -1,0 +1,344 @@
+{
+  "id": "A37_staff_f_give_rose",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        315,
+        239
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 2,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        315,
+        239
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 3,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        389,
+        219
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 4,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        390,
+        228
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 5,
+      "head": [
+        285,
+        96
+      ],
+      "hand": [
+        422,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 6,
+      "head": [
+        285,
+        96
+      ],
+      "hand": [
+        423,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 7,
+      "head": [
+        285,
+        96
+      ],
+      "hand": [
+        423,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 8,
+      "head": [
+        285,
+        96
+      ],
+      "hand": [
+        423,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 9,
+      "head": [
+        285,
+        96
+      ],
+      "hand": [
+        424,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 10,
+      "head": [
+        285,
+        96
+      ],
+      "hand": [
+        432,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 11,
+      "head": [
+        285,
+        96
+      ],
+      "hand": [
+        429,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 12,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        419,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 13,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        421,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 14,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        431,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 15,
+      "head": [
+        285,
+        96
+      ],
+      "hand": [
+        431,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 16,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        419,
+        218
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 17,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        417,
+        211
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 18,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        411,
+        213
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 19,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        389,
+        219
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 20,
+      "head": [
+        285,
+        96
+      ],
+      "hand": [
+        367,
+        226
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 21,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        315,
+        239
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 22,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        315,
+        239
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 23,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        315,
+        239
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    },
+    {
+      "frame": 24,
+      "head": [
+        286,
+        96
+      ],
+      "hand": [
+        315,
+        239
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Upper hand curl and thumb gap measured around the rose stem before release. Cleanup had removed the old clipboard and pen from the starting picture."
+    }
+  ]
+}

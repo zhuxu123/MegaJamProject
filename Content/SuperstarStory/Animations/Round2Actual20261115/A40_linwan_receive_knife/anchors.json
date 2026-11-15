@@ -1,0 +1,274 @@
+{
+  "id": "A40_linwan_receive_knife",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        390,
+        255
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 2,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        390,
+        255
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 3,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        391,
+        254
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 4,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        395,
+        248
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 5,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        404,
+        249
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 6,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        411,
+        270
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 7,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        412,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 8,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        412,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 9,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        412,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 10,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        412,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 11,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        414,
+        277
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 12,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        415,
+        276
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 13,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        410,
+        277
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 14,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        410,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 15,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        409,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 16,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        409,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 17,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        409,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 18,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        399,
+        272
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    },
+    {
+      "frame": 19,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        393,
+        273
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured the open palm and subsequent closed waist-level grip. Separate theatre prop proof follows the same hand."
+    }
+  ]
+}

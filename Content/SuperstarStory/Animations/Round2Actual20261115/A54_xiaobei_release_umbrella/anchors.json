@@ -1,0 +1,372 @@
+{
+  "id": "A54_xiaobei_release_umbrella",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        381,
+        254
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 2,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        381,
+        253
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 3,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        381,
+        252
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 4,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        382,
+        252
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 5,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        385,
+        253
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 6,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        389,
+        250
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 7,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        403,
+        248
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 8,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        414,
+        246
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 9,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        421,
+        241
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 10,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        421,
+        241
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 11,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        427,
+        243
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 12,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        428,
+        243
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 13,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        428,
+        243
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 14,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        427,
+        242
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 15,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        425,
+        242
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 16,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        426,
+        242
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 17,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        426,
+        241
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 18,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        426,
+        241
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 19,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        424,
+        245
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 20,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        419,
+        262
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 21,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        407,
+        271
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 22,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        389,
+        302
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 23,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        376,
+        325
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 24,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        370,
+        335
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 25,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        371,
+        336
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    },
+    {
+      "frame": 26,
+      "head": [
+        326,
+        86
+      ],
+      "hand": [
+        372,
+        334
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Xiaobei extends from her A53 waist-height grip, unclenches once, and retracts empty. Selected original source samples were inspected at native resolution."
+    }
+  ]
+}

@@ -1,0 +1,358 @@
+{
+  "id": "A10_xiaozhou_release_umbrella",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        329,
+        94
+      ],
+      "hand": [
+        301,
+        290
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 2,
+      "head": [
+        342,
+        99
+      ],
+      "hand": [
+        300,
+        277
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 3,
+      "head": [
+        356,
+        97
+      ],
+      "hand": [
+        434,
+        260
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 4,
+      "head": [
+        361,
+        95
+      ],
+      "hand": [
+        466,
+        271
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 5,
+      "head": [
+        362,
+        95
+      ],
+      "hand": [
+        464,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 6,
+      "head": [
+        361,
+        94
+      ],
+      "hand": [
+        465,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 7,
+      "head": [
+        361,
+        94
+      ],
+      "hand": [
+        465,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 8,
+      "head": [
+        360,
+        94
+      ],
+      "hand": [
+        465,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 9,
+      "head": [
+        361,
+        94
+      ],
+      "hand": [
+        465,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 10,
+      "head": [
+        362,
+        95
+      ],
+      "hand": [
+        466,
+        271
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 11,
+      "head": [
+        362,
+        96
+      ],
+      "hand": [
+        466,
+        271
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 12,
+      "head": [
+        361,
+        94
+      ],
+      "hand": [
+        465,
+        273
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 13,
+      "head": [
+        361,
+        94
+      ],
+      "hand": [
+        465,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 14,
+      "head": [
+        362,
+        96
+      ],
+      "hand": [
+        465,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 15,
+      "head": [
+        362,
+        95
+      ],
+      "hand": [
+        465,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 16,
+      "head": [
+        361,
+        95
+      ],
+      "hand": [
+        465,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 17,
+      "head": [
+        361,
+        95
+      ],
+      "hand": [
+        461,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 18,
+      "head": [
+        361,
+        95
+      ],
+      "hand": [
+        470,
+        285
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 19,
+      "head": [
+        356,
+        99
+      ],
+      "hand": [
+        446,
+        268
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 20,
+      "head": [
+        339,
+        98
+      ],
+      "hand": [
+        298,
+        379
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 21,
+      "head": [
+        328,
+        93
+      ],
+      "hand": [
+        296,
+        377
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 22,
+      "head": [
+        325,
+        92
+      ],
+      "hand": [
+        290,
+        378
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 23,
+      "head": [
+        325,
+        92
+      ],
+      "hand": [
+        290,
+        377
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 24,
+      "head": [
+        325,
+        92
+      ],
+      "hand": [
+        290,
+        377
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    },
+    {
+      "frame": 25,
+      "head": [
+        325,
+        92
+      ],
+      "hand": [
+        290,
+        377
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track active donor hand only, including pre-extension waist hold and return to the side."
+    }
+  ]
+}

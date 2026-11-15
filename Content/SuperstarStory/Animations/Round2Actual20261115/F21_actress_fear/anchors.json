@@ -1,0 +1,118 @@
+{
+  "id": "F21_actress_fear",
+  "screen_facing": "right",
+  "prop_mode": "none",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        319,
+        93
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 2,
+      "head": [
+        319,
+        93
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 3,
+      "head": [
+        319,
+        93
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 4,
+      "head": [
+        319,
+        93
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 5,
+      "head": [
+        319,
+        93
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 6,
+      "head": [
+        319,
+        93
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 7,
+      "head": [
+        319,
+        93
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 8,
+      "head": [
+        319,
+        93
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 9,
+      "head": [
+        319,
+        93
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 10,
+      "head": [
+        319,
+        93
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    }
+  ]
+}

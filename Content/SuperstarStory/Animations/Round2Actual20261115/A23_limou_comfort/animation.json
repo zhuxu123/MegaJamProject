@@ -1,0 +1,334 @@
+{
+  "id": "A23_limou_comfort",
+  "fps": 5,
+  "frame_count": 19,
+  "playback_seconds": 3.8,
+  "loop": false,
+  "source": "runs/A23_limou_comfort/attempt_01/source.mp4",
+  "source_sha256": "fe9971f4991a50101e529ef6ad2e690775b2936dc09a1ae0825fc1df085b5842",
+  "cut": {
+    "video": "runs/A23_limou_comfort/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.16666666666666666,
+    "end_seconds_exclusive": 3.7916666666666665,
+    "loop": false,
+    "event_times": {
+      "action_onset": 0.4583333333333333,
+      "main_event": 1.0416666666666667,
+      "settled_end": 3.375
+    }
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 3.625,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1
+  },
+  "events": {
+    "action_onset": {
+      "source_seconds": 0.4583333333333333,
+      "output_frame": 2,
+      "sample_offset_seconds": -0.08333333333333331
+    },
+    "main_event": {
+      "source_seconds": 1.0416666666666667,
+      "output_frame": 5,
+      "sample_offset_seconds": -0.08333333333333337
+    },
+    "settled_end": {
+      "source_seconds": 3.375,
+      "output_frame": 17,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A23_limou_comfort_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.16666666666666666,
+      "source_frame": 5,
+      "actual_source_seconds": 0.16666666666666666,
+      "alpha_bbox": [
+        240,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.3666666666666667,
+      "source_frame": 10,
+      "actual_source_seconds": 0.375,
+      "alpha_bbox": [
+        236,
+        94,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.5666666666666667,
+      "source_frame": 15,
+      "actual_source_seconds": 0.5833333333333334,
+      "alpha_bbox": [
+        230,
+        96,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.7666666666666666,
+      "source_frame": 19,
+      "actual_source_seconds": 0.75,
+      "alpha_bbox": [
+        224,
+        92,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 0.9666666666666667,
+      "source_frame": 24,
+      "actual_source_seconds": 0.9583333333333334,
+      "alpha_bbox": [
+        222,
+        92,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.1666666666666667,
+      "source_frame": 29,
+      "actual_source_seconds": 1.1666666666666667,
+      "alpha_bbox": [
+        222,
+        92,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.3666666666666667,
+      "source_frame": 34,
+      "actual_source_seconds": 1.375,
+      "alpha_bbox": [
+        222,
+        92,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.5666666666666667,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        222,
+        92,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.7666666666666668,
+      "source_frame": 43,
+      "actual_source_seconds": 1.75,
+      "alpha_bbox": [
+        222,
+        92,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 1.9666666666666668,
+      "source_frame": 48,
+      "actual_source_seconds": 1.9583333333333333,
+      "alpha_bbox": [
+        224,
+        92,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.1666666666666665,
+      "source_frame": 53,
+      "actual_source_seconds": 2.1666666666666665,
+      "alpha_bbox": [
+        224,
+        92,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.3666666666666667,
+      "source_frame": 58,
+      "actual_source_seconds": 2.375,
+      "alpha_bbox": [
+        224,
+        92,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.5666666666666664,
+      "source_frame": 63,
+      "actual_source_seconds": 2.5833333333333335,
+      "alpha_bbox": [
+        224,
+        92,
+        404,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 2.7666666666666666,
+      "source_frame": 67,
+      "actual_source_seconds": 2.75,
+      "alpha_bbox": [
+        226,
+        94,
+        402,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 2.9666666666666663,
+      "source_frame": 72,
+      "actual_source_seconds": 2.9583333333333335,
+      "alpha_bbox": [
+        232,
+        94,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.1666666666666665,
+      "source_frame": 77,
+      "actual_source_seconds": 3.1666666666666665,
+      "alpha_bbox": [
+        240,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000017.png",
+      "output_frame": 17,
+      "output_seconds": 3.2,
+      "requested_source_seconds": 3.3666666666666667,
+      "source_frame": 82,
+      "actual_source_seconds": 3.375,
+      "alpha_bbox": [
+        240,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000018.png",
+      "output_frame": 18,
+      "output_seconds": 3.4,
+      "requested_source_seconds": 3.5666666666666664,
+      "source_frame": 87,
+      "actual_source_seconds": 3.5833333333333335,
+      "alpha_bbox": [
+        240,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A23_limou_comfort_000019.png",
+      "output_frame": 19,
+      "output_seconds": 3.6,
+      "requested_source_seconds": 3.7666666666666666,
+      "source_frame": 91,
+      "actual_source_seconds": 3.75,
+      "alpha_bbox": [
+        240,
+        92,
+        400,
+        572
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

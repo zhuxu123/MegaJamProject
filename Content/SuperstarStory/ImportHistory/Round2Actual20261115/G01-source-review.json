@@ -1,0 +1,42 @@
+{
+  "id": "G01",
+  "guide_only": true,
+  "background": "current/References/studio.png",
+  "table_plane_stage_y": 286.53,
+  "floor_y": 420,
+  "scale": 0.49,
+  "actors": [
+    {
+      "id": "A02_linwan_hit_table",
+      "local_palm_pixels": [
+        [
+          451,
+          297
+        ]
+      ],
+      "surface_y": 286.53,
+      "contact_stage_frame": 8,
+      "contact_source_frame": 35,
+      "max_stage_y_error_px": 0.0
+    },
+    {
+      "id": "A03_actress_retreat_table",
+      "local_palm_pixels": [
+        [
+          191,
+          297
+        ],
+        [
+          248,
+          294
+        ]
+      ],
+      "surface_y": 286.53,
+      "contact_stage_frame": 18,
+      "contact_source_frame": 53,
+      "max_stage_y_error_px": 1.47
+    }
+  ],
+  "baked_furniture": false,
+  "reaction_starts_after_A02": true
+}

@@ -1,0 +1,260 @@
+{
+  "id": "A41_linwan_knife_advance",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        401,
+        273
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 2,
+      "head": [
+        313,
+        88
+      ],
+      "hand": [
+        402,
+        273
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 3,
+      "head": [
+        323,
+        98
+      ],
+      "hand": [
+        404,
+        286
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 4,
+      "head": [
+        325,
+        98
+      ],
+      "hand": [
+        407,
+        288
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 5,
+      "head": [
+        328,
+        98
+      ],
+      "hand": [
+        410,
+        288
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 6,
+      "head": [
+        331,
+        98
+      ],
+      "hand": [
+        415,
+        290
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 7,
+      "head": [
+        334,
+        98
+      ],
+      "hand": [
+        417,
+        289
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 8,
+      "head": [
+        337,
+        98
+      ],
+      "hand": [
+        417,
+        291
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 9,
+      "head": [
+        337,
+        98
+      ],
+      "hand": [
+        417,
+        292
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 10,
+      "head": [
+        337,
+        98
+      ],
+      "hand": [
+        417,
+        292
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 11,
+      "head": [
+        337,
+        98
+      ],
+      "hand": [
+        418,
+        293
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 12,
+      "head": [
+        337,
+        98
+      ],
+      "hand": [
+        417,
+        292
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 13,
+      "head": [
+        337,
+        98
+      ],
+      "hand": [
+        418,
+        294
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 14,
+      "head": [
+        337,
+        98
+      ],
+      "hand": [
+        417,
+        293
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 15,
+      "head": [
+        337,
+        98
+      ],
+      "hand": [
+        419,
+        293
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 16,
+      "head": [
+        336,
+        98
+      ],
+      "hand": [
+        418,
+        292
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 17,
+      "head": [
+        336,
+        98
+      ],
+      "hand": [
+        418,
+        292
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    },
+    {
+      "frame": 18,
+      "head": [
+        336,
+        98
+      ],
+      "hand": [
+        419,
+        291
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Native decoded hand contact marked for each actual 5 FPS sample."
+    }
+  ]
+}

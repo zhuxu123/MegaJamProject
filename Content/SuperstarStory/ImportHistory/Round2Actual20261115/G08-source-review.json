@@ -1,0 +1,297 @@
+{
+  "group": "G08",
+  "actors": [
+    "A47_chenmo_give_file",
+    "A48_linwan_receive_file"
+  ],
+  "positions": [
+    278,
+    402
+  ],
+  "asset": "current/Static/Partial20261115/P06_document_folder.png",
+  "asset_sha256": "e84f4428e440856f86d6ea8b464af3fb3d5f7125cdfd972f512921d7c3b30395",
+  "frame_trace": [
+    {
+      "frame": 1,
+      "time": 0.0,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        442,
+        231
+      ]
+    },
+    {
+      "frame": 2,
+      "time": 0.2,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        442,
+        231
+      ]
+    },
+    {
+      "frame": 3,
+      "time": 0.4,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        442,
+        231
+      ]
+    },
+    {
+      "frame": 4,
+      "time": 0.6,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        442,
+        231
+      ]
+    },
+    {
+      "frame": 5,
+      "time": 0.8,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        442,
+        231
+      ]
+    },
+    {
+      "frame": 6,
+      "time": 1.0,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        442,
+        231
+      ]
+    },
+    {
+      "frame": 7,
+      "time": 1.2,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        442,
+        231
+      ]
+    },
+    {
+      "frame": 8,
+      "time": 1.4,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        442,
+        231
+      ]
+    },
+    {
+      "frame": 9,
+      "time": 1.6,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        442,
+        231
+      ]
+    },
+    {
+      "frame": 10,
+      "time": 1.8,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        444,
+        232
+      ]
+    },
+    {
+      "frame": 11,
+      "time": 2.0,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        444,
+        232
+      ]
+    },
+    {
+      "frame": 12,
+      "time": 2.2,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        444,
+        232
+      ]
+    },
+    {
+      "frame": 13,
+      "time": 2.4,
+      "owner": "A47_chenmo_give_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        444,
+        232
+      ]
+    },
+    {
+      "frame": 14,
+      "time": 2.6,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        464,
+        246
+      ]
+    },
+    {
+      "frame": 15,
+      "time": 2.8,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        464,
+        246
+      ]
+    },
+    {
+      "frame": 16,
+      "time": 3.0,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        465,
+        246
+      ]
+    },
+    {
+      "frame": 17,
+      "time": 3.2,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        472,
+        246
+      ]
+    },
+    {
+      "frame": 18,
+      "time": 3.4,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        487,
+        246
+      ]
+    },
+    {
+      "frame": 19,
+      "time": 3.6,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        496,
+        245
+      ]
+    },
+    {
+      "frame": 20,
+      "time": 3.8,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        500,
+        244
+      ]
+    },
+    {
+      "frame": 21,
+      "time": 4.0,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        501,
+        244
+      ]
+    },
+    {
+      "frame": 22,
+      "time": 4.2,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        501,
+        244
+      ]
+    },
+    {
+      "frame": 23,
+      "time": 4.4,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        501,
+        244
+      ]
+    },
+    {
+      "frame": 24,
+      "time": 4.6,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        501,
+        244
+      ]
+    },
+    {
+      "frame": 25,
+      "time": 4.8,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        501,
+        244
+      ]
+    },
+    {
+      "frame": 26,
+      "time": 5.0,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        501,
+        244
+      ]
+    },
+    {
+      "frame": 27,
+      "time": 5.2,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        501,
+        244
+      ]
+    },
+    {
+      "frame": 28,
+      "time": 5.4,
+      "owner": "A48_linwan_receive_file",
+      "asset_instances": 1,
+      "prop_screen_origin": [
+        501,
+        244
+      ]
+    }
+  ],
+  "review_required": false,
+  "offline_review_passed": true
+}

@@ -1,0 +1,184 @@
+{
+  "id": "A02_linwan_hit_table",
+  "screen_facing": "right",
+  "prop_mode": "none",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        311,
+        88
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 2,
+      "head": [
+        311,
+        88
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 3,
+      "head": [
+        311,
+        88
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 4,
+      "head": [
+        311,
+        88
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 5,
+      "head": [
+        314,
+        86
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 6,
+      "head": [
+        316,
+        84
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 7,
+      "head": [
+        324,
+        80
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 8,
+      "head": [
+        324,
+        80
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 9,
+      "head": [
+        324,
+        80
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 10,
+      "head": [
+        324,
+        80
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 11,
+      "head": [
+        324,
+        80
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 12,
+      "head": [
+        324,
+        80
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 13,
+      "head": [
+        324,
+        80
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 14,
+      "head": [
+        324,
+        80
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 15,
+      "head": [
+        324,
+        80
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    },
+    {
+      "frame": 16,
+      "head": [
+        324,
+        80
+      ],
+      "hand": null,
+      "hand_left": null,
+      "hand_right": null,
+      "notes": ""
+    }
+  ]
+}

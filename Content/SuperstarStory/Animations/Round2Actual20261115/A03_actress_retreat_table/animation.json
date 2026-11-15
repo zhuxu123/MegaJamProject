@@ -1,0 +1,391 @@
+{
+  "id": "A03_actress_retreat_table",
+  "fps": 5,
+  "frame_count": 23,
+  "playback_seconds": 4.6,
+  "loop": false,
+  "source": "runs/A03_actress_retreat_table/attempt_80/source.mp4",
+  "source_sha256": "b32afab3e10c7a1af56eb55e6f513bb90d386670323502318bc38422ccc3e1ca",
+  "cut": {
+    "video": "runs/A03_actress_retreat_table/attempt_80/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.16666666666666666,
+    "end_seconds_exclusive": 4.708333333333333,
+    "loop": false,
+    "event_times": {
+      "action_onset": 0.7083333333333334,
+      "main_event": 2.0833333333333335,
+      "settled_end": 3.8333333333333335
+    }
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 4.541666666666666,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "action_onset": {
+      "source_seconds": 0.7083333333333334,
+      "output_frame": 4,
+      "sample_offset_seconds": 0.04166666666666663
+    },
+    "main_event": {
+      "source_seconds": 2.0833333333333335,
+      "output_frame": 11,
+      "sample_offset_seconds": 0.08333333333333304
+    },
+    "settled_end": {
+      "source_seconds": 3.8333333333333335,
+      "output_frame": 19,
+      "sample_offset_seconds": -0.08333333333333348
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A03_actress_retreat_table_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.16666666666666666,
+      "source_frame": 5,
+      "actual_source_seconds": 0.16666666666666666,
+      "alpha_bbox": [
+        258,
+        92,
+        382,
+        572
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.3666666666666667,
+      "source_frame": 10,
+      "actual_source_seconds": 0.375,
+      "alpha_bbox": [
+        258,
+        92,
+        382,
+        572
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.5666666666666667,
+      "source_frame": 15,
+      "actual_source_seconds": 0.5833333333333334,
+      "alpha_bbox": [
+        254,
+        96,
+        376,
+        568
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.7666666666666666,
+      "source_frame": 19,
+      "actual_source_seconds": 0.75,
+      "alpha_bbox": [
+        248,
+        96,
+        374,
+        568
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 0.9666666666666667,
+      "source_frame": 24,
+      "actual_source_seconds": 0.9583333333333334,
+      "alpha_bbox": [
+        232,
+        93,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.1666666666666667,
+      "source_frame": 29,
+      "actual_source_seconds": 1.1666666666666667,
+      "alpha_bbox": [
+        210,
+        92,
+        374,
+        571
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.3666666666666667,
+      "source_frame": 34,
+      "actual_source_seconds": 1.375,
+      "alpha_bbox": [
+        192,
+        90,
+        374,
+        571
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.5666666666666667,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.7666666666666668,
+      "source_frame": 43,
+      "actual_source_seconds": 1.75,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 1.9666666666666668,
+      "source_frame": 48,
+      "actual_source_seconds": 1.9583333333333333,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.1666666666666665,
+      "source_frame": 53,
+      "actual_source_seconds": 2.1666666666666665,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.3666666666666667,
+      "source_frame": 58,
+      "actual_source_seconds": 2.375,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.5666666666666664,
+      "source_frame": 63,
+      "actual_source_seconds": 2.5833333333333335,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 2.7666666666666666,
+      "source_frame": 67,
+      "actual_source_seconds": 2.75,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 2.9666666666666663,
+      "source_frame": 72,
+      "actual_source_seconds": 2.9583333333333335,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.1666666666666665,
+      "source_frame": 77,
+      "actual_source_seconds": 3.1666666666666665,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000017.png",
+      "output_frame": 17,
+      "output_seconds": 3.2,
+      "requested_source_seconds": 3.3666666666666667,
+      "source_frame": 82,
+      "actual_source_seconds": 3.375,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000018.png",
+      "output_frame": 18,
+      "output_seconds": 3.4,
+      "requested_source_seconds": 3.5666666666666664,
+      "source_frame": 87,
+      "actual_source_seconds": 3.5833333333333335,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000019.png",
+      "output_frame": 19,
+      "output_seconds": 3.6,
+      "requested_source_seconds": 3.7666666666666666,
+      "source_frame": 91,
+      "actual_source_seconds": 3.75,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000020.png",
+      "output_frame": 20,
+      "output_seconds": 3.8,
+      "requested_source_seconds": 3.9666666666666663,
+      "source_frame": 96,
+      "actual_source_seconds": 3.9583333333333335,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000021.png",
+      "output_frame": 21,
+      "output_seconds": 4.0,
+      "requested_source_seconds": 4.166666666666667,
+      "source_frame": 101,
+      "actual_source_seconds": 4.166666666666667,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000022.png",
+      "output_frame": 22,
+      "output_seconds": 4.2,
+      "requested_source_seconds": 4.366666666666667,
+      "source_frame": 106,
+      "actual_source_seconds": 4.375,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    },
+    {
+      "file": "frames/A03_actress_retreat_table_000023.png",
+      "output_frame": 23,
+      "output_seconds": 4.4,
+      "requested_source_seconds": 4.566666666666667,
+      "source_frame": 111,
+      "actual_source_seconds": 4.583333333333333,
+      "alpha_bbox": [
+        184,
+        90,
+        374,
+        570
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

@@ -1,0 +1,168 @@
+{
+  "id": "A52_xiaobei_brave_walk",
+  "fps": 5,
+  "frame_count": 7,
+  "playback_seconds": 1.4,
+  "loop": true,
+  "source": "runs/A52_xiaobei_brave_walk/attempt_80/source.mp4",
+  "source_sha256": "4415f890d3d661897a6e87a6bb59b743509adfc3d7f116e83b532c856a9c803c",
+  "cut": {
+    "video": "runs/A52_xiaobei_brave_walk/attempt_80/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.5416666666666666,
+    "end_seconds_exclusive": 2.0,
+    "loop": true,
+    "event_times": {
+      "cycle_start": 0.5416666666666666,
+      "opposite_phase": 1.1666666666666667,
+      "cycle_return": 1.7916666666666667
+    },
+    "loop_end_seconds": 2.0
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 1.4583333333333335,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "cycle_start": {
+      "source_seconds": 0.5416666666666666,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "opposite_phase": {
+      "source_seconds": 1.1666666666666667,
+      "output_frame": 4,
+      "sample_offset_seconds": 0.0
+    },
+    "cycle_return": {
+      "source_seconds": 1.7916666666666667,
+      "output_frame": 7,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A52_xiaobei_brave_walk_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.5416666666666666,
+      "source_frame": 14,
+      "actual_source_seconds": 0.5416666666666666,
+      "alpha_bbox": [
+        260,
+        90,
+        392,
+        584
+      ]
+    },
+    {
+      "file": "frames/A52_xiaobei_brave_walk_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.75,
+      "source_frame": 19,
+      "actual_source_seconds": 0.75,
+      "alpha_bbox": [
+        274,
+        88,
+        376,
+        576
+      ]
+    },
+    {
+      "file": "frames/A52_xiaobei_brave_walk_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.9583333333333333,
+      "source_frame": 24,
+      "actual_source_seconds": 0.9583333333333334,
+      "alpha_bbox": [
+        274,
+        91,
+        391,
+        572
+      ]
+    },
+    {
+      "file": "frames/A52_xiaobei_brave_walk_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 1.1666666666666665,
+      "source_frame": 29,
+      "actual_source_seconds": 1.1666666666666667,
+      "alpha_bbox": [
+        270,
+        94,
+        392,
+        584
+      ]
+    },
+    {
+      "file": "frames/A52_xiaobei_brave_walk_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 1.375,
+      "source_frame": 34,
+      "actual_source_seconds": 1.375,
+      "alpha_bbox": [
+        275,
+        88,
+        376,
+        573
+      ]
+    },
+    {
+      "file": "frames/A52_xiaobei_brave_walk_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.5833333333333335,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        264,
+        88,
+        390,
+        566
+      ]
+    },
+    {
+      "file": "frames/A52_xiaobei_brave_walk_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.7916666666666665,
+      "source_frame": 44,
+      "actual_source_seconds": 1.7916666666666667,
+      "alpha_bbox": [
+        250,
+        96,
+        410,
+        582
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

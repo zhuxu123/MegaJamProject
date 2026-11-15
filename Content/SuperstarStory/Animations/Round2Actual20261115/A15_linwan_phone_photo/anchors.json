@@ -1,0 +1,302 @@
+{
+  "id": "A15_linwan_phone_photo",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        401,
+        202
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 2,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        401,
+        198
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 3,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        197
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 4,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        194
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 5,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        403,
+        190
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 6,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        189
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 7,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        190
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 8,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        190
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 9,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        190
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 10,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        190
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 11,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        190
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 12,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        190
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 13,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        403,
+        188
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 14,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        403,
+        189
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 15,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        190
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 16,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        193
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 17,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        402,
+        195
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 18,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        401,
+        196
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 19,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        401,
+        198
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 20,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        401,
+        200
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    },
+    {
+      "frame": 21,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        401,
+        203
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured at the inside edge of the thumb/index grip in the 640 px sprite."
+    }
+  ]
+}

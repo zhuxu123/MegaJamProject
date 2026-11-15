@@ -1,0 +1,181 @@
+{
+  "id": "A06_actress_leave_bowed",
+  "fps": 5,
+  "frame_count": 8,
+  "playback_seconds": 1.6,
+  "loop": true,
+  "source": "runs/A06_actress_leave_bowed/attempt_01/source.mp4",
+  "source_sha256": "f33cad5e10bf44944112b4890be4e53fa2936aab46f93f69761cf801cc48e549",
+  "cut": {
+    "video": "runs/A06_actress_leave_bowed/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.9166666666666667,
+    "end_seconds_exclusive": 3.4583333333333335,
+    "loop": true,
+    "event_times": {
+      "cycle_start": 1.9166666666666667,
+      "opposite_phase": 2.7083333333333335,
+      "cycle_return": 3.25
+    },
+    "loop_end_seconds": 3.4583333333333335
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 1.5416666666666667,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1
+  },
+  "events": {
+    "cycle_start": {
+      "source_seconds": 1.9166666666666667,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "opposite_phase": {
+      "source_seconds": 2.7083333333333335,
+      "output_frame": 5,
+      "sample_offset_seconds": -0.04166666666666696
+    },
+    "cycle_return": {
+      "source_seconds": 3.25,
+      "output_frame": 8,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A06_actress_leave_bowed_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.9166666666666667,
+      "source_frame": 47,
+      "actual_source_seconds": 1.9166666666666667,
+      "alpha_bbox": [
+        210,
+        96,
+        410,
+        570
+      ]
+    },
+    {
+      "file": "frames/A06_actress_leave_bowed_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 2.109375,
+      "source_frame": 52,
+      "actual_source_seconds": 2.125,
+      "alpha_bbox": [
+        224,
+        94,
+        386,
+        570
+      ]
+    },
+    {
+      "file": "frames/A06_actress_leave_bowed_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 2.3020833333333335,
+      "source_frame": 56,
+      "actual_source_seconds": 2.2916666666666665,
+      "alpha_bbox": [
+        254,
+        92,
+        394,
+        570
+      ]
+    },
+    {
+      "file": "frames/A06_actress_leave_bowed_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 2.494791666666667,
+      "source_frame": 61,
+      "actual_source_seconds": 2.5,
+      "alpha_bbox": [
+        238,
+        94,
+        401,
+        572
+      ]
+    },
+    {
+      "file": "frames/A06_actress_leave_bowed_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 2.6875,
+      "source_frame": 65,
+      "actual_source_seconds": 2.6666666666666665,
+      "alpha_bbox": [
+        220,
+        96,
+        407,
+        570
+      ]
+    },
+    {
+      "file": "frames/A06_actress_leave_bowed_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 2.8802083333333335,
+      "source_frame": 70,
+      "actual_source_seconds": 2.875,
+      "alpha_bbox": [
+        224,
+        94,
+        396,
+        572
+      ]
+    },
+    {
+      "file": "frames/A06_actress_leave_bowed_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 3.072916666666667,
+      "source_frame": 75,
+      "actual_source_seconds": 3.0833333333333335,
+      "alpha_bbox": [
+        264,
+        90,
+        390,
+        572
+      ]
+    },
+    {
+      "file": "frames/A06_actress_leave_bowed_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 3.265625,
+      "source_frame": 79,
+      "actual_source_seconds": 3.25,
+      "alpha_bbox": [
+        232,
+        92,
+        398,
+        572
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

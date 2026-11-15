@@ -1,0 +1,203 @@
+{
+  "id": "E04_extra_m_walk",
+  "fps": 5,
+  "frame_count": 8,
+  "playback_seconds": 1.6,
+  "loop": true,
+  "source": "runs/E04_extra_m_walk/baseline_repair/source.mp4",
+  "source_sha256": "e271113c9e973808c6064515193edde0353587330710a4f8a4790aec9d4c02b4",
+  "cut": {
+    "video": "runs/E04_extra_m_walk/baseline_repair/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.5833333333333333,
+    "end_seconds_exclusive": 3.1666666666666665,
+    "loop": true,
+    "event_times": {
+      "左脚着地": 1.5833333333333333,
+      "右脚着地": 2.375,
+      "完整左右步周期": 3.0,
+      "道具与无五官特征保持": 2.0
+    },
+    "notes": "One same-foot-to-same-foot cycle over 38 source frames. Empty hands, short hair, backward cap and both ground contacts visible.",
+    "loop_end_seconds": 3.1666666666666665
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 1.5833333333333333,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1
+  },
+  "events": {
+    "左脚着地": {
+      "source_seconds": 1.5833333333333333,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "右脚着地": {
+      "source_seconds": 2.375,
+      "output_frame": 5,
+      "sample_offset_seconds": 0.0
+    },
+    "完整左右步周期": {
+      "source_seconds": 3.0,
+      "output_frame": 8,
+      "sample_offset_seconds": -0.04166666666666652
+    },
+    "道具与无五官特征保持": {
+      "source_seconds": 2.0,
+      "output_frame": 3,
+      "sample_offset_seconds": -0.04166666666666674
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/E04_extra_m_walk_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.5833333333333333,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        240,
+        93,
+        422,
+        569
+      ]
+    },
+    {
+      "file": "frames/E04_extra_m_walk_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 1.78125,
+      "source_frame": 44,
+      "actual_source_seconds": 1.7916666666666667,
+      "alpha_bbox": [
+        246,
+        90,
+        390,
+        568
+      ]
+    },
+    {
+      "file": "frames/E04_extra_m_walk_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 1.9791666666666665,
+      "source_frame": 48,
+      "actual_source_seconds": 1.9583333333333333,
+      "alpha_bbox": [
+        242,
+        86,
+        394,
+        564
+      ]
+    },
+    {
+      "file": "frames/E04_extra_m_walk_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 2.177083333333333,
+      "source_frame": 53,
+      "actual_source_seconds": 2.1666666666666665,
+      "alpha_bbox": [
+        234,
+        84,
+        412,
+        564
+      ]
+    },
+    {
+      "file": "frames/E04_extra_m_walk_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 2.375,
+      "source_frame": 58,
+      "actual_source_seconds": 2.375,
+      "alpha_bbox": [
+        234,
+        87,
+        420,
+        569
+      ]
+    },
+    {
+      "file": "frames/E04_extra_m_walk_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 2.5729166666666665,
+      "source_frame": 63,
+      "actual_source_seconds": 2.5833333333333335,
+      "alpha_bbox": [
+        240,
+        84,
+        408,
+        572
+      ]
+    },
+    {
+      "file": "frames/E04_extra_m_walk_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 2.770833333333333,
+      "source_frame": 67,
+      "actual_source_seconds": 2.75,
+      "alpha_bbox": [
+        248,
+        84,
+        396,
+        570
+      ]
+    },
+    {
+      "file": "frames/E04_extra_m_walk_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 2.96875,
+      "source_frame": 72,
+      "actual_source_seconds": 2.9583333333333335,
+      "alpha_bbox": [
+        258,
+        88,
+        406,
+        568
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right",
+  "processing": {
+    "based_on": "baseline_repair/candidate",
+    "contact_floor_y": 569,
+    "y_offsets": [
+      2,
+      1,
+      -1,
+      -3,
+      -4,
+      -3,
+      -1,
+      1
+    ],
+    "method": "One cyclic vertical registration correction interpolated between the two measured contact phases, applied to the entire sprite. Both contact poses match E03; keep airborne trajectory."
+  }
+}

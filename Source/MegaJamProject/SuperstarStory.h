@@ -116,6 +116,9 @@ private:
     FString PhotoNotice;
     bool bPhotoSmoke = false;
     bool bMotionSmoke = false;
+    bool bRound2Smoke = false;
+    int32 Round2SmokeTicks = 0, Round2SmokeStep = 0;
+    TSet<FString> Round2Seen;
     int32 MotionSmokeStep = 0, MotionSmokeTicks = 0;
     int32 PhotoSmokeTicks = 0, PhotoSmokeStep = 0;
 
@@ -146,6 +149,12 @@ private:
     bool ActorFlip(const TSharedPtr<FJsonObject>& Actor, const FString& Id) const;
     FVector2D ActorHand(const TSharedPtr<FJsonObject>& Actor) const;
     void RunMotionSmoke();
+    void RunRound2Smoke();
+    float ActorScale(const TSharedPtr<FJsonObject>& Actor) const;
+    FVector2D ActorOffset(const TSharedPtr<FJsonObject>& Actor) const;
+    bool PropVisible(const TSharedPtr<FJsonObject>& Prop) const;
+    FVector2D PropGrip(const TSharedPtr<FJsonObject>& Prop) const;
+    bool PropMirrors(const TSharedPtr<FJsonObject>& Prop) const;
     float SequenceTime() const;
     void SeekSequence(float Time);
     void AdvanceSequence(float Delta, float ScrubAxis);

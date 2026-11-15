@@ -1,0 +1,372 @@
+{
+  "id": "A48_linwan_receive_file",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        394,
+        228
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 2,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        394,
+        228
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 3,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        397,
+        245
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 4,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        401,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 5,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        416,
+        301
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 6,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        430,
+        314
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 7,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        440,
+        311
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 8,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        441,
+        308
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 9,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        441,
+        307
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 10,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        441,
+        309
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 11,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        441,
+        310
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 12,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        444,
+        306
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 13,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        450,
+        300
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 14,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        457,
+        280
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 15,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        458,
+        280
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 16,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        456,
+        280
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 17,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        445,
+        281
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 18,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        434,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 19,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        416,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 20,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        394,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 21,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        391,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 22,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        391,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 23,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        392,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 24,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        392,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 25,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        392,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    },
+    {
+      "frame": 26,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        391,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Measured near hand opening, grasp and inward motion. Bbox of rejected bake used to register the separate P06 art, never exported as part of the actor texture."
+    }
+  ]
+}

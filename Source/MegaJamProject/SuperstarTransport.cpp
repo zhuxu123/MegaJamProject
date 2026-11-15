@@ -107,7 +107,7 @@ void ASuperstarStoryHUD::RunTransportSmoke()
         // Same helpers called by the live keyboard and pointer path, without bypassing seek logic.
         bPlaying=true;SeekSequence(BeatStarts[4]-.1f);AdvanceSequence(.2f,1);
         check(Beat==4 && FMath::IsNearlyEqual(Clock,.5f,.001f));
-        AdvanceSequence(.2f,-1);check(Beat==3 && FMath::IsNearlyEqual(Clock,4.9f,.001f));
+        AdvanceSequence(.2f,-1);check(Beat==3 && FMath::IsNearlyEqual(Clock,static_cast<float>(Beats[3]->GetNumberField(TEXT("duration")))-.1f,.001f));
         bPlaying=false;const float Held=SequenceTime();AdvanceSequence(.25f,1);AdvanceSequence(.25f,-1);
         check(FMath::IsNearlyEqual(SequenceTime(),Held,.001f));AdvanceSequence(1,0);check(FMath::IsNearlyEqual(SequenceTime(),Held,.001f));
         bPlaying=true;AdvanceSequence(.25f,1);const float Release=SequenceTime();AdvanceSequence(.25f,0);
@@ -124,8 +124,8 @@ void ASuperstarStoryHUD::RunTransportSmoke()
         AdvanceSequence(2,0);check(SequenceTime()==SequenceDuration);
         check(!HandleTimelinePointer({500,200},true,true,false)); // scene drag is not stolen
         // Evidence gates survive backwards seeking and are never implicitly sent by fast-forward.
-        SelectBeat(33);Clock=4.9f;bPlaying=true;AdvanceSequence(2,0);
-        check(Beat==33 && !bPublished && FMath::IsNearlyEqual(Clock,5.f));
+        SelectBeat(33);const float GateDuration=Beats[33]->GetNumberField(TEXT("duration"));Clock=GateDuration-.1f;bPlaying=true;AdvanceSequence(2,0);
+        check(Beat==33 && !bPublished && FMath::IsNearlyEqual(Clock,GateDuration));
         AdvanceSequence(.2f,1);check(Beat==34 && !PublishedBeats.Contains(33));
         SelectBeat(33);bEvidencePlaced=true;Publish();SeekSequence(0);SeekSequence(BeatStarts[33]+1);
         check(bPublished && PublishedBeats.Contains(33));
@@ -136,10 +136,10 @@ void ASuperstarStoryHUD::RunTransportSmoke()
         AdvanceSequence(.1f,1);ResolveActorSample(Actor,Id,Frame);check(Id==TEXT("A17_xiaobei_crouch_empty"));
         AdvanceSequence(.1f,-1);ResolveActorSample(Actor,Id,Frame);check(Id==TEXT("A16_xiaobei_rise_empty"));
         // Seek across a handover and back; each pose must reattach from its evaluated time.
-        SelectBeat(3);Clock=2.5f;UpdateActors();
+        SelectBeat(3);const float Transfer=Beats[3]->GetArrayField(TEXT("props"))[0]->AsObject()->GetNumberField(TEXT("transfer_at"));Clock=Transfer-.1f;UpdateActors();
         const auto Before=Beats[3]->GetArrayField(TEXT("actors"))[1]->AsObject();
         const FVector PreviousHand=Stage->CharacterPixelWorld(1,ActorHand(Before));
-        AdvanceSequence(.1f,1);check(Clock>2.6f);AdvanceSequence(.1f,-1);UpdateActors();
+        AdvanceSequence(.1f,1);check(Clock>Transfer);AdvanceSequence(.1f,-1);UpdateActors();
         check(FVector::Dist(PreviousHand,Stage->CharacterPixelWorld(1,ActorHand(Before)))<.001f);
         SeekSequence(BeatStarts[4]+1.2f);bPlaying=false;PlaybackRate=0;UpdateActors();
         UE_LOG(LogTemp,Display,TEXT("SuperstarTransport checks PASS: forward/reverse across beats, release state, drag capture, clamps, evidence, sequence cuts and handover seek"));

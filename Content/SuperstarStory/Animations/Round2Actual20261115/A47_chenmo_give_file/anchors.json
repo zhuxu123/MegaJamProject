@@ -1,0 +1,218 @@
+{
+  "id": "A47_chenmo_give_file",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        336,
+        92
+      ],
+      "hand": [
+        427,
+        272
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 2,
+      "head": [
+        336,
+        92
+      ],
+      "hand": [
+        431,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 3,
+      "head": [
+        336,
+        92
+      ],
+      "hand": [
+        431,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 4,
+      "head": [
+        336,
+        92
+      ],
+      "hand": [
+        431,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 5,
+      "head": [
+        336,
+        92
+      ],
+      "hand": [
+        431,
+        273
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 6,
+      "head": [
+        336,
+        92
+      ],
+      "hand": [
+        431,
+        273
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 7,
+      "head": [
+        335,
+        92
+      ],
+      "hand": [
+        431,
+        281
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 8,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        425,
+        333
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 9,
+      "head": [
+        333,
+        92
+      ],
+      "hand": [
+        398,
+        346
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 10,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        296,
+        364
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 11,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        360,
+        363
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 12,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        360,
+        363
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 13,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        360,
+        363
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 14,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        360,
+        362
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    },
+    {
+      "frame": 15,
+      "head": [
+        332,
+        92
+      ],
+      "hand": [
+        360,
+        362
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible primary grip position; confirmed both palms of A47 in the actual model footage."
+    }
+  ]
+}

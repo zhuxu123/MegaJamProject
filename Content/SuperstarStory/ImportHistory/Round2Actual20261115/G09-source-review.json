@@ -1,0 +1,452 @@
+{
+  "id": "G09",
+  "review_required": false,
+  "coord_space": [
+    960,
+    468
+  ],
+  "first_contact_time": 2.0,
+  "transfer_time": 2.0,
+  "contact_height_difference_px": 0.005000000000052296,
+  "floor": 420,
+  "scales": [
+    0.435,
+    0.49
+  ],
+  "actors": [
+    {
+      "id": "A54_xiaobei_release_umbrella",
+      "flip": true,
+      "event": "main_event",
+      "contact_frame": 10,
+      "scale": 0.435,
+      "first": 0,
+      "transform": [
+        388,
+        172
+      ],
+      "contact_y": 277.705
+    },
+    {
+      "id": "A09_linwan_take_umbrella",
+      "flip": false,
+      "event": "main_event",
+      "contact_frame": 10,
+      "scale": 0.49,
+      "first": 0,
+      "transform": [
+        263,
+        141
+      ],
+      "contact_y": 277.71000000000004
+    }
+  ],
+  "prop": "current/Static/Partial20261115/P01_umbrella_closed.png",
+  "prop_sha256": "997e7bdc898e819f3d5c8a22a6d67e3088dff562406335b36cc41e0bf905fdba",
+  "grips": [
+    [
+      0.5,
+      0.76
+    ],
+    [
+      0.5,
+      0.76
+    ]
+  ],
+  "rotation": 0,
+  "frames": [
+    {
+      "frame": 1,
+      "time": 0.0,
+      "owner": "A54_xiaobei_release_umbrella",
+      "actors": [
+        1,
+        1
+      ],
+      "grip_world": [
+        500.23,
+        282.49
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 2,
+      "time": 0.2,
+      "owner": "A54_xiaobei_release_umbrella",
+      "actors": [
+        2,
+        2
+      ],
+      "grip_world": [
+        500.23,
+        282.055
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 3,
+      "time": 0.4,
+      "owner": "A54_xiaobei_release_umbrella",
+      "actors": [
+        3,
+        3
+      ],
+      "grip_world": [
+        500.23,
+        281.62
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 4,
+      "time": 0.6,
+      "owner": "A54_xiaobei_release_umbrella",
+      "actors": [
+        4,
+        4
+      ],
+      "grip_world": [
+        499.795,
+        281.62
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 5,
+      "time": 0.8,
+      "owner": "A54_xiaobei_release_umbrella",
+      "actors": [
+        5,
+        5
+      ],
+      "grip_world": [
+        498.49,
+        282.055
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 6,
+      "time": 1.0,
+      "owner": "A54_xiaobei_release_umbrella",
+      "actors": [
+        6,
+        6
+      ],
+      "grip_world": [
+        496.75,
+        280.75
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 7,
+      "time": 1.2,
+      "owner": "A54_xiaobei_release_umbrella",
+      "actors": [
+        7,
+        7
+      ],
+      "grip_world": [
+        490.65999999999997,
+        279.88
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 8,
+      "time": 1.4,
+      "owner": "A54_xiaobei_release_umbrella",
+      "actors": [
+        8,
+        8
+      ],
+      "grip_world": [
+        485.875,
+        279.01
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 9,
+      "time": 1.6,
+      "owner": "A54_xiaobei_release_umbrella",
+      "actors": [
+        9,
+        9
+      ],
+      "grip_world": [
+        482.83,
+        276.835
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 10,
+      "time": 1.8,
+      "owner": "A54_xiaobei_release_umbrella",
+      "actors": [
+        10,
+        10
+      ],
+      "grip_world": [
+        482.83,
+        276.835
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 11,
+      "time": 2.0,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        11,
+        11
+      ],
+      "grip_world": [
+        480.07,
+        277.71000000000004
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 12,
+      "time": 2.2,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        12,
+        12
+      ],
+      "grip_world": [
+        479.58,
+        277.71000000000004
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 13,
+      "time": 2.4,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        13,
+        13
+      ],
+      "grip_world": [
+        480.07,
+        277.71000000000004
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 14,
+      "time": 2.6,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        14,
+        14
+      ],
+      "grip_world": [
+        480.07,
+        277.71000000000004
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 15,
+      "time": 2.8,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        15,
+        15
+      ],
+      "grip_world": [
+        480.07,
+        277.71000000000004
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 16,
+      "time": 3.0,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        16,
+        16
+      ],
+      "grip_world": [
+        479.58,
+        277.71000000000004
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 17,
+      "time": 3.2,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        17,
+        17
+      ],
+      "grip_world": [
+        479.58,
+        277.71000000000004
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 18,
+      "time": 3.4,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        18,
+        18
+      ],
+      "grip_world": [
+        476.15,
+        272.81
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 19,
+      "time": 3.6,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        19,
+        19
+      ],
+      "grip_world": [
+        467.33,
+        267.90999999999997
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 20,
+      "time": 3.8,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        20,
+        20
+      ],
+      "grip_world": [
+        454.59000000000003,
+        264.97
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 21,
+      "time": 4.0,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        21,
+        21
+      ],
+      "grip_world": [
+        454.59000000000003,
+        264.97
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 22,
+      "time": 4.2,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        22,
+        22
+      ],
+      "grip_world": [
+        454.59000000000003,
+        264.97
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 23,
+      "time": 4.4,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        23,
+        23
+      ],
+      "grip_world": [
+        454.59000000000003,
+        264.97
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 24,
+      "time": 4.6,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        24,
+        23
+      ],
+      "grip_world": [
+        454.59000000000003,
+        264.97
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 25,
+      "time": 4.8,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        25,
+        23
+      ],
+      "grip_world": [
+        454.59000000000003,
+        264.97
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 26,
+      "time": 5.0,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        26,
+        23
+      ],
+      "grip_world": [
+        454.59000000000003,
+        264.97
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 27,
+      "time": 5.2,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        26,
+        23
+      ],
+      "grip_world": [
+        454.59000000000003,
+        264.97
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 28,
+      "time": 5.4,
+      "owner": "A09_linwan_take_umbrella",
+      "actors": [
+        26,
+        23
+      ],
+      "grip_world": [
+        454.59000000000003,
+        264.97
+      ],
+      "prop_count": 1
+    }
+  ],
+  "offline_review_passed": true
+}

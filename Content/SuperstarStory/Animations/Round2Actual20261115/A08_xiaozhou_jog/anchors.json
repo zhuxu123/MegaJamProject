@@ -1,0 +1,148 @@
+{
+  "id": "A08_xiaozhou_jog",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        321,
+        104
+      ],
+      "hand": [
+        401,
+        261
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track the forward curled hand in the actual jogging cycle; P01 keeps constant size and orientation."
+    },
+    {
+      "frame": 2,
+      "head": [
+        324,
+        86
+      ],
+      "hand": [
+        383,
+        285
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track the forward curled hand in the actual jogging cycle; P01 keeps constant size and orientation."
+    },
+    {
+      "frame": 3,
+      "head": [
+        325,
+        102
+      ],
+      "hand": [
+        380,
+        299
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track the forward curled hand in the actual jogging cycle; P01 keeps constant size and orientation."
+    },
+    {
+      "frame": 4,
+      "head": [
+        325,
+        96
+      ],
+      "hand": [
+        398,
+        267
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track the forward curled hand in the actual jogging cycle; P01 keeps constant size and orientation."
+    },
+    {
+      "frame": 5,
+      "head": [
+        322,
+        86
+      ],
+      "hand": [
+        404,
+        231
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track the forward curled hand in the actual jogging cycle; P01 keeps constant size and orientation."
+    },
+    {
+      "frame": 6,
+      "head": [
+        321,
+        104
+      ],
+      "hand": [
+        400,
+        260
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track the forward curled hand in the actual jogging cycle; P01 keeps constant size and orientation."
+    },
+    {
+      "frame": 7,
+      "head": [
+        324,
+        86
+      ],
+      "hand": [
+        385,
+        284
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track the forward curled hand in the actual jogging cycle; P01 keeps constant size and orientation."
+    },
+    {
+      "frame": 8,
+      "head": [
+        325,
+        100
+      ],
+      "hand": [
+        377,
+        300
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track the forward curled hand in the actual jogging cycle; P01 keeps constant size and orientation."
+    },
+    {
+      "frame": 9,
+      "head": [
+        325,
+        98
+      ],
+      "hand": [
+        398,
+        271
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track the forward curled hand in the actual jogging cycle; P01 keeps constant size and orientation."
+    },
+    {
+      "frame": 10,
+      "head": [
+        322,
+        86
+      ],
+      "hand": [
+        404,
+        232
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Track the forward curled hand in the actual jogging cycle; P01 keeps constant size and orientation."
+    }
+  ]
+}

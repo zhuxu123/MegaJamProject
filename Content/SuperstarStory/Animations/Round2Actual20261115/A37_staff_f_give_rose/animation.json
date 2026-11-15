@@ -1,0 +1,405 @@
+{
+  "id": "A37_staff_f_give_rose",
+  "fps": 5,
+  "frame_count": 24,
+  "playback_seconds": 4.8,
+  "loop": false,
+  "source": "runs/A37_staff_f_give_rose/attempt_03/source.mp4",
+  "source_sha256": "4c510e268d1191ff68d25f80265da8888ef3b3634a9a910b1999d607929fb141",
+  "cut": {
+    "video": "runs/A37_staff_f_give_rose/attempt_03/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.125,
+    "end_seconds_exclusive": 4.875,
+    "loop": false,
+    "event_times": {
+      "action_onset": 0.4583333333333333,
+      "main_event": 3.2083333333333335,
+      "settled_end": 4.541666666666667
+    }
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 4.75,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "action_onset": {
+      "source_seconds": 0.4583333333333333,
+      "output_frame": 3,
+      "sample_offset_seconds": 0.08333333333333331
+    },
+    "main_event": {
+      "source_seconds": 3.2083333333333335,
+      "output_frame": 16,
+      "sample_offset_seconds": -0.08333333333333348
+    },
+    "settled_end": {
+      "source_seconds": 4.541666666666667,
+      "output_frame": 23,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A37_staff_f_give_rose_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.125,
+      "source_frame": 4,
+      "actual_source_seconds": 0.125,
+      "alpha_bbox": [
+        246,
+        96,
+        388,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.325,
+      "source_frame": 9,
+      "actual_source_seconds": 0.3333333333333333,
+      "alpha_bbox": [
+        246,
+        96,
+        388,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.525,
+      "source_frame": 14,
+      "actual_source_seconds": 0.5416666666666666,
+      "alpha_bbox": [
+        246,
+        96,
+        410,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.725,
+      "source_frame": 18,
+      "actual_source_seconds": 0.7083333333333334,
+      "alpha_bbox": [
+        246,
+        96,
+        432,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 0.925,
+      "source_frame": 23,
+      "actual_source_seconds": 0.9166666666666666,
+      "alpha_bbox": [
+        246,
+        96,
+        453,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.125,
+      "source_frame": 28,
+      "actual_source_seconds": 1.125,
+      "alpha_bbox": [
+        246,
+        96,
+        452,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.325,
+      "source_frame": 33,
+      "actual_source_seconds": 1.3333333333333333,
+      "alpha_bbox": [
+        246,
+        96,
+        452,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.525,
+      "source_frame": 38,
+      "actual_source_seconds": 1.5416666666666667,
+      "alpha_bbox": [
+        246,
+        96,
+        452,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.725,
+      "source_frame": 42,
+      "actual_source_seconds": 1.7083333333333333,
+      "alpha_bbox": [
+        246,
+        96,
+        452,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 1.925,
+      "source_frame": 47,
+      "actual_source_seconds": 1.9166666666666667,
+      "alpha_bbox": [
+        246,
+        96,
+        452,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.125,
+      "source_frame": 52,
+      "actual_source_seconds": 2.125,
+      "alpha_bbox": [
+        246,
+        96,
+        452,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.325,
+      "source_frame": 57,
+      "actual_source_seconds": 2.3333333333333335,
+      "alpha_bbox": [
+        246,
+        96,
+        448,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.525,
+      "source_frame": 62,
+      "actual_source_seconds": 2.5416666666666665,
+      "alpha_bbox": [
+        246,
+        96,
+        450,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 2.725,
+      "source_frame": 66,
+      "actual_source_seconds": 2.7083333333333335,
+      "alpha_bbox": [
+        246,
+        96,
+        452,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 2.925,
+      "source_frame": 71,
+      "actual_source_seconds": 2.9166666666666665,
+      "alpha_bbox": [
+        246,
+        96,
+        454,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.125,
+      "source_frame": 76,
+      "actual_source_seconds": 3.125,
+      "alpha_bbox": [
+        246,
+        96,
+        448,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000017.png",
+      "output_frame": 17,
+      "output_seconds": 3.2,
+      "requested_source_seconds": 3.325,
+      "source_frame": 81,
+      "actual_source_seconds": 3.3333333333333335,
+      "alpha_bbox": [
+        246,
+        96,
+        444,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000018.png",
+      "output_frame": 18,
+      "output_seconds": 3.4,
+      "requested_source_seconds": 3.525,
+      "source_frame": 86,
+      "actual_source_seconds": 3.5416666666666665,
+      "alpha_bbox": [
+        246,
+        96,
+        430,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000019.png",
+      "output_frame": 19,
+      "output_seconds": 3.6,
+      "requested_source_seconds": 3.725,
+      "source_frame": 90,
+      "actual_source_seconds": 3.7083333333333335,
+      "alpha_bbox": [
+        246,
+        96,
+        412,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000020.png",
+      "output_frame": 20,
+      "output_seconds": 3.8,
+      "requested_source_seconds": 3.925,
+      "source_frame": 95,
+      "actual_source_seconds": 3.9166666666666665,
+      "alpha_bbox": [
+        246,
+        96,
+        388,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000021.png",
+      "output_frame": 21,
+      "output_seconds": 4.0,
+      "requested_source_seconds": 4.125,
+      "source_frame": 100,
+      "actual_source_seconds": 4.125,
+      "alpha_bbox": [
+        246,
+        96,
+        388,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000022.png",
+      "output_frame": 22,
+      "output_seconds": 4.2,
+      "requested_source_seconds": 4.325,
+      "source_frame": 105,
+      "actual_source_seconds": 4.333333333333333,
+      "alpha_bbox": [
+        246,
+        96,
+        388,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000023.png",
+      "output_frame": 23,
+      "output_seconds": 4.4,
+      "requested_source_seconds": 4.525,
+      "source_frame": 110,
+      "actual_source_seconds": 4.541666666666667,
+      "alpha_bbox": [
+        246,
+        96,
+        388,
+        572
+      ]
+    },
+    {
+      "file": "frames/A37_staff_f_give_rose_000024.png",
+      "output_frame": 24,
+      "output_seconds": 4.6,
+      "requested_source_seconds": 4.725,
+      "source_frame": 114,
+      "actual_source_seconds": 4.708333333333333,
+      "alpha_bbox": [
+        246,
+        96,
+        388,
+        572
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

@@ -1,0 +1,274 @@
+{
+  "id": "C03_xiaobei_fall_scatter",
+  "screen_facing": "right",
+  "prop_mode": "baked",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        327,
+        88
+      ],
+      "hand": [
+        374,
+        237
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 2,
+      "head": [
+        338,
+        70
+      ],
+      "hand": [
+        375,
+        232
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 3,
+      "head": [
+        344,
+        92
+      ],
+      "hand": [
+        377,
+        251
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 4,
+      "head": [
+        348,
+        72
+      ],
+      "hand": [
+        378,
+        236
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 5,
+      "head": [
+        357,
+        94
+      ],
+      "hand": [
+        378,
+        243
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 6,
+      "head": [
+        374,
+        70
+      ],
+      "hand": [
+        375,
+        235
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 7,
+      "head": [
+        359,
+        132
+      ],
+      "hand": [
+        381,
+        266
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 8,
+      "head": [
+        351,
+        279
+      ],
+      "hand": [
+        320,
+        453
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 9,
+      "head": [
+        371,
+        308
+      ],
+      "hand": [
+        309,
+        526
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 10,
+      "head": [
+        372,
+        312
+      ],
+      "hand": [
+        309,
+        526
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 11,
+      "head": [
+        372,
+        312
+      ],
+      "hand": [
+        309,
+        527
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 12,
+      "head": [
+        372,
+        312
+      ],
+      "hand": [
+        308,
+        526
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 13,
+      "head": [
+        372,
+        312
+      ],
+      "hand": [
+        309,
+        527
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 14,
+      "head": [
+        381,
+        316
+      ],
+      "hand": [
+        309,
+        527
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 15,
+      "head": [
+        385,
+        320
+      ],
+      "hand": [
+        309,
+        527
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 16,
+      "head": [
+        384,
+        324
+      ],
+      "hand": [
+        312,
+        529
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 17,
+      "head": [
+        384,
+        324
+      ],
+      "hand": [
+        312,
+        529
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 18,
+      "head": [
+        384,
+        324
+      ],
+      "hand": [
+        312,
+        529
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    },
+    {
+      "frame": 19,
+      "head": [
+        384,
+        324
+      ],
+      "hand": [
+        312,
+        529
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Visible hand holding the stack before release; follow its wrist and hand after the papers leave the grip."
+    }
+  ]
+}

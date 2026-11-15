@@ -1,0 +1,210 @@
+{
+  "id": "A08_xiaozhou_jog",
+  "fps": 5,
+  "frame_count": 10,
+  "playback_seconds": 2.0,
+  "loop": true,
+  "source": "runs/A08_xiaozhou_jog/attempt_01/source.mp4",
+  "source_sha256": "365d88f9ea1e07a011261234f8cccf099e20bfb22cbc0fe2f0e741b9e5288ac4",
+  "cut": {
+    "video": "runs/A08_xiaozhou_jog/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.9583333333333333,
+    "end_seconds_exclusive": 3.9583333333333335,
+    "loop": true,
+    "event_times": {
+      "cycle_start": 1.9583333333333333,
+      "opposite_phase": 2.1666666666666665,
+      "cycle_return": 3.75
+    },
+    "loop_end_seconds": 3.9583333333333335
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 2.0,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "cycle_start": {
+      "source_seconds": 1.9583333333333333,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "opposite_phase": {
+      "source_seconds": 2.1666666666666665,
+      "output_frame": 2,
+      "sample_offset_seconds": 0.0
+    },
+    "cycle_return": {
+      "source_seconds": 3.75,
+      "output_frame": 10,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A08_xiaozhou_jog_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.9583333333333333,
+      "source_frame": 48,
+      "actual_source_seconds": 1.9583333333333333,
+      "alpha_bbox": [
+        214,
+        102,
+        412,
+        572
+      ]
+    },
+    {
+      "file": "frames/A08_xiaozhou_jog_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 2.158333333333333,
+      "source_frame": 53,
+      "actual_source_seconds": 2.1666666666666665,
+      "alpha_bbox": [
+        224,
+        84,
+        420,
+        570
+      ]
+    },
+    {
+      "file": "frames/A08_xiaozhou_jog_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 2.3583333333333334,
+      "source_frame": 58,
+      "actual_source_seconds": 2.375,
+      "alpha_bbox": [
+        208,
+        100,
+        394,
+        570
+      ]
+    },
+    {
+      "file": "frames/A08_xiaozhou_jog_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 2.558333333333333,
+      "source_frame": 62,
+      "actual_source_seconds": 2.5416666666666665,
+      "alpha_bbox": [
+        230,
+        96,
+        410,
+        570
+      ]
+    },
+    {
+      "file": "frames/A08_xiaozhou_jog_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 2.7583333333333333,
+      "source_frame": 67,
+      "actual_source_seconds": 2.75,
+      "alpha_bbox": [
+        210,
+        84,
+        414,
+        570
+      ]
+    },
+    {
+      "file": "frames/A08_xiaozhou_jog_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 2.958333333333333,
+      "source_frame": 72,
+      "actual_source_seconds": 2.9583333333333335,
+      "alpha_bbox": [
+        212,
+        102,
+        412,
+        572
+      ]
+    },
+    {
+      "file": "frames/A08_xiaozhou_jog_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 3.158333333333333,
+      "source_frame": 77,
+      "actual_source_seconds": 3.1666666666666665,
+      "alpha_bbox": [
+        224,
+        84,
+        416,
+        572
+      ]
+    },
+    {
+      "file": "frames/A08_xiaozhou_jog_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 3.3583333333333334,
+      "source_frame": 82,
+      "actual_source_seconds": 3.375,
+      "alpha_bbox": [
+        204,
+        98,
+        402,
+        570
+      ]
+    },
+    {
+      "file": "frames/A08_xiaozhou_jog_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 3.5583333333333336,
+      "source_frame": 86,
+      "actual_source_seconds": 3.5416666666666665,
+      "alpha_bbox": [
+        232,
+        96,
+        408,
+        570
+      ]
+    },
+    {
+      "file": "frames/A08_xiaozhou_jog_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 3.7583333333333333,
+      "source_frame": 91,
+      "actual_source_seconds": 3.75,
+      "alpha_bbox": [
+        212,
+        84,
+        416,
+        568
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

@@ -1,0 +1,190 @@
+{
+  "id": "S04_xiaobei_hold_papers",
+  "screen_facing": "right",
+  "prop_mode": "baked",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        331,
+        108
+      ],
+      "hand": [
+        329,
+        282
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 2,
+      "head": [
+        330,
+        110
+      ],
+      "hand": [
+        330,
+        281
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 3,
+      "head": [
+        329,
+        110
+      ],
+      "hand": [
+        330,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 4,
+      "head": [
+        329,
+        110
+      ],
+      "hand": [
+        329,
+        276
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 5,
+      "head": [
+        329,
+        110
+      ],
+      "hand": [
+        329,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 6,
+      "head": [
+        328,
+        112
+      ],
+      "hand": [
+        329,
+        273
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 7,
+      "head": [
+        328,
+        112
+      ],
+      "hand": [
+        328,
+        273
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 8,
+      "head": [
+        329,
+        110
+      ],
+      "hand": [
+        328,
+        274
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 9,
+      "head": [
+        329,
+        110
+      ],
+      "hand": [
+        329,
+        275
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 10,
+      "head": [
+        329,
+        110
+      ],
+      "hand": [
+        329,
+        276
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 11,
+      "head": [
+        330,
+        108
+      ],
+      "hand": [
+        329,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 12,
+      "head": [
+        331,
+        108
+      ],
+      "hand": [
+        329,
+        280
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    },
+    {
+      "frame": 13,
+      "head": [
+        331,
+        108
+      ],
+      "hand": [
+        329,
+        281
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Front hand across the paper stack, sampled from the full-resolution registered PNG."
+    }
+  ]
+}

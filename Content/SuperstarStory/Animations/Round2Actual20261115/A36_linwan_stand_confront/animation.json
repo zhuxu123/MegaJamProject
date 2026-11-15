@@ -1,0 +1,307 @@
+{
+  "id": "A36_linwan_stand_confront",
+  "fps": 5,
+  "frame_count": 17,
+  "playback_seconds": 3.4,
+  "loop": false,
+  "source": "runs/A36_linwan_stand_confront/attempt_01/source.mp4",
+  "source_sha256": "b6745e9d99ca794795efb1fd9bf4b4f4e634758004ee7f1631db185bb349a094",
+  "cut": {
+    "video": "runs/A36_linwan_stand_confront/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.08333333333333333,
+    "end_seconds_exclusive": 3.3333333333333335,
+    "loop": false,
+    "event_times": {
+      "action_onset": 0.5416666666666666,
+      "main_event": 1.6666666666666667,
+      "settled_end": 2.8333333333333335
+    }
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 3.25,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "action_onset": {
+      "source_seconds": 0.5416666666666666,
+      "output_frame": 3,
+      "sample_offset_seconds": -0.04166666666666663
+    },
+    "main_event": {
+      "source_seconds": 1.6666666666666667,
+      "output_frame": 9,
+      "sample_offset_seconds": 0.0
+    },
+    "settled_end": {
+      "source_seconds": 2.8333333333333335,
+      "output_frame": 15,
+      "sample_offset_seconds": 0.04166666666666652
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A36_linwan_stand_confront_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.08333333333333333,
+      "source_frame": 3,
+      "actual_source_seconds": 0.08333333333333333,
+      "alpha_bbox": [
+        216,
+        180,
+        392,
+        570
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.2833333333333333,
+      "source_frame": 8,
+      "actual_source_seconds": 0.2916666666666667,
+      "alpha_bbox": [
+        214,
+        180,
+        392,
+        570
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.48333333333333334,
+      "source_frame": 13,
+      "actual_source_seconds": 0.5,
+      "alpha_bbox": [
+        216,
+        178,
+        392,
+        570
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.6833333333333333,
+      "source_frame": 17,
+      "actual_source_seconds": 0.6666666666666666,
+      "alpha_bbox": [
+        234,
+        180,
+        398,
+        568
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 0.8833333333333334,
+      "source_frame": 22,
+      "actual_source_seconds": 0.875,
+      "alpha_bbox": [
+        262,
+        196,
+        410,
+        574
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.0833333333333333,
+      "source_frame": 27,
+      "actual_source_seconds": 1.0833333333333333,
+      "alpha_bbox": [
+        272,
+        160,
+        438,
+        574
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.2833333333333332,
+      "source_frame": 32,
+      "actual_source_seconds": 1.2916666666666667,
+      "alpha_bbox": [
+        280,
+        110,
+        452,
+        574
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.4833333333333332,
+      "source_frame": 37,
+      "actual_source_seconds": 1.5,
+      "alpha_bbox": [
+        270,
+        76,
+        424,
+        574
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.6833333333333333,
+      "source_frame": 41,
+      "actual_source_seconds": 1.6666666666666667,
+      "alpha_bbox": [
+        256,
+        66,
+        396,
+        580
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 1.8833333333333333,
+      "source_frame": 46,
+      "actual_source_seconds": 1.875,
+      "alpha_bbox": [
+        222,
+        66,
+        368,
+        578
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.0833333333333335,
+      "source_frame": 51,
+      "actual_source_seconds": 2.0833333333333335,
+      "alpha_bbox": [
+        208,
+        72,
+        376,
+        576
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.2833333333333337,
+      "source_frame": 56,
+      "actual_source_seconds": 2.2916666666666665,
+      "alpha_bbox": [
+        222,
+        78,
+        384,
+        574
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.4833333333333334,
+      "source_frame": 61,
+      "actual_source_seconds": 2.5,
+      "alpha_bbox": [
+        224,
+        80,
+        384,
+        572
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 2.6833333333333336,
+      "source_frame": 65,
+      "actual_source_seconds": 2.6666666666666665,
+      "alpha_bbox": [
+        224,
+        80,
+        384,
+        572
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 2.8833333333333333,
+      "source_frame": 70,
+      "actual_source_seconds": 2.875,
+      "alpha_bbox": [
+        224,
+        80,
+        384,
+        572
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.0833333333333335,
+      "source_frame": 75,
+      "actual_source_seconds": 3.0833333333333335,
+      "alpha_bbox": [
+        224,
+        80,
+        384,
+        572
+      ]
+    },
+    {
+      "file": "frames/A36_linwan_stand_confront_000017.png",
+      "output_frame": 17,
+      "output_seconds": 3.2,
+      "requested_source_seconds": 3.2833333333333337,
+      "source_frame": 80,
+      "actual_source_seconds": 3.2916666666666665,
+      "alpha_bbox": [
+        224,
+        80,
+        384,
+        570
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

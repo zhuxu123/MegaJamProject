@@ -1,0 +1,1051 @@
+{
+  "C01_linwan_tear_photo": {
+    "frames": 24,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/C01_linwan_tear_photo",
+    "sha256": [
+      "3e1858af1a29b036213bba96f869778db01cdac5410cab4f45d342e3b3ff1b69",
+      "20a719ff0ae406a08cbaf734b9868738f3a0f69d96ba7bcba4c5e3a08bad162c",
+      "4b89023ba15698d72fca9f47f090ba83f7ae4ca03dce545f0bd28b2f4f35fc00",
+      "71ad2a5b2b337976a2e830cd426b3c92dd540a64dbe73be470babf365159b345",
+      "6022eb0e667612c7bdcc4739069d6033d10263fa18f32706cd14c9fd882f203c",
+      "f19d379a1f2c1913cf4ad8e120d553166fe3576875c63eda1c8d181d2f167e1d",
+      "f386f6743a03d461204d5de60dcdcf9e79762e322a8069ff74f9b14454aeec3a",
+      "69261e011d96d2cb56fcbc427c12c47bcd9f7cafcdf039a853047e50d18c47dd",
+      "b3aebaac945ce55ccfbaa6b4975458efd6a272362cefde26102a973e14bfcb82",
+      "ca6915b5909eaebefc95ec89aff7782824949d58c59fcb32f3cc685c873d81f9",
+      "f61d3ca76c134c548574e1ccce24525f6c9e8279665c77d19e90a4cded426c06",
+      "e0dc4d0cfc6d1aae80be489e6036c7ef738d78ec9c84b457ab28d8b1637224f7",
+      "f1f95649667a124d32ca45650cdc3526637efc26acb7e1803ae53b5e51838f1b",
+      "6e67fbd3784b0c4c4475acd4bf9f2ec5b8635f13d8cd93dc79c32d29a6261e21",
+      "55709a29e18363021d139fd1fd01f2037f47add8239b0e6c7306bdd4d65f5c64",
+      "9906eeadf4bcc8715468f525c169fd9f79d66d8e5279b3cf54cf947e53040d81",
+      "46ed92533c8bbc4b12f43452ff9587042c64a1ee878609163ecb42e23a0cbf09",
+      "dd05a13480320ae6654fbd5aebb9c113855d8ef77bc22beb0d1f1697cab9d3ee",
+      "0cc4d5ead95bef68fc03bc3112be8ae056c7767aeba30039e64ddd5bf048b9a9",
+      "38f3ec890e5329710b6e96da1669b88c03c090edc1e148040d696267d6c0db12",
+      "7e93eda0f246e2a2f80be3e5d6737bb8eaa3aaf040e4b24c1b209e041e24133c",
+      "443d1f91f9361983a347d2058a37c9d57a6764eb3c5a2ab02724e3cff09fcbf7",
+      "1337d86bdbac2a0ba69e55113e5c0fb4218855991ae3a9aac8fc2dae962f751e",
+      "27dcb01ec9300a6f258ee57cdfd449bec184a64cfab88e61f5e0d830f04341b1"
+    ],
+    "retired": true
+  },
+  "C02_xiaobei_jog_papers": {
+    "frames": 5,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/C02_xiaobei_jog_papers",
+    "sha256": [
+      "5ff778f1920bfc6600c77093abf342611a9b26ccdd1702407e81fc1b3954324c",
+      "ef23e1d9e6ea6fc78f3da0bd1d7f467ce3f4b59597cc4de7cd2c219006beacb4",
+      "82044db4b2fa54d9d8d6925e3e198d4eed1412e6d2c1052f16bea8bbf52f65b7",
+      "46634337586344bfef9fc5e777439cc101abed11e27b43cb7d5cb4cbde09a39c",
+      "a2c1bfa959bcaa5c71cad66c6dfc246690b0cd1ecb3dc9c02a00a020424a0791"
+    ],
+    "screen_facing": "right"
+  },
+  "C03_xiaobei_fall_scatter": {
+    "frames": 23,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/C03_xiaobei_fall_scatter",
+    "sha256": [
+      "4b667b51211fd3d567d4a5bdf0484f8112e8183258c3b61c2c86ede73587e97f",
+      "279d4cd09ac5b0551e3deaaf00e936921ae210c62667177b3aac4ef2b15a2cd7",
+      "2ffec94f75845fd54190bfcadda068d3b61072138bdfe2d7c9a38023655323b7",
+      "0a02146713ea470c797c2ae8fffbc7ced3dd92c815c920037b23a4b38bb9dcef",
+      "4b7bcd3d06cc3306dfcb2d85318901163ee91a82f3cd081f230a984cae72665a",
+      "30cdf3e8fcff6844b106fff48a1e7e505869894d9bf11034c2ab72f41701514d",
+      "cf63d53567fb467e6af45f3f1feb2fc9672bb05d88beb0367fb8017e0300aa38",
+      "24c623f531396b158a9b0de6d3ebfa49275fefa09d2eccad22d2435ac9b76028",
+      "2e0a0ad2e2df36ca4dc7f1e23c49e39b50f39b88e91ca73f104f74e2dccbf925",
+      "2967990711e3ebf7c5b65c73d9b3f0830b195da28d21528d60047021aa6ea3de",
+      "ce9e6c29f8c59ff3f08e5edb2c2e0cf7bc63cdd8c792617c19c0318cb32509ff",
+      "e5b526be5e4490b417da56b057a1d528dbfaee23655977f350a964bff969b3eb",
+      "6935762148a76da5693b3fdcdf4f869caf987b5e98b59bd4af77fa77745b5c33",
+      "db48a82ca0734fc0c4594c88fa2f2e751a9372a193f40f27f47413c4b87c730f",
+      "713bab95d0841e35e6680d31a2b8e4b1b9e1023db096f218b75cae3da97fd75e",
+      "7213bf1502354d363b05ad8a76b2130a0fa7c718dd6e18e4643e66e14f3c633d",
+      "b83df5996844550b1cefa662aac5dcc9c74d577ec247b1465ba1c4a6581e57d9",
+      "7aaa3db48cb2d50f0bac08d0bbdb7b41cb6d09f23419858ca5aeb05a62238055",
+      "365660f7e7e617c94dc1f5f5680d13d8c970704348c87cb4bb9828ebce8bb0dc",
+      "4db8f9dabc1a8849c84b74c08994314546aa8c179ba04e4fb7cd0500b71e0618",
+      "8c534c05b9ac4d42f978e015b35af58fe462ab9db5048677fdb0a4262da9c350",
+      "e06789b4cedc7394beed985f977038141fcf9d540a629d1c55eb36c9f64c1c0b",
+      "7318997e68565a13e560d7146eae773e5c8f58d6b73aecfa33487204439aef64"
+    ]
+  },
+  "C04_xiaobei_collect_papers": {
+    "frames": 23,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/C04_xiaobei_collect_papers",
+    "sha256": [
+      "8a901f2d560ccaa34aa0b81b465dd04a106d05f6e3227a003975320f0e34f04b",
+      "d5c2737735cc7f6a870dd6303d4ca5bfa565b5007b0a5de15bea950cddecc5f2",
+      "d664bdfa62e65099e54dc64ce068ebda77836c2402e1793a184335ef293f6fca",
+      "48c0e6db4eadfb25dbb7163b3f4ead2546286999be3e206583fc2097051d2f99",
+      "670e0a080fafa224e3c56b0629ad71adfd5d4b01995ad98701b09e9566f8a718",
+      "15569f7c6ce09b53b5f81ba7581851f2314c2bf9c46466462babfcfae43f5d79",
+      "112ead90736a63faab333554f644d766fb907b26195ff747f3f962e5ab52b6a2",
+      "1bb73c718db13e938fcd02e768b651655899dca68a399fcc0d4c6088715d60b4",
+      "aaa332c8ddb3b4ca36911ab63d6bd23ee9239c29f2b0400445030ac964991501",
+      "5a346eb761fdf345c583a9a7cf80aa13f897d88e33e2c7f3e60feded65b66fc4",
+      "ee7690738de352f85e8e00d8ade305b8a131acfc2ccd06c02ebc7001148d987d",
+      "f7c43cdad59a4a7f6e63a8247f78384b415d6a1e2afa5bf22ec32aebe36ecfc2",
+      "92c46c9d8c7e6df476da0e6f304af7a8b31e2151e841e06927090fb5e5192d8d",
+      "9b921961bb7aa08270c2064667b89de14e6b1e7930ede116715eb27482304513",
+      "32df26d0c834c15b06f73220fd8aa27ca046b216f81d3f6178d2535250929d46",
+      "d3d23619f5ba6de6085b898ad61b58da649abdae9dbd6f874dbc19cdb595bc3a",
+      "3551b72f2276f1ab8737abad588c43f3f032f76e7fc0699a1cccfdf30dca507e",
+      "b3c5ca9d3239191328dc39b616af8a28c3e6fc0026b11128aa649f49e2cda70f",
+      "80975e9f2f0d62f5c482ce414009367aa68cd1331c3cedecbed94524c476ab78",
+      "84047f491efa0388b6adf7df4c3de838f78f3f8e1aed383f4c4bd4681dce9031",
+      "0b7b75b8730e054794af822d2287f9215af799f1045b64ee1031bbbcfb94367b",
+      "bf1432a48ed6ce58227ce13670fdc86765437dc8b26886d42413cc6225a5dfb1",
+      "496f0ee62e1e2165d236b2fa6e76bfef6e39a283eac2ea441d1baca6dc161d8a"
+    ]
+  },
+  "C05_xiaobei_rise_papers": {
+    "frames": 23,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/C05_xiaobei_rise_papers",
+    "sha256": [
+      "b46fe97d0e7ae522b78decda299479adc2c5e96c7ec172b62523f5c4bb862417",
+      "30a540cd69e6edbf631826579dbf1b942bf0ee8cd1272a8766e46fc19f827a69",
+      "18dafc71dbabd5b4b14fded202f44d784a25efc3031e8376465fdb0ad0b6c0ab",
+      "ca16a40c056b94ad9ebaeb20beccbac3fbf507975a869438b0170aebb04af1af",
+      "249c49da098e8b62890f2d309fcfbc55a9b0120d94d90dc0bf2fd6e789d04d93",
+      "bd75f5f49336e11194f6a9f3142e8f8c720d723adc597b1c72ff3d2cf00f2f48",
+      "d8decf8f4b4c5b55f6662e1de5bf2e11680e0465ccd71560d42e1800ab92d842",
+      "28a44376953f677498a32803b901c41422f395229d9d430b1e594e9481e9f845",
+      "95f7b52b601331739d5da94b67f783901b58ecb30bdb82607c408c9660258b87",
+      "9ca0a0fd19a363086412da068c7c915da02beae53ba0cbf795e3c7995f97f599",
+      "24e604d795cb8c0abf642524b4a2439f61ce460d3a42c879d4821db35e2ba886",
+      "0bfdd9b03fb9dc360474d74c8b0c069b63e525edfd3b1897e95e00a42ab5ace8",
+      "2cce772cf536874735534f1e8b2206113839cbd80bc7d08f81fb61181d5fc8aa",
+      "cbd502ae09fe88cc822a1e97b69f3a088156c73e0db1b601ddc2bde45fd3bef1",
+      "7a61b5b636d17e49bc5ca28f031417ae9b9295dd27098bfdbbbe55e88f8dd09f",
+      "98dfa411b898a64c69dc52adb8dec128f2b07f691eff38e54dbe3ea12f212ecf",
+      "f759540bbd3e556b6e636a004ff49bbd851677dc975fe826b3709c6456927215",
+      "15ad7d2f3ec10770c1bf472e94a628ed8676a51b86b7566fe85b7307a944757f",
+      "044154909911294b69cf5286c3a228b035f66451f7c04f0f362bd8b7ffce031b",
+      "3fdb4124b58d6eceff9fecb1727b881935a3ff10b7701871523ee9d4ce68dfd5",
+      "003dcb4230ee0f6e6b34b59587188cc4b5f32a19423e93df898a187af3381a68",
+      "2840fc1ab3a750e777a5ccb81fb42ecaaabe05f0b9f569a2db29c499ffe3ad18",
+      "b160e6a5d34bc9daae71fcda2069846e5b005afa9bff6eca1fc8700c779b8144"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
+  },
+  "C06_linwan_push_palm": {
+    "frames": 22,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/C06_linwan_push_palm",
+    "sha256": [
+      "5af64a28bc7eda6882b13400b84497c2380e852fcc731cc8c01a58754ae380e9",
+      "a16388409b4975a46f93f1af069ffc9c820cbfe436f91905a56ca2810a1be5d9",
+      "8c01a6eaa627e512f113066d3076ab64122ffce3fd22584328f45453c0394033",
+      "780eb27d07b8317e754fd90bac8b54d2df8f19eae1eaa7cafbe6e9984d2d064e",
+      "b4131934356a5cc9b393f4ac17fef4346c5164dc1c02f2061ad2ca8db258a99a",
+      "ec514dab547808453a46baec7d3c6dc3feab03b263e6448e38cf4e9aed65c222",
+      "6727c6d7d72cdf71b4a3e593ae047b313f9793651bbac3d18f06c2627591fbac",
+      "c5010f2b2ed84c7f7e8e8617457cf37df5ae219c8f84926e6fdf392598680db7",
+      "161c96a1b66ecd82dd1ffc034c4e7dc56e0ccd8889008a89719e3c25cc86c162",
+      "92c6422c41fd8bfc6f3e5c464409af6d0a470a8518e89acd0bf53b5687ec2cc4",
+      "a0f76e2c1435b139573d00f1930adf795dec53fc16f6c34c5fd16a38e121745e",
+      "4efe96685d9ccf9091e545a6268f0307d58227c748cc896626c5d90c47e160d8",
+      "06f09b6b32c742d2ab739e3b241ed3abf34423c90a3e54ba29b3f988517af92d",
+      "7c148d1a08d1f4b51d70d95f65c3ee917341669c70e5b1b5285ef5d938d97d46",
+      "2afed9bf7d7689c949a158898810e8e8ee990428000f82f138e6a0643ed37168",
+      "02d88253193cfdfee22c5d37e7d3c191a9f493bf6b11242593e3629e24de47d8",
+      "d631a8a159fea0a36a0b75ec2321345b4b05609b1894393edfeec1479476aeb4",
+      "a82cf74ee7460e5bb94ebe31c47c25787aec94a34bac2a540fae80f5712d6c1f",
+      "abf634d902f0eed8702ced1d1e2d0ea874f1afc9e0e7614f8191a14956e7dc6e",
+      "2e0528df057c7d6ee8dac83bcb3da72688db0231eac55f0640955e4b3e3a1089",
+      "ccc0899e998a9d0a4c5815aef5f9a7e7cc7e300df88f1d20f60e8364bcdc2cdd",
+      "da012012c1f5e613776d4c2ece35b926a3d5b2208de224951121a61c09f9969c"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
+  },
+  "C07_linwan_stamp": {
+    "frames": 12,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/C07_linwan_stamp",
+    "sha256": [
+      "a8d34884397f78e9ce865e348c60a5e3008eab4739161d3518286458b69b3b67",
+      "b4b875825e42a38d1d075f83498ebaf9e704d13325be7e4f19a9b00d8f63f901",
+      "8ee6d5df492d631c193acb0eec84e2d3a24c64fcbcc7c83e9a4870483859f970",
+      "e1981a4423b8742470b556383b7f303b0a6d649ba2dfd7b892499c516436a942",
+      "5d1bc0bf53bff59c2adc98a3a304289acb4bbab1ac3045e1d28c8857df8ca70f",
+      "05769c0ba7057e5ae41f577805dbd45922532951cdaf60c1d826b5f8cb538874",
+      "6c0b59025dcfaf0513568035d955cb5cec8ba02e4b314636fc0ffe30edcb2a80",
+      "285a1efa15767fa15e73bc87b23fd825e8a07c6b6988df706e518ee96cbd45e2",
+      "8c70a0d03f7fdc0a25e0252bcab9816d6de84b19ec7c172927e653ce0cdb859a",
+      "d64f941edb03c965e31216238b35866c824949f1626038da03cd19189ccfe65a",
+      "4946571b111454c0e9a8d1cbd053bc61d1333ee92f92e1c5143dfb4bc83c9a18",
+      "32e3e118c8602d5634bb3283d07ad86f17676cd5bf8b813dbb76319910be3394"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
+  },
+  "C08_suyao_fall_kneel": {
+    "frames": 14,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/C08_suyao_fall_kneel",
+    "sha256": [
+      "06e293a635d20cb6943221c5737e02c5810385c74af0f50345b35f38032ca320",
+      "ce5d77f25f93f005b2cf4add9a2c8274cca35a25f556fd81308eaaf4a28bdec3",
+      "a240e07b59fe78774982dbf1e4e45ab310d08d10e957ffc248f4e56b6a4c8298",
+      "bd580b9f2a4e3610b419f808d43248b8f3587ed8194303d8ec6302a4432555cf",
+      "3f8846f4e85a15cd97923d3028b5360a569a210bd79035e8458025b1d29d339d",
+      "87995be8ab36df7faf9f66887881bdae4412f679cfcd965dd0c763782c8fc7c0",
+      "65517a339d83500c1b74ce98a4ef17bfd7f3d64e71bbc18bebb2a1084dd5d906",
+      "7cd3aa1d1a6b278e504d96dffdd7d29eef6b6eb979a9530652b0d41f66c937b6",
+      "74ce0e829cf5bab12e7596fbd76b49bf2f62232be16b9bf40283767c065bede2",
+      "1ad351b9b9ee3ac01671f86700ca07b96cb6cd34983952318d93752b2b739cb6",
+      "8d8cc5fe0066525d029b7febd1cea91ec72974725f34cecdb83956b72ea1ea4a",
+      "015190c0cc2e5a8528ca8963e69aa31b4abee504da6d9ec7eba2a77467ba3c68",
+      "55738707333121a7400907dce1a44f20144339363c68e7385dc38e16cb751a14",
+      "c518a41c887306316216020ee7e42450c3444bc44ad4355da81ee788d6a69ba3"
+    ],
+    "screen_facing": "left",
+    "source_delivery": "Partial20261115"
+  },
+  "C09_suyao_rise": {
+    "frames": 21,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/C09_suyao_rise",
+    "sha256": [
+      "e179263825e3d2be6ceda0c8ccc6e0519ac3007526963ed8a43797fa40175217",
+      "8bcf64c5722c658a1d604e210794db7343c38b750a6acb5250774a7dddaa28e8",
+      "b3369e9bc0e52cd9bcecd1954fb2e4a49501d84ae8da7bad65a0ffed2877d8fe",
+      "2827ad449564c76226cc7afa36807f5956fcaf77badd7fd4f105fcb32cfe7c6c",
+      "054a21fdba7453f980f4af7208ffc9cda9268ec2a8d1a5c1c43fa0508aba7b1e",
+      "fa8e690610c36468d5be78222a2d631b2df9e57eec1a752b5e9e9ef34e4a4b7a",
+      "c44e81a15a8a2652c6958a2b7acb0d716e179af9cbd960cf71cd0d519059c357",
+      "7b5e42d8013490da4ce4477be9ecbe954d0a05af68430c59a75224243c8d5920",
+      "bbb15de1b6253e0f5595d85436d9d2d3002e5eaae9814b3ceaae571c5357461d",
+      "61b6dc2bd59f5c718e86c5dfa205dbde8435ec8f00a6ca512cad631b2b90e42a",
+      "7ecf8756c413294f96cbd064dfe2ac243a5e44cea15653ecbe6bfb10026ba82d",
+      "b6a7ec12bf73b611fce2f0b3004325da323577ab90d3603cff80db3c221dcc0e",
+      "58b207158a4a1b75fb4f9548489516a075103be42424357cf7aa2c7b08b298d6",
+      "c2bd37cc131fb4a9335cbe56cff5b18771e43992a52fd53caffe2eefca40d102",
+      "40d314d3b35cd27a904c6020f5f6de6803b18554b646e66a45dedbc1a8e3b374",
+      "8e159b587544a4df7758117b877d5442b0396c74fcecf88ab173c2e6f8199d9d",
+      "cc2845304f13a0ae958d521f9fda7d7b7de57c3123385bdf6f3fa260024ce2cc",
+      "1431b006e5161f1ff1428a1849ad9aab6cb1820a5075b33a383ea5e31482ee8c",
+      "0a388b3b412b5ed384ffd9fd1ddf205fa37f708cc3d9aa1df34e90f843824df1",
+      "5b1cc44429666fb75567e5d1b7cd724fc14a55d0c6d1ac826ab497e5bc785752",
+      "9cc2905d59ed5228e3d456e1f563a3e7e26129a2a6484da485d6d65c6745ae25"
+    ],
+    "screen_facing": "left",
+    "source_delivery": "Partial20261115"
+  },
+  "E01_extra_f_idle": {
+    "frames": 12,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/E01_extra_f_idle",
+    "sha256": [
+      "0ec09d101f1d4d4f9bd733acc38513c9cce971b12493aace470df56b5206456d",
+      "7b0cff425d24e60419da5094948969eab2e11b13863a66d3da2c1c23553234ae",
+      "0eb8c682e8f54086854056b7f8e6997f4edc72d0930936a737655bf067ad11b9",
+      "b94602d0c109f8a759b65adf774e204688bef74e274f4e46769556bc71e8017c",
+      "b5b4ef4c014e80b42d17e4ea5b97ab316a8c672e95bd80866b11878aa60fdc3c",
+      "fcf5baa3400eb937f9d371f1b47b87bf2e7962461cb2631da18aa62c5b228c0a",
+      "f89f72c28a1f3ca44ee29af4dbac864ade6e61c28b0a0eac792adbbb4fa55b3b",
+      "d3131976780134c6ab32ef0e1e66eaaeabee57e2bd5a232fdac06265565e1fc0",
+      "db9ba66f6515640767de20eff2f150e42f461b52f6887dbefb7be6af4d44ddaf",
+      "63c6b810b7c00b2f6ea6f9afd8f71022d136d812b5f0c525b4a1844ffd612137",
+      "2902405ffbdada971d2b62536358a197b3046769c667a45b103e66a57df5534f",
+      "136edfc5ded1820eca228b0f6d9ac3822c15eccabc763abff1d4ad64850e1460"
+    ],
+    "screen_facing": "right"
+  },
+  "E02_extra_f_walk": {
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/E02_extra_f_walk",
+    "sha256": [
+      "713f7eec995587195cf0bd0a46645c87e467efa0ce13cafee7e63d567b308ae1",
+      "d75a06c1db059761fede2b95bc05f6314d9a59f7d067872dd2804128566a286e",
+      "7988ac4f18fc5c58ebadc4749fb1c55ff0774ff278583b9f855d2768c02b634e",
+      "6d2acd6de72392e221e559ea644009d94158386d10652ed12e2fa9b1ab85c1a0",
+      "153aefceed27c7fe44e86eb85489bd7e629caabde21c525f216244fc7d6957df",
+      "bf44d686eede0bbdcbdb62fd2516db29f507a262ec0960fbb4d5f96186ef5408"
+    ],
+    "screen_facing": "right"
+  },
+  "E03_extra_m_idle": {
+    "frames": 10,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/E03_extra_m_idle",
+    "sha256": [
+      "deeaa775e05b83a8722ca98905953f13b74ab0b2195b5ff5822f60650a75e1e8",
+      "f0a52ead8d5195b542cc5ba8213da1ecff69c57f6b6eea78730b7247e46e7824",
+      "9f7a1a5deaf9b79aa737529ca0777759e8f1ebc1ac0b37aa06ca49ad46e3a6f5",
+      "2c4328469a8fd864370a87ef3a88ad505932c422a5cff45349445dd980a1e752",
+      "8c69479a10ba6ff72c08520580a3c3465d34e6db28a96679f8c618b509eaf593",
+      "2e89a77cf14e66f20840072170afa0736da85c7584cfac6918a42d95c46c4abd",
+      "4a66114dbd7728ec167c9e9a53d6f17a2e405bc6c17cf9fe4cbf3d33ec145a04",
+      "9601632c32d5008699922c6990c3d262ef9d7df243bb21b7b1908446dd6e27d4",
+      "70b609e8c0170d62f774a6c1cfe8f8f7168756e3ff230c0392b887dfc802f830",
+      "82a1f43e078c90af6f83c468cd72a6c44c38ecf09aa3b28481563180d2d1319f"
+    ],
+    "screen_facing": "right"
+  },
+  "E04_extra_m_walk": {
+    "frames": 8,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/E04_extra_m_walk",
+    "sha256": [
+      "a6078596bfed64b43d21f1622c5a703540aebb4dbcd9aa967544a7218b124850",
+      "358d53d118cf13f1516e060323763b3e8b198793a2ad4d8e7978943a31eca756",
+      "1bacc3e24962315623bba2d2cd2767d377eded27368da5164a01a86450ed5958",
+      "7f84eecb78ed7dcc70b14789a3b66a94b06be61ec437b419e7ed4b45242280b2",
+      "a720cff35321c3d24315f864236460e9a6ec098987b73a95cbe544aef5357728",
+      "cfd401a67a7f1b80d55012e6c6210887b378476fc2702f373b46f94a0a0641e5",
+      "64bc3e25c097ad0ecba9a0baf93644e84522f5d65f38e22f59f56db2a52dd4dc",
+      "8ffe5c701dac3befda5385d957500af8d5127ea6f14a581647c7f74cdceadade"
+    ],
+    "screen_facing": "right"
+  },
+  "S01_linwan_idle": {
+    "frames": 13,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/S01_linwan_idle",
+    "sha256": [
+      "0fc77b9b5d270073cf4b4b570f312eb44ce568f48aed9fb39468d983364d823b",
+      "d4e741435bda89af53781543c9438acad12c020ab54f1e89c7c9225d21d6ac56",
+      "b583184f10e00dc144cd3c6ba446793460449b5c4b282091dfde47e7ea56742a",
+      "cfd865349fb0564689c3f292721dd22ddbd0df9c66dfc6c30929d2c8e6e0bb28",
+      "a1172b47d607d9a01c03bc35809ef2ca8eaf6210bc9a328462fd779cf7171e03",
+      "eba837e5b6d8a338d39b7b2a6a651ced190a98a3cf30a84573e00ee4bdf16d0f",
+      "e9976696bededa9cbd80009a876bd50beacb65d7b3e0bdf9bbf0c733e37cd700",
+      "793b9df22f8f7d4e6a24111244634ddeb5352db01accc248d7e319acff1414eb",
+      "7a8ca67c8946e8d52b20a30ad9d19ee3a21e280c014858c096827a0c3443a484",
+      "442e37ff5e09ae2ebfe6cdedb670a29707d8cd0bb7509bea5b71bc9dd051a736",
+      "05ab049d1e429f09fde098061c38a230a68e665bf1f0f9e0c5eb2035062c8d34",
+      "4d7335dc253feebd56c86be769c4fa9ac61147dc6730a754b522522dd986216e",
+      "7eb996ba2ba3da4fa1905bb082d81cffdf204719528fe37d290a95bb9a2ed144"
+    ]
+  },
+  "S02_xiaobei_idle": {
+    "frames": 10,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/S02_xiaobei_idle",
+    "sha256": [
+      "5fffbb5fb5e0959827bed864e9bdff827694b839d12cce62b7b81733adadd86a",
+      "040878455c11157e332f4e88a3d03a6b53be139829cf63edbfc7ed0c02dc179b",
+      "c9f15d8a66bdd5c09a7513b61ef949b0744c0d2e0be5866f71618965f7297fa7",
+      "655fbac167aa74f5cf993e577cd50a37e67b68dbd1cd3527aa7097f1e38449f2",
+      "b761b2f4222184fd447781abc6922bcc003fd435863110727b871cd83bd0996e",
+      "1d944b5838780bc16b7869ec3026ab27b0da8455d9d3586ebd7bf4f6a6ea879e",
+      "40f2fd6693130e6490d17bd3c734694a55779b4de31be1a171d279aac39b7a6d",
+      "b26ac1c51575eadb7501638ecbf5d1d43d7ecc3c22e8b22420416f6601978ffc",
+      "cf426ef7c693bc3c5697edaa2d0408219b8955f4c4677f1a6cc11f09ac366676",
+      "807cba5d3f49684f4e005cf62bcaacaf609f7fe6e7b1c48cd3a262283a271ea0"
+    ]
+  },
+  "S03_suyao_idle": {
+    "frames": 9,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/S03_suyao_idle",
+    "sha256": [
+      "3ee6f1ccb1c4f19d0e20efca54aa4366df0bea5e7a1839052ae787e26685ee89",
+      "b6267c9c1f5071c234b099e09762f5bc699bb637d6395c5b0e95f2d5d021ddcc",
+      "1244eed2decb09a734aa4fcf9817d25c957344df247b8b950b96e2918f2a0d9d",
+      "3e695950f37b470750b8f1c79ace543a4ed08195db4e446800b64c98e3e3b2ff",
+      "a3a701562c50348ae42803ff9a985601b1a6c910c678f9d6a882b1e11461e41e",
+      "3b0230b85e720dd6b9c80a0bac71462a28a282d1993a097f5be787224b74e813",
+      "5f1cd5ab9ff974b0ff34150fb506aabde53c2ce69a1416d8c3357c280329e2bb",
+      "69b99f518238a3cf799fada364914171dce2b8fb0265556c3b7bb1fb7d1a3d95",
+      "908f70a36c81f507f6e20dd8ea57af0c5097037ed9373581a8b8f14f64d680f9"
+    ]
+  },
+  "S04_xiaobei_hold_papers": {
+    "frames": 13,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/S04_xiaobei_hold_papers",
+    "sha256": [
+      "9e118b5fd1482704322281a276ab11eae99723d12edf68a8f704a77cde885ee9",
+      "67e000688aa926d75fa4336dbdd9827d4d46ee6e650a87147cfb1bea1c06be9b",
+      "076fc4c104066b68ca9c897c96172589649307ffc0f95a8a9d2aac71c1dafd67",
+      "b2f7c774d51efac7eeba71bac9ba1aa0d3032da9eaea11820d3f78eca16589e0",
+      "bb7ae0c7d34dd23970caab471cfa74527b5000c3a467e2ef90ad879ff0daa083",
+      "aff1498309b2815b2c74f9329d4ff7721aa39f7f14baaca6763a2892e2aa16f0",
+      "b82c8e5204e07ba18bc2f71330542e7ea9b4e6171f300d32e739c2802a1b062b",
+      "cde603b4b5e08b1d45cefe14ebef51b994b282303bf49219715729f208978c2e",
+      "6c5e68783b644dbf85b532038d9855e333a3fc9deb296862902b48d5217ad791",
+      "69cb71b3a7cc8e327a188d42d66b8447dccd0770ef87451330ed797e06b8bcbe",
+      "67fb997f46598d23ab7ec1c934591cf1acea531841ceb5b21aa2ae929d112c2a",
+      "df2e86b27831ba58fe041cce6a015fb2d1adeb2d9dfd0083db275bfba49da9c4",
+      "a40daa29f11bc7cc1130762e3612f2724223d53376756a47b6497ca62eec2855"
+    ],
+    "screen_facing": "right"
+  },
+  "S05_suyao_kneel_idle": {
+    "frames": 7,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/S05_suyao_kneel_idle",
+    "sha256": [
+      "8c5e4d45b9371a4c1454e640bfb902545259652f609e543b9a6eed6cd923f1f2",
+      "ce8602aab839e54d6ced9e8911d430f99d99e813aff883db3338d7cad62c3210",
+      "ee81904bcb2dc5169e77dbabe9fce53390bb095ba9697696b44ae5e6f5278cce",
+      "3f7735e533b2805a50490a06d0d82e6de362fec1b6a0ca61de831cdc39d86e3b",
+      "c23a861bc1122ce523d90ecfaf8d318fb0737f0527ec85c5dd46de7a30bbb3c8",
+      "25d2b67b5955a6f091e89efb4edc9c4caf7265b9ca00224c625721839558aef0",
+      "789b8b0da0cdd29867aa1e7ef5e28f81c3d224642c801e59404c4d2bfe92332b"
+    ],
+    "retired": true
+  },
+  "A16_xiaobei_rise_empty": {
+    "frames": 13,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/A16_xiaobei_rise_empty",
+    "sha256": [
+      "567c91779b58ffeb98e55268e8dbe089b9695aaceb44447d9231775fce681229",
+      "e8dfc05e061811a67196bac8ca6b5e24c2f3bb9519746bce334d0729bd544309",
+      "559a707760d226d0a114cd0c0e030d33289938bbde44036f7110feb3f66c3666",
+      "1979b186d6cfbf7ca645f61d0751e00b66eb8b93284dce7b974441ca8c50e8bf",
+      "eb87d8837b40de3bc6ec3bfe3cd341a63835a0dc3fc0450b5774ec387154088e",
+      "5e96cb7392c2d621ffff9545b4829491ffe86a39404594ec901665829d221f72",
+      "83b5cb8428ab2f598b8f67d7f13725e8ad37d93db25f322488d26757205920a6",
+      "91b86ffb44cdd05043365a5da08fd0116b76f0f5f028ef5d50b60cbd0e7e9f6c",
+      "5363cbdbaaa3c3c0c74b2637798e3554e72558de95cc0e69bab9dfc943808ed9",
+      "374ffee5348361a31b61ed4eb1ac495672f52002792ec7f33f67a27e31c8a918",
+      "2e34fd5abf80f359bdd7f63c9cbf8ab30dd41927ba68c310fd378f48e6d485b5",
+      "af3916e9f6df551c9161f85cbc0428027ce7e69e290a2626f48538e3fd79524a",
+      "de1be523cb79b537adde99bb592dfa7a1d2514ea2d6d163cd9722ab9aa911259"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
+  },
+  "A17_xiaobei_crouch_empty": {
+    "frames": 16,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/A17_xiaobei_crouch_empty",
+    "sha256": [
+      "aca8ffb64504c7c84ac5d63d644559be2bfa0873c2f9ef2c317b0ca6c06bb821",
+      "f94afa6b1d59a83df11e89423887dd89e6e5ed183c2c47162cd4dea59cb2e24b",
+      "3a5c026304b5e36f3cd948eafa50cd961ed2cfdeb5e3490b9aeb89a97b4f1237",
+      "5b67370ecf8cc3d088b08ad4c4484f3b020f75df13f12e9b794642b92d84b15b",
+      "5e86eff411afe2796e590a091f429fac33bb60c7cfe45c9b41b2807bc963e9b2",
+      "44e3537d6e74eabc5711f1cd182dee19677d0b31e448da9397d9f6fd75da699b",
+      "26ecc1c96cf5522d11c3acc0aa36914cd8278ee157659c80844ddfaa80a5ea75",
+      "5682033680b55bd8f39ca6b8a0745868d5f8d8bb6829d076be6bacf0853da641",
+      "cab27efc303155eecf0e609a721729ecaf120893aa53b33975f46ca5fc1b018f",
+      "b2a447ae5cfcac11f9879fa7e942b6b6ae41efb548fbf35e8513a2503f305c98",
+      "d3de6764a42bed9d678a6dd3ae7c123357633e682120288fab4404928788cc65",
+      "8083dd58f4e323b862683904cdc48f0aca9ccef6ad4faf119c290b63d9d042a6",
+      "b68a86cb37913e69ec2774379ed73b996a3a52eb9c094dc0d2e6bd238c212ca9",
+      "85bfd923af45c165517f13d5ac8f788f9fbb0af68eaf189a8cb249ab04d70993",
+      "f5fa83d03baf11cc017da2efdf6fdea3a272de0fd7e1a33f0a6ab84dcc6b1eb7",
+      "826fceb63e721b7d42996ae0299b7fa77f4e1f096998fa759c1c18b133322f81"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
+  },
+  "A49_linwan_deep_breath": {
+    "frames": 17,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Animations/Partial20261115/A49_linwan_deep_breath",
+    "sha256": [
+      "1a8b56cd062cbceb4b6ac5a3c30ab2baf44a68074c62781a3cc8dd1dfbaf2591",
+      "e9d5dc5c877f8535bd633cc44b6d25753d038b62f0b26e32aca66e6e60f73492",
+      "eabc0fc30a1a5b3756e81301f6bcf4d3170098288c45a6a59a0e0a3fe44335b0",
+      "01bc25d05ce6d39168d643ac5c41d002e87cf10ab0ac7482e650f1f819577269",
+      "5731ac729ecbb993134bd42db4d99910332192deebf671f868eab6e50a138106",
+      "f5b8618e5a20429706f7c983033c0afd699ed430bd4230c79e21cff1bf10c65c",
+      "e0894543fb5f71c64a07c7b22d3ca86a0587332ea007828ee9afb1f6c1ece1c9",
+      "f9a3b86cc48f3bd3f0f54437d87463cb4055b77840579970ac3fd10084de44dc",
+      "ddaa91c7a7ca9929baa384b2385d32cf0ae986acfa2d832a276cb4fc1062d94a",
+      "75b53bfb0ba51a95a07fe4509f43ae15e24916fb90c247699f746661fdd0a389",
+      "b94d89eaf75431c733f0a7c98758bdc50c6b9287a26c28001d01a75754208938",
+      "e19bee38e346727e86ada593b1197a0e22be1d83ff8a21809bca13779caf799e",
+      "e10ba97b17e28fbd049acd7a17c46ab9132e78998c4213673e81c324d92feb58",
+      "a35bebe9e0e77f88604e93270b3359ea53c56102559d4d5c0c7172676359a562",
+      "c9592cb864ab0789d5e9b1c8c842aa9b5a6c4e017eb15769dce42649431981b0",
+      "51c1681d6d6de9a415a213e3a193a91bf13f1914048d2427ee5429837e12fbb5",
+      "d0adf51ccd0b93f9e45bbc7124819a30822ddeecebff233f96fb684e0835949b"
+    ],
+    "screen_facing": "right",
+    "source_delivery": "Partial20261115"
+  },
+  "M_actress": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_actress",
+    "sha256": [
+      "2ee9562962b95c51aa489be540dff9cede3376b15054d2ef16b89a443bec43a2"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "953eb1b91cc703fd2cb2172008f42f6c235f80db4c6a5cd589c39e52d92827f5"
+  },
+  "M_chenmo": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_chenmo",
+    "sha256": [
+      "d3f124e7c54e7f656d465efb372249329e4b9e5ed273f3bdc4014b3e9b74912f"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "e16748e154c08ba9d1feb62dab3b31fc34fe0d4a143bd12204bcc20541bf960c"
+  },
+  "M_limou": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_limou",
+    "sha256": [
+      "9fd1b0078d682492a2f6061b109077ceee56cfa106cb49337362592848c0cde2"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "620b17f5d070bfdf1beacb53decb25aafbf8a10da6e09b12209642dfb2582cd3"
+  },
+  "M_man": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_man",
+    "sha256": [
+      "e0abb164514cbeb59770752b5df0f1f83bb3d72a15656e4c4e49d6e5eb5fed21"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "d1e4f051bac1055ca95ef3353fd670abc2e3f4e91e6a0a626fbddbcdcabad20f"
+  },
+  "M_xiaoxia": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_xiaoxia",
+    "sha256": [
+      "a72f86e5f8f872cd13c8cef39516ef99b84d617b717b6c510fd72e4768d2cb4a"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "829202f7b67097e5e4ff95c87ed028d258ea8081207769266e3a923c6203baea"
+  },
+  "M_xiaozhou": {
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "path": "Actors/Partial20261115/M_xiaozhou",
+    "sha256": [
+      "9ee47cbf2baff9240f1632d2283bf95a0e4defb30a4a566fe67bdbfdb242cca1"
+    ],
+    "kind": "static_master_placeholder",
+    "screen_facing": "right",
+    "design_status": "production_default_not_user_approved",
+    "source_sha256": "818307524e5372ed02e43b9fbdf4a5a44ecee0efbf4b1f0c547c179ecb3ba239"
+  },
+  "W_linwan": {
+    "path": "Animations/Motion20261115/W_linwan",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "80a28470b7c556e862b020eda6e687f53c20fbbee07293b09e1cb90d4ae51412",
+      "48d4b4fef85974461ed85bd1e69f57445c993bdab95f0683909cd2280240867f",
+      "85aa6834dc94ebeb620eae46bf1608bf3067ec5a2d38eec70be1316cf1621ff8",
+      "888a99071853266d51ef2c3f5e7c32ffaeca6054e52ceaa5340fc0911f655d7b",
+      "e57372c77ead2836181c93daa0c10974cb2c536814f692feb4fcf91dd39b89d3",
+      "1c21db1e679ac8585bdb7edafba0a2e16e0824b5d2cb36bbb7226714420a3df5"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        379.83,
+        248.44
+      ],
+      [
+        378.08,
+        248.44
+      ],
+      [
+        383.45,
+        249.44
+      ],
+      [
+        379.51,
+        248.44
+      ],
+      [
+        378.83,
+        246.41
+      ],
+      [
+        379.16,
+        246.41
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "H_linwan": {
+    "path": "Animations/Motion20261115/H_linwan",
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "4082aa02abfb4e6922f9acbdcc2176ca842a4d9b7583250e3695942f7ccecfb0"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        383.11,
+        245.41
+      ]
+    ],
+    "kind": "generated_hold",
+    "source_delivery": "Motion20261115"
+  },
+  "H_linwan_phone": {
+    "path": "Animations/Motion20261115/H_linwan_phone",
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "a481303e75a9ece9645fa12404617332a54d8becf370d4722afd6943779ce5fc"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        402.68,
+        211.64
+      ]
+    ],
+    "kind": "generated_hold",
+    "source_delivery": "Motion20261115"
+  },
+  "W_xiaobei": {
+    "path": "Animations/Motion20261115/W_xiaobei",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "4b77afb9834746e151ec60057c694ab4537c2f449a453e40f849d16dd3b0d9ce",
+      "1e5c798e2372d74408a60b8c0ef9e570b9cbfc506290aef2069b5daa13dd7faf",
+      "cc2519904401fb3e2ff577dab0ed97b28e118f877526e20aaef7c4e32f34261e",
+      "0ca7a54abdc91c2a4d1f16ef2a02d36b1d4524495a808167077e1f2525707e78",
+      "6a62b1301009c3486110a86cb99ee2c1d2f02e8456373f280a6076a3d6c7a079",
+      "86fe2b9a5a02bc64324b2c5f5901190d773dbe8279ef112b7b425d818daf63d8"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        380.82,
+        256.78
+      ],
+      [
+        380.11,
+        254.78
+      ],
+      [
+        380.11,
+        260.78
+      ],
+      [
+        379.82,
+        260.78
+      ],
+      [
+        380.82,
+        254.36
+      ],
+      [
+        380.11,
+        257.36
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "H_xiaobei": {
+    "path": "Animations/Motion20261115/H_xiaobei",
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "271dbb674339bfaa61c4eb5861d5cac502bd4f8e4e2e13baad61e96aff82ca21"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        380.11,
+        251.36
+      ]
+    ],
+    "kind": "generated_hold",
+    "source_delivery": "Motion20261115"
+  },
+  "W_suyao": {
+    "path": "Animations/Motion20261115/W_suyao",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "5528688f6473433263e2b2ab2e5213061bf38ad03e728e02c587435743be3527",
+      "1cdb3e26f7da562be854fc5dc084df9909bb9df9fe7baea49f46c8b3b6d6acbd",
+      "3c572f8bdb8d919538482d87d31cbe27d70a80f6c4269321de8b95768b4729b0",
+      "327fdcdb5ac5a88b55d05491ab763b4bf98342ec42136862ecaf2d229d48f54f",
+      "c7d5d971bd17831772dce9eecb3c2257051bb8199ff6327706ede6ad5621631f",
+      "ffca945179502ebc98aece9fa7eb6c49a6f4527c9674ad63794f8186cbd2db47"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        396.69,
+        317.88
+      ],
+      [
+        430.69,
+        317.88
+      ],
+      [
+        462.69,
+        317.88
+      ],
+      [
+        394.69,
+        319.88
+      ],
+      [
+        428.69,
+        319.88
+      ],
+      [
+        460.69,
+        317.88
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "W_chenmo": {
+    "path": "Animations/Motion20261115/W_chenmo",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "c3ab1910970621531e70e4f4c2cc3ab3b02f75d32e092b8128decf4ff154669f",
+      "8da35009258bd64f90cbbeb21f47cc91168452229c774a0d574ee32e905cad98",
+      "44b4b2e63987d03939e7c0149826994b4c879c0a4ae306f42f7d5dbb1e655cd0",
+      "1ecad8c216fdee54d60260878b1a3adb6b3ef5996b164a288afcdfe726a4510c",
+      "3638cf61233dadb93d1d14b7de50b9d4ee0c898118a2f49a9437944777b1ebb9",
+      "60c692e626fbb6b2995e0a541f5dfaedaa440c110442a560066aeb739c8045bf"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        361.45,
+        278.09
+      ],
+      [
+        394.45,
+        280.09
+      ],
+      [
+        425.45,
+        288.09
+      ],
+      [
+        360.45,
+        283.09
+      ],
+      [
+        393.45,
+        279.09
+      ],
+      [
+        425.45,
+        282.09
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "W_xiaozhou": {
+    "path": "Animations/Motion20261115/W_xiaozhou",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "443c387bd183e48c8f989d53c6e3c307f2dfb250b168c46fa4ee7f97c9df9aea",
+      "5d461cfa2162a9667de69bc0c83c545cbe756beda2d69e96918cf12a1f668910",
+      "421ff1744f3764317f21168127d3ad9a9b94cc728324d6a8dfed797c446556b1",
+      "39cef866ae489bf53a78d78f0f8b344a23b08b289d843ad0e163883a058ae5be",
+      "8834c656c5ae66f81704282a47cd1e21aa898be7bf2af3b6cf138a0ec315bb09",
+      "d370887a9fa807cedda82c171c3b18d066af090a82e6b65e8f16e8dac52c52fc"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        385.58,
+        275.9
+      ],
+      [
+        421.58,
+        275.9
+      ],
+      [
+        454.58,
+        275.9
+      ],
+      [
+        385.58,
+        277.9
+      ],
+      [
+        420.58,
+        276.9
+      ],
+      [
+        454.58,
+        276.9
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "W_actress": {
+    "path": "Animations/Motion20261115/W_actress",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "e4aa52aae6d66680b26eebed379beae11f6dc648f074b0d5d5e7213d9b89ddbd",
+      "c06ba071b8e559bd288785c06902aa7e14f02bfe660ba4b09f52e0468f5600de",
+      "483d6e427e325c90f4cf23bf686bff2573a1ccc829b984a464869558854d6886",
+      "faae59385e9511542c78033289446aee58eda0e6edc444b817c5b1199edec790",
+      "fbe3f8020866475629d2a3a149135affbfe3c8a1ba23f50521ee7dc2a58e4332",
+      "0b27d980cf1f50679fcd5d974be5e66dae78d00cea134d0e403538096fb0ef43"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        377.28,
+        263.81
+      ],
+      [
+        402.28,
+        261.81
+      ],
+      [
+        422.28,
+        261.81
+      ],
+      [
+        374.28,
+        261.81
+      ],
+      [
+        401.28,
+        260.81
+      ],
+      [
+        421.28,
+        261.81
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "H_suyao": {
+    "path": "Animations/Motion20261115/H_suyao",
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "5c8ff6cc020f61621f05da4f2d0838933c11b761202f3a6fb3d601934976e1ba"
+    ],
+    "screen_facing": "left",
+    "hand_anchors": [
+      [
+        277.94,
+        276.49
+      ]
+    ],
+    "kind": "generated_hold",
+    "source_delivery": "Motion20261115"
+  }
+}

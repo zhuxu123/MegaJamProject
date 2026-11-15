@@ -12,32 +12,125 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F03_linwan_ambiguous",
           "x": 180,
           "to": 490,
           "flip": false,
-          "walk_clip": "W_linwan",
+          "emotion_placeholder": false,
           "move_start": 0,
-          "move_end": 4.25
+          "move_end": 4.25,
+          "walk_clip": "A01_linwan_walk",
+          "facing": "right"
         },
         {
-          "name": "女主演员 · 母版占位",
-          "clip": "M_actress",
+          "name": "女主演员",
+          "clip": "F21_actress_fear",
           "x": 740,
           "to": 740,
-          "flip": true
+          "flip": true,
+          "emotion_placeholder": false,
+          "facing": "left"
         },
         {
-          "name": "李谋 · 母版占位",
-          "clip": "M_limou",
+          "name": "李谋",
+          "clip": "F17_limou_approval",
           "x": 1040,
           "to": 1040,
-          "flip": true
+          "flip": true,
+          "emotion_placeholder": false,
+          "facing": "left"
         }
       ],
       "duration": 5,
-      "note": "角色母版已接入；敲桌与互动动作仍待补。",
-      "evidence": ""
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
+      "evidence": "",
+      "support_boxes": [
+        {
+          "position": [
+            -10.9375,
+            0,
+            165.5
+          ],
+          "size": [
+            450,
+            100,
+            12
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -218.75,
+            -35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -218.75,
+            35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            196.875,
+            -35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            196.875,
+            35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        }
+      ]
     },
     {
       "chapter": 1,
@@ -47,26 +140,33 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A02_linwan_hit_table",
           "x": 500,
           "to": 500,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Anger",
               "label": "愤怒"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 3.2,
+              "clip": "F01_linwan_angry"
+            }
+          ],
+          "facing": "right"
         },
         {
-          "name": "女主演员 · 母版占位",
-          "clip": "M_actress",
+          "name": "女主演员",
+          "clip": "A03_actress_retreat_table",
           "x": 700,
-          "to": 760,
+          "to": 700,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -74,21 +174,109 @@
               "label": "惊恐"
             }
           ],
-          "walk_clip": "W_actress",
-          "move_start": 0,
-          "move_end": 4.25
+          "facing": "left",
+          "delay": 0.8
         },
         {
-          "name": "李谋 · 母版占位",
-          "clip": "M_limou",
+          "name": "李谋",
+          "clip": "F17_limou_approval",
           "x": 1040,
           "to": 1040,
-          "flip": true
+          "flip": true,
+          "emotion_placeholder": false,
+          "facing": "left"
         }
       ],
-      "duration": 5,
-      "note": "演员与李谋母版已接入；敲桌、后退撑桌动作待补。",
-      "evidence": ""
+      "duration": 6,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
+      "evidence": "",
+      "support_boxes": [
+        {
+          "position": [
+            -10.9375,
+            0,
+            165.5
+          ],
+          "size": [
+            450,
+            100,
+            12
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -218.75,
+            -35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -218.75,
+            35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            196.875,
+            -35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            196.875,
+            35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        }
+      ]
     },
     {
       "chapter": 1,
@@ -98,11 +286,11 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A04_linwan_advance",
           "x": 500,
           "to": 560,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -110,17 +298,24 @@
               "label": "逼近"
             }
           ],
-          "walk_clip": "W_linwan",
+          "sequence": [
+            {
+              "at": 2.2,
+              "clip": "F01_linwan_angry"
+            }
+          ],
           "move_start": 0,
-          "move_end": 4.25
+          "move_end": 2.2,
+          "walk_clip": "A04_linwan_advance",
+          "facing": "right"
         },
         {
-          "name": "女主演员 · 母版占位",
-          "clip": "M_actress",
+          "name": "女主演员",
+          "clip": "F21_actress_fear",
           "x": 740,
           "to": 170,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -128,29 +323,124 @@
               "label": "示弱"
             }
           ],
-          "walk_clip": "W_actress",
           "move_start": 0,
-          "move_end": 4.25
+          "move_end": 4.6,
+          "walk_clip": "A06_actress_leave_bowed",
+          "facing": "left"
         },
         {
-          "name": "李谋 · 母版占位",
-          "clip": "M_limou",
+          "name": "李谋",
+          "clip": "A05_limou_applaud",
           "x": 1040,
           "to": 1040,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Warm",
               "label": "赞许"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 3,
+              "clip": "F17_limou_approval"
+            }
+          ],
+          "facing": "left"
         }
       ],
       "duration": 5,
-      "note": "角色身份已替换；鼓掌、退场与回头表演待补。",
-      "evidence": ""
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
+      "evidence": "",
+      "support_boxes": [
+        {
+          "position": [
+            -10.9375,
+            0,
+            165.5
+          ],
+          "size": [
+            450,
+            100,
+            12
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -218.75,
+            -35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -218.75,
+            35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            196.875,
+            -35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            196.875,
+            35,
+            78
+          ],
+          "size": [
+            10,
+            10,
+            156
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        }
+      ]
     },
     {
       "chapter": 1,
@@ -160,11 +450,11 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "H_linwan",
-          "x": 540,
-          "to": 820,
+          "clip": "A07_linwan_lookback_smirk",
+          "x": 565.6505259295499,
+          "to": 565.6505259295499,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -172,17 +462,21 @@
               "label": "冷笑"
             }
           ],
-          "walk_clip": "W_linwan",
-          "move_start": 2.7,
-          "move_end": 4.7
+          "sequence": [
+            {
+              "at": 4.8,
+              "clip": "A09_linwan_take_umbrella"
+            }
+          ],
+          "facing": "right"
         },
         {
-          "name": "小周 · 母版占位",
-          "clip": "M_xiaozhou",
-          "x": 180,
-          "to": 500,
+          "name": "小周",
+          "clip": "A08_xiaozhou_jog",
+          "x": 974.3494740704501,
+          "to": 714.3494740704501,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -190,19 +484,35 @@
               "label": "愣住"
             }
           ],
-          "walk_clip": "W_xiaozhou",
+          "sequence": [
+            {
+              "at": 3.6,
+              "clip": "A10_xiaozhou_release_umbrella"
+            },
+            {
+              "at": 8.6,
+              "clip": "F20_xiaozhou_stunned"
+            }
+          ],
+          "facing": "left",
+          "presentation": {
+            "A10_xiaozhou_release_umbrella": {
+              "scale": 0.9965753424657534
+            }
+          },
+          "walk_clip": "A08_xiaozhou_jog",
           "move_start": 0,
-          "move_end": 2.6
+          "move_end": 3.6
         }
       ],
-      "duration": 5,
-      "note": "小周走近递伞，握点切换给林晚后离开。",
+      "duration": 10.6,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
           "image": "Static/Partial20261115/P01_umbrella_closed.png",
-          "x": 450,
-          "z": 140,
+          "x": 640,
+          "z": 150,
           "size": 210,
           "depth": -45,
           "attach_actor": 1,
@@ -211,7 +521,7 @@
             0.76
           ],
           "transfer_actor": 0,
-          "transfer_at": 2.6
+          "transfer_at": 6.8
         }
       ]
     },
@@ -223,23 +533,31 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "H_linwan",
+          "clip": "A11_linwan_open_umbrella",
           "x": 500,
           "to": 1050,
           "flip": false,
-          "walk_clip": "W_linwan",
-          "move_start": 0,
-          "move_end": 4.25
+          "emotion_placeholder": false,
+          "sequence": [
+            {
+              "at": 4.4,
+              "clip": "A12_linwan_walk_umbrella"
+            }
+          ],
+          "move_start": 4.4,
+          "move_end": 8.8,
+          "walk_clip": "A12_linwan_walk_umbrella",
+          "facing": "right"
         }
       ],
-      "duration": 5,
-      "note": "林晚以5 FPS迈步，伞柄逐帧贴合手部；雨效仍待补。",
+      "duration": 9,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
           "image": "Static/Partial20261115/P02_umbrella_open.png",
-          "x": 700,
-          "z": 290,
+          "x": 640,
+          "z": 150,
           "size": 300,
           "depth": -45,
           "attach_actor": 0,
@@ -247,7 +565,10 @@
             0.5,
             0.76
           ],
-          "angle": 12
+          "visible_clips": [
+            "A12_linwan_walk_umbrella"
+          ],
+          "angle": 0
         }
       ]
     },
@@ -258,36 +579,42 @@
       "description": "小夏与男人站在路灯下；林晚从后方拿手机拍照。",
       "actors": [
         {
-          "name": "小夏 · 母版占位",
-          "clip": "M_xiaoxia",
+          "name": "小夏",
+          "clip": "A13_xiaoxia_idle",
           "x": 400,
           "to": 400,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         },
         {
-          "name": "男人 · 母版占位",
-          "clip": "M_man",
+          "name": "男人",
+          "clip": "A14_man_idle",
           "x": 650,
           "to": 650,
-          "flip": true
+          "flip": true,
+          "emotion_placeholder": false,
+          "facing": "left"
         },
         {
           "name": "林晚",
-          "clip": "H_linwan_phone",
+          "clip": "A15_linwan_phone_photo",
           "x": 1030,
           "to": 1030,
-          "flip": true
+          "flip": true,
+          "emotion_placeholder": false,
+          "facing": "left"
         }
       ],
       "duration": 5,
-      "note": "林晚转向拍摄对象，手机贴合抬起的手；拥抱表演待补。",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
           "image": "Static/Motion20261115/phone.png",
-          "x": 1030,
-          "z": 185,
-          "size": 38,
+          "x": 640,
+          "z": 150,
+          "size": 62,
           "depth": -45,
           "attach_actor": 2,
           "grip": [
@@ -305,17 +632,21 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F03_linwan_ambiguous",
           "x": 390,
           "to": 390,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         },
         {
           "name": "工作人员",
           "clip": "E01_extra_f_idle",
           "x": 1000,
           "to": 1000,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         },
         {
           "name": "工作人员",
@@ -323,13 +654,15 @@
           "x": 1040,
           "to": 780,
           "flip": false,
-          "walk_clip": "E04_extra_m_walk",
+          "emotion_placeholder": false,
           "move_start": 0,
-          "move_end": 4.25
+          "move_end": 4.25,
+          "walk_clip": "E04_extra_m_walk",
+          "facing": "right"
         }
       ],
       "duration": 5,
-      "note": "名单证据图已上墙；工作人员继续使用原素材。",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
@@ -349,32 +682,31 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "R01_linwan_peel_label",
           "x": 390,
           "to": 390,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Anger",
               "label": "不满"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 2.8,
+              "clip": "F03_linwan_ambiguous"
+            }
+          ],
+          "facing": "right"
         }
       ],
       "duration": 4.8,
-      "note": "完整照片已上墙；扯标签动画R01尚未交付，不再播放错误的撕整张照片。 道具已摆放，手部接触/交接动画未完成。",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
-      "props": [
-        {
-          "image": "Static/Partial20261115/P07_photo_intact.png",
-          "x": 390,
-          "z": 270,
-          "size": 160,
-          "depth": 270
-        }
-      ]
+      "props": []
     },
     {
       "chapter": 2,
@@ -384,13 +716,15 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F01_linwan_angry",
           "x": 470,
           "to": 530,
           "flip": false,
-          "walk_clip": "W_linwan",
+          "emotion_placeholder": false,
           "move_start": 0,
-          "move_end": 2.55
+          "move_end": 2.6,
+          "walk_clip": "A01_linwan_walk",
+          "facing": "right"
         },
         {
           "name": "小北",
@@ -398,7 +732,7 @@
           "x": 1040,
           "to": 720,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -406,13 +740,14 @@
               "label": "紧张"
             }
           ],
-          "walk_clip": "C02_xiaobei_jog_papers",
           "move_start": 0,
-          "move_end": 2.55
+          "move_end": 2.6,
+          "walk_clip": "C02_xiaobei_jog_papers",
+          "facing": "left"
         }
       ],
       "duration": 3,
-      "note": "",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -427,14 +762,15 @@
           "x": 530,
           "to": 530,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Care",
               "label": "阻拦 / 想扶"
             }
-          ]
+          ],
+          "facing": "right"
         },
         {
           "name": "小北",
@@ -442,18 +778,19 @@
           "x": 730,
           "to": 730,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Shock",
               "label": "惊慌"
             }
-          ]
+          ],
+          "facing": "left"
         }
       ],
       "duration": 4.6,
-      "note": "",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -464,10 +801,12 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F01_linwan_angry",
           "x": 530,
           "to": 530,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         },
         {
           "name": "小北",
@@ -475,7 +814,7 @@
           "x": 730,
           "to": 730,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -488,11 +827,12 @@
               "at": 2.6,
               "clip": "A17_xiaobei_crouch_empty"
             }
-          ]
+          ],
+          "facing": "left"
         }
       ],
       "duration": 5.8,
-      "note": "已接入空手起身→再蹲下；地面三张纸已在动画中，不额外叠加。",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -503,10 +843,12 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F01_linwan_angry",
           "x": 530,
           "to": 530,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         },
         {
           "name": "小北",
@@ -514,18 +856,19 @@
           "x": 730,
           "to": 730,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Shock",
               "label": "紧张"
             }
-          ]
+          ],
+          "facing": "left"
         }
       ],
       "duration": 4.6,
-      "note": "",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -536,10 +879,12 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F03_linwan_ambiguous",
           "x": 530,
           "to": 530,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         },
         {
           "name": "小北",
@@ -547,18 +892,19 @@
           "x": 730,
           "to": 730,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Shock",
               "label": "紧张"
             }
-          ]
+          ],
+          "facing": "left"
         }
       ],
       "duration": 4.6,
-      "note": "抱资料起身已更新抠像及站立基线；后续持纸循环仍用旧版。",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -569,10 +915,12 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F03_linwan_ambiguous",
           "x": 530,
           "to": 530,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         },
         {
           "name": "小北",
@@ -580,18 +928,25 @@
           "x": 730,
           "to": 730,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Shock",
               "label": "不安"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 2.6,
+              "clip": "F09_xiaobei_tense"
+            }
+          ],
+          "facing": "left"
         }
       ],
-      "duration": 2.6,
-      "note": "",
+      "duration": 4.6,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -602,11 +957,11 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F02_linwan_smirk",
           "x": 530,
-          "to": 690,
+          "to": 530,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -614,17 +969,15 @@
               "label": "冷笑"
             }
           ],
-          "walk_clip": "W_linwan",
-          "move_start": 0,
-          "move_end": 2.55
+          "facing": "right"
         },
         {
           "name": "小北",
-          "clip": "S04_xiaobei_hold_papers",
+          "clip": "F10_xiaobei_escape",
           "x": 730,
           "to": 120,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -632,13 +985,14 @@
               "label": "逃离"
             }
           ],
+          "move_start": 2,
+          "move_end": 5,
           "walk_clip": "C02_xiaobei_jog_papers",
-          "move_start": 0,
-          "move_end": 2.55
+          "facing": "left"
         }
       ],
-      "duration": 3,
-      "note": "林晚走路与冷笑待补。",
+      "duration": 5,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -649,18 +1003,26 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A19_linwan_look_down",
           "x": 610,
           "to": 610,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "sequence": [
+            {
+              "at": 2.8,
+              "clip": "F01_linwan_angry"
+            }
+          ],
+          "facing": "right"
         },
         {
           "name": "苏瑶",
-          "clip": "S03_suyao_idle",
+          "clip": "A18_suyao_walk",
           "x": 1080,
           "to": 790,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -668,13 +1030,20 @@
               "label": "甜笑"
             }
           ],
-          "walk_clip": "W_suyao",
+          "sequence": [
+            {
+              "at": 2,
+              "clip": "A20_suyao_adjust_dress"
+            }
+          ],
           "move_start": 0,
-          "move_end": 3.4
+          "move_end": 2,
+          "walk_clip": "A18_suyao_walk",
+          "facing": "left"
         }
       ],
-      "duration": 4,
-      "note": "已补迈步循环与方向匹配。",
+      "duration": 7,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -689,14 +1058,15 @@
           "x": 610,
           "to": 610,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Anger",
               "label": "冷淡"
             }
-          ]
+          ],
+          "facing": "right"
         },
         {
           "name": "苏瑶",
@@ -704,7 +1074,7 @@
           "x": 790,
           "to": 790,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -712,11 +1082,12 @@
               "label": "错愕"
             }
           ],
-          "delay": 1.0
+          "facing": "left",
+          "delay": 1.2
         }
       ],
-      "duration": 4,
-      "note": "跺脚压缩悬停；失衡起点延后1秒，与落脚对齐。新版苏瑶跌倒表情已接入。",
+      "duration": 4.4,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -727,26 +1098,33 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A21_linwan_raise_head",
           "x": 610,
           "to": 610,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Anger",
               "label": "冷眼"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 3,
+              "clip": "F03_linwan_ambiguous"
+            }
+          ],
+          "facing": "right"
         },
         {
           "name": "苏瑶",
-          "clip": "C08_suyao_fall_kneel",
+          "clip": "F13_suyao_shock",
           "x": 790,
           "to": 790,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -754,11 +1132,17 @@
               "label": "羞愤"
             }
           ],
-          "hold_frame": 13
+          "sequence": [
+            {
+              "at": 1.8,
+              "clip": "F14_suyao_shame"
+            }
+          ],
+          "facing": "left"
         }
       ],
-      "duration": 2.8,
-      "note": "保持新版跌倒的实际末帧接续起身；这是停帧占位，不是已验收的跪姿循环。",
+      "duration": 4.2,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -769,10 +1153,12 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F02_linwan_smirk",
           "x": 610,
           "to": 610,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         },
         {
           "name": "苏瑶",
@@ -780,18 +1166,25 @@
           "x": 790,
           "to": 790,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Warm",
               "label": "重新甜笑"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 4.2,
+              "clip": "F12_suyao_sweet"
+            }
+          ],
+          "facing": "left"
         }
       ],
-      "duration": 4.2,
-      "note": "起身已接续新版跪姿；恢复甜笑的表情仍待补，当前保持惊慌。",
+      "duration": 6.4,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -802,11 +1195,11 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F03_linwan_ambiguous",
           "x": 230,
           "to": 600,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -814,27 +1207,35 @@
               "label": "难辨的笑"
             }
           ],
-          "walk_clip": "W_linwan",
           "move_start": 0,
-          "move_end": 5.1
+          "move_end": 4.8,
+          "walk_clip": "A01_linwan_walk",
+          "facing": "right"
         },
         {
           "name": "工作人员",
           "clip": "E01_extra_f_idle",
           "x": 1040,
-          "to": 1040,
-          "flip": false
+          "to": 850,
+          "flip": false,
+          "emotion_placeholder": false,
+          "move_start": 0,
+          "move_end": 4.8,
+          "walk_clip": "E02_extra_f_walk",
+          "facing": "right"
         },
         {
           "name": "工作人员",
           "clip": "E03_extra_m_idle",
           "x": 920,
           "to": 920,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         }
       ],
       "duration": 6,
-      "note": "抬头表情及音效待补。",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -845,11 +1246,11 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A01_linwan_walk",
           "x": 220,
           "to": 660,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -857,13 +1258,20 @@
               "label": "警觉"
             }
           ],
-          "walk_clip": "W_linwan",
+          "sequence": [
+            {
+              "at": 2,
+              "clip": "A22_linwan_listen"
+            }
+          ],
           "move_start": 0,
-          "move_end": 4.25
+          "move_end": 2,
+          "walk_clip": "A01_linwan_walk",
+          "facing": "right"
         }
       ],
-      "duration": 5,
-      "note": "已补迈步循环与方向匹配。",
+      "duration": 6,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -874,22 +1282,63 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
-          "x": 660,
-          "to": 660,
+          "clip": "A22_linwan_listen",
+          "x": 250,
+          "to": 250,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Shock",
               "label": "震惊"
             }
+          ],
+          "sequence": [
+            {
+              "at": 3,
+              "clip": "F05_linwan_vigilant"
+            }
+          ],
+          "facing": "right"
+        },
+        {
+          "name": "李谋",
+          "clip": "A23_limou_comfort",
+          "x": 670,
+          "to": 670,
+          "flip": false,
+          "facing": "right",
+          "emotion_placeholder": false,
+          "sequence": [
+            {
+              "at": 3.8,
+              "clip": "A25_limou_cold_talk"
+            },
+            {
+              "at": 8.8,
+              "clip": "F18_limou_cold"
+            }
+          ]
+        },
+        {
+          "name": "苏瑶",
+          "clip": "A24_suyao_angry_talk",
+          "x": 950,
+          "to": 950,
+          "flip": false,
+          "facing": "left",
+          "emotion_placeholder": false,
+          "sequence": [
+            {
+              "at": 4.6,
+              "clip": "F15_suyao_threat"
+            }
           ]
         }
       ],
-      "duration": 7,
-      "note": "阴冷 / 愤怒 / 小北图标待补；此处使用文字提示，不编造对白。",
+      "duration": 11,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -900,22 +1349,29 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A26_linwan_wall_fist",
           "x": 660,
           "to": 660,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Anger",
               "label": "攥紧拳头"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 4.4,
+              "clip": "F06_linwan_shock_anger"
+            }
+          ],
+          "facing": "right"
         }
       ],
-      "duration": 4,
-      "note": "专用动作待生成；当前以待机与位移占位。",
+      "duration": 6.6,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -926,26 +1382,33 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A27_linwan_mirror_idle",
           "x": 600,
           "to": 600,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Shock",
               "label": "疑虑"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 4,
+              "clip": "A30_linwan_mirror_glance"
+            }
+          ],
+          "facing": "right"
         },
         {
-          "name": "陈默 · 母版占位",
-          "clip": "M_chenmo",
+          "name": "陈默",
+          "clip": "A28_chenmo_walk",
           "x": 180,
           "to": 820,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -953,14 +1416,108 @@
               "label": "温和"
             }
           ],
-          "walk_clip": "W_chenmo",
+          "sequence": [
+            {
+              "at": 3,
+              "clip": "A29_chenmo_knock"
+            }
+          ],
           "move_start": 0,
-          "move_end": 4.25
+          "move_end": 3,
+          "walk_clip": "A28_chenmo_walk",
+          "facing": "left"
         }
       ],
-      "duration": 5,
-      "note": "陈默母版已接入；走近、敲门与林晚坐姿待补。",
-      "evidence": ""
+      "duration": 8,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
+      "evidence": "",
+      "support_boxes": [
+        {
+          "position": [
+            -38.28125,
+            -16,
+            74
+          ],
+          "size": [
+            90,
+            75,
+            10
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -71.09375,
+            -40,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -71.09375,
+            10,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -5.46875,
+            -40,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -5.46875,
+            10,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        }
+      ]
     },
     {
       "chapter": 3,
@@ -970,38 +1527,139 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A32_linwan_seated_turn",
           "x": 600,
           "to": 600,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Shock",
               "label": "怀疑 / 动摇"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 4.2,
+              "clip": "F04_linwan_suspicious"
+            }
+          ],
+          "facing": "right"
         },
         {
-          "name": "陈默 · 母版占位",
-          "clip": "M_chenmo",
+          "name": "陈默",
+          "clip": "A31_chenmo_encourage",
           "x": 820,
           "to": 820,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Care",
               "label": "赞许"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 3.4,
+              "clip": "F19_chenmo_encourage"
+            }
+          ],
+          "facing": "left"
         }
       ],
-      "duration": 5,
-      "note": "陈默母版已接入；安慰、镜前对话和坐姿待补。",
-      "evidence": ""
+      "duration": 7,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
+      "evidence": "",
+      "support_boxes": [
+        {
+          "position": [
+            -38.28125,
+            -16,
+            74
+          ],
+          "size": [
+            90,
+            75,
+            10
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -71.09375,
+            -40,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -71.09375,
+            10,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -5.46875,
+            -40,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -5.46875,
+            10,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        }
+      ]
     },
     {
       "chapter": 3,
@@ -1011,18 +1669,20 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F04_linwan_suspicious",
           "x": 600,
           "to": 600,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         },
         {
-          "name": "陈默 · 母版占位",
-          "clip": "M_chenmo",
+          "name": "陈默",
+          "clip": "A33_chenmo_leave_pause",
           "x": 820,
           "to": 200,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -1030,14 +1690,102 @@
               "label": "欲言又止"
             }
           ],
-          "walk_clip": "W_chenmo",
-          "move_start": 0,
-          "move_end": 3.4
+          "move_start": 4.6,
+          "move_end": 6,
+          "walk_clip": "A28_chenmo_walk",
+          "facing": "left"
         }
       ],
-      "duration": 4,
-      "note": "陈默母版已接入；离开与回望目前以位移占位。",
-      "evidence": ""
+      "duration": 6,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
+      "evidence": "",
+      "support_boxes": [
+        {
+          "position": [
+            -38.28125,
+            -16,
+            74
+          ],
+          "size": [
+            90,
+            75,
+            10
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -71.09375,
+            -40,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -71.09375,
+            10,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -5.46875,
+            -40,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -5.46875,
+            10,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        }
+      ]
     },
     {
       "chapter": 3,
@@ -1047,26 +1795,37 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "F04_linwan_suspicious",
           "x": 600,
           "to": 600,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Shock",
               "label": "警觉"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 8,
+              "clip": "A36_linwan_stand_confront"
+            },
+            {
+              "at": 11.4,
+              "clip": "F05_linwan_vigilant"
+            }
+          ],
+          "facing": "right"
         },
         {
           "name": "苏瑶",
-          "clip": "S03_suyao_idle",
+          "clip": "A18_suyao_walk",
           "x": 220,
           "to": 820,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -1074,14 +1833,116 @@
               "label": "威胁"
             }
           ],
-          "walk_clip": "W_suyao",
+          "sequence": [
+            {
+              "at": 2,
+              "clip": "A34_suyao_open_door"
+            },
+            {
+              "at": 7.2,
+              "clip": "A35_suyao_lean_threat"
+            },
+            {
+              "at": 12,
+              "clip": "F15_suyao_threat"
+            }
+          ],
           "move_start": 0,
-          "move_end": 4.25
+          "move_end": 2,
+          "walk_clip": "A18_suyao_walk",
+          "facing": "left"
         }
       ],
-      "duration": 5,
-      "note": "已补迈步循环与方向匹配。",
-      "evidence": ""
+      "duration": 14,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
+      "evidence": "",
+      "support_boxes": [
+        {
+          "position": [
+            -38.28125,
+            -16,
+            74
+          ],
+          "size": [
+            90,
+            75,
+            10
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -71.09375,
+            -40,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -71.09375,
+            10,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -5.46875,
+            -40,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        },
+        {
+          "position": [
+            -5.46875,
+            10,
+            35
+          ],
+          "size": [
+            7,
+            7,
+            70
+          ],
+          "color": [
+            0.3,
+            0.21,
+            0.14
+          ]
+        }
+      ]
     },
     {
       "chapter": 3,
@@ -1091,74 +1952,104 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "H_linwan",
-          "x": 580,
-          "to": 580,
+          "clip": "A40_linwan_receive_knife",
+          "x": 317.02623906705537,
+          "to": 317.02623906705537,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Anger",
               "label": "不退让"
             }
-          ]
+          ],
+          "facing": "right"
         },
         {
           "name": "苏瑶",
-          "clip": "H_suyao",
-          "x": 820,
-          "to": 820,
+          "clip": "A39_suyao_receive_rose",
+          "x": 960.9428571428572,
+          "to": 960.9428571428572,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Anger",
               "label": "阴狠"
             }
-          ]
+          ],
+          "facing": "left",
+          "presentation": {
+            "A39_suyao_receive_rose": {
+              "scale": 1.0
+            }
+          }
         },
         {
           "name": "工作人员",
-          "clip": "E01_extra_f_idle",
-          "x": 1080,
-          "to": 1000,
+          "clip": "A37_staff_f_give_rose",
+          "x": 839.0571428571428,
+          "to": 839.0571428571428,
           "flip": false,
-          "walk_clip": "E02_extra_f_walk",
-          "move_start": 0,
-          "move_end": 4.25
+          "emotion_placeholder": false,
+          "facing": "right",
+          "delay": 0.8
+        },
+        {
+          "name": "工作人员",
+          "clip": "A38_staff_m_give_knife",
+          "x": 422.97376093294463,
+          "to": 422.97376093294463,
+          "flip": false,
+          "facing": "left",
+          "delay": 1.6,
+          "presentation": {
+            "A38_staff_m_give_knife": {
+              "scale": 1.0034364261168385
+            }
+          }
         }
       ],
-      "duration": 5,
-      "note": "刀与玫瑰按握点贴合双手；工作人员完整递接动作仍待补。",
+      "duration": 7.4,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
           "image": "Static/Partial20261115/P04_prop_knife.png",
-          "x": 580,
-          "z": 160,
-          "size": 95,
+          "x": 640,
+          "z": 150,
+          "size": 100,
           "depth": -45,
-          "attach_actor": 0,
+          "attach_actor": 3,
           "grip": [
-            0.45703125,
-            0.65625
+            0.65,
+            0.458
           ],
-          "angle": 45
+          "transfer_actor": 0,
+          "transfer_at": 2.6,
+          "transfer_grip": [
+            0.34375,
+            0.45703125
+          ],
+          "angle": -90,
+          "mirror_with_holder": false
         },
         {
           "image": "Static/Partial20261115/P05_white_rose.png",
-          "x": 820,
-          "z": 175,
-          "size": 90,
+          "x": 640,
+          "z": 150,
+          "size": 130,
           "depth": -45,
-          "attach_actor": 1,
+          "attach_actor": 2,
           "grip": [
             0.482421875,
             0.751953125
           ],
-          "angle": -12
+          "transfer_actor": 1,
+          "transfer_at": 4,
+          "mirror_with_holder": false
         }
       ]
     },
@@ -1170,11 +2061,11 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "H_linwan",
+          "clip": "A41_linwan_knife_advance",
           "x": 500,
-          "to": 550,
+          "to": 500,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -1182,47 +2073,48 @@
               "label": "警觉"
             }
           ],
-          "walk_clip": "W_linwan",
-          "move_start": 0,
-          "move_end": 3.4
+          "facing": "right"
         },
         {
           "name": "苏瑶",
-          "clip": "H_suyao",
+          "clip": "A39_suyao_receive_rose",
           "x": 790,
           "to": 790,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "left",
+          "hold_frame": 24
         }
       ],
       "duration": 4,
-      "note": "道具已接入；握刀逼近与对白动作仍待补。",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
           "image": "Static/Partial20261115/P04_prop_knife.png",
-          "x": 550,
-          "z": 160,
-          "size": 95,
+          "x": 640,
+          "z": 150,
+          "size": 100,
           "depth": -45,
           "attach_actor": 0,
           "grip": [
-            0.45703125,
-            0.65625
+            0.34375,
+            0.457
           ],
-          "angle": 45
+          "angle": -90,
+          "mirror_with_holder": false
         },
         {
           "image": "Static/Partial20261115/P05_white_rose.png",
-          "x": 790,
-          "z": 175,
-          "size": 90,
+          "x": 640,
+          "z": 150,
+          "size": 130,
           "depth": -45,
           "attach_actor": 1,
           "grip": [
             0.482421875,
             0.751953125
-          ],
-          "angle": -12
+          ]
         }
       ]
     },
@@ -1234,43 +2126,59 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "H_linwan",
+          "clip": "A41_linwan_knife_advance",
           "x": 550,
           "to": 550,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         },
         {
           "name": "苏瑶",
-          "clip": "C08_suyao_fall_kneel",
+          "clip": "A42_suyao_fake_fall",
           "x": 790,
           "to": 790,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Shock",
               "label": "伪装恐惧"
             }
-          ]
+          ],
+          "facing": "left"
         }
       ],
-      "duration": 4,
-      "note": "仍用第二幕失衡片占位；第三幕假摔、捂肩与指认动作尚未交付。 道具按逐帧手部握点跟随。",
+      "duration": 5.6,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
           "image": "Static/Partial20261115/P04_prop_knife.png",
-          "x": 550,
-          "z": 160,
-          "size": 95,
+          "x": 640,
+          "z": 150,
+          "size": 100,
           "depth": -45,
           "attach_actor": 0,
           "grip": [
-            0.45703125,
-            0.65625
+            0.34375,
+            0.457
           ],
-          "angle": 45
+          "angle": -90,
+          "mirror_with_holder": false
+        },
+        {
+          "image": "Static/Partial20261115/P05_white_rose.png",
+          "x": 640,
+          "z": 150,
+          "size": 130,
+          "depth": -45,
+          "attach_actor": 1,
+          "grip": [
+            0.482421875,
+            0.751953125
+          ]
         }
       ]
     },
@@ -1282,11 +2190,11 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
-          "x": 550,
-          "to": 180,
+          "clip": "A56_linwan_release_knife",
+          "x": 499.90524781341105,
+          "to": 129.90524781341105,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -1294,17 +2202,24 @@
               "label": "错愕"
             }
           ],
-          "walk_clip": "W_linwan",
-          "move_start": 0,
-          "move_end": 5.1
+          "sequence": [
+            {
+              "at": 5,
+              "clip": "A44_linwan_escorted"
+            }
+          ],
+          "move_start": 5,
+          "move_end": 11,
+          "walk_clip": "A44_linwan_escorted",
+          "facing": "right"
         },
         {
           "name": "苏瑶",
-          "clip": "C08_suyao_fall_kneel",
+          "clip": "F16_suyao_fake_fear",
           "x": 790,
           "to": 790,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -1312,22 +2227,174 @@
               "label": "伪装委屈"
             }
           ],
-          "hold_frame": 13
+          "sequence": [
+            {
+              "at": 2,
+              "clip": "A43_suyao_kneel_accuse"
+            }
+          ],
+          "facing": "left"
         },
         {
           "name": "工作人员",
           "clip": "E01_extra_f_idle",
-          "x": 1040,
-          "to": 310,
+          "x": 550,
+          "to": 180,
           "flip": false,
-          "walk_clip": "E02_extra_f_walk",
-          "move_start": 0,
-          "move_end": 5.1
+          "emotion_placeholder": false,
+          "sequence": [
+            {
+              "at": 5,
+              "clip": "A45_staff_f_escort"
+            }
+          ],
+          "move_start": 5,
+          "move_end": 11,
+          "walk_clip": "A45_staff_f_escort",
+          "facing": "left",
+          "presentation": {
+            "A45_staff_f_escort": {
+              "scale": 1.156862745098039,
+              "offsets": [
+                [
+                  17.851886468873232,
+                  -41.254748774509785
+                ],
+                [
+                  19.068973303607137,
+                  -40.347120098039184
+                ],
+                [
+                  17.940401875035704,
+                  -39.8267463235294
+                ],
+                [
+                  14.941942491282191,
+                  -44.53431372549018
+                ],
+                [
+                  15.506228205567908,
+                  -45.86550245098036
+                ],
+                [
+                  18.41617218315895,
+                  -39.92356004901957
+                ],
+                [
+                  19.633259017892854,
+                  -39.112745098039184
+                ],
+                [
+                  17.940401875035704,
+                  -38.5923713235294
+                ],
+                [
+                  14.941942491282191,
+                  -43.29993872549018
+                ],
+                [
+                  15.506228205567908,
+                  -45.962316176470566
+                ]
+              ]
+            }
+          }
+        },
+        {
+          "name": "工作人员",
+          "clip": "A55_staff_m_take_knife",
+          "x": 600.094752186589,
+          "to": 230.09475218658895,
+          "flip": false,
+          "facing": "left",
+          "emotion_placeholder": false,
+          "sequence": [
+            {
+              "at": 4.8,
+              "clip": "A46_staff_m_escort"
+            }
+          ],
+          "move_start": 5,
+          "move_end": 11,
+          "walk_clip": "A46_staff_m_escort",
+          "delay": 0.2,
+          "presentation": {
+            "A55_staff_m_take_knife": {
+              "scale": 1.0080645161290323
+            },
+            "A46_staff_m_escort": {
+              "scale": 1.2156862745098038,
+              "offsets": [
+                [
+                  -30.12956039558688,
+                  -27.20465686274509
+                ],
+                [
+                  -28.07157720230957,
+                  -24.070312499999964
+                ],
+                [
+                  -29.88614302864009,
+                  -24.203431372549005
+                ],
+                [
+                  -31.014714457211525,
+                  -24.820618872549005
+                ],
+                [
+                  -29.07843994740759,
+                  -25.437806372549005
+                ],
+                [
+                  -27.385582804550438,
+                  -27.954963235294095
+                ],
+                [
+                  -28.757571600068673,
+                  -30.072763480392137
+                ],
+                [
+                  -30.007851712113478,
+                  -26.720588235294095
+                ],
+                [
+                  -31.014714457211525,
+                  -26.321231617647044
+                ],
+                [
+                  -30.328720059452422,
+                  -25.437806372549005
+                ]
+              ]
+            }
+          }
         }
       ],
-      "duration": 6,
-      "note": "保持假摔占位的末帧；捂肩指认、三人押送与收刀互动仍待补。",
-      "evidence": ""
+      "duration": 11,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
+      "evidence": "",
+      "props": [
+        {
+          "image": "Static/Partial20261115/P04_prop_knife.png",
+          "x": 640,
+          "z": 150,
+          "size": 100,
+          "depth": -45,
+          "attach_actor": 0,
+          "grip": [
+            0.34375,
+            0.457
+          ],
+          "transfer_actor": 3,
+          "transfer_at": 1.8,
+          "transfer_grip": [
+            0.65,
+            0.476
+          ],
+          "angle": -90,
+          "mirror_with_holder": false
+        }
+      ]
     },
     {
       "chapter": 3,
@@ -1337,26 +2404,38 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
-          "x": 700,
-          "to": 700,
+          "clip": "F05_linwan_vigilant",
+          "x": 720.9044458128078,
+          "to": 720.9044458128078,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Care",
               "label": "沉静"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 2,
+              "clip": "A48_linwan_receive_file"
+            }
+          ],
+          "facing": "left",
+          "presentation": {
+            "A48_linwan_receive_file": {
+              "scale": 1.0241379310344827
+            }
+          }
         },
         {
-          "name": "陈默 · 母版占位",
-          "clip": "M_chenmo",
-          "x": 200,
-          "to": 470,
+          "name": "陈默",
+          "clip": "A47_chenmo_give_file",
+          "x": 339.0955541871922,
+          "to": 579.0955541871922,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -1364,30 +2443,31 @@
               "label": "支持"
             }
           ],
-          "walk_clip": "W_chenmo",
+          "facing": "right",
+          "delay": 3.6,
+          "walk_clip": "A28_chenmo_walk",
           "move_start": 0,
-          "move_end": 5.1,
-          "hand": [
-            370,
-            360
-          ]
+          "move_end": 2
         }
       ],
-      "duration": 6,
-      "note": "陈默母版、文件夹已接入；递交接触动作待补。",
+      "duration": 8,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
           "image": "Static/Partial20261115/P06_document_folder.png",
-          "x": 470,
-          "z": 130,
-          "size": 125,
+          "x": 640,
+          "z": 150,
+          "size": 120,
           "depth": -45,
           "attach_actor": 1,
           "grip": [
-            0.185546875,
-            0.52734375
-          ]
+            0.5,
+            0.6
+          ],
+          "transfer_actor": 0,
+          "transfer_at": 4.6,
+          "mirror_with_holder": false
         }
       ]
     },
@@ -1403,18 +2483,33 @@
           "x": 590,
           "to": 590,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Care",
               "label": "决绝 / 坦诚"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 3.4,
+              "clip": "F08_linwan_relieved"
+            },
+            {
+              "at": 5.4,
+              "clip": "F07_linwan_resolute"
+            },
+            {
+              "at": 7.4,
+              "clip": "A50_linwan_speak"
+            }
+          ],
+          "facing": "right"
         }
       ],
-      "duration": 6,
-      "note": "深呼吸和手机支架已接入；直播发言动作待补。",
+      "duration": 11.2,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
@@ -1434,37 +2529,45 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A50_linwan_speak",
           "x": 530,
           "to": 530,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Care",
               "label": "坚定"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 2,
+              "clip": "A51_linwan_send"
+            }
+          ],
+          "facing": "right"
         },
         {
-          "name": "陈默 · 母版占位",
-          "clip": "M_chenmo",
+          "name": "陈默",
+          "clip": "F19_chenmo_encourage",
           "x": 840,
           "to": 840,
           "flip": true,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Care",
               "label": "支持"
             }
-          ]
+          ],
+          "facing": "left"
         }
       ],
-      "duration": 5,
-      "note": "剧本证据图已补齐；直播手机与支架为完整组件，靠近林晚摆放。",
+      "duration": 6,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "导演抱小北",
       "props": [
         {
@@ -1473,6 +2576,21 @@
           "z": 165,
           "size": 330,
           "depth": -65
+        },
+        {
+          "image": "Static/Motion20261115/phone.png",
+          "x": 640,
+          "z": 150,
+          "size": 62,
+          "depth": -45,
+          "attach_actor": 0,
+          "grip": [
+            0.18,
+            0.72
+          ],
+          "visible_clips": [
+            "A51_linwan_send"
+          ]
         }
       ],
       "evidence_image": "Static/Motion20261115/ev01.png"
@@ -1485,26 +2603,33 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A50_linwan_speak",
           "x": 530,
           "to": 530,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Care",
               "label": "坦诚"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 2,
+              "clip": "A51_linwan_send"
+            }
+          ],
+          "facing": "right"
         },
         {
           "name": "小北",
-          "clip": "S02_xiaobei_idle",
+          "clip": "F11_xiaobei_brave_tears",
           "x": 1030,
           "to": 760,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -1512,20 +2637,23 @@
               "label": "勇敢 / 欲哭"
             }
           ],
-          "walk_clip": "W_xiaobei",
           "move_start": 0,
-          "move_end": 4.25
+          "move_end": 3,
+          "walk_clip": "A52_xiaobei_brave_walk",
+          "facing": "right"
         },
         {
-          "name": "陈默 · 母版占位",
-          "clip": "M_chenmo",
+          "name": "陈默",
+          "clip": "F19_chenmo_encourage",
           "x": 960,
           "to": 960,
-          "flip": true
+          "flip": true,
+          "emotion_placeholder": false,
+          "facing": "left"
         }
       ],
-      "duration": 5,
-      "note": "剧本证据图已补齐；直播手机与支架为完整组件，靠近林晚摆放。",
+      "duration": 6,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "导演和苏瑶喝酒",
       "props": [
         {
@@ -1534,6 +2662,21 @@
           "z": 165,
           "size": 330,
           "depth": -65
+        },
+        {
+          "image": "Static/Motion20261115/phone.png",
+          "x": 640,
+          "z": 150,
+          "size": 62,
+          "depth": -45,
+          "attach_actor": 0,
+          "grip": [
+            0.18,
+            0.72
+          ],
+          "visible_clips": [
+            "A51_linwan_send"
+          ]
         }
       ],
       "evidence_image": "Static/Motion20261115/ev02.png"
@@ -1546,33 +2689,41 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "S01_linwan_idle",
+          "clip": "A50_linwan_speak",
           "x": 440,
           "to": 440,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Warm",
               "label": "如释重负"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 2,
+              "clip": "A51_linwan_send"
+            }
+          ],
+          "facing": "right"
         },
         {
           "name": "小北",
-          "clip": "S02_xiaobei_idle",
+          "clip": "F11_xiaobei_brave_tears",
           "x": 670,
           "to": 670,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Care",
               "label": "勇敢"
             }
-          ]
+          ],
+          "facing": "right"
         },
         {
           "name": "剧组龙套",
@@ -1580,9 +2731,11 @@
           "x": 1080,
           "to": 850,
           "flip": false,
-          "walk_clip": "E02_extra_f_walk",
+          "emotion_placeholder": false,
           "move_start": 0,
-          "move_end": 4.25
+          "move_end": 4,
+          "walk_clip": "E02_extra_f_walk",
+          "facing": "right"
         },
         {
           "name": "剧组龙套",
@@ -1590,13 +2743,15 @@
           "x": 1150,
           "to": 1030,
           "flip": false,
-          "walk_clip": "E04_extra_m_walk",
+          "emotion_placeholder": false,
           "move_start": 0,
-          "move_end": 4.25
+          "move_end": 4,
+          "walk_clip": "E04_extra_m_walk",
+          "facing": "right"
         }
       ],
-      "duration": 5,
-      "note": "名单证据图已接入；可选择并发送。",
+      "duration": 6,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "名单上除了苏瑶都被打 X",
       "props": [
         {
@@ -1612,6 +2767,21 @@
           "z": 165,
           "size": 330,
           "depth": -65
+        },
+        {
+          "image": "Static/Motion20261115/phone.png",
+          "x": 640,
+          "z": 150,
+          "size": 62,
+          "depth": -45,
+          "attach_actor": 0,
+          "grip": [
+            0.18,
+            0.72
+          ],
+          "visible_clips": [
+            "A51_linwan_send"
+          ]
         }
       ],
       "evidence_image": "Static/Partial20261115/EV03_roster.png"
@@ -1623,7 +2793,7 @@
       "description": "李谋被警方带走；苏瑶被行业封杀；《扶摇直上》换导重拍。",
       "actors": [],
       "duration": 8,
-      "note": "使用用户报纸参考，标题由剧情界面叠加；保留原始图片。",
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": ""
     },
     {
@@ -1634,26 +2804,33 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "H_linwan",
-          "x": 700,
-          "to": 700,
+          "clip": "F02_linwan_smirk",
+          "x": 638.4307339449541,
+          "to": 638.4307339449541,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
               "icon": "Emotion_Warm",
               "label": "平静"
             }
-          ]
+          ],
+          "sequence": [
+            {
+              "at": 3,
+              "clip": "A09_linwan_take_umbrella"
+            }
+          ],
+          "facing": "right"
         },
         {
           "name": "小北",
-          "clip": "H_xiaobei",
-          "x": 200,
-          "to": 640,
+          "clip": "A53_xiaobei_walk_umbrella",
+          "x": 1041.5692660550458,
+          "to": 761.5692660550459,
           "flip": false,
-          "emotion_placeholder": true,
+          "emotion_placeholder": false,
           "emotions": [
             {
               "at": 0,
@@ -1661,19 +2838,31 @@
               "label": "靠近"
             }
           ],
-          "walk_clip": "W_xiaobei",
+          "sequence": [
+            {
+              "at": 3,
+              "clip": "A54_xiaobei_release_umbrella"
+            }
+          ],
+          "facing": "left",
+          "presentation": {
+            "A54_xiaobei_release_umbrella": {
+              "scale": 0.8899082568807339
+            }
+          },
+          "walk_clip": "A53_xiaobei_walk_umbrella",
           "move_start": 0,
-          "move_end": 3.0
+          "move_end": 3
         }
       ],
-      "duration": 5,
-      "note": "小北走近递伞，停步后伞柄转到林晚手中。",
+      "duration": 9,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
           "image": "Static/Partial20261115/P01_umbrella_closed.png",
-          "x": 480,
-          "z": 140,
+          "x": 640,
+          "z": 150,
           "size": 210,
           "depth": -45,
           "attach_actor": 1,
@@ -1682,7 +2871,7 @@
             0.76
           ],
           "transfer_actor": 0,
-          "transfer_at": 3.1
+          "transfer_at": 5
         }
       ]
     },
@@ -1694,30 +2883,40 @@
       "actors": [
         {
           "name": "林晚",
-          "clip": "H_linwan",
+          "clip": "A11_linwan_open_umbrella",
           "x": 700,
           "to": 1080,
           "flip": false,
-          "walk_clip": "W_linwan",
-          "move_start": 0,
-          "move_end": 4.25
+          "emotion_placeholder": false,
+          "sequence": [
+            {
+              "at": 4.4,
+              "clip": "A12_linwan_walk_umbrella"
+            }
+          ],
+          "move_start": 4.4,
+          "move_end": 8.8,
+          "walk_clip": "A12_linwan_walk_umbrella",
+          "facing": "right"
         },
         {
           "name": "小北",
-          "clip": "S02_xiaobei_idle",
+          "clip": "F11_xiaobei_brave_tears",
           "x": 480,
           "to": 480,
-          "flip": false
+          "flip": false,
+          "emotion_placeholder": false,
+          "facing": "right"
         }
       ],
-      "duration": 5,
-      "note": "林晚握伞向右离开，小北留在原地。",
+      "duration": 9,
+      "note": "第二轮回传动作已接入；5 FPS逐帧取样，道具按握点附着。",
       "evidence": "",
       "props": [
         {
           "image": "Static/Partial20261115/P02_umbrella_open.png",
-          "x": 800,
-          "z": 290,
+          "x": 640,
+          "z": 150,
           "size": 300,
           "depth": -45,
           "attach_actor": 0,
@@ -1725,7 +2924,9 @@
             0.5,
             0.76
           ],
-          "angle": 12
+          "visible_clips": [
+            "A12_linwan_walk_umbrella"
+          ]
         }
       ]
     }

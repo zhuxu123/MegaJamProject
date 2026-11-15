@@ -1,5 +1,6 @@
 """Derive head-top anchors from the visible crown of each current 640px sprite.
-Current character frames have no props above the head. Separate scene props are excluded.
+Reviewed delivery anchors take precedence, including baked umbrellas above the head.
+Legacy frames without delivery anchors use the original crown heuristic.
 Only writes metadata; preserves all original animation pixels.
 """
 from pathlib import Path
@@ -10,6 +11,13 @@ root=Path(__file__).resolve().parents[1]/'Content/SuperstarStory'
 anchors={}
 clips=json.loads((root/'clips.json').read_text(encoding='utf-8'))
 for id,clip in clips.items():
+    reviewed=root/clip['path']/'anchors.json'
+    if reviewed.exists():
+        source=json.loads(reviewed.read_text(encoding='utf-8-sig'))
+        assert source['id']==id and len(source['frames'])==clip['frames']
+        anchors[id]=[f['head'] for f in source['frames']]
+        assert all(len(p)==2 and all(0<=v<640 for v in p) for p in anchors[id])
+        continue
     frames=[]
     for i in range(1,clip['frames']+1):
         path=root/clip['path']/f'{id}_{i:06d}.png'

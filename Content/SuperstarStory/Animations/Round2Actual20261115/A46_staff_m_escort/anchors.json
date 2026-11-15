@@ -1,0 +1,148 @@
+{
+  "id": "A46_staff_m_escort",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        330,
+        92
+      ],
+      "hand": [
+        285,
+        386
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated outer hip grip for the same carried prop; the extending hand is independently measured in A46-guide-points.json."
+    },
+    {
+      "frame": 2,
+      "head": [
+        330,
+        96
+      ],
+      "hand": [
+        309,
+        384
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated outer hip grip for the same carried prop; the extending hand is independently measured in A46-guide-points.json."
+    },
+    {
+      "frame": 3,
+      "head": [
+        330,
+        94
+      ],
+      "hand": [
+        315,
+        382
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated outer hip grip for the same carried prop; the extending hand is independently measured in A46-guide-points.json."
+    },
+    {
+      "frame": 4,
+      "head": [
+        330,
+        92
+      ],
+      "hand": [
+        300,
+        381
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated outer hip grip for the same carried prop; the extending hand is independently measured in A46-guide-points.json."
+    },
+    {
+      "frame": 5,
+      "head": [
+        330,
+        96
+      ],
+      "hand": [
+        272,
+        383
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated outer hip grip for the same carried prop; the extending hand is independently measured in A46-guide-points.json."
+    },
+    {
+      "frame": 6,
+      "head": [
+        330,
+        96
+      ],
+      "hand": [
+        255,
+        387
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated outer hip grip for the same carried prop; the extending hand is independently measured in A46-guide-points.json."
+    },
+    {
+      "frame": 7,
+      "head": [
+        330,
+        92
+      ],
+      "hand": [
+        257,
+        388
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated outer hip grip for the same carried prop; the extending hand is independently measured in A46-guide-points.json."
+    },
+    {
+      "frame": 8,
+      "head": [
+        329,
+        94
+      ],
+      "hand": [
+        282,
+        386
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated outer hip grip for the same carried prop; the extending hand is independently measured in A46-guide-points.json."
+    },
+    {
+      "frame": 9,
+      "head": [
+        330,
+        96
+      ],
+      "hand": [
+        305,
+        384
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated outer hip grip for the same carried prop; the extending hand is independently measured in A46-guide-points.json."
+    },
+    {
+      "frame": 10,
+      "head": [
+        330,
+        94
+      ],
+      "hand": [
+        312,
+        384
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated outer hip grip for the same carried prop; the extending hand is independently measured in A46-guide-points.json."
+    }
+  ]
+}

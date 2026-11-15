@@ -1,0 +1,559 @@
+{
+  "id": "G04",
+  "review_required": false,
+  "coord_space": [
+    960,
+    468
+  ],
+  "first_contact_time": 2.6,
+  "transfer_time": 2.6,
+  "contact_height_difference_px": 0.4376875000000098,
+  "floor": 420,
+  "scale": 0.49,
+  "actors": [
+    {
+      "id": "A38_staff_m_give_knife",
+      "flip": true,
+      "event": "main_event",
+      "contact_frame": 5,
+      "first": 8,
+      "transform": [
+        363,
+        141
+      ],
+      "contact_y": 277.71000000000004
+    },
+    {
+      "id": "A40_linwan_receive_knife",
+      "flip": false,
+      "event": "main_event",
+      "contact_frame": 13,
+      "first": 0,
+      "transform": [
+        271,
+        141
+      ],
+      "contact_y": 277.22
+    }
+  ],
+  "prop": "current/Static/Partial20261115/P04_prop_knife.png",
+  "prop_sha256": "d920e45aee1082037b069cbfc9cd569c86b796ee1573ed1c14d7fd3f7ffae32b",
+  "grips": [
+    [
+      0.65,
+      0.458
+    ],
+    [
+      0.34375,
+      0.45703125
+    ]
+  ],
+  "rotation": -90,
+  "frames": [
+    {
+      "frame": 1,
+      "time": 0.0,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        1,
+        1
+      ],
+      "grip_world": [
+        493.34000000000003,
+        286.53
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 2,
+      "time": 0.2,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        1,
+        2
+      ],
+      "grip_world": [
+        493.34000000000003,
+        286.53
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 3,
+      "time": 0.4,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        1,
+        3
+      ],
+      "grip_world": [
+        493.34000000000003,
+        286.53
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 4,
+      "time": 0.6,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        1,
+        4
+      ],
+      "grip_world": [
+        493.34000000000003,
+        286.53
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 5,
+      "time": 0.8,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        1,
+        5
+      ],
+      "grip_world": [
+        493.34000000000003,
+        286.53
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 6,
+      "time": 1.0,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        1,
+        6
+      ],
+      "grip_world": [
+        493.34000000000003,
+        286.53
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 7,
+      "time": 1.2,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        1,
+        7
+      ],
+      "grip_world": [
+        493.34000000000003,
+        286.53
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 8,
+      "time": 1.4,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        1,
+        8
+      ],
+      "grip_world": [
+        493.34000000000003,
+        286.53
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 9,
+      "time": 1.6,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        1,
+        9
+      ],
+      "grip_world": [
+        493.34000000000003,
+        286.53
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 10,
+      "time": 1.8,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        2,
+        10
+      ],
+      "grip_world": [
+        491.87,
+        285.55
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 11,
+      "time": 2.0,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        3,
+        11
+      ],
+      "grip_world": [
+        490.4,
+        282.61
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 12,
+      "time": 2.2,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        4,
+        12
+      ],
+      "grip_world": [
+        489.90999999999997,
+        279.66999999999996
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 13,
+      "time": 2.4,
+      "owner": "A38_staff_m_give_knife",
+      "actors": [
+        5,
+        13
+      ],
+      "grip_world": [
+        488.93,
+        277.71000000000004
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 14,
+      "time": 2.6,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        6,
+        14
+      ],
+      "grip_world": [
+        471.9,
+        277.22
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 15,
+      "time": 2.8,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        7,
+        15
+      ],
+      "grip_world": [
+        471.40999999999997,
+        277.22
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 16,
+      "time": 3.0,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        8,
+        16
+      ],
+      "grip_world": [
+        471.40999999999997,
+        277.22
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 17,
+      "time": 3.2,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        9,
+        17
+      ],
+      "grip_world": [
+        471.40999999999997,
+        277.22
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 18,
+      "time": 3.4,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        10,
+        18
+      ],
+      "grip_world": [
+        466.51,
+        274.28
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 19,
+      "time": 3.6,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        11,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 20,
+      "time": 3.8,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        12,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 21,
+      "time": 4.0,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        13,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 22,
+      "time": 4.2,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        14,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 23,
+      "time": 4.4,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        15,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 24,
+      "time": 4.6,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        16,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 25,
+      "time": 4.8,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        17,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 26,
+      "time": 5.0,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        18,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 27,
+      "time": 5.2,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        19,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 28,
+      "time": 5.4,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        20,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 29,
+      "time": 5.6,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        21,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 30,
+      "time": 5.8,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        22,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 31,
+      "time": 6.0,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        23,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 32,
+      "time": 6.2,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        24,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 33,
+      "time": 6.4,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        25,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 34,
+      "time": 6.6,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        26,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 35,
+      "time": 6.8,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        26,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    },
+    {
+      "frame": 36,
+      "time": 7.0,
+      "owner": "A40_linwan_receive_knife",
+      "actors": [
+        26,
+        19
+      ],
+      "grip_world": [
+        463.57,
+        274.77
+      ],
+      "prop_count": 1
+    }
+  ],
+  "offline_review_passed": true
+}

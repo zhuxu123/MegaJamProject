@@ -21,7 +21,7 @@ for beat in story['beats']:
         assert not actor['name'].startswith('导演'), 'Director must use the confirmed Li Mou identity.'
         if 'walk_clip' in actor:
             used.add(actor['walk_clip'])
-            assert clips[actor['walk_clip']]['loop'] and clips[actor['walk_clip']]['frames']>1
+            assert clips[actor['walk_clip']]['frames']>1 # non-loop authored advances/retreats are also valid locomotion
             assert 0<=actor['move_start']<actor['move_end']<=beat['duration']
             assert clips[actor['walk_clip']]['screen_facing'] in ['left','right']
         if actor['x']!=actor['to']:assert 'walk_clip' in actor,'Moving actor must have stepping frames'

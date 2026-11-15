@@ -1,0 +1,260 @@
+{
+  "id": "A51_linwan_send",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        423,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 2,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 3,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        425,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 4,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        425,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 5,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        425,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 6,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 7,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 8,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 9,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        425,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 10,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        425,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 11,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        425,
+        210
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 12,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 13,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 14,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 15,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 16,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 17,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    },
+    {
+      "frame": 18,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        424,
+        209
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Left hand holds steady at the visible side edge. Right index approaches the separate display at source 39."
+    }
+  ]
+}

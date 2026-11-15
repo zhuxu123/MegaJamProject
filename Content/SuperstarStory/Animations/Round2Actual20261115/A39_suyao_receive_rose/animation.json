@@ -1,0 +1,425 @@
+{
+  "id": "A39_suyao_receive_rose",
+  "fps": 5,
+  "frame_count": 25,
+  "playback_seconds": 5.0,
+  "loop": false,
+  "source": "runs/A39_suyao_receive_rose/attempt_02/source.mp4",
+  "source_sha256": "f3a4bebfca4f051d1a3be27cfd9e1c4b25b54cb55cb7f4c458aa722bf1f817af",
+  "cut": {
+    "video": "runs/A39_suyao_receive_rose/attempt_02/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.25,
+    "end_seconds_exclusive": 5.125,
+    "loop": false,
+    "event_times": {
+      "action_onset": 0.625,
+      "main_event": 4.166666666666667,
+      "settled_end": 4.708333333333333,
+      "grip_contact_before_close": 4.041666666666667
+    }
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 4.875,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "action_onset": {
+      "source_seconds": 0.625,
+      "output_frame": 3,
+      "sample_offset_seconds": 0.04166666666666663
+    },
+    "main_event": {
+      "source_seconds": 4.166666666666667,
+      "output_frame": 21,
+      "sample_offset_seconds": 0.08333333333333304
+    },
+    "settled_end": {
+      "source_seconds": 4.708333333333333,
+      "output_frame": 23,
+      "sample_offset_seconds": -0.041666666666666075
+    },
+    "grip_contact_before_close": {
+      "source_seconds": 4.041666666666667,
+      "output_frame": 20,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A39_suyao_receive_rose_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.25,
+      "source_frame": 7,
+      "actual_source_seconds": 0.25,
+      "alpha_bbox": [
+        264,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.45,
+      "source_frame": 12,
+      "actual_source_seconds": 0.4583333333333333,
+      "alpha_bbox": [
+        240,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.65,
+      "source_frame": 17,
+      "actual_source_seconds": 0.6666666666666666,
+      "alpha_bbox": [
+        194,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.85,
+      "source_frame": 21,
+      "actual_source_seconds": 0.8333333333333334,
+      "alpha_bbox": [
+        164,
+        90,
+        372,
+        572
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 1.05,
+      "source_frame": 26,
+      "actual_source_seconds": 1.0416666666666667,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.25,
+      "source_frame": 31,
+      "actual_source_seconds": 1.25,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.45,
+      "source_frame": 36,
+      "actual_source_seconds": 1.4583333333333333,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.65,
+      "source_frame": 41,
+      "actual_source_seconds": 1.6666666666666667,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.85,
+      "source_frame": 45,
+      "actual_source_seconds": 1.8333333333333333,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 2.05,
+      "source_frame": 50,
+      "actual_source_seconds": 2.0416666666666665,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.25,
+      "source_frame": 55,
+      "actual_source_seconds": 2.25,
+      "alpha_bbox": [
+        172,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.45,
+      "source_frame": 60,
+      "actual_source_seconds": 2.4583333333333335,
+      "alpha_bbox": [
+        172,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.65,
+      "source_frame": 65,
+      "actual_source_seconds": 2.6666666666666665,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 2.85,
+      "source_frame": 69,
+      "actual_source_seconds": 2.8333333333333335,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 3.05,
+      "source_frame": 74,
+      "actual_source_seconds": 3.0416666666666665,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.25,
+      "source_frame": 79,
+      "actual_source_seconds": 3.25,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000017.png",
+      "output_frame": 17,
+      "output_seconds": 3.2,
+      "requested_source_seconds": 3.45,
+      "source_frame": 84,
+      "actual_source_seconds": 3.4583333333333335,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000018.png",
+      "output_frame": 18,
+      "output_seconds": 3.4,
+      "requested_source_seconds": 3.65,
+      "source_frame": 89,
+      "actual_source_seconds": 3.6666666666666665,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000019.png",
+      "output_frame": 19,
+      "output_seconds": 3.6,
+      "requested_source_seconds": 3.85,
+      "source_frame": 93,
+      "actual_source_seconds": 3.8333333333333335,
+      "alpha_bbox": [
+        160,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000020.png",
+      "output_frame": 20,
+      "output_seconds": 3.8,
+      "requested_source_seconds": 4.05,
+      "source_frame": 98,
+      "actual_source_seconds": 4.041666666666667,
+      "alpha_bbox": [
+        168,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000021.png",
+      "output_frame": 21,
+      "output_seconds": 4.0,
+      "requested_source_seconds": 4.25,
+      "source_frame": 103,
+      "actual_source_seconds": 4.25,
+      "alpha_bbox": [
+        216,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000022.png",
+      "output_frame": 22,
+      "output_seconds": 4.2,
+      "requested_source_seconds": 4.45,
+      "source_frame": 108,
+      "actual_source_seconds": 4.458333333333333,
+      "alpha_bbox": [
+        222,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000023.png",
+      "output_frame": 23,
+      "output_seconds": 4.4,
+      "requested_source_seconds": 4.65,
+      "source_frame": 113,
+      "actual_source_seconds": 4.666666666666667,
+      "alpha_bbox": [
+        222,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000024.png",
+      "output_frame": 24,
+      "output_seconds": 4.6,
+      "requested_source_seconds": 4.85,
+      "source_frame": 117,
+      "actual_source_seconds": 4.833333333333333,
+      "alpha_bbox": [
+        222,
+        90,
+        372,
+        570
+      ]
+    },
+    {
+      "file": "frames/A39_suyao_receive_rose_000025.png",
+      "output_frame": 25,
+      "output_seconds": 4.8,
+      "requested_source_seconds": 5.05,
+      "source_frame": 122,
+      "actual_source_seconds": 5.041666666666667,
+      "alpha_bbox": [
+        222,
+        90,
+        372,
+        570
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "left"
+}

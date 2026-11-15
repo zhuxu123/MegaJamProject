@@ -1,0 +1,330 @@
+{
+  "id": "A09_linwan_take_umbrella",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        391,
+        253
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 2,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        391,
+        253
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 3,
+      "head": [
+        312,
+        88
+      ],
+      "hand": [
+        393,
+        252
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 4,
+      "head": [
+        316,
+        84
+      ],
+      "hand": [
+        416,
+        254
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 5,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        445,
+        278
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 6,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        448,
+        282
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 7,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        448,
+        282
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 8,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        449,
+        282
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 9,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        446,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 10,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        445,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 11,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        443,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 12,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        442,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 13,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        443,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 14,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        443,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 15,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        443,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 16,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        442,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 17,
+      "head": [
+        324,
+        80
+      ],
+      "hand": [
+        442,
+        279
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 18,
+      "head": [
+        322,
+        82
+      ],
+      "hand": [
+        435,
+        269
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 19,
+      "head": [
+        318,
+        84
+      ],
+      "hand": [
+        417,
+        259
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 20,
+      "head": [
+        311,
+        88
+      ],
+      "hand": [
+        391,
+        253
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 21,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        391,
+        253
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 22,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        391,
+        253
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    },
+    {
+      "frame": 23,
+      "head": [
+        310,
+        88
+      ],
+      "hand": [
+        391,
+        253
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Observed moving pinch from the isolated hand skin; projected local prop composite reviewed against this contact."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "group": "G10",
+  "event": "foot_contact_then_loss_of_balance",
+  "canvas": "960x450 2D reference composite with current dressing background",
+  "source_C07": {
+    "inspected_source_frame": 73,
+    "source_time_s": 3.0,
+    "matching_output_frame": 7,
+    "sample_error_s": 0.0,
+    "descending_toe_y_latest_pixels": [
+      [
+        71,
+        497
+      ],
+      [
+        72,
+        527
+      ],
+      [
+        73,
+        569
+      ],
+      [
+        74,
+        571
+      ],
+      [
+        75,
+        571
+      ]
+    ]
+  },
+  "source_C08": {
+    "output_loss_balance_frame": 2,
+    "proposed_actor_delay_s": 1.2,
+    "previous_actor_delay_s": 1.0
+  },
+  "output_C07_strike_s": 1.2,
+  "output_C08_balance_loss_s": 1.4,
+  "visual_reaction_delay_s": 0.2,
+  "preview_only": true,
+  "engine_modified": false
+}

@@ -1,0 +1,211 @@
+{
+  "id": "A14_man_idle",
+  "fps": 5,
+  "frame_count": 10,
+  "playback_seconds": 2.0,
+  "loop": true,
+  "source": "runs/A14_man_idle/attempt_03/source.mp4",
+  "source_sha256": "20ed71b57f3ee092d3ed4970bf9453e5c77416824d94444bac25c6adaed4c499",
+  "cut": {
+    "video": "runs/A14_man_idle/attempt_03/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.9166666666666667,
+    "end_seconds_exclusive": 3.9166666666666665,
+    "loop": true,
+    "event_times": {
+      "cycle_start": 1.9166666666666667,
+      "opposite_phase": 2.9166666666666665,
+      "cycle_return": 3.7083333333333335
+    },
+    "loop_end_seconds": 3.9166666666666665
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 1.9999999999999998,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "cycle_start": {
+      "source_seconds": 1.9166666666666667,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "opposite_phase": {
+      "source_seconds": 2.9166666666666665,
+      "output_frame": 6,
+      "sample_offset_seconds": 0.0
+    },
+    "cycle_return": {
+      "source_seconds": 3.7083333333333335,
+      "output_frame": 10,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A14_man_idle_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.9166666666666667,
+      "source_frame": 47,
+      "actual_source_seconds": 1.9166666666666667,
+      "alpha_bbox": [
+        242,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A14_man_idle_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 2.1166666666666667,
+      "source_frame": 52,
+      "actual_source_seconds": 2.125,
+      "alpha_bbox": [
+        242,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A14_man_idle_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 2.316666666666667,
+      "source_frame": 57,
+      "actual_source_seconds": 2.3333333333333335,
+      "alpha_bbox": [
+        242,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A14_man_idle_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 2.5166666666666666,
+      "source_frame": 61,
+      "actual_source_seconds": 2.5,
+      "alpha_bbox": [
+        242,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A14_man_idle_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 2.716666666666667,
+      "source_frame": 66,
+      "actual_source_seconds": 2.7083333333333335,
+      "alpha_bbox": [
+        242,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A14_man_idle_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 2.9166666666666665,
+      "source_frame": 71,
+      "actual_source_seconds": 2.9166666666666665,
+      "alpha_bbox": [
+        242,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A14_man_idle_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 3.1166666666666663,
+      "source_frame": 76,
+      "actual_source_seconds": 3.125,
+      "alpha_bbox": [
+        242,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A14_man_idle_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 3.3166666666666664,
+      "source_frame": 81,
+      "actual_source_seconds": 3.3333333333333335,
+      "alpha_bbox": [
+        242,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A14_man_idle_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 3.5166666666666666,
+      "source_frame": 85,
+      "actual_source_seconds": 3.5,
+      "alpha_bbox": [
+        242,
+        92,
+        400,
+        572
+      ]
+    },
+    {
+      "file": "frames/A14_man_idle_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 3.7166666666666663,
+      "source_frame": 90,
+      "actual_source_seconds": 3.7083333333333335,
+      "alpha_bbox": [
+        242,
+        92,
+        400,
+        572
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "source_processing": "horizontal_mirror",
+  "screen_facing": "right"
+}

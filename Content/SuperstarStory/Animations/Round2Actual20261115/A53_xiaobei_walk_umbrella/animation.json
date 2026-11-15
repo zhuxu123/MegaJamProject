@@ -1,0 +1,210 @@
+{
+  "id": "A53_xiaobei_walk_umbrella",
+  "fps": 5,
+  "frame_count": 10,
+  "playback_seconds": 2.0,
+  "loop": true,
+  "source": "runs/A53_xiaobei_walk_umbrella/attempt_01/source.mp4",
+  "source_sha256": "dcba8c61bf4c31e5cee0e7e3408fe0f764d014de2cd794e3bf097af82aea85c2",
+  "cut": {
+    "video": "runs/A53_xiaobei_walk_umbrella/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 1.0,
+    "end_seconds_exclusive": 2.9166666666666665,
+    "loop": true,
+    "event_times": {
+      "cycle_start": 1.0,
+      "opposite_phase": 1.9583333333333333,
+      "cycle_return": 2.7083333333333335
+    },
+    "loop_end_seconds": 2.9166666666666665
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 1.9166666666666665,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1,
+    "edge_cleanup": "nearest opaque color on residual yellow-green fringe"
+  },
+  "events": {
+    "cycle_start": {
+      "source_seconds": 1.0,
+      "output_frame": 1,
+      "sample_offset_seconds": 0.0
+    },
+    "opposite_phase": {
+      "source_seconds": 1.9583333333333333,
+      "output_frame": 6,
+      "sample_offset_seconds": 0.0
+    },
+    "cycle_return": {
+      "source_seconds": 2.7083333333333335,
+      "output_frame": 10,
+      "sample_offset_seconds": 0.0
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A53_xiaobei_walk_umbrella_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 1.0,
+      "source_frame": 25,
+      "actual_source_seconds": 1.0,
+      "alpha_bbox": [
+        264,
+        86,
+        394,
+        572
+      ]
+    },
+    {
+      "file": "frames/A53_xiaobei_walk_umbrella_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 1.1916666666666667,
+      "source_frame": 30,
+      "actual_source_seconds": 1.2083333333333333,
+      "alpha_bbox": [
+        244,
+        88,
+        408,
+        570
+      ]
+    },
+    {
+      "file": "frames/A53_xiaobei_walk_umbrella_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 1.3833333333333333,
+      "source_frame": 34,
+      "actual_source_seconds": 1.375,
+      "alpha_bbox": [
+        220,
+        90,
+        398,
+        570
+      ]
+    },
+    {
+      "file": "frames/A53_xiaobei_walk_umbrella_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 1.575,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        260,
+        86,
+        392,
+        568
+      ]
+    },
+    {
+      "file": "frames/A53_xiaobei_walk_umbrella_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 1.7666666666666666,
+      "source_frame": 43,
+      "actual_source_seconds": 1.75,
+      "alpha_bbox": [
+        262,
+        86,
+        396,
+        568
+      ]
+    },
+    {
+      "file": "frames/A53_xiaobei_walk_umbrella_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.9583333333333333,
+      "source_frame": 48,
+      "actual_source_seconds": 1.9583333333333333,
+      "alpha_bbox": [
+        226,
+        90,
+        412,
+        572
+      ]
+    },
+    {
+      "file": "frames/A53_xiaobei_walk_umbrella_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 2.15,
+      "source_frame": 53,
+      "actual_source_seconds": 2.1666666666666665,
+      "alpha_bbox": [
+        246,
+        86,
+        396,
+        572
+      ]
+    },
+    {
+      "file": "frames/A53_xiaobei_walk_umbrella_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 2.341666666666667,
+      "source_frame": 57,
+      "actual_source_seconds": 2.3333333333333335,
+      "alpha_bbox": [
+        263,
+        86,
+        392,
+        572
+      ]
+    },
+    {
+      "file": "frames/A53_xiaobei_walk_umbrella_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 2.533333333333333,
+      "source_frame": 62,
+      "actual_source_seconds": 2.5416666666666665,
+      "alpha_bbox": [
+        228,
+        90,
+        414,
+        568
+      ]
+    },
+    {
+      "file": "frames/A53_xiaobei_walk_umbrella_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 2.725,
+      "source_frame": 66,
+      "actual_source_seconds": 2.7083333333333335,
+      "alpha_bbox": [
+        226,
+        88,
+        390,
+        570
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "right"
+}

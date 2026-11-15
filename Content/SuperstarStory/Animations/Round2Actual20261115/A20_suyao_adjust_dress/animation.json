@@ -1,0 +1,404 @@
+{
+  "id": "A20_suyao_adjust_dress",
+  "fps": 5,
+  "frame_count": 24,
+  "playback_seconds": 4.8,
+  "loop": false,
+  "source": "runs/A20_suyao_adjust_dress/attempt_01/source.mp4",
+  "source_sha256": "718d24c1b96e8bc7f166844ccd7b1fa43f5d569a1b32aff1f4f14f032fbd64c1",
+  "cut": {
+    "video": "runs/A20_suyao_adjust_dress/attempt_01/source.mp4",
+    "reviewed": true,
+    "start_seconds": 0.0,
+    "end_seconds_exclusive": 4.625,
+    "loop": false,
+    "event_times": {
+      "action_onset": 0.5833333333333334,
+      "main_event": 2.3333333333333335,
+      "settled_end": 4.125
+    }
+  },
+  "source_probe": {
+    "source_pts_origin": 0.0,
+    "duration": 5.166666666666667,
+    "width": 640,
+    "height": 640,
+    "avg_frame_rate": "24"
+  },
+  "source_interval_seconds": 4.625,
+  "canvas": [
+    640,
+    640
+  ],
+  "anchor_pixels": [
+    320,
+    570
+  ],
+  "anchor_normalized": [
+    0.5,
+    0.890625
+  ],
+  "matte": {
+    "foreground": 24,
+    "background": 193,
+    "feather": 0,
+    "despill": 1
+  },
+  "events": {
+    "action_onset": {
+      "source_seconds": 0.5833333333333334,
+      "output_frame": 4,
+      "sample_offset_seconds": 0.0
+    },
+    "main_event": {
+      "source_seconds": 2.3333333333333335,
+      "output_frame": 13,
+      "sample_offset_seconds": 0.08333333333333304
+    },
+    "settled_end": {
+      "source_seconds": 4.125,
+      "output_frame": 22,
+      "sample_offset_seconds": 0.08333333333333304
+    }
+  },
+  "frame_mapping": [
+    {
+      "file": "frames/A20_suyao_adjust_dress_000001.png",
+      "output_frame": 1,
+      "output_seconds": 0.0,
+      "requested_source_seconds": 0.0,
+      "source_frame": 1,
+      "actual_source_seconds": 0.0,
+      "alpha_bbox": [
+        220,
+        90,
+        396,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000002.png",
+      "output_frame": 2,
+      "output_seconds": 0.2,
+      "requested_source_seconds": 0.2,
+      "source_frame": 6,
+      "actual_source_seconds": 0.20833333333333334,
+      "alpha_bbox": [
+        222,
+        92,
+        396,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000003.png",
+      "output_frame": 3,
+      "output_seconds": 0.4,
+      "requested_source_seconds": 0.4,
+      "source_frame": 11,
+      "actual_source_seconds": 0.4166666666666667,
+      "alpha_bbox": [
+        240,
+        92,
+        392,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000004.png",
+      "output_frame": 4,
+      "output_seconds": 0.6,
+      "requested_source_seconds": 0.6,
+      "source_frame": 15,
+      "actual_source_seconds": 0.5833333333333334,
+      "alpha_bbox": [
+        248,
+        92,
+        390,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000005.png",
+      "output_frame": 5,
+      "output_seconds": 0.8,
+      "requested_source_seconds": 0.8,
+      "source_frame": 20,
+      "actual_source_seconds": 0.7916666666666666,
+      "alpha_bbox": [
+        248,
+        92,
+        390,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000006.png",
+      "output_frame": 6,
+      "output_seconds": 1.0,
+      "requested_source_seconds": 1.0,
+      "source_frame": 25,
+      "actual_source_seconds": 1.0,
+      "alpha_bbox": [
+        248,
+        92,
+        390,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000007.png",
+      "output_frame": 7,
+      "output_seconds": 1.2,
+      "requested_source_seconds": 1.2,
+      "source_frame": 30,
+      "actual_source_seconds": 1.2083333333333333,
+      "alpha_bbox": [
+        248,
+        92,
+        390,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000008.png",
+      "output_frame": 8,
+      "output_seconds": 1.4,
+      "requested_source_seconds": 1.4,
+      "source_frame": 35,
+      "actual_source_seconds": 1.4166666666666667,
+      "alpha_bbox": [
+        248,
+        92,
+        390,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000009.png",
+      "output_frame": 9,
+      "output_seconds": 1.6,
+      "requested_source_seconds": 1.6,
+      "source_frame": 39,
+      "actual_source_seconds": 1.5833333333333333,
+      "alpha_bbox": [
+        240,
+        92,
+        398,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000010.png",
+      "output_frame": 10,
+      "output_seconds": 1.8,
+      "requested_source_seconds": 1.8,
+      "source_frame": 44,
+      "actual_source_seconds": 1.7916666666666667,
+      "alpha_bbox": [
+        230,
+        92,
+        408,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000011.png",
+      "output_frame": 11,
+      "output_seconds": 2.0,
+      "requested_source_seconds": 2.0,
+      "source_frame": 49,
+      "actual_source_seconds": 2.0,
+      "alpha_bbox": [
+        224,
+        92,
+        416,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000012.png",
+      "output_frame": 12,
+      "output_seconds": 2.2,
+      "requested_source_seconds": 2.2,
+      "source_frame": 54,
+      "actual_source_seconds": 2.2083333333333335,
+      "alpha_bbox": [
+        214,
+        92,
+        426,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000013.png",
+      "output_frame": 13,
+      "output_seconds": 2.4,
+      "requested_source_seconds": 2.4,
+      "source_frame": 59,
+      "actual_source_seconds": 2.4166666666666665,
+      "alpha_bbox": [
+        208,
+        92,
+        432,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000014.png",
+      "output_frame": 14,
+      "output_seconds": 2.6,
+      "requested_source_seconds": 2.6,
+      "source_frame": 63,
+      "actual_source_seconds": 2.5833333333333335,
+      "alpha_bbox": [
+        204,
+        92,
+        434,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000015.png",
+      "output_frame": 15,
+      "output_seconds": 2.8,
+      "requested_source_seconds": 2.8,
+      "source_frame": 68,
+      "actual_source_seconds": 2.7916666666666665,
+      "alpha_bbox": [
+        202,
+        92,
+        434,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000016.png",
+      "output_frame": 16,
+      "output_seconds": 3.0,
+      "requested_source_seconds": 3.0,
+      "source_frame": 73,
+      "actual_source_seconds": 3.0,
+      "alpha_bbox": [
+        202,
+        92,
+        434,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000017.png",
+      "output_frame": 17,
+      "output_seconds": 3.2,
+      "requested_source_seconds": 3.2,
+      "source_frame": 78,
+      "actual_source_seconds": 3.2083333333333335,
+      "alpha_bbox": [
+        208,
+        92,
+        426,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000018.png",
+      "output_frame": 18,
+      "output_seconds": 3.4,
+      "requested_source_seconds": 3.4,
+      "source_frame": 83,
+      "actual_source_seconds": 3.4166666666666665,
+      "alpha_bbox": [
+        220,
+        94,
+        400,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000019.png",
+      "output_frame": 19,
+      "output_seconds": 3.6,
+      "requested_source_seconds": 3.6,
+      "source_frame": 87,
+      "actual_source_seconds": 3.5833333333333335,
+      "alpha_bbox": [
+        226,
+        94,
+        390,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000020.png",
+      "output_frame": 20,
+      "output_seconds": 3.8,
+      "requested_source_seconds": 3.8,
+      "source_frame": 92,
+      "actual_source_seconds": 3.7916666666666665,
+      "alpha_bbox": [
+        224,
+        92,
+        394,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000021.png",
+      "output_frame": 21,
+      "output_seconds": 4.0,
+      "requested_source_seconds": 4.0,
+      "source_frame": 97,
+      "actual_source_seconds": 4.0,
+      "alpha_bbox": [
+        220,
+        90,
+        396,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000022.png",
+      "output_frame": 22,
+      "output_seconds": 4.2,
+      "requested_source_seconds": 4.2,
+      "source_frame": 102,
+      "actual_source_seconds": 4.208333333333333,
+      "alpha_bbox": [
+        220,
+        90,
+        396,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000023.png",
+      "output_frame": 23,
+      "output_seconds": 4.4,
+      "requested_source_seconds": 4.4,
+      "source_frame": 107,
+      "actual_source_seconds": 4.416666666666667,
+      "alpha_bbox": [
+        220,
+        90,
+        396,
+        574
+      ]
+    },
+    {
+      "file": "frames/A20_suyao_adjust_dress_000024.png",
+      "output_frame": 24,
+      "output_seconds": 4.6,
+      "requested_source_seconds": 4.6,
+      "source_frame": 111,
+      "actual_source_seconds": 4.583333333333333,
+      "alpha_bbox": [
+        220,
+        90,
+        396,
+        574
+      ]
+    }
+  ],
+  "visual_review": "PASSED_OFFLINE_SEQUENCE",
+  "screen_facing": "left"
+}

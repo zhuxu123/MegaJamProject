@@ -1,0 +1,134 @@
+{
+  "id": "A12_linwan_walk_umbrella",
+  "screen_facing": "right",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        312,
+        96
+      ],
+      "hand": [
+        392,
+        216
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated P02 open umbrella attached to measured upper hand while legs alternate."
+    },
+    {
+      "frame": 2,
+      "head": [
+        312,
+        106
+      ],
+      "hand": [
+        393,
+        219
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated P02 open umbrella attached to measured upper hand while legs alternate."
+    },
+    {
+      "frame": 3,
+      "head": [
+        313,
+        102
+      ],
+      "hand": [
+        393,
+        214
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated P02 open umbrella attached to measured upper hand while legs alternate."
+    },
+    {
+      "frame": 4,
+      "head": [
+        312,
+        96
+      ],
+      "hand": [
+        393,
+        216
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated P02 open umbrella attached to measured upper hand while legs alternate."
+    },
+    {
+      "frame": 5,
+      "head": [
+        310,
+        102
+      ],
+      "hand": [
+        394,
+        218
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated P02 open umbrella attached to measured upper hand while legs alternate."
+    },
+    {
+      "frame": 6,
+      "head": [
+        308,
+        106
+      ],
+      "hand": [
+        394,
+        222
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated P02 open umbrella attached to measured upper hand while legs alternate."
+    },
+    {
+      "frame": 7,
+      "head": [
+        312,
+        96
+      ],
+      "hand": [
+        392,
+        215
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated P02 open umbrella attached to measured upper hand while legs alternate."
+    },
+    {
+      "frame": 8,
+      "head": [
+        312,
+        102
+      ],
+      "hand": [
+        393,
+        216
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated P02 open umbrella attached to measured upper hand while legs alternate."
+    },
+    {
+      "frame": 9,
+      "head": [
+        312,
+        106
+      ],
+      "hand": [
+        393,
+        220
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Separated P02 open umbrella attached to measured upper hand while legs alternate."
+    }
+  ]
+}

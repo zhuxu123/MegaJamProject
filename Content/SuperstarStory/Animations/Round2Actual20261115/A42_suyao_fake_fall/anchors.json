@@ -1,0 +1,372 @@
+{
+  "id": "A42_suyao_fake_fall",
+  "screen_facing": "left",
+  "prop_mode": "attached",
+  "coordinates": "unmirrored 640x640 source pixels",
+  "frames": [
+    {
+      "frame": 1,
+      "head": [
+        318,
+        92
+      ],
+      "hand": [
+        243,
+        213
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 2,
+      "head": [
+        318,
+        92
+      ],
+      "hand": [
+        243,
+        213
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 3,
+      "head": [
+        318,
+        92
+      ],
+      "hand": [
+        243,
+        213
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 4,
+      "head": [
+        318,
+        92
+      ],
+      "hand": [
+        243,
+        213
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 5,
+      "head": [
+        318,
+        92
+      ],
+      "hand": [
+        243,
+        212
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 6,
+      "head": [
+        334,
+        92
+      ],
+      "hand": [
+        275,
+        255
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 7,
+      "head": [
+        355,
+        96
+      ],
+      "hand": [
+        273,
+        232
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 8,
+      "head": [
+        358,
+        98
+      ],
+      "hand": [
+        276,
+        229
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 9,
+      "head": [
+        358,
+        98
+      ],
+      "hand": [
+        275,
+        228
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 10,
+      "head": [
+        358,
+        98
+      ],
+      "hand": [
+        275,
+        228
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 11,
+      "head": [
+        358,
+        98
+      ],
+      "hand": [
+        275,
+        228
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 12,
+      "head": [
+        358,
+        98
+      ],
+      "hand": [
+        274,
+        228
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 13,
+      "head": [
+        356,
+        124
+      ],
+      "hand": [
+        274,
+        255
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 14,
+      "head": [
+        356,
+        144
+      ],
+      "hand": [
+        273,
+        275
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 15,
+      "head": [
+        354,
+        170
+      ],
+      "hand": [
+        272,
+        301
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 16,
+      "head": [
+        352,
+        194
+      ],
+      "hand": [
+        270,
+        325
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 17,
+      "head": [
+        348,
+        222
+      ],
+      "hand": [
+        268,
+        353
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 18,
+      "head": [
+        346,
+        242
+      ],
+      "hand": [
+        265,
+        372
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 19,
+      "head": [
+        343,
+        256
+      ],
+      "hand": [
+        265,
+        391
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 20,
+      "head": [
+        343,
+        256
+      ],
+      "hand": [
+        265,
+        390
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 21,
+      "head": [
+        343,
+        256
+      ],
+      "hand": [
+        265,
+        390
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 22,
+      "head": [
+        343,
+        256
+      ],
+      "hand": [
+        265,
+        390
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 23,
+      "head": [
+        343,
+        256
+      ],
+      "hand": [
+        265,
+        391
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 24,
+      "head": [
+        343,
+        256
+      ],
+      "hand": [
+        265,
+        391
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 25,
+      "head": [
+        343,
+        256
+      ],
+      "hand": [
+        265,
+        391
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    },
+    {
+      "frame": 26,
+      "head": [
+        343,
+        256
+      ],
+      "hand": [
+        265,
+        390
+      ],
+      "hand_left": null,
+      "hand_right": null,
+      "notes": "Tracking rose hand in front of body before and after the single recoil; other hand moves toward shoulder."
+    }
+  ]
+}
