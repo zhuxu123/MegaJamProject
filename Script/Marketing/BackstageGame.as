@@ -574,7 +574,6 @@ class ABackstageHUD : AHUD
                 break;
             case EBackstagePhase::Confirm: Confirm(Round, Controller.BackstagePointer()); break;
             case EBackstagePhase::Edit:
-                Text(f"营销达人  /  {Round.Config.Title}", 48, 34, Mint, 1.15);
                 Edit(Round, Controller.EditSlot, Controller.BackstagePointer());
                 break;
             case EBackstagePhase::Preview: Preview(Round); break;
@@ -767,7 +766,7 @@ class ABackstageHUD : AHUD
         Box(bHoverLanguage ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 982, 82, 240, 36);
         CenteredShadowText("语言：中文 / English (L)", 1102, 92, bHoverLanguage ? Mint : Paper, 1.0, 220);
 
-        CenteredShadowText("营销达人  /  MARKETING MASTER", 640, 118, Paper, 2.35);
+        CenteredShadowText("FramingFame", 640, 118, Paper, 2.35);
         CenteredShadowText("90年代手持摄像机  ×  新闻线性剪辑台", 640, 188, Mint, 1.14);
         CenteredShadowText("选好机位、时刻与构图按下快门  ·  用取景器里的画面重写头条", 640, 228, Muted, 1.12);
 
@@ -1129,6 +1128,7 @@ class ABackstageHUD : AHUD
         ShadowText("LINEAR EDITING DECK  //  A/B 卷线性剪辑台", 48, 42, Mint, 1.12);
         ShadowText("VHS-HQ  SP  1996.11.14", 1030, 42, Muted, 1.05);
         ShadowText("编辑成片", 48, 78, Paper, 1.78);
+        FitShadowText(f"FramingFame  /  {Round.Config.Title}", 570, 84, 650, Mint, 1.15);
         FitShadowText("素材带库（TAPE BIN）  /  点击缩略图或按 1–6 选入、移除", 48, 134, 1180, Muted, 1.12);
 
         const int HoveredPhoto = Backstage::PhotoUnderPointer(Pointer);
