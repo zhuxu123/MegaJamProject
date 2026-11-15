@@ -63,21 +63,36 @@ class ABackstageController : APlayerController
             BackstagePlayCue(n"chapter");
             return;
         }
-        if (Pressed(n"Three") || (BackstageHasCommandArg("SuperstarMenuSmoke") && MenuClock > 1.0)
-            || (Pressed(n"LeftMouseButton") && Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 492 && Pointer.Y <= 552))
+        TArray<FName> LevelKeys;
+        LevelKeys.Add(n"One"); LevelKeys.Add(n"Two"); LevelKeys.Add(n"Three"); LevelKeys.Add(n"Four");
+        TArray<FName> ChapterKeys;
+        ChapterKeys.Add(n"F1"); ChapterKeys.Add(n"F2"); ChapterKeys.Add(n"F3"); ChapterKeys.Add(n"F4");
+        for (int Level = 0; Level < 4; ++Level)
+        {
+            const float Y = 286.0 + float(Level) * 68.0;
+            if (Pressed(LevelKeys[Level]) || Pressed(ChapterKeys[Level])
+                || (Level == 0 && (Pressed(n"Enter") || Pressed(n"SpaceBar")))
+                || (Pressed(n"LeftMouseButton") && Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= Y && Pointer.Y <= Y + 54.0))
+            {
+                BackstagePlayCue(n"chapter");
+                OpenSuperstarStory(Level + 1);
+                return;
+            }
+        }
+        if (BackstageHasCommandArg("SuperstarMenuSmoke") && MenuClock > 1.0)
         {
             BackstagePlayCue(n"chapter");
             OpenSuperstarStory();
             return;
         }
-        if (Pressed(n"Enter") || Pressed(n"SpaceBar") || Pressed(n"One"))
+        if (Pressed(n"F5"))
         {
             BackstagePlayCue(n"chapter");
             BackstageSetLevel(0);
             BackstageOpenMap(n"/Game/levels/Backstage");
             return;
         }
-        if (Pressed(n"Two"))
+        if (Pressed(n"F6"))
         {
             BackstagePlayCue(n"chapter");
             BackstageSetLevel(1);
@@ -756,11 +771,21 @@ class ABackstageHUD : AHUD
         CenteredShadowText("90年代手持摄像机  ×  新闻线性剪辑台", 640, 188, Mint, 1.14);
         CenteredShadowText("选好机位、时刻与构图按下快门  ·  用取景器里的画面重写头条", 640, 228, Muted, 1.12);
 
-        const bool bHoverStory = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 492 && Pointer.Y <= 552;
         const bool bHoverQuit = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= 566 && Pointer.Y <= 608;
 
-        Box(bHoverStory ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 420, 492, 440, 60);
-        CenteredShadowText("[ 3 ] 超级巨星 · 四关独立选关", 640, 512, bHoverStory ? Mint : Paper, 1.14, 404);
+        TArray<FString> LevelLabels;
+        LevelLabels.Add("[ 1 ] 第一关 · 片场与雨夜");
+        LevelLabels.Add("[ 2 ] 第二关 · 真人秀后台");
+        LevelLabels.Add("[ 3 ] 第三关 · 决赛风波");
+        LevelLabels.Add("[ 4 ] 第四关 · 真相直播");
+        for (int Level = 0; Level < 4; ++Level)
+        {
+            const float Y = 286.0 + float(Level) * 68.0;
+            const bool bHover = Pointer.X >= 420 && Pointer.X <= 860 && Pointer.Y >= Y && Pointer.Y <= Y + 54.0;
+            Box(bHover ? FLinearColor(0.11, 0.26, 0.25, 0.96) : Panel, 420, Y, 440, 54);
+            CornerBrackets(420, Y, 440, 54, 14, 2, bHover ? Mint : Muted);
+            CenteredShadowText(LevelLabels[Level], 640, Y + 17, bHover ? Mint : Paper, 1.14, 404);
+        }
 
         Box(bHoverQuit ? FLinearColor(0.22, 0.09, 0.12, 0.96) : Panel, 420, 566, 440, 42);
         CornerBrackets(420, 566, 440, 42, 14, 2, bHoverQuit ? ArtistColor : Muted);
@@ -768,7 +793,7 @@ class ABackstageHUD : AHUD
 
         CenteredShadowText("操作：WASD 移动/俯仰  |  按住左键拖拽场景  |  滚轮/Q/E 缩放  |  1-3 机位  |  空格 暂停  |  Enter 拍照并确认",
             640, 622, Muted, 1.00);
-        CenteredShadowText("[ 3 ] 进入超级巨星选关   ·   [ ESC ] 退出游戏", 640, 654, Mint, 1.12);
+        CenteredShadowText("[ 1–4 / F1–F4 ] 选择关卡   ·   [ Enter ] 开始第一关   ·   [ ESC ] 退出游戏", 640, 654, Mint, 1.12);
     }
 
     void Viewfinder(const FBackstagePhoto&in Photo, float X, float Y, float W, float H, bool bLive)

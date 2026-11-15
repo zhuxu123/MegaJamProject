@@ -42,12 +42,12 @@ namespace
     {
         return P.X >= X && P.X <= X + W && P.Y >= Y && P.Y <= Y + H;
     }
-    void OpenSuperstarStory(APlayerController* Controller)
+    void OpenSuperstarStory(APlayerController* Controller, int32 Chapter)
     {
         // Reuse the empty entry map as a host, with an explicit separate game mode.
         // Neither .umap nor the existing stage actors are edited.
         UGameplayStatics::OpenLevel(Controller, TEXT("/Game/levels/MainMenu"), true,
-            TEXT("game=/Script/MegaJamProject.SuperstarStoryGameMode"));
+            FString::Printf(TEXT("game=/Script/MegaJamProject.SuperstarStoryGameMode?chapter=%d"), FMath::Clamp(Chapter, 0, 4)));
     }
 }
 
@@ -55,7 +55,7 @@ static const FAngelscriptBind BindSuperstarStory(TEXT("MegaJamProject.SuperstarS
     EAngelscriptBindPhase::ExplicitBindings, [](FAngelscriptBinds& Binds)
     {
         auto Controller = Binds.ExistingClassForTarget("APlayerController");
-        Controller.Method("void OpenSuperstarStory()", &OpenSuperstarStory);
+        Controller.Method("void OpenSuperstarStory(int Chapter = 0)", &OpenSuperstarStory);
     });
 
 ASuperstarStoryGameMode::ASuperstarStoryGameMode()

@@ -201,7 +201,7 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 
 ## 8. 2026-11-15 新增：超级巨星四关流程
 
-- 主菜单 `3` / “超级巨星 · 四关独立选关”入口打开二级选关页面；鼠标、`1–4` 或 `F1–F4` 分别选择原剧情对应的四部分。主菜单隐藏原第一、第二关按钮及其鼠标点击区域和快捷键提示；原关卡与键盘入口保留。
+- 首页沿用摄像机样式直接纵向显示四关按钮，移除“超级巨星 · 四关独立选关”入口；鼠标、`1–4` 或 `F1–F4` 直接打开对应摄制任务单，Enter/空格开始第一关。原两关保留，首页快捷入口改为 `F5/F6`，避免与四关按键冲突。
 - 新模式位于 `Source/MegaJamProject/SuperstarStory.*` 、`SuperstarLevels.cpp` 与 `SuperstarStage.*`，关卡配置在 `Content/SuperstarStory/levels.json`，数据/图片在 `Content/SuperstarStory/`。以 MainMenu 地图的 URL GameMode override 承载，不覆盖任何旧 `.umap`。
 - 当前为四幕 39 段的 3D 布景初版 + 5 FPS 人物精灵；B 切换原始参考图。不是骨骼动画或新拍照评分关卡。缺失动画、专属角色和证据图有明确占位。
 - 用户确认片场导演=李谋。新预演临时复用原有四种2D情绪符号，通过 `BackstageArt.h` 只读桥接和 `story.json` 的 `emotion_placeholder/emotions` 控制；不更改旧关卡符号行为，真实表情生成任务仍保留。

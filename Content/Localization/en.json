@@ -3,6 +3,26 @@
   "language": "en",
   "entries": [
     {
+      "source": "[ 1 ] 第一关 · 片场与雨夜",
+      "en": "[ 1 ] Level 1 · On Set & a Rainy Night"
+    },
+    {
+      "source": "[ 2 ] 第二关 · 真人秀后台",
+      "en": "[ 2 ] Level 2 · Reality Show Backstage"
+    },
+    {
+      "source": "[ 3 ] 第三关 · 决赛风波",
+      "en": "[ 3 ] Level 3 · Finals Controversy"
+    },
+    {
+      "source": "[ 4 ] 第四关 · 真相直播",
+      "en": "[ 4 ] Level 4 · Truth on Air"
+    },
+    {
+      "source": "[ 1–4 / F1–F4 ] 选择关卡   ·   [ Enter ] 开始第一关   ·   [ ESC ] 退出游戏",
+      "en": "[ 1–4 / F1–F4 ] Select level   ·   [ Enter ] Start Level 1   ·   [ ESC ] Quit"
+    },
+    {
       "source": "营销达人  /  {Round.Config.Title}",
       "en": "Marketing Master / {0}",
       "pattern": "^营销达人\\ \\ /\\ \\ (.*?)$",
