@@ -120,6 +120,8 @@ void ASuperstarStoryHUD::BeginPlay()
         UE_LOG(LogTemp, Display, TEXT("SuperstarMusic smoke: recording master output; first cue loops after 48 seconds"));
     }
     bFullStoryDebug=bRound2Smoke || bSmoke || bPhotoSmoke || bMotionSmoke || bTransportSmoke || bMusicSmoke || FParse::Param(FCommandLine::Get(),TEXT("InterfaceSfxSmoke"));
+    Editions.SetNum(4);
+    if(!bLevelsSmoke && !bFullStoryDebug) LoadEditions();
     if(bFullStoryDebug) LevelPhase=ESuperstarLevelPhase::Playing;
     else
     {
@@ -218,6 +220,7 @@ void ASuperstarStoryHUD::SelectBeat(int32 Index)
 void ASuperstarStoryHUD::Publish()
 {
     if (!Beats.IsValidIndex(Beat) || Beats[Beat]->GetStringField(TEXT("evidence")).IsEmpty() || !bEvidencePlaced) return;
+    if(!PublishedBeats.Contains(Beat)) EvidencePulseUntil=UITime+2.f;
     bPublished = true;
     PublishedBeats.Add(Beat);
     bPlaying = true;
@@ -236,10 +239,13 @@ FVector2D ASuperstarStoryHUD::Pointer() const
 void ASuperstarStoryHUD::Tick(float Delta)
 {
     Super::Tick(Delta);
+    UITime+=Delta;
     auto* PC = GetOwningPlayerController();
     if (!PC) return;
     if (Stage && PC->GetViewTarget() != Stage) PC->SetViewTarget(Stage);
     if (!Error.IsEmpty() || !Beats.IsValidIndex(Beat)) return;
+    if(LevelPhase==ESuperstarLevelPhase::Newspaper)
+        NewspaperRevealTime=FMath::Min(NewspaperRevealDuration,NewspaperRevealTime+Delta);
     if(bLevelsSmoke) RunLevelsSmoke();
     if(TickLevelFlow()) return;
     if (PC->WasInputKeyJustPressed(EKeys::Escape) && PhotoPhase == ESuperstarPhotoPhase::Live)
@@ -346,6 +352,7 @@ void ASuperstarStoryHUD::Tick(float Delta)
                 if (Beats[I]->GetIntegerField(TEXT("chapter")) == C + 1) { Jump(I,TEXT("chapter")); break; }
         }
     const bool bGate = !Beats[Beat]->GetStringField(TEXT("evidence")).IsEmpty() && !bPublished;
+    if(bGate) ShowHint(TEXT("evidence"),TEXT("点击证据卡，再点发送；进度会保留到本关结束。"));
     const auto P = Pointer();
     if (PC->WasInputKeyJustPressed(EKeys::LeftMouseButton))
     {
@@ -793,6 +800,8 @@ void ASuperstarStoryHUD::DrawHUD()
     Background(Current->GetStringField(TEXT("scene")));
     DrawActors();
     if (PhotoPhase == ESuperstarPhotoPhase::Capturing) return;
+    DrawViewfinder();
+    DrawRecentPhotos();
     FitLabel(Current->GetStringField(TEXT("description")), 35, 530, 1210, 34, 18);
     FitLabel(bFullStoryDebug?Current->GetStringField(TEXT("note")):TEXT("任务：")+Levels[LevelIndex]->GetStringField(TEXT("objective")), 35, 568, 1210, 26, 15, FLinearColor(.9f,.72f,.42f));
     const FString Evidence = Current->GetStringField(TEXT("evidence"));
@@ -822,4 +831,5 @@ void ASuperstarStoryHUD::DrawHUD()
     FitLabel(TEXT("Tab 相册"), 535, 655, 320, 40, 16, Mint, true);
     FitLabel(FString::Printf(TEXT("机位 %d · WASD 构图 · Q/E/滚轮变焦 · Enter 拍照 · 已存 %d/6"),CameraStation+1,Photos.Num()),35,595,1210,20,13,Mint);
     Button(bFullStoryDebug?TEXT("返回主菜单 ESC"):TEXT("返回选关 ESC"), 1080, 655, 160, 40, 16, FLinearColor(.10f,.17f,.21f));
+    DrawCameraOverlay();
 }

@@ -4,6 +4,7 @@
 #include "BackstageSfx.h"
 #include "Dom/JsonObject.h"
 #include "Engine/Canvas.h"
+#include "CanvasTypes.h"
 #include "Engine/GameViewportClient.h"
 #include "InputKeyEventArgs.h"
 #include "Kismet/GameplayStatics.h"
@@ -62,6 +63,7 @@ void ASuperstarStoryHUD::ChooseLevel(int32 Index)
     Photos.Empty();PendingPhoto=FSuperstarPhoto();PhotoSlots.Empty();PhotoSession.Empty();PhotoNotice.Empty();
     PublishedBeats.Empty();bPublished=false;bEvidencePlaced=false;PublishedHold=0;
     bPublishPhotos=false;PreviewClock=0;EditSlot=0;Headline=0;
+    SwapFrom.Empty();bCropDragging=false;PhotoArrivalTime=-10;SavedPulseUntil=0;CameraNoticeUntil=0;
     bPlaying=false;PlaybackRate=0;bTimelineDragging=false;bCameraDragging=false;bDragging=false;
     ViewPan=TargetPan=ViewTilt=TargetTilt=ViewStation=TargetStation=0;
     ViewZoom=TargetZoom=1;CameraStation=0;
@@ -77,6 +79,7 @@ void ASuperstarStoryHUD::StartLevel()
 {
     if(LevelPhase!=ESuperstarLevelPhase::Briefing || !Levels.IsValidIndex(LevelIndex)) return;
     LevelPhase=ESuperstarLevelPhase::Playing;bPlaying=true;PlaybackRate=1;
+    ShowHint(TEXT("camera"),TEXT("WASD构图，Q/E变焦，Enter拍照；空格暂停。"));
     if(Music) Music->SetStoryPaused(false);
     UE_LOG(LogTemp,Display,TEXT("SuperstarLevel: start level=%d"),LevelIndex+1);
 }
@@ -84,7 +87,12 @@ void ASuperstarStoryHUD::StartLevel()
 void ASuperstarStoryHUD::ContinueLevel()
 {
     if(LevelIndex+1<Levels.Num()) ChooseLevel(LevelIndex+1);
-    else ShowLevelSelect();
+    else
+    {
+        bool Complete=Editions.Num()==4;
+        for(const auto& E:Editions) Complete &= E.Shots.Num()==3;
+        if(Complete) LevelPhase=ESuperstarLevelPhase::Finale;else ShowLevelSelect();
+    }
 }
 
 FString ASuperstarStoryHUD::PublicationHeadline() const
@@ -113,12 +121,14 @@ bool ASuperstarStoryHUD::CanPublishLevel()
 bool ASuperstarStoryHUD::TickLevelFlow()
 {
     if(LevelPhase==ESuperstarLevelPhase::Playing) return false;
+    if(TickCollection()) return true;
     auto* PC=GetOwningPlayerController();const auto P=Pointer();
     const bool Click=PC->WasInputKeyJustPressed(EKeys::LeftMouseButton);
     const bool Enter=PC->WasInputKeyJustPressed(EKeys::Enter);
     const bool Back=PC->WasInputKeyJustPressed(EKeys::Escape)||PC->WasInputKeyJustPressed(EKeys::M);
     if(LevelPhase==ESuperstarLevelPhase::Select)
     {
+        if(PC->WasInputKeyJustPressed(EKeys::H)||(Click&&Hit(P,380,625,300,48))) {OpenArchive();return true;}
         const FKey Keys[]={EKeys::One,EKeys::Two,EKeys::Three,EKeys::Four};
         const FKey Chapters[]={EKeys::F1,EKeys::F2,EKeys::F3,EKeys::F4};
         for(int32 I=0;I<4;++I)
@@ -133,6 +143,16 @@ bool ASuperstarStoryHUD::TickLevelFlow()
     }
     else if(LevelPhase==ESuperstarLevelPhase::Newspaper)
     {
+        if(PC->WasInputKeyJustPressed(EKeys::H)||(Click&&Hit(P,980,555,220,34))) {OpenArchive();return true;}
+        // Do not let a click on the moving page activate a stationary button hitbox.
+        // Enter completes the reveal; a fresh press then continues to the next level.
+        if(NewspaperRevealTime<NewspaperRevealDuration)
+        {
+            if(Enter || Click) NewspaperRevealTime=NewspaperRevealDuration;
+            else if(Back) ShowLevelSelect();
+            else if(PC->WasInputKeyJustPressed(EKeys::BackSpace)) {LevelPhase=ESuperstarLevelPhase::Playing;PhotoPhase=ESuperstarPhotoPhase::Edit;}
+            return true;
+        }
         if(Enter || (Click&&Hit(P,870,625,300,48))) ContinueLevel();
         else if(PC->WasInputKeyJustPressed(EKeys::R) || (Click&&Hit(P,440,625,300,48))) ChooseLevel(LevelIndex);
         else if(Back || (Click&&Hit(P,80,625,300,48))) ShowLevelSelect();
@@ -143,6 +163,7 @@ bool ASuperstarStoryHUD::TickLevelFlow()
 
 void ASuperstarStoryHUD::DrawLevelFlow()
 {
+    if(LevelPhase==ESuperstarLevelPhase::Archive||LevelPhase==ESuperstarLevelPhase::Finale) {DrawCollection();return;}
     if(LevelPhase==ESuperstarLevelPhase::Newspaper) {DrawNewspaper();return;}
     DrawRect(FLinearColor(.025f,.030f,.032f),0,0,Canvas->SizeX,Canvas->SizeY);
     if(LevelPhase==ESuperstarLevelPhase::Select)
@@ -163,7 +184,8 @@ void ASuperstarStoryHUD::DrawLevelFlow()
             FitLabel(FString::Printf(TEXT("3 张成片  ·  %.1f 秒%s"),Duration,L->GetArrayField(TEXT("interludes")).IsEmpty()?TEXT(""):TEXT("  ·  含间幕")),X+22,Y+120,486,28,16,Gold);
         }
         Button(TEXT("返回主菜单  M / ESC"),70,625,260,48,17,Dark,Paper);
-        FitLabel(TEXT("点击任务卡，或按 1–4 选择对应关卡"),380,625,800,48,18,Light);
+        Button(TEXT("报纸收藏  H"),380,625,300,48,18,Dark,Paper);
+        FitLabel(TEXT("点击任务卡，或按 1–4 选择对应关卡"),710,625,500,48,16,Light);
         return;
     }
     const auto& L=Levels[LevelIndex];
@@ -185,6 +207,20 @@ void ASuperstarStoryHUD::DrawLevelFlow()
 void ASuperstarStoryHUD::DrawNewspaper()
 {
     DrawRect(FLinearColor(.035f,.032f,.028f),0,0,Canvas->SizeX,Canvas->SizeY);
+    // Transform the complete live layout, including its real photos and localized type.
+    // The animation uses UI time, independently of the paused/reversed story clock.
+    const float T=FMath::Clamp(NewspaperRevealTime/NewspaperRevealDuration,0.f,1.f);
+    const float Ease=T*T*(3.f-2.f*T);
+    const float PaperScale=FMath::Lerp(.28f,1.f,Ease);
+    const float Angle=FMath::Lerp(9.f,0.f,Ease)-FMath::Sin(T*PI)*4.f;
+    const FVector2D Center=Origin+FVector2D(640,360)*Scale;
+    const FVector2D Destination=Origin+FVector2D(FMath::Lerp(995.f,640.f,Ease),FMath::Lerp(205.f,360.f,Ease))*Scale;
+    Canvas->Canvas->PushRelativeTransform(
+        FTranslationMatrix(FVector(-Center.X,-Center.Y,0))
+        *FScaleMatrix(FVector(PaperScale,PaperScale,1))
+        *FRotationMatrix(FRotator(0,Angle,0))
+        *FTranslationMatrix(FVector(Destination.X,Destination.Y,0)));
+    Rect(61,41,1180,665,FLinearColor(0,0,0,.45f));
     Rect(50,28,1180,665,Paper);
     FitLabel(TEXT("骏 风 娱 乐"),80,48,1120,58,38,Dark,true);
     Rect(80,111,1120,3,Dark);
@@ -201,10 +237,12 @@ void ASuperstarStoryHUD::DrawNewspaper()
     Rect(80,452,1120,1,Dark);
     const auto& Lead=Levels[LevelIndex]->GetArrayField(TEXT("paper_lead"));
     for(int32 I=0;I<Lead.Num();++I) FitLabel(Lead[I]->AsString(),80,470+I*34,1120,30,18,Dark);
-    FitLabel(TEXT("照片、裁切与排序来自本关拍摄  ·  Backspace 返回编辑"),80,555,1120,30,15,Dark);
+    FitLabel(TEXT("照片、裁切与排序来自本关拍摄  ·  Backspace 返回编辑"),80,555,880,30,15,Dark);
+    Button(TEXT("报纸收藏  H"),980,555,220,34,15,Dark,Paper);
     Button(TEXT("返回选关  M"),80,625,300,48,18,Dark,Paper);
     Button(TEXT("重新拍摄本关  R"),440,625,300,48,18,Dark,Paper);
     Button(LevelIndex==3?TEXT("完成 · 返回选关  Enter"):TEXT("继续下一关  Enter"),870,625,300,48,18,Dark,Paper);
+    Canvas->Canvas->PopTransform();
 }
 
 void ASuperstarStoryHUD::RunLevelsSmoke()
@@ -267,18 +305,42 @@ void ASuperstarStoryHUD::RunLevelsSmoke()
     else if(LevelsSmokeStep==12)
     {
         PreviewClock=5.99f;TickPhotography(.1f);check(LevelPhase==ESuperstarLevelPhase::Newspaper);
-        Shot(FString::Printf(TEXT("L%d-Newspaper.png"),LevelIndex+1));
+        check(NewspaperRevealTime==0);
+        Shot(FString::Printf(TEXT("L%d-Newspaper-Entry.png"),LevelIndex+1));
     }
     else if(LevelsSmokeStep==13)
+    {
+        NewspaperRevealTime=NewspaperRevealDuration*.5f;
+        Shot(FString::Printf(TEXT("L%d-Newspaper-Mid.png"),LevelIndex+1));
+    }
+    else if(LevelsSmokeStep==14)
+    {
+        NewspaperRevealTime=NewspaperRevealDuration;
+        Shot(FString::Printf(TEXT("L%d-Newspaper.png"),LevelIndex+1));
+    }
+    else if(LevelsSmokeStep==15)
     {
         ContinueLevel();
         if(++LevelsSmokeIndex<4) {check(LevelPhase==ESuperstarLevelPhase::Briefing && LevelIndex==LevelsSmokeIndex);LevelsSmokeStep=0;}
         else
         {
-            check(LevelPhase==ESuperstarLevelPhase::Select);
+            check(LevelPhase==ESuperstarLevelPhase::Finale);
+            Shot(TEXT("Finale.png"));
             UE_LOG(LogTemp,Display,TEXT("SuperstarLevels smoke PASS: F1-F4 selection, 4 independent briefings, Enter input, scoped seek/reverse/drag, end-stop, 12 real photos, 4 newspapers, evidence gate, continuation and reset"));
-            GetOwningPlayerController()->ConsoleCommand(TEXT("quit"));return;
+            LevelsSmokeStep=16;return;
         }
+    }
+    else if(LevelsSmokeStep==16)
+    {
+        OpenArchive();check(LevelPhase==ESuperstarLevelPhase::Archive);
+        const FString SavedPath=Editions[0].Path;
+        Editions.Empty();LoadEditions();check(Editions.Num()==4 && Editions[0].Shots.Num()==3 && Editions[0].Path==SavedPath);
+        ArchiveLevel=0;Shot(TEXT("Archive.png"));
+    }
+    else if(LevelsSmokeStep==17)
+    {
+        UE_LOG(LogTemp,Display,TEXT("SuperstarPresentation PASS: finale, archive reload and real published textures"));
+        GetOwningPlayerController()->ConsoleCommand(TEXT("quit"));return;
     }
     ++LevelsSmokeStep;
 }

@@ -26,7 +26,16 @@ struct FSuperstarPhoto
     FString File;
 };
 
-enum class ESuperstarLevelPhase : uint8 { Select, Briefing, Playing, Newspaper };
+USTRUCT()
+struct FSuperstarEdition
+{
+    GENERATED_BODY()
+    int32 Level = -1;
+    FString Headline, Path;
+    UPROPERTY(Transient) TArray<FSuperstarPhoto> Shots;
+};
+
+enum class ESuperstarLevelPhase : uint8 { Select, Briefing, Playing, Newspaper, Archive, Finale };
 
 enum class ESuperstarPhotoPhase : uint8 { Live, Capturing, Confirm, Edit, Preview, Results };
 
@@ -63,6 +72,8 @@ private:
     TArray<TSharedPtr<FJsonObject>> Beats;
     TArray<TSharedPtr<FJsonObject>> Levels;
     ESuperstarLevelPhase LevelPhase = ESuperstarLevelPhase::Select;
+    static constexpr float NewspaperRevealDuration = 1.4f;
+    float NewspaperRevealTime = NewspaperRevealDuration;
     int32 LevelIndex = -1, FirstBeat = 0, LastBeat = 0;
     float TimelineOffset = 0.f, FullDuration = 0.f;
     bool bFullStoryDebug = false;
@@ -121,6 +132,28 @@ private:
     TSet<FString> Round2Seen;
     int32 MotionSmokeStep = 0, MotionSmokeTicks = 0;
     int32 PhotoSmokeTicks = 0, PhotoSmokeStep = 0;
+    float UITime=0, CameraNoticeUntil=0, PhotoArrivalTime=-10, SavedPulseUntil=0, SwapStart=-10, EvidencePulseUntil=0, HintUntil=0;
+    FString CameraNotice, HintText;
+    TSet<FString> SeenHints;
+    TArray<int32> SwapFrom;
+    UPROPERTY(Transient) TArray<FSuperstarEdition> Editions;
+    int32 ArchiveLevel=0;
+    ESuperstarLevelPhase ArchiveReturn=ESuperstarLevelPhase::Select;
+    bool bCropDragging=false;
+    FVector2D CropDragStart, CropCenterStart;
+    void PresentCamera(const FString& Text);
+    void ShowHint(const FString& Id, const FString& Text);
+    void DrawCameraOverlay();
+    void DrawHint();
+    void SwapPhotos(int32 A,int32 B);
+    void DrawCropGuide(const FSuperstarPhoto& Photo,float X,float Y,float W);
+    bool HandleCropPointer(FVector2D Position,bool bPressed,bool bDown,float Wheel);
+    bool ReadEdition(const FString& Path);
+    void LoadEditions();
+    void OpenArchive();
+    void DrawCollection();
+    bool TickCollection();
+    void DrawEdition(const FSuperstarEdition& Edition,float X,float Y,float W);
 
     bool LoadLevels();
     void ChooseLevel(int32 Index);
@@ -166,13 +199,15 @@ private:
     void TakePhoto();
     void OnPhotoCaptured(int32 Width, int32 Height, const TArray<FColor>& Pixels);
     void AcceptPhoto();
-    void RejectPhoto();
+    void RejectPhoto(bool bResumePlayback = false);
     void OpenAlbum();
     void TogglePhoto(int32 Index);
     void StartPhotoPreview(bool bPublish);
     void SavePublication();
     bool TickPhotography(float Delta);
     void DrawPhotography();
+    void DrawViewfinder();
+    void DrawRecentPhotos();
     void DrawPhoto(const FSuperstarPhoto& Photo, float X, float Y, float W, bool bCrop);
     void RunPhotoSmoke();
     FVector2D Pointer() const;

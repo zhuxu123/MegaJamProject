@@ -1,5 +1,10 @@
 # MegaJamProject — Agent 开发与协作指南
 
+- 2026-11-16：超级巨星现场新增参考图样式的青色四角取景框和中心十字；现场/拍照确认页右侧展示最新三张悬挂相纸缩略图（待确认照片计入，重拍后撤回）。仅显示层，不占用额外快门，不改变相册；Capturing阶段隐藏，避免进入原片。实现位于`SuperstarPhotography.cpp`，验证见`Docs/SuperstarStory/CameraHUD-20261116.md`。
+- 2026-11-16：四关发布文件写入成功后，头版报纸以1.4秒动画从右上角倾斜小版放大回正。`NewspaperRevealTime`使用独立UI时间，不受剧情暂停/倒放影响；动画中Enter/点击仅展开，下一次操作才触发原有按钮。`SuperstarLevelsSmoke`输出Entry/Mid/最终头版截图，详见`Docs/SuperstarStory/NewspaperReveal-20261116.md`。
+- 2026-11-16：超级巨星照片确认保留或选择Retake重拍后自动恢复1倍剧情播放及BGM；确认页、保存失败、拍照超时仍暂停。仍遵守证据门槛与关尾停止规则。`SuperstarPhotoSmoke`检查保留与重拍后的实际时间推进；`RejectPhoto(true)`为用户重拍，默认参数用于异常清理。
+- 2026-11-16：视频参考的九项表现已接入，公共显示/收藏实现在`SuperstarPresentation.cpp`。现场包含外取景框/REC剧情时间码、短暂操作标签、对焦反馈、照片飞入/状态和证据计数；剪辑选中槽显示原图裁切遮罩，可拖动并滚轮缩放，Z/X调序滑动。选关/头版H进入报纸收藏（每关最新有效发布，重启读取Saved），四期齐全且结束第四关进入Finale；收藏不改当前照片。`publication.json`增加`test_run`，新smoke产物不进入正常收藏。首次操作引导只短暂占用顶部保留区域。验证与限制见`Docs/SuperstarStory/Presentation-20261116.md`。
+
 本文件适用于整个仓库，供人类开发者和编程 Agent 共同使用。开始任务前先阅读；有更深层的 `AGENTS.md` 时，同时遵守其局部约定。用户当前明确指令优先。默认用中文沟通，代码符号沿用英文。
 
 ## 1. 项目定位与当前基线

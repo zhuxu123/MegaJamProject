@@ -1799,6 +1799,106 @@
     {
       "source": "粉丝",
       "en": "Fan"
+    },
+    {
+      "source": "WASD构图，Q/E变焦，Enter拍照；空格暂停。",
+      "en": "WASD to frame, Q/E to zoom, Enter to shoot; Space to pause."
+    },
+    {
+      "source": "报纸收藏  H",
+      "en": "Newspaper archive  H"
+    },
+    {
+      "source": "拉近镜头",
+      "en": "ZOOM IN"
+    },
+    {
+      "source": "拉远镜头",
+      "en": "ZOOM OUT"
+    },
+    {
+      "source": "调整构图",
+      "en": "FRAMING"
+    },
+    {
+      "source": "保留或重拍后，现场会自动继续播放。",
+      "en": "Keep or retake to resume the scene automatically."
+    },
+    {
+      "source": "选满三张；拖动红框调整裁切，滚轮缩放。",
+      "en": "Pick three photos; drag inside the red frame and scroll to crop."
+    },
+    {
+      "source": "待确认",
+      "en": "PENDING"
+    },
+    {
+      "source": "已保存",
+      "en": "SAVED"
+    },
+    {
+      "source": "发送成功",
+      "en": "SENT"
+    },
+    {
+      "source": "直播证据",
+      "en": "EVIDENCE"
+    },
+    {
+      "source": "已交换顺序",
+      "en": "ORDER SWAPPED"
+    },
+    {
+      "source": "照片顺序会改变叙事；Z/X交换相邻照片。",
+      "en": "Order changes the story. Z/X swaps neighboring photos."
+    },
+    {
+      "source": "已发布报纸 · 每关最新一期",
+      "en": "Published newspapers - latest edition per level"
+    },
+    {
+      "source": "本关尚未发布报纸",
+      "en": "No newspaper published for this level yet"
+    },
+    {
+      "source": "返回  Backspace",
+      "en": "Back  Backspace"
+    },
+    {
+      "source": "扶摇直上 · 四期报道已完成",
+      "en": "Rise to Stardom - All four editions complete"
+    },
+    {
+      "source": "同一个现场，四期由你决定的故事。",
+      "en": "Four editions. Your choices shaped the story."
+    },
+    {
+      "source": "重新开始  Enter",
+      "en": "Start again  Enter"
+    },
+    {
+      "source": "回看报道  H",
+      "en": "Review newspapers  H"
+    },
+    {
+      "source": "返回选关  ESC",
+      "en": "Level select  ESC"
+    },
+    {
+      "source": "倒放 ×3",
+      "en": "REWIND x3"
+    },
+    {
+      "source": "快进 ×3",
+      "en": "FAST FORWARD x3"
+    },
+    {
+      "source": "按住方向键三倍快进倒放；空格切换播放。",
+      "en": "Hold arrow keys to shuttle at 3x speed; Space toggles playback."
+    },
+    {
+      "source": "点击证据卡，再点发送；进度会保留到本关结束。",
+      "en": "Select the evidence card, then Send. Progress is kept for this level."
     }
   ]
 }

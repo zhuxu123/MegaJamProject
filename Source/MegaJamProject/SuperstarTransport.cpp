@@ -30,6 +30,11 @@ void ASuperstarStoryHUD::AdvanceSequence(float Delta,float ScrubAxis)
     const bool bCanShuttle=ScrubAxis<0?SequenceTime()>0:SequenceTime()<SequenceDuration;
     if(Sfx) Sfx->TransportMotion(bShuttle && bCanShuttle ? (ScrubAxis>0?1:-1) : 0);
     PlaybackRate=bShuttle?FMath::Clamp(ScrubAxis,-1.f,1.f)*3.f:(bPlaying?1.f:0.f);
+    if(bShuttle && bCanShuttle)
+    {
+        PresentCamera(ScrubAxis<0?TEXT("倒放 ×3"):TEXT("快进 ×3"));
+        ShowHint(TEXT("transport"),TEXT("按住方向键三倍快进倒放；空格切换播放。"));
+    }
     if(bShuttle)
     {
         // Explicit navigation can inspect any beat; it never sends an evidence card.
