@@ -92,6 +92,8 @@ void ASuperstarStoryHUD::BeginPlay()
     Data->SetObjectField(TEXT("clips"), Clips);
     ReadStoryJson(TEXT("head_anchors.json"), HeadAnchors);
     for (const auto& Value : Data->GetArrayField(TEXT("beats"))) Beats.Add(Value->AsObject());
+    for (const auto& StoryBeat : Beats) { BeatStarts.Add(SequenceDuration); SequenceDuration+=StoryBeat->GetNumberField(TEXT("duration")); }
+    bTransportSmoke=FParse::Param(FCommandLine::Get(),TEXT("SuperstarTransportSmoke"));
     bSmoke = FParse::Param(FCommandLine::Get(), TEXT("SuperstarSmoke")) || FParse::Param(FCommandLine::Get(), TEXT("SuperstarMenuSmoke"));
     bReferenceView = FParse::Param(FCommandLine::Get(), TEXT("SuperstarReferences"));
     bPhotoSmoke = FParse::Param(FCommandLine::Get(), TEXT("SuperstarPhotoSmoke"));
@@ -142,7 +144,9 @@ void ASuperstarStoryHUD::SelectBeat(int32 Index)
     if (!Beats.IsValidIndex(Index)) return;
     Beat = Index;
     Clock = 0;
-    bEvidencePlaced = bDragging = bPublished = false;
+    bPublished=PublishedBeats.Contains(Beat);
+    bEvidencePlaced=bPublished;
+    bDragging=false;
     PublishedHold = 0.f;
     // Drop only frames no longer needed. Shared idle clips survive adjacent shots.
     TSet<FString> Needed;
@@ -182,6 +186,7 @@ void ASuperstarStoryHUD::Publish()
 {
     if (!Beats.IsValidIndex(Beat) || Beats[Beat]->GetStringField(TEXT("evidence")).IsEmpty() || !bEvidencePlaced) return;
     bPublished = true;
+    PublishedBeats.Add(Beat);
     bPlaying = true;
     Clock = Beats[Beat]->GetNumberField(TEXT("duration"));
     PublishedHold = 1.2f;
@@ -207,8 +212,14 @@ void ASuperstarStoryHUD::Tick(float Delta)
         return;
     }
     if (!Error.IsEmpty() || !Beats.IsValidIndex(Beat)) return;
+    if (bTransportSmoke) { RunTransportSmoke(); if(TransportSmokeTicks<73 || TransportSmokeTicks>=145) return; }
     if (bMotionSmoke) { RunMotionSmoke(); return; }
     if (bPhotoSmoke) { RunPhotoSmoke(); UpdateActors(); return; }
+    if(PhotoPhase==ESuperstarPhotoPhase::Live && HandleTimelinePointer(Pointer(),PC->WasInputKeyJustPressed(EKeys::LeftMouseButton),PC->IsInputKeyDown(EKeys::LeftMouseButton),PC->WasInputKeyJustReleased(EKeys::LeftMouseButton)))
+    {
+        if(Music) Music->SetStoryPaused(true);
+        UpdateActors();return;
+    }
     if (TickPhotography(Delta)) return;
     if (bMusicSmoke)
     {
@@ -279,19 +290,19 @@ void ASuperstarStoryHUD::Tick(float Delta)
         UpdateActors();
         return;
     }
-    if (PC->WasInputKeyJustPressed(EKeys::SpaceBar)) bPlaying = !bPlaying;
+    if (PC->WasInputKeyJustPressed(EKeys::SpaceBar) || PC->WasInputKeyJustPressed(EKeys::R) || PC->WasInputKeyJustPressed(EKeys::RightMouseButton)) { bPlaying=!bPlaying;PlaybackRate=bPlaying?1.f:0.f; }
     if (PC->WasInputKeyJustPressed(EKeys::M) && Music) Music->ToggleMute();
     if (PC->WasInputKeyJustPressed(EKeys::B)) bReferenceView = !bReferenceView;
-    if (PC->WasInputKeyJustPressed(EKeys::Left)) SelectBeat(Beat - 1);
-    if (PC->WasInputKeyJustPressed(EKeys::Right)) SelectBeat(Beat + 1);
-    if (PC->WasInputKeyJustPressed(EKeys::R)) SelectBeat(Beat);
+    if (PC->WasInputKeyJustPressed(EKeys::PageUp)) SelectBeat(Beat - 1);
+    if (PC->WasInputKeyJustPressed(EKeys::PageDown)) SelectBeat(Beat + 1);
+    if (PC->WasInputKeyJustPressed(EKeys::Home)) { SeekSequence(0);PlaybackRate=0; }
+    if (PC->WasInputKeyJustPressed(EKeys::End)) { SeekSequence(SequenceDuration);bPlaying=false;PlaybackRate=0; }
     const FKey Chapters[] = {EKeys::F1, EKeys::F2, EKeys::F3, EKeys::F4};
     for (int32 C = 0; C < 4; ++C)
         if (PC->WasInputKeyJustPressed(Chapters[C]))
             for (int32 I = 0; I < Beats.Num(); ++I)
                 if (Beats[I]->GetIntegerField(TEXT("chapter")) == C + 1) { SelectBeat(I); break; }
-    const auto Current = Beats[Beat];
-    const bool bGate = !Current->GetStringField(TEXT("evidence")).IsEmpty() && !bPublished;
+    const bool bGate = !Beats[Beat]->GetStringField(TEXT("evidence")).IsEmpty() && !bPublished;
     const auto P = Pointer();
     if (PC->WasInputKeyJustPressed(EKeys::LeftMouseButton))
     {
@@ -303,7 +314,6 @@ void ASuperstarStoryHUD::Tick(float Delta)
         else if (Inside(P, 1080, 655, 160, 40)) { UGameplayStatics::OpenLevel(this, TEXT("/Game/levels/MainMenu"), true); return; }
         else if (bGate && Inside(P, 52, 423, 330, 75)) { bEvidencePlaced = true; bDragging = true; }
         else if (bGate && Inside(P, 995, 445, 185, 48)) Publish();
-        else if (Inside(P, 35, 618, 1210, 16)) { Clock = FMath::Clamp((P.X - 35) / 1210., 0., .999) * Current->GetNumberField(TEXT("duration")); bPlaying = false; }
     }
     if (PC->WasInputKeyJustReleased(EKeys::LeftMouseButton) && bDragging)
     {
@@ -311,25 +321,11 @@ void ASuperstarStoryHUD::Tick(float Delta)
         bDragging = false;
     }
     if (bGate && PC->WasInputKeyJustPressed(EKeys::V)) { if (!bEvidencePlaced) bEvidencePlaced = true; else Publish(); }
-    if (bPlaying && bGate)
-    {
-        // Let the witnesses enter before waiting for the evidence; never skip the gate.
-        Clock = FMath::Min(Clock + Delta, static_cast<float>(Beats[Beat]->GetNumberField(TEXT("duration"))));
-    }
-    else if (bPlaying && PublishedHold > 0.f)
-    {
-        PublishedHold -= Delta;
-    }
-    else if (bPlaying)
-    {
-        Clock += Delta;
-        if (Clock >= Beats[Beat]->GetNumberField(TEXT("duration")))
-        {
-            if (Beat + 1 < Beats.Num()) SelectBeat(Beat + 1);
-            else { Clock = Beats[Beat]->GetNumberField(TEXT("duration")); bPlaying = false; }
-        }
-    }
-    if (Music) Music->SetStoryPaused(!bPlaying);
+    const bool bRewind=PC->IsInputKeyDown(EKeys::Left)||PC->IsInputKeyDown(EKeys::Z);
+    const bool bForward=PC->IsInputKeyDown(EKeys::Right)||PC->IsInputKeyDown(EKeys::C);
+    AdvanceSequence(Delta,(bForward?1.f:0.f)-(bRewind?1.f:0.f));
+    // BGM is ambience, not reversed dialogue: pause it while shuttling the picture.
+    if (Music) Music->SetStoryPaused(!bPlaying || bRewind || bForward);
     UpdateActors();
 }
 
@@ -699,9 +695,8 @@ void ASuperstarStoryHUD::DrawHUD()
         Label(bPublished ? TEXT("已发送") : TEXT("发送 / V"), 1018, 458, 18);
         if (bDragging) { const auto P = Pointer(); Label(Evidence, P.X + 14, P.Y - 28, 18, Mint); }
     }
-    Rect(35, 618, 1210, 8, FLinearColor(.14f,.19f,.24f));
-    Rect(35, 618, 1210 * FMath::Clamp(Clock / Current->GetNumberField(TEXT("duration")), 0., 1.), 8, Mint);
-    const FString Buttons[] = {TEXT("← 上一段"), bPlaying ? TEXT("暂停 空格") : TEXT("播放 空格"), TEXT("下一段 →"), TEXT("重播 R")};
+    DrawTransport();
+    const FString Buttons[] = {TEXT("上一段 PgUp"), bPlaying ? TEXT("暂停 空格") : TEXT("播放 空格"), TEXT("下一段 PgDn"), TEXT("本段重播")};
     for (int32 I = 0; I < 4; ++I) { const int32 X = I == 3 ? 405 : 35 + I * 120; Rect(X, 655, 110, 40, FLinearColor(.10f,.17f,.21f)); Label(Buttons[I], X + 8, 666, 16); }
     Label(TEXT("F1—F4 跳幕 · Tab 相册"), 550, 669, 16, Mint);
     Label(FString::Printf(TEXT("机位 %d · WASD 构图 · Q/E/滚轮变焦 · Enter 拍照 · 已存 %d/6"),CameraStation+1,Photos.Num()),35,598,13,Mint);

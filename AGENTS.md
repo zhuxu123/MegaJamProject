@@ -211,3 +211,5 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 - 操作、文件职责、已知缺口和带渲染 smoke 命令详见 [独立预演说明](Docs/SuperstarStory/README.md)。不得用本模式的透视参数更改原有照片投影契约。
 
 - 2026-11-15 演出修复：移动人物必须配置 `walk_clip/move_start/move_end`，朝向以移动方向与clip.screen_facing共同求值；道具使用逐帧hand_anchors及归一化grip附着，不再用固定offset伪装持物。原图、提示词在ArtSource，详见 [走路与持物修复](Docs/SuperstarStory/Motion-20261115.md)。`-SuperstarMotionSmoke`验证324个取样的方向、握点和时间回跳；不能替代最终艺术验收。
+
+- 超级巨星时间控制位于 `SuperstarTransport.cpp`：←/Z与→/C按住3倍倒放/快进，空格/R/右键暂停，PageUp/PageDown切段，Home/End跳全剧首尾。进度条连续拖动全剧时间并优先占用指针，松手暂停；已拍照片和已发证据保留。正常播放保留证据门槛，手动定位不自动发送。`-SuperstarTransportSmoke`含引擎键盘输入注入、拖动处理和跨sequence边界验证，详见 [时间线修复](Docs/SuperstarStory/Transport-20261115.md)。

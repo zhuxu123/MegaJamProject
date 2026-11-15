@@ -66,6 +66,14 @@ private:
     int32 Beat = 0;
     float Clock = 0.f;
     bool bPlaying = true;
+    float PlaybackRate = 1.f;
+    bool bTimelineDragging = false;
+    TArray<float> BeatStarts;
+    float SequenceDuration = 0.f;
+    TSet<int32> PublishedBeats;
+    bool bTransportSmoke = false;
+    int32 TransportSmokeTicks = 0;
+    float TransportInputTime = 0.f;
     bool bEvidencePlaced = false;
     bool bDragging = false;
     bool bPublished = false;
@@ -114,6 +122,12 @@ private:
     bool ActorFlip(const TSharedPtr<FJsonObject>& Actor, const FString& Id) const;
     FVector2D ActorHand(const TSharedPtr<FJsonObject>& Actor) const;
     void RunMotionSmoke();
+    float SequenceTime() const;
+    void SeekSequence(float Time);
+    void AdvanceSequence(float Delta, float ScrubAxis);
+    bool HandleTimelinePointer(FVector2D Position, bool bPressed, bool bDown, bool bReleased);
+    void DrawTransport();
+    void RunTransportSmoke();
     void UpdateCamera(float Delta);
     void TakePhoto();
     void OnPhotoCaptured(int32 Width, int32 Height, const TArray<FColor>& Pixels);

@@ -58,12 +58,12 @@ void ASuperstarStoryHUD::UpdateCamera(float Delta)
     if (PC->WasInputKeyJustPressed(EKeys::MouseScrollDown)) TargetZoom-=.12f;
     const auto P=Pointer();
     const bool bEvidenceOverlay=!Beats[Beat]->GetStringField(TEXT("evidence")).IsEmpty() && P.Y>410;
-    if (PC->WasInputKeyJustPressed(EKeys::LeftMouseButton))
+    if (PC->WasInputKeyJustPressed(EKeys::LeftMouseButton) && !bTimelineDragging)
     {
         bCameraDragging=Hit(P,35,105,1210,410) && !bEvidenceOverlay;
         LastDrag=P;
     }
-    if (!PC->IsInputKeyDown(EKeys::LeftMouseButton)) bCameraDragging=false;
+    if (!PC->IsInputKeyDown(EKeys::LeftMouseButton) || bTimelineDragging) bCameraDragging=false;
     if (bCameraDragging)
     {
         const auto Drag=P-LastDrag;
@@ -91,7 +91,7 @@ void ASuperstarStoryHUD::TakePhoto()
     PendingPhoto.Pan=ViewPan; PendingPhoto.Tilt=ViewTilt; PendingPhoto.Zoom=ViewZoom;
     PendingPhoto.Title=Beats[Beat]->GetStringField(TEXT("title"));
     TargetPan=ViewPan; TargetTilt=ViewTilt; TargetZoom=ViewZoom; TargetStation=ViewStation;
-    bPlaying=false; bCameraDragging=false;
+    bPlaying=false; PlaybackRate=0; bCameraDragging=false; bTimelineDragging=false;
     if (Music) Music->SetStoryPaused(true);
     UpdateActors();
     GetOwningPlayerController()->PlayerCameraManager->SetGameCameraCutThisFrame();
