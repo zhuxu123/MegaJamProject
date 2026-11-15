@@ -19,6 +19,12 @@ for beat in story['beats']:
         assert actor['clip'] in clips and isinstance(actor['flip'], bool)
         assert 0 <= actor['x'] <= 1280 and 0 <= actor['to'] <= 1280
         assert not actor['name'].startswith('导演'), 'Director must use the confirmed Li Mou identity.'
+        if 'walk_clip' in actor:
+            used.add(actor['walk_clip'])
+            assert clips[actor['walk_clip']]['loop'] and clips[actor['walk_clip']]['frames']>1
+            assert 0<=actor['move_start']<actor['move_end']<=beat['duration']
+            assert clips[actor['walk_clip']]['screen_facing'] in ['left','right']
+        if actor['x']!=actor['to']:assert 'walk_clip' in actor,'Moving actor must have stepping frames'
         last_start=0
         for part in actor.get('sequence',[]):
             assert last_start<part['at']<beat['duration'] and part['clip'] in clips
@@ -33,6 +39,10 @@ for beat in story['beats']:
     for prop in beat.get('props',[]):
         assert (root/prop['image']).is_file() and prop['size']>0
         if 'actor' in prop:assert 0<=prop['actor']<len(beat['actors'])
+        if 'attach_actor' in prop:
+            assert 0<=prop['attach_actor']<len(beat['actors'])
+            assert len(prop['grip'])==2 and all(0<=v<=1 for v in prop['grip'])
+            if 'transfer_actor' in prop:assert 0<=prop['transfer_actor']<len(beat['actors']) and 0<prop['transfer_at']<beat['duration']
     if 'evidence_image' in beat:assert (root/beat['evidence_image']).is_file()
 assert used == {id for id,c in clips.items() if not c.get('retired')}, 'Every active clip, including extra idle and walk, must be reachable.'
 total = 0
@@ -41,6 +51,7 @@ for name, clip in clips.items():
     assert clip['fps'] == 5 and clip['frames'] > 0
     assert clip['pivot'] == [0.5, 0.890625]
     assert len(clip['sha256']) == clip['frames']
+    if 'hand_anchors' in clip:assert len(clip['hand_anchors'])==clip['frames'] and all(0<=x<640 and 0<=y<640 for x,y in clip['hand_anchors'])
     assert len(anchors[name])==clip['frames']
     assert all(0<=x<640 and 0<=y<640 for x,y in anchors[name])
     for i, digest in enumerate(clip['sha256'], 1):

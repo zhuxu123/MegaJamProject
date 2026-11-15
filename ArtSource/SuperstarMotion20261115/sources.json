@@ -1,0 +1,46 @@
+{
+  "suyaohold": {
+    "source": "exec-035a2445-885c-40a7-b7c8-6a51acc0844f.png",
+    "sha256": "555666db18de22ebb479943ee03540304b2fbe0f6350a1c3f63b4df523eab148"
+  },
+  "linwan": {
+    "source": "exec-a1b88cba-ea77-437a-bbb7-e2b9ac36643b.png",
+    "sha256": "8a9af5d1c1d7dd3655634efdf6bdbcd413b43a5a4fa5374f21de498520b3961f"
+  },
+  "xiaobei": {
+    "source": "exec-e2780a39-a08f-46d4-8428-da167c0ee6dd.png",
+    "sha256": "c70ee5d5d9b911129f0ff4d6ce772c2e2dc062b921f62cd8b945974a74b67ff0"
+  },
+  "suyao": {
+    "source": "exec-bf2cfa78-21c7-4792-ae56-deb6971c2fc1.png",
+    "sha256": "53425495f98082e2598cc14125c0bbe3cc1a3ed8149437ddcd689279cef2956f"
+  },
+  "chenmo": {
+    "source": "exec-aa18771e-e39a-4edb-aad9-fc94b2d6fe7f.png",
+    "sha256": "9d6f9ff9283b0e61f59ddbd2f9d90e66962f78eeec3ed54b2a219d84e1f6388b"
+  },
+  "xiaozhou": {
+    "source": "exec-f29405da-8a4a-4fd1-8002-115d7df651a0.png",
+    "sha256": "1be9febc2cca430b7575c0add80be4a35e677df2a9bd488b55b94f933b11f39a"
+  },
+  "actress": {
+    "source": "exec-d3907aa9-f819-4140-9eca-933ee0425544.png",
+    "sha256": "0fefbcb2581f8677cab8eef0c990ce96de30ac61b1b1e7b81abc35a82ccf411f"
+  },
+  "phone": {
+    "source": "exec-64eb5e89-1ea4-4fbf-8a85-6e82353f1b33.png",
+    "sha256": "6cbbc3cd672a6bd3444da918ef63cef549a17be8cd631213307e7f1430491602"
+  },
+  "tripod": {
+    "source": "exec-5e31866b-5453-4ff1-a099-562786d1d734.png",
+    "sha256": "b4407fcbc4a73016c83d50370f2a203bedba6458cec0e554a46b3173994e5227"
+  },
+  "ev01": {
+    "source": "exec-8426d93f-a6d8-4dc4-a8de-e246759cbc8b.png",
+    "sha256": "d92021bbd68302f47dc0da24274a7fd1b5f230c704d483b3c77bd12d58036f77"
+  },
+  "ev02": {
+    "source": "exec-3226e974-2b82-4f5e-83a3-39d007531c97.png",
+    "sha256": "e960c4111fc82eff5a0d2b81b48fd25b8374d070975d3fc46c7ab2db6ce639c6"
+  }
+}

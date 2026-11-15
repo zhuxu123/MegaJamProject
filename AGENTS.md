@@ -209,3 +209,5 @@ Select-String -LiteralPath $TestLog -Pattern 'Reflected script-test commandlet s
 - 新预演摄影位于 `SuperstarPhotography.cpp`：1–3机位、WASD/左拖构图、Q/E/滚轮变焦、Enter拍照确认、Tab相册，最多保留6张/选3张裁切排序发布；跳幕改F1–F4，剧情证据快捷键改V。照片为当时取景框像素，保存在Saved，按不同路径保存每次发布；不套用原两关评分。表情改用 `head_anchors.json` 逐帧锚点，结合精灵镜像和相机投影。生成新素材后须重建/复核锚点。
 - 保留新 `Json` 模块依赖与 `DirectoriesToAlwaysStageAsUFS=(Path="SuperstarStory")`。当前增量素材使用 `clips.json.path` 指向版本目录，本批入口为 `Tools/Import-SuperstarPartial.py`；旧18项导入器不能覆盖扩展后的注册表。人物 `sequence/delay/hold_frame` 统一按绝对时间求值，母版与图片道具不代表互动动画完成。详见 [首批补件记录](Docs/SuperstarStory/Partial-20261115.md)。验证运行 `Tools/Validate-SuperstarStory.py`。
 - 操作、文件职责、已知缺口和带渲染 smoke 命令详见 [独立预演说明](Docs/SuperstarStory/README.md)。不得用本模式的透视参数更改原有照片投影契约。
+
+- 2026-11-15 演出修复：移动人物必须配置 `walk_clip/move_start/move_end`，朝向以移动方向与clip.screen_facing共同求值；道具使用逐帧hand_anchors及归一化grip附着，不再用固定offset伪装持物。原图、提示词在ArtSource，详见 [走路与持物修复](Docs/SuperstarStory/Motion-20261115.md)。`-SuperstarMotionSmoke`验证324个取样的方向、握点和时间回跳；不能替代最终艺术验收。

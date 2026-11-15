@@ -95,6 +95,7 @@ void ASuperstarStoryHUD::BeginPlay()
     bSmoke = FParse::Param(FCommandLine::Get(), TEXT("SuperstarSmoke")) || FParse::Param(FCommandLine::Get(), TEXT("SuperstarMenuSmoke"));
     bReferenceView = FParse::Param(FCommandLine::Get(), TEXT("SuperstarReferences"));
     bPhotoSmoke = FParse::Param(FCommandLine::Get(), TEXT("SuperstarPhotoSmoke"));
+    bMotionSmoke = FParse::Param(FCommandLine::Get(), TEXT("SuperstarMotionSmoke"));
     Stage = GetWorld()->SpawnActor<ASuperstarStage>();
     if (Stage) GetOwningPlayerController()->SetViewTarget(Stage);
     SelectBeat(0);
@@ -148,6 +149,8 @@ void ASuperstarStoryHUD::SelectBeat(int32 Index)
     for (const auto& Value : Beats[Beat]->GetArrayField(TEXT("actors")))
     {
         TArray<FString> Ids{Value->AsObject()->GetStringField(TEXT("clip"))};
+        FString Walk;
+        if(Value->AsObject()->TryGetStringField(TEXT("walk_clip"),Walk)) Ids.Add(Walk);
         const TArray<TSharedPtr<FJsonValue>>* Sequence=nullptr;
         if(Value->AsObject()->TryGetArrayField(TEXT("sequence"),Sequence))
             for(const auto& Part:*Sequence) Ids.Add(Part->AsObject()->GetStringField(TEXT("clip")));
@@ -204,6 +207,7 @@ void ASuperstarStoryHUD::Tick(float Delta)
         return;
     }
     if (!Error.IsEmpty() || !Beats.IsValidIndex(Beat)) return;
+    if (bMotionSmoke) { RunMotionSmoke(); return; }
     if (bPhotoSmoke) { RunPhotoSmoke(); UpdateActors(); return; }
     if (TickPhotography(Delta)) return;
     if (bMusicSmoke)
@@ -340,6 +344,59 @@ void ASuperstarStoryHUD::Label(const FString& Text, float X, float Y, int32 Size
     Canvas->DrawItem(Item);
 }
 
+void ASuperstarStoryHUD::RunMotionSmoke()
+{
+    // Render three gait cycles at three camera stations. Deliberately seek away and back.
+    static const int32 Samples[]={0,3,4,5,6,14,15,23,25,26,27,28,30,31,32,34,37,38};
+    if(++MotionSmokeTicks<60) return;
+    if(MotionSmokeStep>=UE_ARRAY_COUNT(Samples)*18)
+    {
+        UE_LOG(LogTemp,Display,TEXT("SuperstarMotion smoke PASS: 324 samples, 3 stations, direction, hand grip and reverse-seek checks"));
+        GetOwningPlayerController()->ConsoleCommand(TEXT("quit"));return;
+    }
+    const int32 Phase=(MotionSmokeTicks-60)%4;
+    if(Phase==0)
+    {
+        const int32 Target=Samples[MotionSmokeStep/18];
+        if(Beat!=Target || MotionSmokeStep==0) SelectBeat(Target);
+        Clock=(MotionSmokeStep%18)*.2f+.001f;
+        ViewStation=TargetStation=((MotionSmokeStep%18)/6)-1;Stage->SetView(ViewStation,0,0,1);
+        UpdateActors();
+        const float SavedClock=Clock;
+        TArray<FVector> Hands;
+        for(int32 I=0;I<Beats[Beat]->GetArrayField(TEXT("actors")).Num();++I)
+        {
+            const auto A=Beats[Beat]->GetArrayField(TEXT("actors"))[I]->AsObject();
+            Hands.Add(Stage->CharacterPixelWorld(I,ActorHand(A)));
+            FString Walk;
+            if(A->TryGetStringField(TEXT("walk_clip"),Walk))
+            {
+                FString Id;int32 Frame;ResolveActorSample(A,Id,Frame);
+                FString Facing=TEXT("right");Data->GetObjectField(TEXT("clips"))->GetObjectField(Id)->TryGetStringField(TEXT("screen_facing"),Facing);
+                const bool Left=(Facing==TEXT("left"))!=ActorFlip(A,Id);
+                checkf(Left==(A->GetNumberField(TEXT("to"))<A->GetNumberField(TEXT("x"))),TEXT("Actor walks backward"));
+            }
+        }
+        Clock=Beats[Beat]->GetNumberField(TEXT("duration"));UpdateActors();Clock=SavedClock;UpdateActors();
+        for(int32 I=0;I<Hands.Num();++I)
+            checkf(FVector::Dist(Hands[I],Stage->CharacterPixelWorld(I,ActorHand(Beats[Beat]->GetArrayField(TEXT("actors"))[I]->AsObject())))<.001,TEXT("Non-deterministic actor pose"));
+        const TArray<TSharedPtr<FJsonValue>>* Props=nullptr;
+        if(Beats[Beat]->TryGetArrayField(TEXT("props"),Props)) for(int32 I=0;I<Props->Num();++I)
+        {
+            const auto P=(*Props)[I]->AsObject();double HolderIndex=0.;
+            if(!P->TryGetNumberField(TEXT("attach_actor"),HolderIndex)) continue;
+            double Transfer=0.;if(P->TryGetNumberField(TEXT("transfer_at"),Transfer)&&Clock>=Transfer) HolderIndex=P->GetNumberField(TEXT("transfer_actor"));
+            const auto A=Beats[Beat]->GetArrayField(TEXT("actors"))[static_cast<int32>(HolderIndex)]->AsObject();
+            const auto& Grip=P->GetArrayField(TEXT("grip"));
+            const FVector GripError=Stage->PropPixelWorld(I,{Grip[0]->AsNumber(),Grip[1]->AsNumber()})-Stage->CharacterPixelWorld(HolderIndex,ActorHand(A));
+            checkf(GripError.Size()<.11,TEXT("Detached prop: %s error=%s"),*P->GetStringField(TEXT("image")),*GripError.ToString());
+        }
+    }
+    if(Phase==2) FScreenshotRequest::RequestScreenshot(FPaths::ProjectSavedDir()/TEXT("Screenshots/SuperstarMotion")/
+        FString::Printf(TEXT("Beat_%02d_%02d.png"),Beat+1,MotionSmokeStep%18),true,false);
+    if(Phase==3) ++MotionSmokeStep;
+}
+
 void ASuperstarStoryHUD::Background(const FString& Scene)
 {
     if (!bReferenceView && Scene != TEXT("newspaper"))
@@ -414,11 +471,47 @@ void ASuperstarStoryHUD::ResolveActorSample(const TSharedPtr<FJsonObject>& Actor
             const auto P=Part->AsObject();const double At=P->GetNumberField(TEXT("at"));
             if(ActorTime>=At) {Id=P->GetStringField(TEXT("clip"));LocalTime=ActorTime-At;}
         }
+    double Start=0.,End=Beats[Beat]->GetNumberField(TEXT("duration"));
+    Actor->TryGetNumberField(TEXT("move_start"),Start);Actor->TryGetNumberField(TEXT("move_end"),End);
+    FString Walk;
+    const bool bWalking=Actor->TryGetStringField(TEXT("walk_clip"),Walk) && Clock>=Start && Clock<End;
+    if(bWalking) {Id=Walk;LocalTime=Clock-Start;}
     const auto Clip=Data->GetObjectField(TEXT("clips"))->GetObjectField(Id);
     const int32 Count=Clip->GetIntegerField(TEXT("frames"));
     const int32 Sample=FMath::FloorToInt(LocalTime*Clip->GetNumberField(TEXT("fps")));
     Frame=Clip->GetBoolField(TEXT("loop"))?Sample%Count:FMath::Min(Sample,Count-1);
-    double Hold=0.;if(Actor->TryGetNumberField(TEXT("hold_frame"),Hold)) Frame=FMath::Clamp(static_cast<int32>(Hold),0,Count-1);
+    double Hold=0.;if(!bWalking && Actor->TryGetNumberField(TEXT("hold_frame"),Hold)) Frame=FMath::Clamp(static_cast<int32>(Hold),0,Count-1);
+}
+
+float ASuperstarStoryHUD::ActorScreenX(const TSharedPtr<FJsonObject>& Actor) const
+{
+    double Start=0.,End=Beats[Beat]->GetNumberField(TEXT("duration"));
+    Actor->TryGetNumberField(TEXT("move_start"),Start);Actor->TryGetNumberField(TEXT("move_end"),End);
+    return FMath::Lerp(Actor->GetNumberField(TEXT("x")),Actor->GetNumberField(TEXT("to")),FMath::Clamp((Clock-Start)/FMath::Max(.01,End-Start),0.,1.));
+}
+
+bool ASuperstarStoryHUD::ActorFlip(const TSharedPtr<FJsonObject>& Actor,const FString& Id) const
+{
+    FString Walk;
+    if(Actor->TryGetStringField(TEXT("walk_clip"),Walk))
+    {
+        const bool bWantLeft=Actor->GetNumberField(TEXT("to"))<Actor->GetNumberField(TEXT("x"));
+        FString Facing=TEXT("right");Data->GetObjectField(TEXT("clips"))->GetObjectField(Id)->TryGetStringField(TEXT("screen_facing"),Facing);
+        return bWantLeft!=(Facing==TEXT("left"));
+    }
+    return Actor->GetBoolField(TEXT("flip"));
+}
+
+FVector2D ASuperstarStoryHUD::ActorHand(const TSharedPtr<FJsonObject>& Actor) const
+{
+    FString Id;int32 Frame;ResolveActorSample(Actor,Id,Frame);
+    const TArray<TSharedPtr<FJsonValue>>* Points=nullptr;
+    if(Data->GetObjectField(TEXT("clips"))->GetObjectField(Id)->TryGetArrayField(TEXT("hand_anchors"),Points) && Points->IsValidIndex(Frame))
+    {
+        const auto& XY=(*Points)[Frame]->AsArray();return FVector2D(XY[0]->AsNumber(),XY[1]->AsNumber());
+    }
+    if(Actor->TryGetArrayField(TEXT("hand"),Points)) return FVector2D((*Points)[0]->AsNumber(),(*Points)[1]->AsNumber());
+    return FVector2D(380,345);
 }
 
 float ASuperstarStoryHUD::PropScreenX(const TSharedPtr<FJsonObject>& Prop) const
@@ -430,8 +523,7 @@ float ASuperstarStoryHUD::PropScreenX(const TSharedPtr<FJsonObject>& Prop) const
         if(Actors.IsValidIndex(static_cast<int32>(Index)))
         {
             const auto A=Actors[static_cast<int32>(Index)]->AsObject();
-            const double Progress=FMath::Clamp(Clock/Beats[Beat]->GetNumberField(TEXT("duration")),0.,1.);
-            return FMath::Lerp(A->GetNumberField(TEXT("x")),A->GetNumberField(TEXT("to")),Progress)+Prop->GetNumberField(TEXT("offset_x"));
+            return ActorScreenX(A)+Prop->GetNumberField(TEXT("offset_x"));
         }
     }
     return Prop->GetNumberField(TEXT("x"));
@@ -447,9 +539,7 @@ void ASuperstarStoryHUD::UpdateActors()
         const auto Actor = Value->AsObject();
         FString Id;int32 Frame;ResolveActorSample(Actor,Id,Frame);
         auto* Texture = LoadFrame(ClipFramePath(Id,Frame));
-        const float X = FMath::Lerp(Actor->GetNumberField(TEXT("x")),Actor->GetNumberField(TEXT("to")),
-            FMath::Clamp(Clock/Current->GetNumberField(TEXT("duration")),0.,1.));
-        Stage->SetCharacter(Index++,Texture,X,Actor->GetBoolField(TEXT("flip")));
+        Stage->SetCharacter(Index++,Texture,ActorScreenX(Actor),ActorFlip(Actor,Id));
     }
     const TArray<TSharedPtr<FJsonValue>>* Props=nullptr;
     if(Current->TryGetArrayField(TEXT("props"),Props))
@@ -458,6 +548,16 @@ void ASuperstarStoryHUD::UpdateActors()
         for(const auto& Value:*Props)
         {
             const auto P=Value->AsObject();
+            double HolderIndex=0.;
+            if(P->TryGetNumberField(TEXT("attach_actor"),HolderIndex))
+            {
+                double Transfer=0.;if(P->TryGetNumberField(TEXT("transfer_at"),Transfer) && Clock>=Transfer) HolderIndex=P->GetNumberField(TEXT("transfer_actor"));
+                const auto Actor=Current->GetArrayField(TEXT("actors"))[static_cast<int32>(HolderIndex)]->AsObject();
+                const auto& Grip=P->GetArrayField(TEXT("grip"));
+                double Angle=0.;P->TryGetNumberField(TEXT("angle"),Angle);
+                Stage->SetAttachedProp(PropIndex++,LoadFrame(P->GetStringField(TEXT("image"))),HolderIndex,ActorHand(Actor),FVector2D(Grip[0]->AsNumber(),Grip[1]->AsNumber()),P->GetNumberField(TEXT("size")),Angle);
+                continue;
+            }
             Stage->SetProp(PropIndex++,LoadFrame(P->GetStringField(TEXT("image"))),
                 FVector((640.f-PropScreenX(P))*1400.f/1280.f,P->GetNumberField(TEXT("depth")),P->GetNumberField(TEXT("z"))),P->GetNumberField(TEXT("size")));
         }
@@ -468,15 +568,38 @@ void ASuperstarStoryHUD::UpdateActors()
 void ASuperstarStoryHUD::DrawActors()
 {
     const auto Current = Beats[Beat];
+    const TArray<TSharedPtr<FJsonValue>>* Props=nullptr;
+    if(bReferenceView&&Current->TryGetArrayField(TEXT("props"),Props))
+        for(const auto& Value:*Props)
+        {
+            const auto P=Value->AsObject();auto* Texture=LoadFrame(P->GetStringField(TEXT("image")));
+            if(!Texture) continue;
+            const float H=P->GetNumberField(TEXT("size"))*360.f/395.f,W=H*Texture->GetSizeX()/Texture->GetSizeY();
+            double HolderIndex=0.;
+            if(P->TryGetNumberField(TEXT("attach_actor"),HolderIndex))
+            {
+                double Transfer=0.;if(P->TryGetNumberField(TEXT("transfer_at"),Transfer) && Clock>=Transfer) HolderIndex=P->GetNumberField(TEXT("transfer_actor"));
+                const auto Actor=Current->GetArrayField(TEXT("actors"))[static_cast<int32>(HolderIndex)]->AsObject();
+                FString Id;int32 Frame;ResolveActorSample(Actor,Id,Frame);const bool bFlip=ActorFlip(Actor,Id);
+                FVector2D Hand=ActorHand(Actor);if(bFlip) Hand.X=640-Hand.X;
+                const auto& Grip=P->GetArrayField(TEXT("grip"));
+                const float U=bFlip?1-Grip[0]->AsNumber():Grip[0]->AsNumber();
+                const FVector2D Pos(ActorScreenX(Actor)+(Hand.X-320)*360/640-U*W,494+(Hand.Y-570)*360/640-Grip[1]->AsNumber()*H);
+                double Angle=0.;P->TryGetNumberField(TEXT("angle"),Angle);
+                DrawTexture(Texture,Origin.X+Pos.X*Scale,Origin.Y+Pos.Y*Scale,W*Scale,H*Scale,bFlip?1:0,0,bFlip?-1:1,1,FLinearColor::White,BLEND_Translucent,1,false,bFlip?-Angle:Angle,FVector2D(U,Grip[1]->AsNumber()));
+                continue;
+            }
+            DrawTexture(Texture,Origin.X+(PropScreenX(P)-W/2)*Scale,Origin.Y+(494-P->GetNumberField(TEXT("z"))*360/395-H/2)*Scale,
+                W*Scale,H*Scale,0,0,1,1,FLinearColor::White,BLEND_Translucent);
+        }
     int32 ActorIndex = 0;
     for (const auto& Value : Current->GetArrayField(TEXT("actors")))
     {
         const auto Actor = Value->AsObject();
         FString Id;int32 Frame;ResolveActorSample(Actor,Id,Frame);
         auto* Texture = LoadFrame(ClipFramePath(Id,Frame));
-        const float Progress = FMath::Clamp(Clock / Current->GetNumberField(TEXT("duration")), 0., 1.);
-        const float X = FMath::Lerp(Actor->GetNumberField(TEXT("x")), Actor->GetNumberField(TEXT("to")), Progress);
-        const bool bFlip = Actor->GetBoolField(TEXT("flip"));
+        const float X = ActorScreenX(Actor);
+        const bool bFlip = ActorFlip(Actor,Id);
         constexpr float Size = 360.f;
         const int32 Index = ActorIndex++;
         if (Texture && bReferenceView)
@@ -520,16 +643,7 @@ void ASuperstarStoryHUD::DrawActors()
             }
         }
     }
-    const TArray<TSharedPtr<FJsonValue>>* Props=nullptr;
-    if(bReferenceView&&Current->TryGetArrayField(TEXT("props"),Props))
-        for(const auto& Value:*Props)
-        {
-            const auto P=Value->AsObject();auto* Texture=LoadFrame(P->GetStringField(TEXT("image")));
-            if(!Texture) continue;
-            const float H=P->GetNumberField(TEXT("size"))*360.f/395.f,W=H*Texture->GetSizeX()/Texture->GetSizeY();
-            DrawTexture(Texture,Origin.X+(PropScreenX(P)-W/2)*Scale,Origin.Y+(494-P->GetNumberField(TEXT("z"))*360/395-H/2)*Scale,
-                W*Scale,H*Scale,0,0,1,1,FLinearColor::White,BLEND_Translucent);
-        }
+
 }
 
 void ASuperstarStoryHUD::DrawHUD()
@@ -571,7 +685,7 @@ void ASuperstarStoryHUD::DrawHUD()
         if(Current->TryGetStringField(TEXT("evidence_image"),EvidencePath))
         {
             if(auto* Image=LoadFrame(EvidencePath)) DrawTexture(Image,Origin.X+60*Scale,Origin.Y+428*Scale,128*Scale,72*Scale,0,0,1,1,FLinearColor::White,BLEND_Opaque);
-            Label(TEXT("名单证据图"),205,432,17,Mint);
+            Label(TEXT("剧情证据图"),205,432,17,Mint);
             Label(Evidence,205,466,16);
         }
         else

@@ -51,7 +51,8 @@
       "82044db4b2fa54d9d8d6925e3e198d4eed1412e6d2c1052f16bea8bbf52f65b7",
       "46634337586344bfef9fc5e777439cc101abed11e27b43cb7d5cb4cbde09a39c",
       "a2c1bfa959bcaa5c71cad66c6dfc246690b0cd1ecb3dc9c02a00a020424a0791"
-    ]
+    ],
+    "screen_facing": "right"
   },
   "C03_xiaobei_fall_scatter": {
     "frames": 23,
@@ -307,7 +308,8 @@
       "63c6b810b7c00b2f6ea6f9afd8f71022d136d812b5f0c525b4a1844ffd612137",
       "2902405ffbdada971d2b62536358a197b3046769c667a45b103e66a57df5534f",
       "136edfc5ded1820eca228b0f6d9ac3822c15eccabc763abff1d4ad64850e1460"
-    ]
+    ],
+    "screen_facing": "right"
   },
   "E02_extra_f_walk": {
     "frames": 6,
@@ -325,7 +327,8 @@
       "6d2acd6de72392e221e559ea644009d94158386d10652ed12e2fa9b1ab85c1a0",
       "153aefceed27c7fe44e86eb85489bd7e629caabde21c525f216244fc7d6957df",
       "bf44d686eede0bbdcbdb62fd2516db29f507a262ec0960fbb4d5f96186ef5408"
-    ]
+    ],
+    "screen_facing": "right"
   },
   "E03_extra_m_idle": {
     "frames": 10,
@@ -347,7 +350,8 @@
       "9601632c32d5008699922c6990c3d262ef9d7df243bb21b7b1908446dd6e27d4",
       "70b609e8c0170d62f774a6c1cfe8f8f7168756e3ff230c0392b887dfc802f830",
       "82a1f43e078c90af6f83c468cd72a6c44c38ecf09aa3b28481563180d2d1319f"
-    ]
+    ],
+    "screen_facing": "right"
   },
   "E04_extra_m_walk": {
     "frames": 8,
@@ -367,7 +371,8 @@
       "cfd401a67a7f1b80d55012e6c6210887b378476fc2702f373b46f94a0a0641e5",
       "64bc3e25c097ad0ecba9a0baf93644e84522f5d65f38e22f59f56db2a52dd4dc",
       "8ffe5c701dac3befda5385d957500af8d5127ea6f14a581647c7f74cdceadade"
-    ]
+    ],
+    "screen_facing": "right"
   },
   "S01_linwan_idle": {
     "frames": 13,
@@ -460,7 +465,8 @@
       "67fb997f46598d23ab7ec1c934591cf1acea531841ceb5b21aa2ae929d112c2a",
       "df2e86b27831ba58fe041cce6a015fb2d1adeb2d9dfd0083db275bfba49da9c4",
       "a40daa29f11bc7cc1130762e3612f2724223d53376756a47b6497ca62eec2855"
-    ]
+    ],
+    "screen_facing": "right"
   },
   "S05_suyao_kneel_idle": {
     "frames": 7,
@@ -671,5 +677,375 @@
     "screen_facing": "right",
     "design_status": "production_default_not_user_approved",
     "source_sha256": "818307524e5372ed02e43b9fbdf4a5a44ecee0efbf4b1f0c547c179ecb3ba239"
+  },
+  "W_linwan": {
+    "path": "Animations/Motion20261115/W_linwan",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "80a28470b7c556e862b020eda6e687f53c20fbbee07293b09e1cb90d4ae51412",
+      "48d4b4fef85974461ed85bd1e69f57445c993bdab95f0683909cd2280240867f",
+      "85aa6834dc94ebeb620eae46bf1608bf3067ec5a2d38eec70be1316cf1621ff8",
+      "888a99071853266d51ef2c3f5e7c32ffaeca6054e52ceaa5340fc0911f655d7b",
+      "e57372c77ead2836181c93daa0c10974cb2c536814f692feb4fcf91dd39b89d3",
+      "1c21db1e679ac8585bdb7edafba0a2e16e0824b5d2cb36bbb7226714420a3df5"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        379.83,
+        248.44
+      ],
+      [
+        378.08,
+        248.44
+      ],
+      [
+        383.45,
+        249.44
+      ],
+      [
+        379.51,
+        248.44
+      ],
+      [
+        378.83,
+        246.41
+      ],
+      [
+        379.16,
+        246.41
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "H_linwan": {
+    "path": "Animations/Motion20261115/H_linwan",
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "4082aa02abfb4e6922f9acbdcc2176ca842a4d9b7583250e3695942f7ccecfb0"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        383.11,
+        245.41
+      ]
+    ],
+    "kind": "generated_hold",
+    "source_delivery": "Motion20261115"
+  },
+  "H_linwan_phone": {
+    "path": "Animations/Motion20261115/H_linwan_phone",
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "a481303e75a9ece9645fa12404617332a54d8becf370d4722afd6943779ce5fc"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        402.68,
+        211.64
+      ]
+    ],
+    "kind": "generated_hold",
+    "source_delivery": "Motion20261115"
+  },
+  "W_xiaobei": {
+    "path": "Animations/Motion20261115/W_xiaobei",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "4b77afb9834746e151ec60057c694ab4537c2f449a453e40f849d16dd3b0d9ce",
+      "1e5c798e2372d74408a60b8c0ef9e570b9cbfc506290aef2069b5daa13dd7faf",
+      "cc2519904401fb3e2ff577dab0ed97b28e118f877526e20aaef7c4e32f34261e",
+      "0ca7a54abdc91c2a4d1f16ef2a02d36b1d4524495a808167077e1f2525707e78",
+      "6a62b1301009c3486110a86cb99ee2c1d2f02e8456373f280a6076a3d6c7a079",
+      "86fe2b9a5a02bc64324b2c5f5901190d773dbe8279ef112b7b425d818daf63d8"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        380.82,
+        256.78
+      ],
+      [
+        380.11,
+        254.78
+      ],
+      [
+        380.11,
+        260.78
+      ],
+      [
+        379.82,
+        260.78
+      ],
+      [
+        380.82,
+        254.36
+      ],
+      [
+        380.11,
+        257.36
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "H_xiaobei": {
+    "path": "Animations/Motion20261115/H_xiaobei",
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "271dbb674339bfaa61c4eb5861d5cac502bd4f8e4e2e13baad61e96aff82ca21"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        380.11,
+        251.36
+      ]
+    ],
+    "kind": "generated_hold",
+    "source_delivery": "Motion20261115"
+  },
+  "W_suyao": {
+    "path": "Animations/Motion20261115/W_suyao",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "5528688f6473433263e2b2ab2e5213061bf38ad03e728e02c587435743be3527",
+      "1cdb3e26f7da562be854fc5dc084df9909bb9df9fe7baea49f46c8b3b6d6acbd",
+      "3c572f8bdb8d919538482d87d31cbe27d70a80f6c4269321de8b95768b4729b0",
+      "327fdcdb5ac5a88b55d05491ab763b4bf98342ec42136862ecaf2d229d48f54f",
+      "c7d5d971bd17831772dce9eecb3c2257051bb8199ff6327706ede6ad5621631f",
+      "ffca945179502ebc98aece9fa7eb6c49a6f4527c9674ad63794f8186cbd2db47"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        396.69,
+        317.88
+      ],
+      [
+        430.69,
+        317.88
+      ],
+      [
+        462.69,
+        317.88
+      ],
+      [
+        394.69,
+        319.88
+      ],
+      [
+        428.69,
+        319.88
+      ],
+      [
+        460.69,
+        317.88
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "W_chenmo": {
+    "path": "Animations/Motion20261115/W_chenmo",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "c3ab1910970621531e70e4f4c2cc3ab3b02f75d32e092b8128decf4ff154669f",
+      "8da35009258bd64f90cbbeb21f47cc91168452229c774a0d574ee32e905cad98",
+      "44b4b2e63987d03939e7c0149826994b4c879c0a4ae306f42f7d5dbb1e655cd0",
+      "1ecad8c216fdee54d60260878b1a3adb6b3ef5996b164a288afcdfe726a4510c",
+      "3638cf61233dadb93d1d14b7de50b9d4ee0c898118a2f49a9437944777b1ebb9",
+      "60c692e626fbb6b2995e0a541f5dfaedaa440c110442a560066aeb739c8045bf"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        361.45,
+        278.09
+      ],
+      [
+        394.45,
+        280.09
+      ],
+      [
+        425.45,
+        288.09
+      ],
+      [
+        360.45,
+        283.09
+      ],
+      [
+        393.45,
+        279.09
+      ],
+      [
+        425.45,
+        282.09
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "W_xiaozhou": {
+    "path": "Animations/Motion20261115/W_xiaozhou",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "443c387bd183e48c8f989d53c6e3c307f2dfb250b168c46fa4ee7f97c9df9aea",
+      "5d461cfa2162a9667de69bc0c83c545cbe756beda2d69e96918cf12a1f668910",
+      "421ff1744f3764317f21168127d3ad9a9b94cc728324d6a8dfed797c446556b1",
+      "39cef866ae489bf53a78d78f0f8b344a23b08b289d843ad0e163883a058ae5be",
+      "8834c656c5ae66f81704282a47cd1e21aa898be7bf2af3b6cf138a0ec315bb09",
+      "d370887a9fa807cedda82c171c3b18d066af090a82e6b65e8f16e8dac52c52fc"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        385.58,
+        275.9
+      ],
+      [
+        421.58,
+        275.9
+      ],
+      [
+        454.58,
+        275.9
+      ],
+      [
+        385.58,
+        277.9
+      ],
+      [
+        420.58,
+        276.9
+      ],
+      [
+        454.58,
+        276.9
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "W_actress": {
+    "path": "Animations/Motion20261115/W_actress",
+    "frames": 6,
+    "fps": 5,
+    "loop": true,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "e4aa52aae6d66680b26eebed379beae11f6dc648f074b0d5d5e7213d9b89ddbd",
+      "c06ba071b8e559bd288785c06902aa7e14f02bfe660ba4b09f52e0468f5600de",
+      "483d6e427e325c90f4cf23bf686bff2573a1ccc829b984a464869558854d6886",
+      "faae59385e9511542c78033289446aee58eda0e6edc444b817c5b1199edec790",
+      "fbe3f8020866475629d2a3a149135affbfe3c8a1ba23f50521ee7dc2a58e4332",
+      "0b27d980cf1f50679fcd5d974be5e66dae78d00cea134d0e403538096fb0ef43"
+    ],
+    "screen_facing": "right",
+    "hand_anchors": [
+      [
+        377.28,
+        263.81
+      ],
+      [
+        402.28,
+        261.81
+      ],
+      [
+        422.28,
+        261.81
+      ],
+      [
+        374.28,
+        261.81
+      ],
+      [
+        401.28,
+        260.81
+      ],
+      [
+        421.28,
+        261.81
+      ]
+    ],
+    "kind": "generated_walk",
+    "source_delivery": "Motion20261115"
+  },
+  "H_suyao": {
+    "path": "Animations/Motion20261115/H_suyao",
+    "frames": 1,
+    "fps": 5,
+    "loop": false,
+    "pivot": [
+      0.5,
+      0.890625
+    ],
+    "sha256": [
+      "5c8ff6cc020f61621f05da4f2d0838933c11b761202f3a6fb3d601934976e1ba"
+    ],
+    "screen_facing": "left",
+    "hand_anchors": [
+      [
+        277.94,
+        276.49
+      ]
+    ],
+    "kind": "generated_hold",
+    "source_delivery": "Motion20261115"
   }
 }

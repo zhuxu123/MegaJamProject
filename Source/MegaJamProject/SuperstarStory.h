@@ -96,6 +96,8 @@ private:
     FString PhotoSession;
     FString PhotoNotice;
     bool bPhotoSmoke = false;
+    bool bMotionSmoke = false;
+    int32 MotionSmokeStep = 0, MotionSmokeTicks = 0;
     int32 PhotoSmokeTicks = 0, PhotoSmokeStep = 0;
 
     void SelectBeat(int32 Index);
@@ -108,6 +110,10 @@ private:
     void ResolveActorSample(const TSharedPtr<FJsonObject>& Actor, FString& Id, int32& Frame) const;
     FString ClipFramePath(const FString& Id, int32 Frame) const;
     float PropScreenX(const TSharedPtr<FJsonObject>& Prop) const;
+    float ActorScreenX(const TSharedPtr<FJsonObject>& Actor) const;
+    bool ActorFlip(const TSharedPtr<FJsonObject>& Actor, const FString& Id) const;
+    FVector2D ActorHand(const TSharedPtr<FJsonObject>& Actor) const;
+    void RunMotionSmoke();
     void UpdateCamera(float Delta);
     void TakePhoto();
     void OnPhotoCaptured(int32 Width, int32 Height, const TArray<FColor>& Pixels);

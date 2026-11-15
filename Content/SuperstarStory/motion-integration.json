@@ -1,0 +1,11 @@
+{
+  "update": "Motion20261115",
+  "generator": "built-in imagegen",
+  "fps": 5,
+  "walk_cycles": ["W_linwan", "W_xiaobei", "W_suyao", "W_chenmo", "W_xiaozhou", "W_actress"],
+  "holding_poses": ["H_linwan", "H_linwan_phone", "H_xiaobei", "H_suyao"],
+  "static_gap_filled": ["EV01_limou_xiaobei", "EV02_limou_suyao"],
+  "replacement_props": ["phone", "tripod"],
+  "source_manifest": "ArtSource/SuperstarMotion20261115/sources.json",
+  "notes": "Subsequent update to partial-integration.json. Six-frame generated locomotion and single-frame holding poses are runtime replacements, not acceptance of all original video tasks or interaction groups. Dialogue, expression loops, embraces, full exchanges and escort actions remain incomplete."
+}

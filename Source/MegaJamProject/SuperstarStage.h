@@ -32,7 +32,9 @@ public:
     void SetReferenceView(bool bReference);
     void SetView(float Station, float Pan, float Tilt, float Zoom);
     FVector CharacterPixelWorld(int32 Index, FVector2D Pixel) const;
-    void SetProp(int32 Index, UTexture2D* Texture, FVector Center, float Height);
+    void SetProp(int32 Index, UTexture2D* Texture, FVector Center, float Height, bool bFlip = false);
+    void SetAttachedProp(int32 Index, UTexture2D* Texture, int32 ActorIndex, FVector2D Hand, FVector2D GripUV, float Height, float Angle = 0.f);
+    FVector PropPixelWorld(int32 Index, FVector2D UV) const;
 private:
     UPROPERTY() TObjectPtr<UCameraComponent> Camera;
     UPROPERTY() TArray<TObjectPtr<UStaticMeshComponent>> Pieces;
